@@ -3,6 +3,7 @@ import type { FC } from "react";
 
 // LOCAL FILES
 // Hooks
+import { useEventTimer } from "features/event/hooks";
 import { useTurnTimer } from "features/game/hooks";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
@@ -11,6 +12,7 @@ import { selectPlayerResources } from "features/town/townSlice";
 export const Overview: FC<{}> = () => {
   // Hooks
   useTurnTimer();
+  useEventTimer();
   const resources = useAppSelector(selectPlayerResources);
 
   return (

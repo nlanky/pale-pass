@@ -6,6 +6,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { View } from "features/game/types";
+// Redux
+import { triggerEvent } from "features/event/eventSlice";
 
 interface GameState {
   turn: number;
@@ -28,10 +30,17 @@ export const gameSlice = createSlice({
       state.turn += 1;
     },
   },
+  extraReducers(builder) {
+    builder.addCase(triggerEvent, (state) => {
+      // state.view = "event";
+    });
+  },
 });
 
 export const { incrementTurn, setView } = gameSlice.actions;
 
+// SELECTORS
+export const selectTurn = (state: RootState) => state.game.turn;
 export const selectView = (state: RootState) => state.game.view;
 
-export default gameSlice.reducer;
+export const gameReducer = gameSlice.reducer;
