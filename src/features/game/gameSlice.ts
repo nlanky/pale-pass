@@ -22,10 +22,10 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     setView: (state, action: PayloadAction<View>) => {
-        state.view = action.payload;
+      state.view = action.payload;
     },
     incrementTurn: (state) => {
-        state.turn += 1;
+      state.turn += 1;
     },
   },
 });

@@ -17,16 +17,16 @@ interface TownState {
 
 // TODO: Other players start with resources?
 const INITIAL_TOWN_STATE: Town = {
-    isPlayer: false,
-    tier: 1,
-    resources: INITIAL_RESOURCES,
-    buildings: [],
-    villagers: [],
-    image: "",
+  isPlayer: false,
+  tier: 1,
+  resources: INITIAL_RESOURCES,
+  buildings: [],
+  villagers: [],
+  image: "",
 };
 
 const initialState: TownState = {
-  player: {...INITIAL_TOWN_STATE, isPlayer: true},
+  player: { ...INITIAL_TOWN_STATE, isPlayer: true },
   otherPlayers: [],
 };
 
@@ -35,15 +35,15 @@ export const townSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder
-      .addCase("game/incrementTurn", (state) => {
-        state.player.resources = getNextTurnResources(state.player);
-      });
-  }
+    builder.addCase("game/incrementTurn", (state) => {
+      state.player.resources = getNextTurnResources(state.player);
+    });
+  },
 });
 
-export const {} = townSlice.actions;
+// export const {} = townSlice.actions;
 
-export const selectPlayerResources = (state: RootState) => state.town.player.resources;
+export const selectPlayerResources = (state: RootState) =>
+  state.town.player.resources;
 
 export default townSlice.reducer;
