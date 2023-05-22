@@ -26,7 +26,8 @@
         "*.jsx"
       ],
       "rules":{
-        "@typescript-eslint/ban-types":[
+        "@typescript-eslint/ban-tsignore": false,
+        "@typescript-eslint/ban-types": [
           "error",
           {
             "extendDefaults":true,

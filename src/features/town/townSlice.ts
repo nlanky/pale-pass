@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Constants
-import { INITIAL_RESOURCES } from "features/resource/constants";
+import {
+  BASE_RESOURCES_PER_TURN,
+  NO_RESOURCES,
+} from "features/resource/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Town } from "features/town/types";
@@ -23,7 +26,8 @@ interface TownState {
 const INITIAL_TOWN_STATE: Town = {
   isPlayer: false,
   tier: 1,
-  resources: INITIAL_RESOURCES,
+  resources: NO_RESOURCES,
+  resourcesPerTurn: BASE_RESOURCES_PER_TURN,
   buildings: [], // IDs
   villagers: [], // IDs
   image: "",
@@ -43,12 +47,19 @@ export const townSlice = createSlice({
       state.player.resources = getNextTurnResources(state.player);
     });
     builder.addCase(completeEvent, (state, action) => {
-      const { resources, building, villager } =
-        action.payload.chosenOutcome;
-      // Modify resources by amounts in outcome
+      const { resources, resourcesPerTurn, building, villager } =
+        action.payload;
+
+      // Modify resources
       state.player.resources = mergeResources(
         state.player.resources,
         resources,
+      );
+
+      // Modify resources per turn
+      state.player.resourcesPerTurn = mergeResources(
+        state.player.resourcesPerTurn,
+        resourcesPerTurn,
       );
 
       // Add or remove building

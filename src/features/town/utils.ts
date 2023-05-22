@@ -1,7 +1,6 @@
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { BASE_RESOURCE_GATHER_RATES } from "features/resource/constants";
 // Interfaces & Types
 import type { Resources } from "features/resource/types";
 import type { Town } from "features/town/types";
@@ -10,10 +9,10 @@ import { mergeResources } from "features/resource/utils";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 
 export const getNextTurnResources = (town: Town): Resources => {
-  // Add base gather rate
+  // Add base resources per turn
   let nextTurnResources = mergeResources(
     town.resources,
-    BASE_RESOURCE_GATHER_RATES,
+    town.resourcesPerTurn,
   );
 
   // Add building modifiers

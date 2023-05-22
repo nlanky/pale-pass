@@ -2,7 +2,7 @@
 // Interfaces & Types
 import type { Resources } from "features/resource/types";
 
-export const INITIAL_RESOURCES: Resources = {
+export const NO_RESOURCES: Resources = {
   Wood: 0,
   Stone: 0,
   Iron: 0,
@@ -12,7 +12,7 @@ export const INITIAL_RESOURCES: Resources = {
 };
 
 // TODO: Modify based on tier
-export const BASE_RESOURCE_GATHER_RATES: Resources = {
+export const BASE_RESOURCES_PER_TURN: Resources = {
   Wood: 1,
   Stone: 1,
   Iron: 1,

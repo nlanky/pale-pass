@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
+// Constants
+import { EVENTS } from "features/event/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Event, Outcome } from "features/event/types";
@@ -21,14 +23,8 @@ export const eventSlice = createSlice({
   name: "event",
   initialState,
   reducers: {
-    completeEvent: (
-      state,
-      action: PayloadAction<{
-        eventId: number;
-        chosenOutcome: Outcome;
-      }>,
-    ) => {
-      console.log(`Event ${action.payload.eventId} completed`);
+    // @ts-ignore Need to specify action type for other slices
+    completeEvent: (state, action: PayloadAction<Outcome>) => {
       state.active = null;
     },
     triggerEvent: (state, action: PayloadAction<Event>) => {
@@ -44,5 +40,7 @@ export const { completeEvent, triggerEvent } = eventSlice.actions;
 // SELECTORS
 export const selectSeenEvents = (state: RootState) =>
   state.event.seen;
+export const selectActiveEvent = (state: RootState) =>
+  EVENTS.find((event) => event.id === state.event.active);
 
 export const eventReducer = eventSlice.reducer;

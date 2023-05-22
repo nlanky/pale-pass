@@ -12,7 +12,7 @@ import type { Resource } from "features/resource/types";
 import { useAppSelector } from "features/redux/hooks";
 import { selectPlayerResources } from "features/town/townSlice";
 
-export const Overview: FC<{}> = () => {
+export const TownView: FC<{}> = () => {
   // Hooks
   useTurnTimer();
   useEventTimer();

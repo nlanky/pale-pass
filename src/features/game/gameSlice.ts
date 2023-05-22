@@ -32,8 +32,7 @@ export const gameSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(triggerEvent, (state) => {
-      console.log(state.view);
-      // state.view = "event";
+      state.view = "event";
     });
   },
 });

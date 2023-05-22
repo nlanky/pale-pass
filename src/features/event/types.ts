@@ -1,10 +1,11 @@
 // LOCAL FILES
 // Interfaces & Types
-import { Resources } from "features/resource/types";
+import type { Resources } from "features/resource/types";
 
 export interface Outcome {
   text: string; // Flavour text
   resources: Resources;
+  resourcesPerTurn: Resources;
   building: {
     id: number;
     add: boolean; // If false, remove building from town
