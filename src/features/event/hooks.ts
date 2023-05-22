@@ -47,8 +47,14 @@ export const useEventTimer = () => {
       Math.floor(turn / (numberOfEvents + 1)) === TURNS_PER_EVENT ||
       Math.random() < EVENT_PROBABILITY
     ) {
-      // TODO: Error handling when we run out of valid events
-      dispatch(triggerEvent(getValidEvent(playerTown, seenEvents)));
+      /*
+        TODO: This will probably end up in the final release but should
+        really find a way of avoiding running getValidEvent so often.
+      */
+      const event = getValidEvent(playerTown, seenEvents);
+      if (event) {
+        dispatch(triggerEvent(event));
+      }
     }
   }, [dispatch, playerTown, seenEvents, turn]);
 };

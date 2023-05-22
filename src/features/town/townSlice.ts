@@ -19,13 +19,13 @@ interface TownState {
   otherPlayers: Town[];
 }
 
-// TODO: Other players start with resources?
+// TODO: Other players start with resources, buildings, villagers?
 const INITIAL_TOWN_STATE: Town = {
   isPlayer: false,
   tier: 1,
   resources: INITIAL_RESOURCES,
-  buildings: [],
-  villagers: [],
+  buildings: [], // IDs
+  villagers: [], // IDs
   image: "",
 };
 
@@ -55,10 +55,10 @@ export const townSlice = createSlice({
       if (building) {
         const nextBuildings = [...state.player.buildings];
         if (building.add) {
-          nextBuildings.push(building.name);
+          nextBuildings.push(building.id);
         } else {
           const buildingIndex = nextBuildings.findIndex(
-            (playerBuilding) => playerBuilding === building.name,
+            (playerBuilding) => playerBuilding === building.id,
           );
           nextBuildings.splice(buildingIndex, 1);
         }
@@ -68,18 +68,17 @@ export const townSlice = createSlice({
 
       // Add or remove villager
       if (villager) {
-        const nextvillagers = [...state.player.villagers];
+        const nextVillagers = [...state.player.villagers];
         if (villager.add) {
-          nextvillagers.push(villager.occupation);
+          nextVillagers.push(villager.id);
         } else {
-          const villagerIndex = nextvillagers.findIndex(
-            (playervillager) =>
-              playervillager === villager.occupation,
+          const villagerIndex = nextVillagers.findIndex(
+            (playerVillager) => playerVillager === villager.id,
           );
-          nextvillagers.splice(villagerIndex, 1);
+          nextVillagers.splice(villagerIndex, 1);
         }
 
-        state.player.villagers = nextvillagers;
+        state.player.villagers = nextVillagers;
       }
     });
   },

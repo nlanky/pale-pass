@@ -8,7 +8,7 @@ import type { Town } from "features/town/types";
 export const getValidEvent = (
   town: Town,
   eventsSeen: number[],
-): Event => {
+): Event | null => {
   const {
     tier: townTier,
     resources: townResources,
@@ -30,12 +30,12 @@ export const getValidEvent = (
     }
 
     if (
-      townResources.wood < resources.wood ||
-      townResources.stone < resources.stone ||
-      townResources.iron < resources.iron ||
-      townResources.steel < resources.steel ||
-      townResources.mythril < resources.mythril ||
-      townResources.amethyst < resources.amethyst
+      townResources.Wood < resources.Wood ||
+      townResources.Stone < resources.Stone ||
+      townResources.Iron < resources.Iron ||
+      townResources.Steel < resources.Steel ||
+      townResources.Mythril < resources.Mythril ||
+      townResources.Amethyst < resources.Amethyst
     ) {
       return false;
     }
@@ -55,7 +55,10 @@ export const getValidEvent = (
     return true;
   });
 
-  // TODO: Error handling when we run out of valid events
+  // No valid events for user to see right now
+  if (validEvents.length === 0) {
+    return null;
+  }
 
   // Choose random event from valid events
   const randomIndex = Math.floor(Math.random() * validEvents.length);

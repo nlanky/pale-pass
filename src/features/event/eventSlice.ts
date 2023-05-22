@@ -8,10 +8,12 @@ import type { RootState } from "features/redux/store";
 import type { Event, Outcome } from "features/event/types";
 
 interface EventState {
+  active: number | null; // ID of active event
   seen: number[]; // List of event IDs user has seen
 }
 
 const initialState: EventState = {
+  active: null,
   seen: [],
 };
 
@@ -26,10 +28,12 @@ export const eventSlice = createSlice({
         chosenOutcome: Outcome;
       }>,
     ) => {
-      // TODO: Logging?
+      state.active = null;
     },
     triggerEvent: (state, action: PayloadAction<Event>) => {
-      state.seen = [...state.seen, action.payload.id];
+      const { id } = action.payload;
+      state.active = id;
+      state.seen = [...state.seen, id];
     },
   },
 });

@@ -6,11 +6,11 @@ export interface Outcome {
   text: string; // Flavour text
   resources: Resources;
   building: {
-    name: string;
+    id: number;
     add: boolean; // If false, remove building from town
   } | null;
   villager: {
-    occupation: string;
+    id: number;
     add: boolean; // If false, remove villager from town
   } | null;
   probability: number; // Between 0 and 1, all outcomes should add to 1
@@ -27,8 +27,9 @@ export interface Event {
   requirements: {
     tier: number;
     resources: Resources;
-    buildings: string[]; // Building names
-    villagers: string[]; // Villager occupations
+    buildings: number[]; // IDs
+    villagers: number[]; // IDs
   };
+  introductionText: string;
   choices: Choice[];
 }

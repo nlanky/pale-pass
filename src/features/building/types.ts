@@ -3,6 +3,7 @@
 import type { Resources } from "features/resource/types";
 
 export interface Building {
+  id: number;
   name: string;
   resources: Resources; // How much of each resource we should improve gather rate by
   text: {

@@ -6,7 +6,7 @@ export interface Town {
   isPlayer: boolean;
   tier: number;
   resources: Resources;
-  buildings: string[]; // Building names
-  villagers: string[]; // Villager occupations
+  buildings: number[]; // Building IDs
+  villagers: number[]; // Villager IDs
   image: string; // Path to image location
 }

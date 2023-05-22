@@ -1,10 +1,10 @@
 export interface Resources {
-  wood: number;
-  stone: number;
-  iron: number;
-  steel: number;
-  mythril: number;
-  amethyst: number;
+  Wood: number;
+  Stone: number;
+  Iron: number;
+  Steel: number;
+  Mythril: number;
+  Amethyst: number;
 }
 
 export type Resource = keyof Resources;
