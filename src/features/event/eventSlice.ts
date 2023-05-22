@@ -28,6 +28,7 @@ export const eventSlice = createSlice({
         chosenOutcome: Outcome;
       }>,
     ) => {
+      console.log(`Event ${action.payload.eventId} completed`);
       state.active = null;
     },
     triggerEvent: (state, action: PayloadAction<Event>) => {
