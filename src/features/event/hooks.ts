@@ -1,5 +1,5 @@
 // REACT
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // LOCAL FILES
 // Constants
@@ -7,6 +7,8 @@ import {
   EVENT_PROBABILITY,
   TURNS_PER_EVENT,
 } from "features/event/constants";
+// Interfaces & Types
+import type { Event } from "features/event/types";
 // Redux
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
@@ -16,14 +18,14 @@ import {
 import { selectTurn } from "features/game/gameSlice";
 import { selectPlayerTown } from "features/town/townSlice";
 // Utility functions
-import { getValidEvent } from "features/event/utils";
+import { getValidEvent, getValidEvents } from "features/event/utils";
 
 export const useEventTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const turn = useAppSelector(selectTurn);
   const seenEvents = useAppSelector(selectSeenEvents);
-  const playerTown = useAppSelector(selectPlayerTown);
+  const town = useAppSelector(selectPlayerTown);
 
   useEffect(() => {
     // Don't want to trigger event too often or before the game starts
@@ -51,10 +53,26 @@ export const useEventTimer = () => {
         TODO: This will probably end up in the final release but should
         really find a way of avoiding running getValidEvent so often.
       */
-      const event = getValidEvent(playerTown, seenEvents);
+      const event = getValidEvent(town, seenEvents);
       if (event) {
         dispatch(triggerEvent(event));
       }
     }
-  }, [dispatch, playerTown, seenEvents, turn]);
+  }, [dispatch, town, seenEvents, turn]);
+};
+
+export const useValidEvents = (): Event[] => {
+  // Hooks
+  const town = useAppSelector(selectPlayerTown);
+  const eventsSeen = useAppSelector(selectSeenEvents);
+
+  // Local state
+  const [validEvents, setValidEvents] = useState<Event[]>([]);
+
+  // Effects
+  useEffect(() => {
+    setValidEvents(getValidEvents(town, eventsSeen));
+  }, [eventsSeen, town]);
+
+  return validEvents;
 };

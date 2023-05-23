@@ -11,3 +11,9 @@ export interface Town {
   villagers: number[]; // Villager IDs
   image: string; // Path to image location
 }
+
+export interface TierRequirements {
+  resources: Resources;
+  buildings: number[]; // Building IDs
+  villagers: number[]; // Villager IDs
+}

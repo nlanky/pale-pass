@@ -5,10 +5,12 @@ import { EVENTS } from "features/event/constants";
 import type { Event } from "features/event/types";
 import type { Town } from "features/town/types";
 
-export const getValidEvent = (
-  town: Town,
-  eventsSeen: number[],
-): Event | null => {
+/**
+ * Filter event list to return only valid events. Each event has a set of
+ * requirements that town must meet. Player must also not have seen event
+ * before.
+ */
+export const getValidEvents = (town: Town, eventsSeen: number[]) => {
   const {
     tier: townTier,
     resources: townResources,
@@ -16,8 +18,7 @@ export const getValidEvent = (
     villagers: townVillagers,
   } = town;
 
-  // Town must meet event's requirements
-  const validEvents = EVENTS.filter((event) => {
+  return EVENTS.filter((event) => {
     const { id, requirements } = event;
     const { tier, resources, buildings, villagers } = requirements;
 
@@ -54,13 +55,24 @@ export const getValidEvent = (
 
     return true;
   });
+};
+
+/**
+ * Returns random valid event.
+ */
+export const getValidEvent = (
+  town: Town,
+  eventsSeen: number[],
+): Event | null => {
+  const validEvents = getValidEvents(town, eventsSeen);
 
   // No valid events for user to see right now
   if (validEvents.length === 0) {
     return null;
   }
 
-  // Choose random event from valid events
-  const randomIndex = Math.floor(Math.random() * validEvents.length);
-  return validEvents[randomIndex];
+  return getRandomEvent(validEvents);
 };
+
+export const getRandomEvent = (events: Event[]): Event =>
+  events[Math.floor(Math.random() * events.length)];

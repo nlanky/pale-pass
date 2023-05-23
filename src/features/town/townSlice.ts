@@ -4,9 +4,13 @@ import { createSlice } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Constants
 import {
-  BASE_RESOURCES_PER_TURN,
   NO_RESOURCES,
+  TIER_TO_RESOURCES_PER_TURN,
 } from "features/resource/constants";
+import {
+  TIER_TO_ENABLED_RESOURCES,
+  TIER_TO_REQUIREMENTS,
+} from "features/town/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Town } from "features/town/types";
@@ -27,7 +31,7 @@ const INITIAL_TOWN_STATE: Town = {
   isPlayer: false,
   tier: 1,
   resources: NO_RESOURCES,
-  resourcesPerTurn: BASE_RESOURCES_PER_TURN,
+  resourcesPerTurn: TIER_TO_RESOURCES_PER_TURN[1],
   buildings: [], // IDs
   villagers: [], // IDs
   image: "",
@@ -41,7 +45,24 @@ const initialState: TownState = {
 export const townSlice = createSlice({
   name: "town",
   initialState,
-  reducers: {},
+  reducers: {
+    advanceTier: (state) => {
+      const newTier = state.player.tier + 1;
+
+      // Player pays cost in resources to advance tier
+      state.player.resources = mergeResources(
+        state.player.resources,
+        TIER_TO_REQUIREMENTS[newTier].resources,
+      );
+
+      // Assign new tier and increase base resources per turn
+      state.player.tier = newTier;
+      state.player.resourcesPerTurn = mergeResources(
+        state.player.resourcesPerTurn,
+        TIER_TO_RESOURCES_PER_TURN[newTier],
+      );
+    },
+  },
   extraReducers(builder) {
     builder.addCase(incrementTurn, (state) => {
       state.player.resources = getNextTurnResources(state.player);
@@ -95,12 +116,14 @@ export const townSlice = createSlice({
   },
 });
 
-// export const {} = townSlice.actions;
+export const { advanceTier } = townSlice.actions;
 
 // SELECTORS
 export const selectPlayerTown = (state: RootState) =>
   state.town.player;
 export const selectPlayerResources = (state: RootState) =>
   state.town.player.resources;
+export const selectEnabledResources = (state: RootState) =>
+  TIER_TO_ENABLED_RESOURCES[state.town.player.tier];
 
 export const townReducer = townSlice.reducer;

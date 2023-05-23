@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { BASE_RESOURCES_PER_TURN } from "features/resource/constants";
+import { NO_RESOURCES } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { Resources } from "features/resource/types";
@@ -19,9 +19,7 @@ export const usePlayerResourcesPerTurn = (): Resources => {
   const town = useAppSelector(selectPlayerTown);
 
   // Local state
-  const [resources, setResources] = useState<Resources>(
-    BASE_RESOURCES_PER_TURN,
-  );
+  const [resources, setResources] = useState<Resources>(NO_RESOURCES);
 
   // Effects
   useEffect(() => {
