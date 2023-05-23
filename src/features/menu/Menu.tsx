@@ -12,7 +12,7 @@ export const Menu: FC<{}> = () => {
 
   // Handlers
   const onGameStart = () => {
-    dispatch(setView("town"));
+    dispatch(setView("introduction"));
   };
 
   return (

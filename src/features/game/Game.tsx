@@ -4,6 +4,7 @@ import type { FC } from "react";
 // LOCAL FILES
 // Components
 import { EventView } from "features/event/EventView";
+import { Introduction } from "features/tutorial/Introduction";
 import { Menu } from "features/menu/Menu";
 import { TownView } from "features/town/TownView";
 // Redux
@@ -17,6 +18,7 @@ export const Game: FC<{}> = () => {
   return (
     <>
       {view === "menu" && <Menu />}
+      {view === "introduction" && <Introduction />}
       {view === "town" && <TownView />}
       {view === "event" && <EventView />}
     </>
