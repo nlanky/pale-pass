@@ -3,6 +3,8 @@
 import { NO_RESOURCES } from "features/resource/constants";
 // Interfaces & Types
 import type { Event } from "features/event/types";
+// Utility functions
+import { getImageUrl } from "features/common/utils";
 
 export const TURNS_PER_EVENT = 12;
 export const EVENT_PROBABILITY = 0.1; // Probability of an event triggering on a turn
@@ -10,7 +12,7 @@ export const EVENT_PROBABILITY = 0.1; // Probability of an event triggering on a
 export const EVENTS: Event[] = [
   {
     id: 1,
-    image: "",
+    image: getImageUrl("/assets/events/1.png"),
     requirements: {
       tier: 1,
       resources: NO_RESOURCES,

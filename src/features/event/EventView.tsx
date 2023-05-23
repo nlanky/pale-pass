@@ -49,6 +49,7 @@ export const EventView: FC<{}> = () => {
   return (
     <div>
       <p>{event.introductionText}</p>
+      <img src={event.image} />
       {event.choices.map((choice, index) => (
         <button
           key={index}
