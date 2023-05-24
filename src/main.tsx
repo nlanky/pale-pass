@@ -8,6 +8,11 @@ import { Provider } from "react-redux";
 // LOCAL FILES
 // Components
 import { Game } from "features/game/Game";
+// CSS
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 // Redux
 import { store } from "features/redux/store";
 

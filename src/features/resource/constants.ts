@@ -1,6 +1,15 @@
 // LOCAL FILES
+// Images
+import {
+  amethystImage,
+  ironImage,
+  mythrilImage,
+  steelImage,
+  stoneImage,
+  woodImage,
+} from "assets/resource";
 // Interfaces & Types
-import type { Resources } from "features/resource/types";
+import type { Resource, Resources } from "features/resource/types";
 
 export const NO_RESOURCES: Resources = {
   Wood: 0,
@@ -55,4 +64,14 @@ export const TIER_TO_RESOURCES_PER_TURN: Record<number, Resources> = {
     Mythril: 0,
     Amethyst: 1,
   },
+};
+
+// TODO: Replace with actual icons
+export const RESOURCE_TO_ICON: Record<Resource, string> = {
+  Wood: woodImage,
+  Stone: stoneImage,
+  Iron: ironImage,
+  Steel: steelImage,
+  Mythril: mythrilImage,
+  Amethyst: amethystImage,
 };

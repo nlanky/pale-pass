@@ -1,6 +1,6 @@
 // LOCAL FILES
 // Assets
-import { event1Image } from "assets/events/index";
+import { event1Image } from "assets/event";
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
 // Interfaces & Types

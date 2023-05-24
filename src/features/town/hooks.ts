@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { TIER_TO_REQUIREMENTS } from "features/town/constants";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
+import type { TierRequirements } from "features/town/types";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectPlayerTown } from "features/town/townSlice";
@@ -65,4 +66,25 @@ export const useCanAdvanceTier = (): boolean => {
   }, [town]);
 
   return canAdvance;
+};
+
+export const useTierRequirements = (): TierRequirements | null => {
+  // Hooks
+  const town = useAppSelector(selectPlayerTown);
+
+  // Local state
+  const [tierRequirements, setTierRequirements] =
+    useState<TierRequirements | null>(null);
+
+  // Effects
+  useEffect(() => {
+    if (town.tier === 5) {
+      setTierRequirements(null);
+      return;
+    }
+
+    setTierRequirements(TIER_TO_REQUIREMENTS[town.tier + 1]);
+  }, [town]);
+
+  return tierRequirements;
 };

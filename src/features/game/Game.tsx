@@ -6,7 +6,7 @@ import type { FC } from "react";
 import { EventView } from "features/event/EventView";
 import { Introduction } from "features/tutorial/Introduction";
 import { Menu } from "features/menu/Menu";
-import { TownView } from "features/town/TownView";
+import { TownView } from "features/town/components/TownView";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectView } from "features/game/gameSlice";
