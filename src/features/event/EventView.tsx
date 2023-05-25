@@ -1,7 +1,18 @@
 // REACT
 import { FC, useState } from "react";
 
+// PUBLiC MODULES
+import {
+  Button,
+  Container,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
+
 // LOCAL FILES
+// Components
+import { EventOutcome } from "features/event/components/EventOutcome";
 // Interfaces & Types
 import type { Outcome } from "features/event/types";
 // Redux
@@ -15,6 +26,7 @@ import { setView } from "features/game/gameSlice";
 export const EventView: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  const theme = useTheme();
   const event = useAppSelector(selectActiveEvent);
 
   // Local state
@@ -47,33 +59,55 @@ export const EventView: FC<{}> = () => {
   };
 
   return (
-    <div>
-      <p>{event.introductionText}</p>
-      <img src={event.image} />
-      {event.choices.map((choice, index) => (
-        <button
-          key={index}
-          disabled={eventOutcome !== null}
-          onClick={() => {
-            onChoiceClick(choice.outcomes);
-          }}
-          style={{
-            borderColor: choice.outcomes
-              .map((outcome) => outcome.text)
-              .includes(eventOutcome?.text || "")
-              ? "blue"
-              : "#736b5e",
-          }}
+    <Container maxWidth="lg">
+      <Grid container direction="column">
+        <Typography variant="body1">
+          {event.introductionText}
+        </Typography>
+        <Grid item sx={{ margin: theme.spacing(1, 0) }}>
+          <img src={event.image} />
+        </Grid>
+        <Grid
+          container
+          item
+          justifyContent="space-between"
+          spacing={2}
+          wrap="nowrap"
         >
-          {choice.text}
-        </button>
-      ))}
-      {eventOutcome && (
-        <>
-          <p>{eventOutcome.text}</p>
-          <button onClick={returnToTown}>Return to town</button>
-        </>
-      )}
-    </div>
+          {event.choices.map((choice, index) => (
+            <Grid key={index} item>
+              <Button
+                disabled={eventOutcome !== null}
+                onClick={() => {
+                  onChoiceClick(choice.outcomes);
+                }}
+                sx={{
+                  border: choice.outcomes
+                    .map((outcome) => outcome.text)
+                    .includes(eventOutcome?.text || "")
+                    ? `2px solid ${theme.palette.primary.main}`
+                    : "2px solid transparent",
+                }}
+                variant="contained"
+              >
+                {choice.text}
+              </Button>
+            </Grid>
+          ))}
+        </Grid>
+        {eventOutcome && (
+          <>
+            <EventOutcome outcome={eventOutcome} />
+            <Button
+              onClick={returnToTown}
+              sx={{ marginTop: theme.spacing(1) }}
+              variant="contained"
+            >
+              Return to town
+            </Button>
+          </>
+        )}
+      </Grid>
+    </Container>
   );
 };

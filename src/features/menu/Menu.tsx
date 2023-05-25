@@ -1,6 +1,9 @@
 // REACT
 import type { FC } from "react";
 
+// PUBLIC MODULES
+import { Button, Container, Grid, Typography } from "@mui/material";
+
 // LOCAL FILES
 // Redux
 import { useAppDispatch } from "features/redux/hooks";
@@ -16,9 +19,15 @@ export const Menu: FC<{}> = () => {
   };
 
   return (
-    <>
-      <h1>Pale Pass</h1>
-      <button onClick={onGameStart}>Start Game</button>
-    </>
+    <Container maxWidth="lg">
+      <Typography align="center" variant="h1">
+        Pale Pass
+      </Typography>
+      <Grid justifyContent="center" container>
+        <Button onClick={onGameStart} variant="contained">
+          Start Game
+        </Button>
+      </Grid>
+    </Container>
   );
 };

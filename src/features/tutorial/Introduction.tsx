@@ -2,6 +2,14 @@
 import { useState } from "react";
 import type { FC } from "react";
 
+// PUBLIC MODULES
+import {
+  Button,
+  Container,
+  Typography,
+  useTheme,
+} from "@mui/material";
+
 // LOCAL FILES
 // Constants
 import { SCREEN_ID_TO_SCREEN } from "features/tutorial/constants";
@@ -12,6 +20,7 @@ import { setView } from "features/game/gameSlice";
 export const Introduction: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  const theme = useTheme();
 
   // Local state
   const [screenId, setScreenId] = useState(1);
@@ -32,9 +41,16 @@ export const Introduction: FC<{}> = () => {
   };
 
   return (
-    <>
-      <p>{screen.text}</p>
-      <button onClick={advanceScreen}>{buttonText}</button>
-    </>
+    <Container maxWidth="lg">
+      <Typography
+        sx={{ marginBottom: theme.spacing(1) }}
+        variant="body1"
+      >
+        {screen.text}
+      </Typography>
+      <Button onClick={advanceScreen} variant="contained">
+        {buttonText}
+      </Button>
+    </Container>
   );
 };
