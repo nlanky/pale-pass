@@ -65,52 +65,67 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     }
   }
 
+  const showPositiveOutcomes =
+    Object.keys(positiveResources).length !== 0 ||
+    Object.keys(positiveRpt).length !== 0 ||
+    buildingsAdded.length !== 0 ||
+    villagersAdded.length !== 0;
+  const showNegativeOutcomes =
+    Object.keys(negativeResources).length !== 0 ||
+    Object.keys(negativeRpt).length !== 0 ||
+    buildingsRemoved.length !== 0 ||
+    villagersRemoved.length !== 0;
+
   return (
     <Grid container sx={{ marginTop: theme.spacing(1) }}>
-      <Grid item sx={{ color: theme.palette.success.main }} xs={6}>
-        {Object.keys(positiveResources).map((resource) => (
-          <Typography key={resource} variant="body1">
-            +{positiveResources[resource as Resource]} {resource}
-          </Typography>
-        ))}
-        {Object.keys(positiveRpt).map((resource) => (
-          <Typography key={resource} variant="body1">
-            +{positiveRpt[resource as Resource]} {resource} per turn
-          </Typography>
-        ))}
-        {buildingsAdded.map((building) => (
-          <Typography key={building} variant="body1">
-            {building} constructed
-          </Typography>
-        ))}
-        {villagersAdded.map((villager) => (
-          <Typography key={villager} variant="body1">
-            {villager} arrives
-          </Typography>
-        ))}
-      </Grid>
-      <Grid item sx={{ color: theme.palette.error.main }} xs={6}>
-        {Object.keys(negativeResources).map((resource) => (
-          <Typography key={resource} variant="body1">
-            -{negativeResources[resource as Resource]} {resource}
-          </Typography>
-        ))}
-        {Object.keys(negativeRpt).map((resource) => (
-          <Typography key={resource} variant="body1">
-            -{negativeRpt[resource as Resource]} {resource} per turn
-          </Typography>
-        ))}
-        {buildingsRemoved.map((building) => (
-          <Typography key={building} variant="body1">
-            {building} constructed
-          </Typography>
-        ))}
-        {villagersRemoved.map((villager) => (
-          <Typography key={villager} variant="body1">
-            {villager} arrives
-          </Typography>
-        ))}
-      </Grid>
+      {showPositiveOutcomes && (
+        <Grid item sx={{ color: theme.palette.success.main }} xs={6}>
+          {Object.keys(positiveResources).map((resource) => (
+            <Typography key={resource} variant="body1">
+              +{positiveResources[resource as Resource]} {resource}
+            </Typography>
+          ))}
+          {Object.keys(positiveRpt).map((resource) => (
+            <Typography key={resource} variant="body1">
+              +{positiveRpt[resource as Resource]} {resource} per turn
+            </Typography>
+          ))}
+          {buildingsAdded.map((building) => (
+            <Typography key={building} variant="body1">
+              {building} constructed
+            </Typography>
+          ))}
+          {villagersAdded.map((villager) => (
+            <Typography key={villager} variant="body1">
+              {villager} arrives
+            </Typography>
+          ))}
+        </Grid>
+      )}
+      {showNegativeOutcomes && (
+        <Grid item sx={{ color: theme.palette.error.main }} xs={6}>
+          {Object.keys(negativeResources).map((resource) => (
+            <Typography key={resource} variant="body1">
+              -{negativeResources[resource as Resource]} {resource}
+            </Typography>
+          ))}
+          {Object.keys(negativeRpt).map((resource) => (
+            <Typography key={resource} variant="body1">
+              -{negativeRpt[resource as Resource]} {resource} per turn
+            </Typography>
+          ))}
+          {buildingsRemoved.map((building) => (
+            <Typography key={building} variant="body1">
+              {building} destroyed
+            </Typography>
+          ))}
+          {villagersRemoved.map((villager) => (
+            <Typography key={villager} variant="body1">
+              {villager} leaves
+            </Typography>
+          ))}
+        </Grid>
+      )}
     </Grid>
   );
 };
