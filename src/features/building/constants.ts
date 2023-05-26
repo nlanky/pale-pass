@@ -1,6 +1,8 @@
 // LOCAL FILES
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
+// Images
+import { building9Image } from "assets/building";
 // Interfaces & Types
 import type { Building } from "features/building/types";
 
@@ -14,6 +16,6 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       leave:
         "In the cold light of day you see just how much damage was done. This will take an age to rebuild. Well, better get started hauling the wood and stone to repair the building. It will be out of commission for some time.",
     },
-    image: "",
+    image: building9Image,
   },
 };

@@ -6,10 +6,14 @@ import { Container, Grid, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { TownAdvanceTierButton } from "features/town/components/TownAdvanceTierButton";
-import { TownExploreButton } from "features/town/components/TownExploreButton";
-import { TownImage } from "features/town/components/TownImage";
-import { TownResources } from "features/town/components/TownResources";
+import {
+  TownAdvanceTierButton,
+  TownBuildings,
+  TownExploreButton,
+  TownImage,
+  TownResources,
+  TownVillagers,
+} from "features/town/components";
 // Hooks
 import { useEventTimer } from "features/event/hooks";
 import { useTurnTimer } from "features/game/hooks";
@@ -22,7 +26,7 @@ export const TownView: FC<{}> = () => {
 
   return (
     <Container maxWidth="lg">
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={9}>
           <TownImage />
         </Grid>
@@ -43,6 +47,8 @@ export const TownView: FC<{}> = () => {
           </Grid>
         </Grid>
       </Grid>
+      <TownBuildings />
+      <TownVillagers />
     </Container>
   );
 };

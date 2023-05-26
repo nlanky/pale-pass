@@ -125,5 +125,9 @@ export const selectPlayerResources = (state: RootState) =>
   state.town.player.resources;
 export const selectEnabledResources = (state: RootState) =>
   TIER_TO_ENABLED_RESOURCES[state.town.player.tier];
+export const selectPlayerBuildings = (state: RootState) =>
+  state.town.player.buildings;
+export const selectPlayerVillagers = (state: RootState) =>
+  state.town.player.villagers;
 
 export const townReducer = townSlice.reducer;

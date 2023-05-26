@@ -1,0 +1,15 @@
+/* TODO: Re-enable scrollbar and add in some arrows to scroll with */
+/* Hide scrollbar for Chrome, Safari and Opera */
+/* .townBuildingContainer::-webkit-scrollbar {
+  display: none;
+} */
+
+/* Hide scrollbar for IE and Edge */
+/* .townBuildingContainer {
+  -ms-overflow-style: none;
+} */
+
+/* Hide scrollbar for Firefox */
+/* .townBuildingContainer {
+  scrollbar-width: none;
+} */

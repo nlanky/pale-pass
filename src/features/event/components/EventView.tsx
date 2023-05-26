@@ -1,5 +1,6 @@
 // REACT
-import { FC, useState } from "react";
+import { useState } from "react";
+import type { FC } from "react";
 
 // PUBLiC MODULES
 import {
@@ -12,7 +13,7 @@ import {
 
 // LOCAL FILES
 // Components
-import { EventOutcome } from "features/event/components/EventOutcome";
+import { EventOutcome } from "features/event/components";
 // Interfaces & Types
 import type { Outcome } from "features/event/types";
 // Redux

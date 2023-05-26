@@ -3,10 +3,10 @@ import type { FC } from "react";
 
 // LOCAL FILES
 // Components
-import { EventView } from "features/event/EventView";
+import { EventView } from "features/event/components";
 import { Introduction } from "features/tutorial/Introduction";
 import { Menu } from "features/menu/Menu";
-import { TownView } from "features/town/components/TownView";
+import { TownView } from "features/town/components";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectView } from "features/game/gameSlice";

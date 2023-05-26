@@ -46,7 +46,7 @@ export const useEventTimer = () => {
     */
     if (
       (numberOfEvents === 0 && turn === TURNS_PER_EVENT) ||
-      Math.floor(turn / (numberOfEvents + 1)) === TURNS_PER_EVENT ||
+      Math.floor(turn / (numberOfEvents + 1)) >= TURNS_PER_EVENT ||
       Math.random() < EVENT_PROBABILITY
     ) {
       /*
