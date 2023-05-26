@@ -1,5 +1,5 @@
 // REACT
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 // LOCAL FILES
 // Constants
@@ -7,8 +7,6 @@ import {
   EVENT_PROBABILITY,
   TURNS_PER_EVENT,
 } from "features/event/constants";
-// Interfaces & Types
-import type { Event } from "features/event/types";
 // Redux
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
@@ -18,7 +16,7 @@ import {
 import { selectTurn } from "features/game/gameSlice";
 import { selectPlayerTown } from "features/town/townSlice";
 // Utility functions
-import { getValidEvent, getValidEvents } from "features/event/utils";
+import { getValidEvent } from "features/event/utils";
 
 export const useEventTimer = () => {
   // Hooks
@@ -29,11 +27,11 @@ export const useEventTimer = () => {
 
   useEffect(() => {
     // Don't want to trigger event too often or before the game starts
-    const numberOfEvents = seenEvents.length;
+    const numberOfSeenEvents = seenEvents.length;
     if (
       turn === 0 ||
-      (numberOfEvents !== 0 &&
-        Math.floor(turn / numberOfEvents) <= TURNS_PER_EVENT)
+      (numberOfSeenEvents !== 0 &&
+        Math.ceil(turn / numberOfSeenEvents) <= TURNS_PER_EVENT)
     ) {
       return;
     }
@@ -45,8 +43,9 @@ export const useEventTimer = () => {
       3) Randomly trigger event
     */
     if (
-      (numberOfEvents === 0 && turn === TURNS_PER_EVENT) ||
-      Math.floor(turn / (numberOfEvents + 1)) >= TURNS_PER_EVENT ||
+      (numberOfSeenEvents === 0 && turn === TURNS_PER_EVENT) ||
+      Math.floor(turn / (numberOfSeenEvents + 1)) >=
+        TURNS_PER_EVENT ||
       Math.random() < EVENT_PROBABILITY
     ) {
       /*
@@ -59,20 +58,4 @@ export const useEventTimer = () => {
       }
     }
   }, [dispatch, town, seenEvents, turn]);
-};
-
-export const useValidEvents = (): Event[] => {
-  // Hooks
-  const town = useAppSelector(selectPlayerTown);
-  const eventsSeen = useAppSelector(selectSeenEvents);
-
-  // Local state
-  const [validEvents, setValidEvents] = useState<Event[]>([]);
-
-  // Effects
-  useEffect(() => {
-    setValidEvents(getValidEvents(town, eventsSeen));
-  }, [eventsSeen, town]);
-
-  return validEvents;
 };
