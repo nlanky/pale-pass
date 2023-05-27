@@ -26,6 +26,11 @@ import {
   selectPlayerResources,
   tradeResources,
 } from "features/town/townSlice";
+// Utility functions
+import {
+  getMaxTradeQuantity,
+  getMinTradeQuantity,
+} from "features/resource/utils";
 
 export const MarketStall: FC<{}> = () => {
   // Hooks
@@ -43,19 +48,14 @@ export const MarketStall: FC<{}> = () => {
 
   // Handlers
   const onSelectFromResource = (resource: Resource) => {
-    if (resource === toResource) {
-      return;
-    }
+    setQuantity(0);
 
     // Deselect if clicked again
     setFromResource(resource === fromResource ? null : resource);
   };
 
   const onSelectToResource = (resource: Resource) => {
-    // Can't trade resource with itself
-    if (resource === fromResource) {
-      return;
-    }
+    setQuantity(0);
 
     // Deselect if clicked again
     setToResource(resource === toResource ? null : resource);
@@ -75,8 +75,17 @@ export const MarketStall: FC<{}> = () => {
   };
 
   // Derived variables
-  const maxResourceAvailableToTrade =
-    playerResources[fromResource as Resource];
+  let tradeText = "";
+  if (fromResource && toResource && fromResource !== toResource) {
+    const tradeRate =
+      RESOURCE_TO_TRADE_RATES[fromResource][toResource];
+    const quantity = getMinTradeQuantity(fromResource, toResource);
+    tradeText = `I can offer you ${
+      tradeRate * quantity
+    } ${toResource} for ${quantity} ${fromResource}`;
+  } else {
+    tradeText = "Hello there, what can I do for you?";
+  }
 
   return (
     <Grid
@@ -85,9 +94,7 @@ export const MarketStall: FC<{}> = () => {
       sx={{ marginTop: theme.spacing(1) }}
     >
       <Typography align="center" variant="body2">
-        {fromResource && toResource
-          ? `I can offer you 1 ${toResource} for ${RESOURCE_TO_TRADE_RATES[fromResource][toResource]} ${fromResource}`
-          : "Hello there, what can I do for you?"}
+        {tradeText}
       </Typography>
       <Grid
         container
@@ -102,7 +109,7 @@ export const MarketStall: FC<{}> = () => {
           </Typography>
           <Grid container item>
             {enabledResources.map((resource) => {
-              const selectedResource = resource === fromResource;
+              const isSelected = resource === fromResource;
               const playerAmount = playerResources[resource];
               return (
                 <Grid
@@ -115,7 +122,7 @@ export const MarketStall: FC<{}> = () => {
                     onSelectFromResource(resource);
                   }}
                   sx={{
-                    border: selectedResource
+                    border: isSelected
                       ? `2px solid ${theme.palette.parchmentDark.light}`
                       : `2px solid ${theme.palette.parchmentDark.dark}`,
                     cursor: "pointer",
@@ -140,7 +147,21 @@ export const MarketStall: FC<{}> = () => {
           </Typography>
           <Grid container item>
             {enabledResources.map((resource) => {
-              const selectedResource = resource === toResource;
+              const isSelected = resource === toResource;
+              let tradeRate = NaN;
+              let tradeRateText = "";
+              if (fromResource) {
+                tradeRate =
+                  RESOURCE_TO_TRADE_RATES[fromResource][resource];
+                if (fromResource === resource) {
+                  tradeRateText = "N/A";
+                } else if (Math.round(tradeRate) === tradeRate) {
+                  tradeRateText = `1/${tradeRate}`;
+                } else {
+                  tradeRateText = `1/${tradeRate.toFixed(2)}`;
+                }
+              }
+
               return (
                 <Grid
                   key={`to_${resource}`}
@@ -152,7 +173,7 @@ export const MarketStall: FC<{}> = () => {
                     onSelectToResource(resource);
                   }}
                   sx={{
-                    border: selectedResource
+                    border: isSelected
                       ? `2px solid ${theme.palette.parchmentDark.light}`
                       : `2px solid ${theme.palette.parchmentDark.dark}`,
                     cursor: "pointer",
@@ -165,7 +186,7 @@ export const MarketStall: FC<{}> = () => {
                   />
                   {fromResource && (
                     <Typography variant="body1">
-                      {`1/${RESOURCE_TO_TRADE_RATES[fromResource][resource]}`}
+                      {tradeRateText}
                     </Typography>
                   )}
                 </Grid>
@@ -201,12 +222,17 @@ export const MarketStall: FC<{}> = () => {
               />
               <Slider
                 color="parchmentDark"
+                disabled={fromResource === toResource}
                 min={0}
-                max={maxResourceAvailableToTrade}
+                max={getMaxTradeQuantity(
+                  playerResources,
+                  fromResource,
+                  toResource,
+                )}
                 onChange={(_, value) => {
                   onQuantityChange(value as number);
                 }}
-                step={1}
+                step={getMinTradeQuantity(fromResource, toResource)}
                 value={quantity}
               />
             </Grid>
@@ -229,7 +255,7 @@ export const MarketStall: FC<{}> = () => {
           </Grid>
           <Grid container justifyContent="center">
             <StyledButton
-              disabled={quantity === 0}
+              disabled={quantity === 0 || fromResource === toResource}
               onClick={onConfirmTrade}
               startIcon={<HandshakeIcon />}
             >

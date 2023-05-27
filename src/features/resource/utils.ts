@@ -1,6 +1,7 @@
 // LOCAL FILES
 // Interfaces & Types
 import type { Resource, Resources } from "features/resource/types";
+import { RESOURCE_TO_TRADE_RATES } from "./constants";
 
 export const mergeResources = (
   resources1: Resources,
@@ -13,4 +14,36 @@ export const mergeResources = (
   }
 
   return mergedResources;
+};
+
+/**
+ * Finds the minimum quantity of a resource that can be traded to ensure
+ * the resource the player receives is a whole number.
+ */
+export const getMinTradeQuantity = (
+  fromResource: Resource,
+  toResource: Resource,
+): number => {
+  const tradeRate = RESOURCE_TO_TRADE_RATES[fromResource][toResource];
+  let quantity = 1;
+  while (quantity * tradeRate !== Math.round(quantity * tradeRate)) {
+    quantity++;
+  }
+
+  return quantity;
+};
+
+/**
+ * Calculates max quantity of a resource player can trade for based on their
+ * current resources. Takes into account minimum quantity required for trade.
+ */
+export const getMaxTradeQuantity = (
+  resources: Resources,
+  fromResource: Resource,
+  toResource: Resource,
+): number => {
+  const resourceAmount = resources[fromResource];
+  const minQuantity = getMinTradeQuantity(fromResource, toResource);
+  const maxNumberOfTrades = Math.floor(resourceAmount / minQuantity);
+  return maxNumberOfTrades * minQuantity;
 };
