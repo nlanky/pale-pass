@@ -1,11 +1,13 @@
 // PUBLIC MODULES
 import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Constants
 import {
   NO_RESOURCES,
   TIER_TO_RESOURCES_PER_TURN,
+  RESOURCE_TO_TRADE_RATES,
 } from "features/resource/constants";
 import {
   TIER_TO_ENABLED_RESOURCES,
@@ -13,6 +15,7 @@ import {
 } from "features/town/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
+import type { Resource } from "features/resource/types";
 import type { Town } from "features/town/types";
 // Redux
 import { completeEvent } from "features/event/eventSlice";
@@ -32,7 +35,7 @@ const INITIAL_TOWN_STATE: Town = {
   tier: 1,
   resources: NO_RESOURCES,
   resourcesPerTurn: TIER_TO_RESOURCES_PER_TURN[1],
-  buildings: [], // IDs
+  buildings: [152], // IDs
   villagers: [], // IDs
   image: "",
 };
@@ -60,6 +63,27 @@ export const townSlice = createSlice({
       state.player.resourcesPerTurn = mergeResources(
         state.player.resourcesPerTurn,
         TIER_TO_RESOURCES_PER_TURN[newTier],
+      );
+    },
+    tradeResources: (
+      state,
+      action: PayloadAction<{
+        fromResource: Resource;
+        toResource: Resource;
+        quantity: number;
+      }>,
+    ) => {
+      const { fromResource, toResource, quantity } = action.payload;
+      const resourceChanges = {
+        ...NO_RESOURCES,
+        [fromResource]: -quantity,
+        [toResource]:
+          quantity *
+          RESOURCE_TO_TRADE_RATES[fromResource][toResource],
+      };
+      state.player.resources = mergeResources(
+        state.player.resources,
+        resourceChanges,
       );
     },
   },
@@ -116,7 +140,7 @@ export const townSlice = createSlice({
   },
 });
 
-export const { advanceTier } = townSlice.actions;
+export const { advanceTier, tradeResources } = townSlice.actions;
 
 // SELECTORS
 export const selectPlayerTown = (state: RootState) =>

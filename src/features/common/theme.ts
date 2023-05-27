@@ -1,11 +1,13 @@
 // PUBLIC MODULES
 import { createTheme } from "@mui/material";
-import type { SimplePaletteColorOptions } from "@mui/material";
+import type {
+  PaletteColor,
+  PaletteColorOptions,
+} from "@mui/material";
 
-const { palette } = createTheme();
-const { augmentColor } = palette;
+const defaultTheme = createTheme();
 const createColour = (mainColour: string) =>
-  augmentColor({ color: { main: mainColour } });
+  defaultTheme.palette.augmentColor({ color: { main: mainColour } });
 
 export const theme = createTheme({
   typography: {
@@ -59,16 +61,33 @@ export const theme = createTheme({
 });
 
 declare module "@mui/material/styles" {
-  interface CustomPalette {
-    parchment: SimplePaletteColorOptions;
-    parchmentDark: SimplePaletteColorOptions;
+  interface Palette {
+    parchment: PaletteColor;
+    parchmentDark: PaletteColor;
   }
-  interface Palette extends CustomPalette {}
-  interface PaletteOptions extends CustomPalette {}
+  interface PaletteOptions {
+    parchment: PaletteColorOptions;
+    parchmentDark: PaletteColorOptions;
+  }
 }
 
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
+    parchment: true;
+    parchmentDark: true;
+  }
+}
+
+declare module "@mui/material/Slider" {
+  interface SliderPropsColorOverrides {
+    parchment: true;
+    parchmentDark: true;
+  }
+}
+
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsColorOverrides {
+    parchment: true;
     parchmentDark: true;
   }
 }

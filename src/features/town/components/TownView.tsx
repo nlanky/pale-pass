@@ -6,6 +6,7 @@ import { Container, Grid, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
+import { BuildingModal } from "features/building/components";
 import {
   TownAdvanceTierButton,
   TownBuildings,
@@ -48,6 +49,7 @@ export const TownView: FC<{}> = () => {
         </Grid>
       </Grid>
       <TownBuildings />
+      <BuildingModal />
       <TownVillagers />
     </Container>
   );

@@ -40,3 +40,56 @@ export const RESOURCE_TO_ICON: Record<Resource, string> = {
   Mythril: mythrilImage,
   Amethyst: amethystImage,
 };
+
+// How much 1 of the resource is worth compared to the other resources
+// TODO: Determine rates so it can't be exploited
+export const RESOURCE_TO_TRADE_RATES: Record<Resource, Resources> = {
+  Wood: {
+    Wood: 1,
+    Stone: 1,
+    Iron: 1,
+    Steel: 1,
+    Mythril: 1,
+    Amethyst: 1,
+  },
+  Stone: {
+    Wood: 1,
+    Stone: 1,
+    Iron: 1,
+    Steel: 1,
+    Mythril: 1,
+    Amethyst: 1,
+  },
+  Iron: {
+    Wood: 1,
+    Stone: 1,
+    Iron: 1,
+    Steel: 1,
+    Mythril: 1,
+    Amethyst: 1,
+  },
+  Steel: {
+    Wood: 1,
+    Stone: 1,
+    Iron: 1,
+    Steel: 1,
+    Mythril: 1,
+    Amethyst: 1,
+  },
+  Mythril: {
+    Wood: 1,
+    Stone: 1,
+    Iron: 1,
+    Steel: 1,
+    Mythril: 1,
+    Amethyst: 1,
+  },
+  Amethyst: {
+    Wood: 1,
+    Stone: 1,
+    Iron: 1,
+    Steel: 1,
+    Mythril: 1,
+    Amethyst: 1,
+  },
+};

@@ -1,9 +1,9 @@
-import woodImage from "assets/resource/wood.png";
-import stoneImage from "assets/resource/stone.png";
-import ironImage from "assets/resource/iron.png";
-import steelImage from "assets/resource/steel.png";
-import mythrilImage from "assets/resource/mythril.png";
-import amethystImage from "assets/resource/amethyst.png";
+import woodImage from "assets/resource/wood.svg";
+import stoneImage from "assets/resource/stone.svg";
+import ironImage from "assets/resource/iron.svg";
+import steelImage from "assets/resource/steel.svg";
+import mythrilImage from "assets/resource/mythril.svg";
+import amethystImage from "assets/resource/amethyst.svg";
 
 export {
   woodImage,
