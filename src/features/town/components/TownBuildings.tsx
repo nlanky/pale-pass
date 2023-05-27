@@ -15,6 +15,8 @@ import {
 import { Info as InfoIcon } from "@mui/icons-material";
 
 // LOCAL FILES
+// Components
+import { StyledGrid, StyledPaper } from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 // CSS
@@ -52,9 +54,13 @@ export const TownBuildings: FC<{}> = () => {
   // Derived variables
   const modalBuilding = ID_TO_BUILDING[buildingOpen || NaN];
 
+  if (buildingIds.length === 0) {
+    return null;
+  }
+
   return (
     <>
-      <Grid
+      <StyledGrid
         alignItems="center"
         container
         sx={{ marginTop: theme.spacing(1) }}
@@ -129,7 +135,7 @@ export const TownBuildings: FC<{}> = () => {
                       justifyContent="center"
                     >
                       <InfoIcon />
-                      <Typography align="center" variant="body1">
+                      <Typography align="center" variant="body2">
                         {name}
                       </Typography>
                     </Grid>
@@ -139,18 +145,19 @@ export const TownBuildings: FC<{}> = () => {
             );
           })}
         </Grid>
-      </Grid>
+      </StyledGrid>
       <Dialog
         onClose={() => {
           setBuildingOpen(null);
         }}
         open={buildingOpen !== null}
+        PaperComponent={StyledPaper}
       >
         {modalBuilding && (
           <>
             <DialogTitle>{modalBuilding.name}</DialogTitle>
             <DialogContent>
-              <DialogContentText variant="body1">
+              <DialogContentText variant="body2">
                 Add description here?
               </DialogContentText>
             </DialogContent>

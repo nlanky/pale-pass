@@ -2,9 +2,14 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Button, Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
+// Components
+import {
+  StyledButton,
+  StyledContainer,
+} from "features/common/components";
 // Redux
 import { useAppDispatch } from "features/redux/hooks";
 import { setView } from "features/game/gameSlice";
@@ -12,6 +17,7 @@ import { setView } from "features/game/gameSlice";
 export const Menu: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  const theme = useTheme();
 
   // Handlers
   const onGameStart = () => {
@@ -19,15 +25,17 @@ export const Menu: FC<{}> = () => {
   };
 
   return (
-    <Container maxWidth="lg">
-      <Typography align="center" variant="h1">
-        Pale Pass
-      </Typography>
-      <Grid justifyContent="center" container>
-        <Button onClick={onGameStart} variant="contained">
-          Start Game
-        </Button>
+    <StyledContainer sx={{ padding: theme.spacing(2) }}>
+      <Grid alignItems="center" container direction="column">
+        <Typography
+          align="center"
+          sx={{ marginBottom: theme.spacing(1) }}
+          variant="h1"
+        >
+          Pale Pass
+        </Typography>
+        <StyledButton onClick={onGameStart}>Start Game</StyledButton>
       </Grid>
-    </Container>
+    </StyledContainer>
   );
 };

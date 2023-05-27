@@ -3,14 +3,14 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import {
-  Button,
-  Container,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
+// Components
+import {
+  StyledButton,
+  StyledContainer,
+} from "features/common/components";
 // Constants
 import { SCREEN_ID_TO_SCREEN } from "features/tutorial/constants";
 // Redux
@@ -41,16 +41,16 @@ export const Introduction: FC<{}> = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <StyledContainer>
       <Typography
         sx={{ marginBottom: theme.spacing(1) }}
-        variant="body1"
+        variant="body2"
       >
         {screen.text}
       </Typography>
-      <Button onClick={advanceScreen} variant="contained">
+      <StyledButton onClick={advanceScreen} variant="contained">
         {buttonText}
-      </Button>
-    </Container>
+      </StyledButton>
+    </StyledContainer>
   );
 };

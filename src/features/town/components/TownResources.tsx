@@ -2,13 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import {
-  Grid,
-  Icon,
-  Paper,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Grid, Icon, Typography, useTheme } from "@mui/material";
 import {
   ArrowDownward,
   ArrowUpward,
@@ -16,6 +10,8 @@ import {
 } from "@mui/icons-material";
 
 // LOCAL FILES
+// Components
+import { StyledPaper } from "features/common/components";
 // Constants
 import { RESOURCE_TO_ICON } from "features/resource/constants";
 // Hooks
@@ -55,7 +51,7 @@ export const TownResources: FC<{}> = () => {
   };
 
   return (
-    <Paper sx={{ padding: theme.spacing(1) }}>
+    <StyledPaper>
       {resourceNames.map((resource, index) => {
         const rpt = resourcesPerTurn[resource];
 
@@ -74,10 +70,10 @@ export const TownResources: FC<{}> = () => {
               />
             </Grid>
             <Grid item>
-              <Typography variant="body1">{resource}</Typography>
+              <Typography variant="body2">{resource}</Typography>
             </Grid>
             <Grid item>
-              <Typography variant="body1">
+              <Typography variant="body2">
                 {resources[resource]}
               </Typography>
             </Grid>
@@ -87,13 +83,13 @@ export const TownResources: FC<{}> = () => {
                 {rpt === 0 && <Remove />}
                 {rpt < 0 && <ArrowDownward color="error" />}
               </Icon>
-              <Typography color={getRptColour(rpt)} variant="body1">
+              <Typography color={getRptColour(rpt)} variant="body2">
                 {resourcesPerTurn[resource]}
               </Typography>
             </Grid>
           </Grid>
         );
       })}
-    </Paper>
+    </StyledPaper>
   );
 };

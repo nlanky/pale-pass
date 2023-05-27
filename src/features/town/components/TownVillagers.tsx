@@ -52,6 +52,10 @@ export const TownVillagers: FC<{}> = () => {
   // Derived variables
   const modalVillager = ID_TO_VILLAGER[villagerOpen || NaN];
 
+  if (villagerIds.length === 0) {
+    return null;
+  }
+
   return (
     <>
       <Grid
@@ -129,7 +133,7 @@ export const TownVillagers: FC<{}> = () => {
                       justifyContent="center"
                     >
                       <InfoIcon />
-                      <Typography align="center" variant="body1">
+                      <Typography align="center" variant="body2">
                         {name}
                       </Typography>
                     </Grid>
@@ -150,7 +154,7 @@ export const TownVillagers: FC<{}> = () => {
           <>
             <DialogTitle>{modalVillager.name}</DialogTitle>
             <DialogContent>
-              <DialogContentText variant="body1">
+              <DialogContentText variant="body2">
                 Add description here?
               </DialogContentText>
             </DialogContent>

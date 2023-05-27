@@ -3,16 +3,14 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLiC MODULES
-import {
-  Button,
-  Container,
-  Grid,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
+import {
+  StyledButton,
+  StyledContainer,
+} from "features/common/components";
 import { EventOutcome } from "features/event/components";
 // Interfaces & Types
 import type { Outcome } from "features/event/types";
@@ -60,9 +58,9 @@ export const EventView: FC<{}> = () => {
   };
 
   return (
-    <Container maxWidth="lg">
+    <StyledContainer>
       <Grid container direction="column">
-        <Typography variant="body1">
+        <Typography variant="body2">
           {event.introductionText}
         </Typography>
         <Grid item sx={{ margin: theme.spacing(1, 0) }}>
@@ -77,7 +75,7 @@ export const EventView: FC<{}> = () => {
         >
           {event.choices.map((choice, index) => (
             <Grid key={index} item>
-              <Button
+              <StyledButton
                 disabled={eventOutcome !== null}
                 onClick={() => {
                   onChoiceClick(choice.outcomes);
@@ -86,29 +84,29 @@ export const EventView: FC<{}> = () => {
                   border: choice.outcomes
                     .map((outcome) => outcome.text)
                     .includes(eventOutcome?.text || "")
-                    ? `2px solid ${theme.palette.primary.main}`
+                    ? `2px solid ${theme.palette.parchmentDark.main}`
                     : "2px solid transparent",
                 }}
                 variant="contained"
               >
                 {choice.text}
-              </Button>
+              </StyledButton>
             </Grid>
           ))}
         </Grid>
         {eventOutcome && (
           <>
             <EventOutcome outcome={eventOutcome} />
-            <Button
+            <StyledButton
               onClick={returnToTown}
               sx={{ marginTop: theme.spacing(1) }}
               variant="contained"
             >
               Return to town
-            </Button>
+            </StyledButton>
           </>
         )}
       </Grid>
-    </Container>
+    </StyledContainer>
   );
 };

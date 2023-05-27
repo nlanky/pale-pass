@@ -2,10 +2,11 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Button } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 
 // LOCAL FILES
+// Components
+import { StyledButton } from "features/common/components";
 // Constants
 import { TURNS_PER_EVENT } from "features/event/constants";
 // Hooks
@@ -34,12 +35,6 @@ export const TownExploreButton: FC<{}> = () => {
     validEvents.length !== 0 &&
     (numberOfSeenEvents === 0 ||
       Math.ceil(turn / numberOfSeenEvents) > TURNS_PER_EVENT);
-  console.log(
-    turn,
-    validEvents.length,
-    numberOfSeenEvents,
-    canExplore,
-  );
 
   // Handlers
   const onEventTrigger = () => {
@@ -47,7 +42,7 @@ export const TownExploreButton: FC<{}> = () => {
   };
 
   return (
-    <Button
+    <StyledButton
       disabled={!canExplore}
       fullWidth
       onClick={onEventTrigger}
@@ -55,6 +50,6 @@ export const TownExploreButton: FC<{}> = () => {
       variant="contained"
     >
       Explore
-    </Button>
+    </StyledButton>
   );
 };

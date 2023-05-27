@@ -81,22 +81,22 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       {showPositiveOutcomes && (
         <Grid item sx={{ color: theme.palette.success.main }} xs={6}>
           {Object.keys(positiveResources).map((resource) => (
-            <Typography key={resource} variant="body1">
+            <Typography key={resource} variant="body2">
               +{positiveResources[resource as Resource]} {resource}
             </Typography>
           ))}
           {Object.keys(positiveRpt).map((resource) => (
-            <Typography key={resource} variant="body1">
+            <Typography key={resource} variant="body2">
               +{positiveRpt[resource as Resource]} {resource} per turn
             </Typography>
           ))}
           {buildingsAdded.map((building) => (
-            <Typography key={building} variant="body1">
+            <Typography key={building} variant="body2">
               {building} constructed
             </Typography>
           ))}
           {villagersAdded.map((villager) => (
-            <Typography key={villager} variant="body1">
+            <Typography key={villager} variant="body2">
               {villager} arrives
             </Typography>
           ))}
@@ -105,22 +105,22 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       {showNegativeOutcomes && (
         <Grid item sx={{ color: theme.palette.error.main }} xs={6}>
           {Object.keys(negativeResources).map((resource) => (
-            <Typography key={resource} variant="body1">
+            <Typography key={resource} variant="body2">
               -{negativeResources[resource as Resource]} {resource}
             </Typography>
           ))}
           {Object.keys(negativeRpt).map((resource) => (
-            <Typography key={resource} variant="body1">
+            <Typography key={resource} variant="body2">
               -{negativeRpt[resource as Resource]} {resource} per turn
             </Typography>
           ))}
           {buildingsRemoved.map((building) => (
-            <Typography key={building} variant="body1">
+            <Typography key={building} variant="body2">
               {building} destroyed
             </Typography>
           ))}
           {villagersRemoved.map((villager) => (
-            <Typography key={villager} variant="body1">
+            <Typography key={villager} variant="body2">
               {villager} leaves
             </Typography>
           ))}

@@ -2,10 +2,12 @@
 import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
-import { Button, Grid, Tooltip, Typography } from "@mui/material";
+import { Grid, Tooltip, Typography } from "@mui/material";
 import { KeyboardDoubleArrowUp as KeyboardDoubleArrowUpIcon } from "@mui/icons-material";
 
 // LOCAL FILES
+// Components
+import { StyledButton } from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
@@ -44,14 +46,14 @@ export const TownAdvanceTierButton: FC<{}> = () => {
         (resource) => tierRequirements.resources[resource] !== 0,
       )
       .map((resource) => (
-        <Typography key={resource} variant="body1">
+        <Typography key={resource} variant="body2">
           {resource}: {Math.abs(tierRequirements.resources[resource])}
         </Typography>
       ));
 
     const buildingRequirements = tierRequirements.buildings.map(
       (buildingId) => (
-        <Typography key={buildingId} variant="body1">
+        <Typography key={buildingId} variant="body2">
           {ID_TO_BUILDING[buildingId].name}
         </Typography>
       ),
@@ -59,7 +61,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
 
     const villagerRequirements = tierRequirements.villagers.map(
       (villagerId) => (
-        <Typography key={villagerId} variant="body1">
+        <Typography key={villagerId} variant="body2">
           {ID_TO_VILLAGER[villagerId].name}
         </Typography>
       ),
@@ -67,13 +69,13 @@ export const TownAdvanceTierButton: FC<{}> = () => {
 
     return (
       <Grid container direction="column">
-        <Typography sx={{ fontWeight: 700 }} variant="body1">
+        <Typography sx={{ fontWeight: 700 }} variant="body2">
           Resource requirements
         </Typography>
         {resourceRequirements}
         {buildingRequirements.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body1">
+            <Typography sx={{ fontWeight: 700 }} variant="body2">
               Building requirements
             </Typography>
             {buildingRequirements}
@@ -81,7 +83,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
         )}
         {villagerRequirements.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body1">
+            <Typography sx={{ fontWeight: 700 }} variant="body2">
               Villager requirements
             </Typography>
             {villagerRequirements}
@@ -94,7 +96,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
   return (
     <Tooltip title={getTooltipTitle()}>
       <span>
-        <Button
+        <StyledButton
           disabled={!canAdvanceTier}
           fullWidth
           onClick={onAdvanceTier}
@@ -102,7 +104,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
           variant="contained"
         >
           Advance Tier
-        </Button>
+        </StyledButton>
       </span>
     </Tooltip>
   );
