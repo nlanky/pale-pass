@@ -124,7 +124,7 @@ export const MarketStall: FC<{}> = () => {
                 >
                   <img
                     src={RESOURCE_TO_ICON[resource]}
-                    style={{ width: 50 }}
+                    style={{ width: 64 }}
                   />
                   <Typography variant="body1">
                     {playerAmount}
@@ -161,7 +161,7 @@ export const MarketStall: FC<{}> = () => {
                 >
                   <img
                     src={RESOURCE_TO_ICON[resource]}
-                    style={{ width: 50 }}
+                    style={{ width: 64 }}
                   />
                   {fromResource && (
                     <Typography variant="body1">
@@ -190,7 +190,7 @@ export const MarketStall: FC<{}> = () => {
             >
               <img
                 src={RESOURCE_TO_ICON[fromResource]}
-                style={{ width: 50 }}
+                style={{ width: 64 }}
               />
               <Typography variant="body1">{quantity}</Typography>
             </Grid>
@@ -219,7 +219,7 @@ export const MarketStall: FC<{}> = () => {
             >
               <img
                 src={RESOURCE_TO_ICON[toResource]}
-                style={{ width: 50 }}
+                style={{ width: 64 }}
               />
               <Typography variant="body1">
                 {RESOURCE_TO_TRADE_RATES[fromResource][toResource] *
