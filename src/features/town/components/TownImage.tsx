@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // LOCAL FILES
-// Images
+// Icons & Images
 import { townTier1Image } from "assets/town";
 
 export const TownImage: FC<{}> = () => {

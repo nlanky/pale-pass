@@ -1,12 +1,12 @@
 // LOCAL FILES
-// Images
+// Icons & Images
 import {
-  amethystImage,
-  ironImage,
-  mythrilImage,
-  steelImage,
-  stoneImage,
-  woodImage,
+  amethystIcon,
+  ironIcon,
+  mythrilIcon,
+  steelIcon,
+  stoneIcon,
+  woodIcon,
 } from "assets/resource";
 // Interfaces & Types
 import type { Resource, Resources } from "features/resource/types";
@@ -33,16 +33,15 @@ export const TIER_TO_RESOURCES_PER_TURN: Record<number, Resources> = {
 
 // TODO: Replace with actual icons
 export const RESOURCE_TO_ICON: Record<Resource, string> = {
-  Wood: woodImage,
-  Stone: stoneImage,
-  Iron: ironImage,
-  Steel: steelImage,
-  Mythril: mythrilImage,
-  Amethyst: amethystImage,
+  Wood: woodIcon,
+  Stone: stoneIcon,
+  Iron: ironIcon,
+  Steel: steelIcon,
+  Mythril: mythrilIcon,
+  Amethyst: amethystIcon,
 };
 
 // How much 1 of the resource is worth compared to the other resources
-// TODO: Determine rates so it can't be exploited
 export const RESOURCE_TO_TRADE_RATES: Record<Resource, Resources> = {
   Wood: {
     Wood: 1,

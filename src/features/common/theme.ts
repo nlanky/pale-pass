@@ -55,6 +55,8 @@ export const theme = createTheme({
     // },
   },
   palette: {
+    error: createColour("#8f252e"),
+    success: createColour("#0d421c"),
     parchment: createColour("#fffef0"),
     parchmentDark: createColour("#af895e"),
   },

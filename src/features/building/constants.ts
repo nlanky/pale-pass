@@ -1,7 +1,7 @@
 // LOCAL FILES
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
-// Images
+// Icons & Images
 import { building9Image, building152Image } from "assets/building";
 // Interfaces & Types
 import type { Building } from "features/building/types";

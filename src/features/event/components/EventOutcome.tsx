@@ -5,6 +5,8 @@ import type { FC } from "react";
 import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
+// Components
+import { ResourceOutcomeIcon } from "features/resource/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
@@ -79,50 +81,148 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
   return (
     <Grid container sx={{ marginTop: theme.spacing(1) }}>
       {showPositiveOutcomes && (
-        <Grid item sx={{ color: theme.palette.success.main }} xs={6}>
+        <Grid
+          container
+          item
+          sx={{ color: theme.palette.success.main }}
+          xs={6}
+        >
           {Object.keys(positiveResources).map((resource) => (
-            <Typography key={resource} variant="body2">
-              +{positiveResources[resource as Resource]} {resource}
-            </Typography>
+            <Grid
+              key={`resource_positive_${resource}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <ResourceOutcomeIcon
+                resource={resource as Resource}
+                outcome="positive"
+              />
+              <Typography variant="body2">
+                +{positiveResources[resource as Resource]} {resource}
+              </Typography>
+            </Grid>
           ))}
           {Object.keys(positiveRpt).map((resource) => (
-            <Typography key={resource} variant="body2">
-              +{positiveRpt[resource as Resource]} {resource} per turn
-            </Typography>
+            <Grid
+              key={`rpt_positive_${resource}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <ResourceOutcomeIcon
+                resource={resource as Resource}
+                outcome="positive"
+              />
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
+                +{positiveRpt[resource as Resource]} {resource} per
+                turn
+              </Typography>
+            </Grid>
           ))}
           {buildingsAdded.map((building) => (
-            <Typography key={building} variant="body2">
-              {building} constructed
-            </Typography>
+            <Grid
+              key={`building_positive_${building}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <Typography variant="body2">
+                {building} constructed
+              </Typography>
+            </Grid>
           ))}
           {villagersAdded.map((villager) => (
-            <Typography key={villager} variant="body2">
-              {villager} arrives
-            </Typography>
+            <Grid
+              key={`villager_positive_${villager}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <Typography variant="body2">
+                {villager} arrives
+              </Typography>
+            </Grid>
           ))}
         </Grid>
       )}
       {showNegativeOutcomes && (
-        <Grid item sx={{ color: theme.palette.error.main }} xs={6}>
+        <Grid
+          container
+          item
+          sx={{ color: theme.palette.error.main }}
+          xs={6}
+        >
           {Object.keys(negativeResources).map((resource) => (
-            <Typography key={resource} variant="body2">
-              -{negativeResources[resource as Resource]} {resource}
-            </Typography>
+            <Grid
+              key={`resource_negative_${resource}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <ResourceOutcomeIcon
+                resource={resource as Resource}
+                outcome="negative"
+              />
+              <Typography variant="body2">
+                -{negativeResources[resource as Resource]} {resource}
+              </Typography>
+            </Grid>
           ))}
           {Object.keys(negativeRpt).map((resource) => (
-            <Typography key={resource} variant="body2">
-              -{negativeRpt[resource as Resource]} {resource} per turn
-            </Typography>
+            <Grid
+              key={`rpt_negative_${resource}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <ResourceOutcomeIcon
+                resource={resource as Resource}
+                outcome="negative"
+              />
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
+                -{negativeRpt[resource as Resource]} {resource} per
+                turn
+              </Typography>
+            </Grid>
           ))}
           {buildingsRemoved.map((building) => (
-            <Typography key={building} variant="body2">
-              {building} destroyed
-            </Typography>
+            <Grid
+              key={`building_negative_${building}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <Typography variant="body2">
+                {building} destroyed
+              </Typography>
+            </Grid>
           ))}
-          {villagersRemoved.map((villager) => (
-            <Typography key={villager} variant="body2">
-              {villager} leaves
-            </Typography>
+          {villagersAdded.map((villager) => (
+            <Grid
+              key={`villager_negative_${villager}`}
+              alignItems="center"
+              container
+              item
+              xs={6}
+            >
+              <Typography variant="body2">
+                {villager} leaves
+              </Typography>
+            </Grid>
           ))}
         </Grid>
       )}
