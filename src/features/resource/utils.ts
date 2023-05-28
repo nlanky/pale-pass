@@ -1,8 +1,11 @@
 // LOCAL FILES
 // Interfaces & Types
 import type { Resource, Resources } from "features/resource/types";
-import { RESOURCE_TO_TRADE_RATES } from "./constants";
+import { NO_RESOURCES, RESOURCE_TO_TRADE_RATES } from "./constants";
 
+/**
+ * Simple function to merge 2 resource objects together into a new object.
+ */
 export const mergeResources = (
   resources1: Resources,
   resources2: Resources,
@@ -47,3 +50,10 @@ export const getMaxTradeQuantity = (
   const maxNumberOfTrades = Math.floor(resourceAmount / minQuantity);
   return maxNumberOfTrades * minQuantity;
 };
+
+/**
+ * Simple function to create a full Resources object from a partial definition.
+ */
+export const getResources = (
+  resources: Partial<Resources>,
+): Resources => Object.assign({ ...NO_RESOURCES }, resources);

@@ -10,6 +10,8 @@ import {
 } from "assets/resource";
 // Interfaces & Types
 import type { Resource, Resources } from "features/resource/types";
+// Utility functions
+import { getResources } from "features/resource/utils";
 
 export const NO_RESOURCES: Resources = {
   Wood: 0,
@@ -24,11 +26,11 @@ export const NO_RESOURCES: Resources = {
  * Set resource values to INCREASE in each resource when advancing tiers.
  */
 export const TIER_TO_RESOURCES_PER_TURN: Record<number, Resources> = {
-  1: { ...NO_RESOURCES, Wood: 5, Stone: 5 },
-  2: { ...NO_RESOURCES, Iron: 5 },
-  3: { ...NO_RESOURCES, Steel: 5 },
-  4: { ...NO_RESOURCES, Mythril: 5 },
-  5: { ...NO_RESOURCES, Amethyst: 5 },
+  1: getResources({ Wood: 5, Stone: 5 }),
+  2: getResources({ Iron: 5 }),
+  3: getResources({ Steel: 5 }),
+  4: getResources({ Mythril: 5 }),
+  5: getResources({ Amethyst: 5 }),
 };
 
 // TODO: Replace with actual icons

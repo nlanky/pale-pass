@@ -1,6 +1,3 @@
-// REACT
-import { useEffect, useState } from "react";
-
 // LOCAL FILES
 // Constants
 import { TIER_TO_REQUIREMENTS } from "features/town/constants";
@@ -17,74 +14,56 @@ export const useCanAdvanceTier = (): boolean => {
   // Hooks
   const town = useAppSelector(selectPlayerTown);
 
-  // Local state
-  const [canAdvance, setCanAdvance] = useState(false);
+  // Player has reached max tier
+  if (town.tier === 5) {
+    return false;
+  }
 
-  useEffect(() => {
-    // Player has reached max tier
-    if (town.tier === 5) {
-      setCanAdvance(false);
-      return;
+  const { resources, buildingIds, villagerIds } =
+    TIER_TO_REQUIREMENTS[town.tier + 1];
+
+  // Check player has required buildings
+  const townBuildingIds = town.buildings.map(
+    (building) => building.id,
+  );
+  const hasBuildings =
+    buildingIds.filter((buildingId) =>
+      townBuildingIds.includes(buildingId),
+    ).length === buildingIds.length;
+  if (!hasBuildings) {
+    return false;
+  }
+
+  // Check player has required villagers
+  const hasVillagers =
+    villagerIds.filter((villagerId) =>
+      town.villagerIds.includes(villagerId),
+    ).length === villagerIds.length;
+  if (!hasVillagers) {
+    return false;
+  }
+
+  // Check player has enough resources
+  const resourcesAfterAdvance = mergeResources(
+    town.resources,
+    resources,
+  );
+  for (const resource in resourcesAfterAdvance) {
+    if (resourcesAfterAdvance[resource as Resource] < 0) {
+      return false;
     }
+  }
 
-    const { resources, buildings, villagers } =
-      TIER_TO_REQUIREMENTS[town.tier + 1];
-
-    // Check player has required buildings
-    const hasBuildings =
-      buildings.filter((building) =>
-        town.buildings.includes(building),
-      ).length === buildings.length;
-    if (!hasBuildings) {
-      setCanAdvance(false);
-      return;
-    }
-
-    // Check player has required villagers
-    const hasVillagers =
-      villagers.filter((villager) =>
-        town.villagers.includes(villager),
-      ).length === villagers.length;
-    if (!hasVillagers) {
-      setCanAdvance(false);
-      return;
-    }
-
-    // Check player has enough resources
-    const resourcesAfterAdvance = mergeResources(
-      town.resources,
-      resources,
-    );
-    for (const resource in resourcesAfterAdvance) {
-      if (resourcesAfterAdvance[resource as Resource] < 0) {
-        setCanAdvance(false);
-        return;
-      }
-    }
-
-    setCanAdvance(true);
-  }, [town]);
-
-  return canAdvance;
+  return true;
 };
 
 export const useTierRequirements = (): TierRequirements | null => {
   // Hooks
   const town = useAppSelector(selectPlayerTown);
 
-  // Local state
-  const [tierRequirements, setTierRequirements] =
-    useState<TierRequirements | null>(null);
+  if (town.tier === 5) {
+    return null;
+  }
 
-  // Effects
-  useEffect(() => {
-    if (town.tier === 5) {
-      setTierRequirements(null);
-      return;
-    }
-
-    setTierRequirements(TIER_TO_REQUIREMENTS[town.tier + 1]);
-  }, [town]);
-
-  return tierRequirements;
+  return TIER_TO_REQUIREMENTS[town.tier + 1];
 };

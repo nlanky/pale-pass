@@ -51,7 +51,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
         </Typography>
       ));
 
-    const buildingRequirements = tierRequirements.buildings.map(
+    const buildingRequirements = tierRequirements.buildingIds.map(
       (buildingId) => (
         <Typography key={buildingId} variant="body2">
           {ID_TO_BUILDING[buildingId].name}
@@ -59,7 +59,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
       ),
     );
 
-    const villagerRequirements = tierRequirements.villagers.map(
+    const villagerRequirements = tierRequirements.villagerIds.map(
       (villagerId) => (
         <Typography key={villagerId} variant="body2">
           {ID_TO_VILLAGER[villagerId].name}

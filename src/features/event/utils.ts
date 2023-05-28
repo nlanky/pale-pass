@@ -17,10 +17,17 @@ export const getValidEvents = (town: Town, eventsSeen: number[]) => {
     buildings: townBuildings,
     villagers: townVillagers,
   } = town;
+  const townBuildingIds = townBuildings.map(
+    (building) => building.id,
+  );
+  const townVillagerIds = townVillagers.map(
+    (villager) => villager.id,
+  );
 
   return EVENTS.filter((event) => {
     const { id, requirements } = event;
-    const { tier, resources, buildings, villagers } = requirements;
+    const { tier, resources, buildingIds, villagerIds } =
+      requirements;
 
     if (eventsSeen.includes(id)) {
       return false;
@@ -42,13 +49,17 @@ export const getValidEvents = (town: Town, eventsSeen: number[]) => {
     }
 
     if (
-      !buildings.every((building) => townBuildings.includes(building))
+      !buildingIds.every((buildingId) =>
+        townBuildingIds.includes(buildingId),
+      )
     ) {
       return false;
     }
 
     if (
-      !villagers.every((villager) => townVillagers.includes(villager))
+      !villagerIds.every((villagerId) =>
+        townVillagerIds.includes(villagerId),
+      )
     ) {
       return false;
     }

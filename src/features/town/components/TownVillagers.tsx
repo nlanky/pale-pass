@@ -26,7 +26,7 @@ import { selectPlayerVillagers } from "features/town/townSlice";
 export const TownVillagers: FC<{}> = () => {
   // Hooks
   const theme = useTheme();
-  const villagerIds = useAppSelector(selectPlayerVillagers);
+  const villagers = useAppSelector(selectPlayerVillagers);
 
   // Local state
   const [hoveringOnVillager, setHoveringOnVillager] = useState<
@@ -52,7 +52,7 @@ export const TownVillagers: FC<{}> = () => {
   // Derived variables
   const modalVillager = ID_TO_VILLAGER[villagerOpen || NaN];
 
-  if (villagerIds.length === 0) {
+  if (villagers.length === 0) {
     return null;
   }
 
@@ -78,8 +78,9 @@ export const TownVillagers: FC<{}> = () => {
           sx={{ overflowX: "auto" }}
           wrap="nowrap"
         >
-          {villagerIds.map((villagerId) => {
-            const { id, image, name } = ID_TO_VILLAGER[villagerId];
+          {villagers.map((townVillager) => {
+            const { id, icon, name } =
+              ID_TO_VILLAGER[townVillager.id];
 
             return (
               <Grid
@@ -104,7 +105,7 @@ export const TownVillagers: FC<{}> = () => {
               >
                 <img
                   alt={name}
-                  src={image}
+                  src={icon}
                   style={{
                     width: "100%",
                   }}

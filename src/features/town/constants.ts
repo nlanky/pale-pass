@@ -4,6 +4,8 @@ import { NO_RESOURCES } from "features/resource/constants";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 import type { TierRequirements } from "features/town/types";
+// Utility functions
+import { getResources } from "features/resource/utils";
 
 /**
  * Player must have the building and villagers in their town. They must
@@ -13,45 +15,42 @@ export const TIER_TO_REQUIREMENTS: Record<number, TierRequirements> =
   {
     1: {
       resources: NO_RESOURCES,
-      buildings: [],
-      villagers: [],
+      buildingIds: [],
+      villagerIds: [],
     },
     2: {
-      resources: { ...NO_RESOURCES, Wood: -20, Stone: -20 },
-      buildings: [],
-      villagers: [],
+      resources: getResources({ Wood: -20, Stone: -20 }),
+      buildingIds: [],
+      villagerIds: [],
     },
     3: {
-      resources: {
-        ...NO_RESOURCES,
+      resources: getResources({
         Wood: -20,
         Stone: -20,
         Iron: -20,
-      },
-      buildings: [],
-      villagers: [],
+      }),
+      buildingIds: [],
+      villagerIds: [],
     },
     4: {
-      resources: {
-        ...NO_RESOURCES,
+      resources: getResources({
         Wood: -20,
         Stone: -20,
         Iron: -20,
         Steel: -20,
-      },
-      buildings: [],
-      villagers: [],
+      }),
+      buildingIds: [],
+      villagerIds: [],
     },
     5: {
-      resources: {
-        ...NO_RESOURCES,
+      resources: getResources({
         Wood: -20,
         Stone: -20,
         Iron: -20,
         Mythril: -20,
-      },
-      buildings: [],
-      villagers: [],
+      }),
+      buildingIds: [],
+      villagerIds: [],
     },
   };
 

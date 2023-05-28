@@ -4,6 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Constants
+import { ID_TO_BUILDING } from "features/building/constants";
 import {
   NO_RESOURCES,
   TIER_TO_RESOURCES_PER_TURN,
@@ -13,6 +14,7 @@ import {
   TIER_TO_ENABLED_RESOURCES,
   TIER_TO_REQUIREMENTS,
 } from "features/town/constants";
+import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Resource } from "features/resource/types";
@@ -21,7 +23,10 @@ import type { Town } from "features/town/types";
 import { completeEvent } from "features/event/eventSlice";
 import { incrementTurn } from "features/game/gameSlice";
 // Utility functions
-import { mergeResources } from "features/resource/utils";
+import {
+  getResources,
+  mergeResources,
+} from "features/resource/utils";
 import { getNextTurnResources } from "features/town/utils";
 
 interface TownState {
@@ -35,8 +40,8 @@ const INITIAL_TOWN_STATE: Town = {
   tier: 1,
   resources: NO_RESOURCES,
   resourcesPerTurn: TIER_TO_RESOURCES_PER_TURN[1],
-  buildings: [152], // IDs
-  villagers: [], // IDs
+  buildings: [],
+  villagers: [],
   image: "",
 };
 
@@ -74,13 +79,12 @@ export const townSlice = createSlice({
       }>,
     ) => {
       const { fromResource, toResource, quantity } = action.payload;
-      const resourceChanges = {
-        ...NO_RESOURCES,
+      const resourceChanges = getResources({
         [fromResource]: -quantity,
         [toResource]:
           quantity *
           RESOURCE_TO_TRADE_RATES[fromResource][toResource],
-      };
+      });
       state.player.resources = mergeResources(
         state.player.resources,
         resourceChanges,
@@ -90,9 +94,50 @@ export const townSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(incrementTurn, (state) => {
       state.player.resources = getNextTurnResources(state.player);
+
+      // Check building repair/building times
+      const nextTownBuildings = [...state.player.buildings];
+      nextTownBuildings.forEach(
+        (townBuilding, index, townBuildings) => {
+          const nextTownBuilding = { ...townBuilding };
+          const { state } = nextTownBuilding;
+          if (state === "under construction") {
+            nextTownBuilding.buildTimeRemaining--;
+            if (nextTownBuilding.buildTimeRemaining === 0) {
+              nextTownBuilding.state = "built";
+            }
+          } else if (state === "being repaired") {
+            nextTownBuilding.repairTimeRemaining--;
+            if (nextTownBuilding.repairTimeRemaining === 0) {
+              nextTownBuilding.state = "built";
+            }
+          }
+
+          townBuildings[index] = nextTownBuilding;
+        },
+      );
+      state.player.buildings = nextTownBuildings;
+
+      // Check villager recovery times
+      const nextTownVillagers = [...state.player.villagers];
+      nextTownVillagers.forEach(
+        (townVillager, index, townVillagers) => {
+          const nextTownVillager = { ...townVillager };
+          const { state } = nextTownVillager;
+          if (state === "recovering") {
+            nextTownVillager.recoveryTimeRemaining--;
+            if (nextTownVillager.recoveryTimeRemaining === 0) {
+              nextTownVillager.state = "healthy";
+            }
+          }
+
+          townVillagers[index] = nextTownVillager;
+        },
+      );
+      state.player.villagers = nextTownVillagers;
     });
     builder.addCase(completeEvent, (state, action) => {
-      const { resources, resourcesPerTurn, building, villager } =
+      const { resources, resourcesPerTurn, buildings, villagers } =
         action.payload;
 
       // Modify resources
@@ -107,35 +152,51 @@ export const townSlice = createSlice({
         resourcesPerTurn,
       );
 
-      // Add or remove building
-      if (building) {
-        const nextBuildings = [...state.player.buildings];
-        if (building.add) {
-          nextBuildings.push(building.id);
-        } else {
-          const buildingIndex = nextBuildings.findIndex(
-            (playerBuilding) => playerBuilding === building.id,
-          );
-          nextBuildings.splice(buildingIndex, 1);
-        }
+      // Update buildings
+      const nextTownBuildings = [...state.player.buildings];
+      buildings.forEach((townBuilding) => {
+        const { id, state } = townBuilding;
 
-        state.player.buildings = nextBuildings;
-      }
+        // Remove old building state
+        const existingBuildingIndex = nextTownBuildings.findIndex(
+          (existingBuilding) => existingBuilding.id === id,
+        );
+        nextTownBuildings.splice(existingBuildingIndex, 1);
 
-      // Add or remove villager
-      if (villager) {
-        const nextVillagers = [...state.player.villagers];
-        if (villager.add) {
-          nextVillagers.push(villager.id);
-        } else {
-          const villagerIndex = nextVillagers.findIndex(
-            (playerVillager) => playerVillager === villager.id,
-          );
-          nextVillagers.splice(villagerIndex, 1);
-        }
+        // Add new building state
+        const building = ID_TO_BUILDING[id];
+        nextTownBuildings.push({
+          id,
+          state,
+          buildTimeRemaining:
+            state === "destroyed" ? building.buildTime : 0,
+          repairTimeRemaining:
+            state === "damaged" ? building.repairTime : 0,
+        });
+      });
+      state.player.buildings = nextTownBuildings;
 
-        state.player.villagers = nextVillagers;
-      }
+      // Update villagers
+      const nextTownVillagers = [...state.player.villagers];
+      villagers.forEach((townVillager) => {
+        const { id, state } = townVillager;
+
+        // Remove old villager state
+        const existingVillagerIndex = nextTownVillagers.findIndex(
+          (existingVillager) => existingVillager.id === id,
+        );
+        nextTownVillagers.splice(existingVillagerIndex, 1);
+
+        // Add new villager state
+        const villager = ID_TO_VILLAGER[id];
+        nextTownVillagers.push({
+          id,
+          state,
+          recoveryTimeRemaining:
+            state === "injured" ? villager.recoveryTime : 0,
+        });
+      });
+      state.player.villagers = nextTownVillagers;
     });
   },
 });

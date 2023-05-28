@@ -27,10 +27,10 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
   const negativeResources: Partial<Record<Resource, number>> = {};
   const positiveRpt: Partial<Record<Resource, number>> = {};
   const negativeRpt: Partial<Record<Resource, number>> = {};
-  const buildingsAdded: string[] = [];
-  const buildingsRemoved: string[] = [];
-  const villagersAdded: string[] = [];
-  const villagersRemoved: string[] = [];
+  const positiveBuildings: string[] = [];
+  const negativeBuildings: string[] = [];
+  const positiveVillagers: string[] = [];
+  const negativeVillagers: string[] = [];
 
   for (const resource in outcome.resources) {
     const resourceAmount = outcome.resources[resource as Resource];
@@ -51,32 +51,51 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     }
   }
 
-  if (outcome.building) {
-    if (outcome.building.add) {
-      buildingsAdded.push(ID_TO_BUILDING[outcome.building.id].name);
+  outcome.buildings.forEach((outcomeBuilding) => {
+    const { id, state } = outcomeBuilding;
+    const building = ID_TO_BUILDING[id];
+    if (
+      ["built", "under construction", "being repaired"].includes(
+        state,
+      )
+    ) {
+      positiveBuildings.push(`${building.name} ${state}`);
     } else {
-      buildingsRemoved.push(ID_TO_BUILDING[outcome.building.id].name);
+      // damaged or destroyed
+      negativeBuildings.push(`${building.name} ${state}`);
     }
-  }
+  });
 
-  if (outcome.villager) {
-    if (outcome.villager.add) {
-      villagersAdded.push(ID_TO_VILLAGER[outcome.villager.id].name);
+  outcome.villagers.forEach((outcomeVillager) => {
+    const { id, state } = outcomeVillager;
+    const villager = ID_TO_VILLAGER[id];
+    if (state === "healthy") {
+      // TODO: Do we need to know previous state of villager?
+      positiveVillagers.push(
+        `${villager.name} the ${villager.occupation} joins the town`,
+      );
+    } else if (state === "recovering") {
+      positiveVillagers.push(
+        `${villager.name} the ${villager.occupation} is ${state}`,
+      );
     } else {
-      villagersRemoved.push(ID_TO_VILLAGER[outcome.villager.id].name);
+      // injured or dead
+      negativeVillagers.push(
+        `${villager.name} the ${villager.occupation} is ${state}`,
+      );
     }
-  }
+  });
 
   const showPositiveOutcomes =
     Object.keys(positiveResources).length !== 0 ||
     Object.keys(positiveRpt).length !== 0 ||
-    buildingsAdded.length !== 0 ||
-    villagersAdded.length !== 0;
+    positiveBuildings.length !== 0 ||
+    positiveVillagers.length !== 0;
   const showNegativeOutcomes =
     Object.keys(negativeResources).length !== 0 ||
     Object.keys(negativeRpt).length !== 0 ||
-    buildingsRemoved.length !== 0 ||
-    villagersRemoved.length !== 0;
+    negativeBuildings.length !== 0 ||
+    negativeVillagers.length !== 0;
 
   return (
     <Grid container sx={{ marginTop: theme.spacing(1) }}>
@@ -125,7 +144,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               </Typography>
             </Grid>
           ))}
-          {buildingsAdded.map((building) => (
+          {positiveBuildings.map((building) => (
             <Grid
               key={`building_positive_${building}`}
               alignItems="center"
@@ -133,12 +152,10 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">
-                {building} constructed
-              </Typography>
+              <Typography variant="body2">{building}</Typography>
             </Grid>
           ))}
-          {villagersAdded.map((villager) => (
+          {positiveVillagers.map((villager) => (
             <Grid
               key={`villager_positive_${villager}`}
               alignItems="center"
@@ -146,9 +163,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">
-                {villager} arrives
-              </Typography>
+              <Typography variant="body2">{villager}</Typography>
             </Grid>
           ))}
         </Grid>
@@ -198,7 +213,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               </Typography>
             </Grid>
           ))}
-          {buildingsRemoved.map((building) => (
+          {negativeBuildings.map((building) => (
             <Grid
               key={`building_negative_${building}`}
               alignItems="center"
@@ -206,12 +221,10 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">
-                {building} destroyed
-              </Typography>
+              <Typography variant="body2">{building}</Typography>
             </Grid>
           ))}
-          {villagersAdded.map((villager) => (
+          {negativeVillagers.map((villager) => (
             <Grid
               key={`villager_negative_${villager}`}
               alignItems="center"
@@ -219,9 +232,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">
-                {villager} leaves
-              </Typography>
+              <Typography variant="body2">{villager}</Typography>
             </Grid>
           ))}
         </Grid>

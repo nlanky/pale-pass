@@ -16,20 +16,34 @@ export const getNextTurnResources = (town: Town): Resources => {
   );
 
   // Add building modifiers
-  town.buildings.forEach((buildingId) => {
-    const building = ID_TO_BUILDING[buildingId];
+  town.buildings.forEach((townBuilding) => {
+    const { id, state } = townBuilding;
+
+    // Building must not be under construction, being repaired, damaged or destroyed
+    if (state !== "built") {
+      return;
+    }
+
+    const building = ID_TO_BUILDING[id];
     nextTurnResources = mergeResources(
       nextTurnResources,
-      building.resources,
+      building.gatherResources,
     );
   });
 
   // Add villager modifiers
-  town.villagers.forEach((villagerId) => {
-    const villager = ID_TO_VILLAGER[villagerId];
+  town.villagers.forEach((townVillager) => {
+    const { id, state } = townVillager;
+
+    // Villager must not be recovering, injured or dead
+    if (state != "healthy") {
+      return;
+    }
+
+    const villager = ID_TO_VILLAGER[id];
     nextTurnResources = mergeResources(
       nextTurnResources,
-      villager.resources,
+      villager.gatherResources,
     );
   });
 

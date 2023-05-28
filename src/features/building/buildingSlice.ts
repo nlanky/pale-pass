@@ -8,11 +8,11 @@ import type { RootState } from "features/redux/store";
 import { triggerEvent } from "features/event/eventSlice";
 
 interface BuildingState {
-  openModal: number | null;
+  modalId: number | null;
 }
 
 const initialState: BuildingState = {
-  openModal: null,
+  modalId: null,
 };
 
 export const buildingSlice = createSlice({
@@ -20,15 +20,15 @@ export const buildingSlice = createSlice({
   initialState,
   reducers: {
     closeModal: (state) => {
-      state.openModal = null;
+      state.modalId = null;
     },
     openModal: (state, action: PayloadAction<number>) => {
-      state.openModal = action.payload;
+      state.modalId = action.payload;
     },
   },
   extraReducers(builder) {
     builder.addCase(triggerEvent, (state) => {
-      state.openModal = null;
+      state.modalId = null;
     });
   },
 });
@@ -36,7 +36,7 @@ export const buildingSlice = createSlice({
 export const { closeModal, openModal } = buildingSlice.actions;
 
 // Selectors
-export const selectOpenBuildingModal = (state: RootState) =>
-  state.building.openModal;
+export const selectModalBuildingId = (state: RootState) =>
+  state.building.modalId;
 
 export const buildingReducer = buildingSlice.reducer;

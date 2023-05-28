@@ -5,27 +5,53 @@ import { NO_RESOURCES } from "features/resource/constants";
 import { building9Image, building152Image } from "assets/building";
 // Interfaces & Types
 import type { Building } from "features/building/types";
+// Utility functions
+import { getResources } from "features/resource/utils";
 
+/** Reference object for all buildings in the game */
 export const ID_TO_BUILDING: Record<number, Building> = {
   9: {
     id: 9,
     name: "Blacksmith",
-    resources: { ...NO_RESOURCES, Wood: 1, Stone: 1 },
-    text: {
-      join: "Proudly, you stand back in the cart track and look up at the new smithy. It's a fine building and will help produce excellent tools to gather the resources hidden in this lush valley.",
-      leave:
-        "In the cold light of day you see just how much damage was done. This will take an age to rebuild. Well, better get started hauling the wood and stone to repair the building. It will be out of commission for some time.",
+    description:
+      "Proudly, you stand back in the cart track and look up at the smithy. It's a fine building and will help produce excellent tools to gather the resources hidden in this lush valley.",
+    canBuild: false,
+    requirements: {
+      tier: 1,
+      buildingIds: [],
+      villagerIds: [],
     },
-    image: building9Image,
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
+    buildResources: getResources({ Wood: 10, Stone: 10 }),
+    buildTime: 8,
+    repairResources: getResources({ Wood: 5, Stone: 5 }),
+    repairTime: 4,
+    icons: {
+      built: building9Image,
+      damaged: building9Image,
+      destroyed: building9Image,
+    },
   },
   152: {
     id: 152,
     name: "Market Stall",
-    resources: NO_RESOURCES,
-    text: {
-      join: "",
-      leave: "",
+    description:
+      "With the market stall, you can buy and sell resources.",
+    canBuild: true,
+    requirements: {
+      tier: 1,
+      buildingIds: [],
+      villagerIds: [],
     },
-    image: building152Image,
+    gatherResources: NO_RESOURCES,
+    buildResources: getResources({ Wood: 10, Stone: 10 }),
+    buildTime: 6,
+    repairResources: getResources({ Wood: 5, Stone: 5 }),
+    repairTime: 3,
+    icons: {
+      built: building152Image,
+      damaged: building152Image,
+      destroyed: building152Image,
+    },
   },
 };

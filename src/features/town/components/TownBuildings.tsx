@@ -22,7 +22,7 @@ export const TownBuildings: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const theme = useTheme();
-  const buildingIds = useAppSelector(selectPlayerBuildings);
+  const buildings = useAppSelector(selectPlayerBuildings);
 
   // Local state
   const [hoveringOnBuilding, setHoveringOnBuilding] = useState<
@@ -42,7 +42,7 @@ export const TownBuildings: FC<{}> = () => {
     dispatch(openModal(buildingId));
   };
 
-  if (buildingIds.length === 0) {
+  if (buildings.length === 0) {
     return null;
   }
 
@@ -67,8 +67,9 @@ export const TownBuildings: FC<{}> = () => {
         sx={{ overflowX: "auto" }}
         wrap="nowrap"
       >
-        {buildingIds.map((buildingId) => {
-          const { id, image, name } = ID_TO_BUILDING[buildingId];
+        {buildings.map((townBuilding) => {
+          const { state } = townBuilding;
+          const { id, icons, name } = ID_TO_BUILDING[townBuilding.id];
 
           return (
             <Grid
@@ -93,7 +94,7 @@ export const TownBuildings: FC<{}> = () => {
             >
               <img
                 alt={name}
-                src={image}
+                src={icons[state]}
                 style={{
                   width: "100%",
                 }}

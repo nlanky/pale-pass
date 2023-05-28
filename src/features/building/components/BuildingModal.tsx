@@ -5,9 +5,9 @@ import type { FC } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogContentText,
   DialogTitle,
   Divider,
+  Typography,
   useTheme,
 } from "@mui/material";
 
@@ -23,41 +23,41 @@ import "features/town/components/TownBuildings.css";
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
   closeModal,
-  selectOpenBuildingModal,
+  selectModalBuildingId,
 } from "features/building/buildingSlice";
 
 export const BuildingModal: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const theme = useTheme();
-  const openModal = useAppSelector(selectOpenBuildingModal);
+  const modalBuildingId = useAppSelector(selectModalBuildingId);
 
   // Handlers
   const onModalClose = () => {
     dispatch(closeModal());
   };
 
-  if (!openModal) {
+  if (!modalBuildingId) {
     return null;
   }
 
   // Derived variables
-  const modalBuilding = ID_TO_BUILDING[openModal];
+  const modalBuilding = ID_TO_BUILDING[modalBuildingId];
 
   return (
     <Dialog
       onClose={onModalClose}
-      open={openModal !== null}
+      open={modalBuildingId !== null}
       PaperComponent={StyledPaper}
     >
       {modalBuilding && (
         <>
           <DialogTitle>{modalBuilding.name}</DialogTitle>
           <DialogContent>
-            <DialogContentText variant="body2">
-              Add description here?
-            </DialogContentText>
-            {modalBuilding.name === "Market Stall" && (
+            <Typography variant="body2">
+              {modalBuilding.description}
+            </Typography>
+            {modalBuilding.id === 152 && (
               <>
                 <Divider sx={{ marginTop: theme.spacing(1) }} />
                 <MarketStall />

@@ -1,1 +1,7 @@
-export type View = "menu" | "introduction" | "town" | "event";
+export type View =
+  | "menu"
+  | "introduction"
+  | "town"
+  | "event"
+  | "building"
+  | "villager";

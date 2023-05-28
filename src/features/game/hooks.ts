@@ -6,18 +6,18 @@ import { useEffect } from "react";
 import { TURN_TIME } from "features/game/constants";
 // Redux
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
-import { selectOpenBuildingModal } from "features/building/buildingSlice";
+import { selectModalBuildingId } from "features/building/buildingSlice";
 import { incrementTurn } from "features/game/gameSlice";
 
 export const useTurnTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const openModal = useAppSelector(selectOpenBuildingModal);
+  const modalBuildingId = useAppSelector(selectModalBuildingId);
 
   // Effects
   useEffect(() => {
     // If modal is open, pause game
-    if (openModal) {
+    if (modalBuildingId) {
       return;
     }
 
@@ -27,5 +27,5 @@ export const useTurnTimer = () => {
     return () => {
       clearInterval(timer);
     };
-  }, [dispatch, openModal]);
+  }, [dispatch, modalBuildingId]);
 };

@@ -84,7 +84,8 @@ export const MarketStall: FC<{}> = () => {
       tradeRate * quantity
     } ${toResource} for ${quantity} ${fromResource}`;
   } else {
-    tradeText = "Hello there, what can I do for you?";
+    tradeText =
+      "We kindly ask you to treat our valuable goods with care. If you are interested in making a trade, simply select the items you would like to exchange and those you wish to receive by clicking on them.";
   }
 
   return (
@@ -93,9 +94,7 @@ export const MarketStall: FC<{}> = () => {
       direction="column"
       sx={{ marginTop: theme.spacing(1) }}
     >
-      <Typography align="center" variant="body2">
-        {tradeText}
-      </Typography>
+      <Typography variant="body2">{tradeText}</Typography>
       <Grid
         container
         item

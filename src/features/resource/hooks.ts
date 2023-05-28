@@ -1,10 +1,6 @@
-// REACT
-import { useEffect, useState } from "react";
-
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { NO_RESOURCES } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { Resources } from "features/resource/types";
@@ -18,34 +14,34 @@ export const usePlayerResourcesPerTurn = (): Resources => {
   // Hooks
   const town = useAppSelector(selectPlayerTown);
 
-  // Local state
-  const [resources, setResources] = useState<Resources>(NO_RESOURCES);
+  // Base gather rate + any changes from events
+  let resources = { ...town.resourcesPerTurn };
 
-  // Effects
-  useEffect(() => {
-    // Base gather rate + any changes from events
-    let nextResources = { ...town.resourcesPerTurn };
+  // Add building modifiers
+  town.buildings.forEach((townBuilding) => {
+    const { id, state } = townBuilding;
 
-    // Add building modifiers
-    town.buildings.forEach((buildingId) => {
-      const building = ID_TO_BUILDING[buildingId];
-      nextResources = mergeResources(
-        nextResources,
-        building.resources,
-      );
-    });
+    // Building must not be under construction, being repaired, damaged or destroyed
+    if (state !== "built") {
+      return;
+    }
 
-    // Add villager modifiers
-    town.villagers.forEach((villagerId) => {
-      const villager = ID_TO_VILLAGER[villagerId];
-      nextResources = mergeResources(
-        nextResources,
-        villager.resources,
-      );
-    });
+    const building = ID_TO_BUILDING[id];
+    resources = mergeResources(resources, building.gatherResources);
+  });
 
-    setResources(nextResources);
-  }, [town]);
+  // Add villager modifiers
+  town.villagers.forEach((townVillager) => {
+    const { id, state } = townVillager;
+
+    // Villager must not be recovering, injured or dead
+    if (state != "healthy") {
+      return;
+    }
+
+    const villager = ID_TO_VILLAGER[id];
+    resources = mergeResources(resources, villager.gatherResources);
+  });
 
   return resources;
 };
