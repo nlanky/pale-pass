@@ -92,6 +92,8 @@ export const townSlice = createSlice({
     },
     buildBuilding: (state, action: PayloadAction<number>) => {
       const buildingId = action.payload;
+      const { id, buildTime, buildResources } =
+        ID_TO_BUILDING[buildingId];
       const nextBuildings = [...state.player.buildings];
 
       // Check if this building is in town but destroyed
@@ -104,7 +106,6 @@ export const townSlice = createSlice({
           "under construction";
       } else {
         // Start construction of new building
-        const { id, buildTime } = ID_TO_BUILDING[buildingId];
         nextBuildings.push({
           id,
           state: "under construction",
@@ -114,9 +115,14 @@ export const townSlice = createSlice({
       }
 
       state.player.buildings = nextBuildings;
+      state.player.resources = mergeResources(
+        { ...state.player.resources },
+        buildResources,
+      );
     },
     repairBuilding: (state, action: PayloadAction<number>) => {
       const buildingId = action.payload;
+      const { repairResources } = ID_TO_BUILDING[buildingId];
       const nextBuildings = [...state.player.buildings];
       const existingBuildingIndex = nextBuildings.findIndex(
         (existingBuilding) => existingBuilding.id === buildingId,
@@ -126,6 +132,10 @@ export const townSlice = createSlice({
       }
 
       state.player.buildings = nextBuildings;
+      state.player.resources = mergeResources(
+        { ...state.player.resources },
+        repairResources,
+      );
     },
   },
   extraReducers(builder) {
