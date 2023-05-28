@@ -74,9 +74,10 @@ export const EventView: FC<{}> = () => {
           wrap="nowrap"
         >
           {event.choices.map((choice, index) => (
-            <Grid key={index} item>
+            <Grid key={index} item xs={6}>
               <StyledButton
                 disabled={eventOutcome !== null}
+                fullWidth
                 onClick={() => {
                   onChoiceClick(choice.outcomes);
                 }}

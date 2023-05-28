@@ -88,15 +88,16 @@ export const TownBuildings: FC<{}> = () => {
               sx={{
                 cursor: "pointer",
                 marginRight: theme.spacing(1),
-                maxWidth: 100,
                 position: "relative",
+                width: "auto",
               }}
             >
               <img
                 alt={name}
                 src={icons[state]}
                 style={{
-                  width: "100%",
+                  width: 96,
+                  height: 96,
                 }}
               />
               {hoveringOnBuilding === id && (

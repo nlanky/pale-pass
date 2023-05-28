@@ -35,9 +35,12 @@ export const useCanAdvanceTier = (): boolean => {
   }
 
   // Check player has required villagers
+  const townVillagerIds = town.villagers.map(
+    (villager) => villager.id,
+  );
   const hasVillagers =
     villagerIds.filter((villagerId) =>
-      town.villagerIds.includes(villagerId),
+      townVillagerIds.includes(villagerId),
     ).length === villagerIds.length;
   if (!hasVillagers) {
     return false;

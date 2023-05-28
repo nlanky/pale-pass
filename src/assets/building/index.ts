@@ -1,4 +1,3 @@
-import building9Image from "assets/building/9.png";
-import building152Image from "assets/building/152.png";
+import buildingIcon from "assets/building/building.svg";
 
-export { building9Image, building152Image };
+export { buildingIcon };

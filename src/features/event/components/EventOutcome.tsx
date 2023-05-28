@@ -6,10 +6,14 @@ import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { ResourceOutcomeIcon } from "features/resource/components";
+import { EventOutcomeIcon } from "features/event/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
+import { RESOURCE_TO_ICON } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
+// Images & Icons
+import { buildingIcon } from "assets/building";
+import { villagerIcon } from "assets/villager";
 // Interfaces & Types
 import type { Outcome } from "features/event/types";
 import type { Resource } from "features/resource/types";
@@ -114,11 +118,14 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <ResourceOutcomeIcon
-                resource={resource as Resource}
+              <EventOutcomeIcon
+                icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="positive"
               />
-              <Typography variant="body2">
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
                 +{positiveResources[resource as Resource]} {resource}
               </Typography>
             </Grid>
@@ -131,8 +138,8 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <ResourceOutcomeIcon
-                resource={resource as Resource}
+              <EventOutcomeIcon
+                icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="positive"
               />
               <Typography
@@ -152,7 +159,16 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">{building}</Typography>
+              <EventOutcomeIcon
+                icon={buildingIcon}
+                outcome="positive"
+              />
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
+                {building}
+              </Typography>
             </Grid>
           ))}
           {positiveVillagers.map((villager) => (
@@ -163,7 +179,16 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">{villager}</Typography>
+              <EventOutcomeIcon
+                icon={villagerIcon}
+                outcome="positive"
+              />
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
+                {villager}
+              </Typography>
             </Grid>
           ))}
         </Grid>
@@ -183,11 +208,14 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <ResourceOutcomeIcon
-                resource={resource as Resource}
+              <EventOutcomeIcon
+                icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="negative"
               />
-              <Typography variant="body2">
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
                 -{negativeResources[resource as Resource]} {resource}
               </Typography>
             </Grid>
@@ -200,8 +228,8 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <ResourceOutcomeIcon
-                resource={resource as Resource}
+              <EventOutcomeIcon
+                icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="negative"
               />
               <Typography
@@ -221,7 +249,16 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">{building}</Typography>
+              <EventOutcomeIcon
+                icon={buildingIcon}
+                outcome="negative"
+              />
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
+                {building}
+              </Typography>
             </Grid>
           ))}
           {negativeVillagers.map((villager) => (
@@ -232,7 +269,16 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <Typography variant="body2">{villager}</Typography>
+              <EventOutcomeIcon
+                icon={villagerIcon}
+                outcome="negative"
+              />
+              <Typography
+                sx={{ marginLeft: theme.spacing(1) }}
+                variant="body2"
+              >
+                {villager}
+              </Typography>
             </Grid>
           ))}
         </Grid>

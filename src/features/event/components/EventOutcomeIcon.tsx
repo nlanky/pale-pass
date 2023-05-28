@@ -5,23 +5,19 @@ import type { FC } from "react";
 import { Grid } from "@mui/material";
 
 // LOCAL FILES
-// Constants
-import { RESOURCE_TO_ICON } from "features/resource/constants";
 // Icons & Images
 import {
   negativeOutcomeIcon,
   positiveOutcomeIcon,
 } from "assets/common";
-// Interfaces & Types
-import type { Resource } from "features/resource/types";
 
-interface ResourceOutcomeIconProps {
-  resource: Resource;
+interface EventOutcomeIconProps {
+  icon: string;
   outcome: "positive" | "negative";
 }
 
-export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
-  resource,
+export const EventOutcomeIcon: FC<EventOutcomeIconProps> = ({
+  icon,
   outcome,
 }) => (
   <Grid item sx={{ position: "relative" }}>
@@ -38,7 +34,7 @@ export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
       />
     )}
     <img
-      src={RESOURCE_TO_ICON[resource]}
+      src={icon}
       style={{
         position: "absolute",
         top: 0,

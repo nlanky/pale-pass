@@ -2,7 +2,7 @@
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
 // Icons & Images
-import { building9Image, building152Image } from "assets/building";
+import { buildingIcon } from "assets/building";
 // Interfaces & Types
 import type { Building } from "features/building/types";
 // Utility functions
@@ -27,9 +27,11 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: getResources({ Wood: 5, Stone: 5 }),
     repairTime: 4,
     icons: {
-      built: building9Image,
-      damaged: building9Image,
-      destroyed: building9Image,
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
     },
   },
   152: {
@@ -49,9 +51,11 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: getResources({ Wood: 5, Stone: 5 }),
     repairTime: 3,
     icons: {
-      built: building152Image,
-      damaged: building152Image,
-      destroyed: building152Image,
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
     },
   },
 };
