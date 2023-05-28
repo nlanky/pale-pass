@@ -1,68 +1,271 @@
 // REACT
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
 import {
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   Divider,
+  Grid,
+  Tooltip,
   Typography,
   useTheme,
 } from "@mui/material";
+import {
+  Build as BuildIcon,
+  Construction as ConstructionIcon,
+} from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
 import { MarketStall } from "features/building/components";
-import { StyledPaper } from "features/common/components";
+import {
+  OutcomeIcon,
+  StyledButton,
+  StyledPaper,
+} from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
+import { RESOURCE_TO_ICON } from "features/resource/constants";
+import { ID_TO_VILLAGER } from "features/villager/constants";
+// Interfaces & Types
+import type { Resource } from "features/resource/types";
 // Redux
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
   closeModal,
-  selectModalBuildingId,
+  selectModalBuilding,
+  selectModalTownBuilding,
 } from "features/building/buildingSlice";
+import {
+  buildBuilding,
+  repairBuilding,
+  selectPlayerTown,
+} from "features/town/townSlice";
+// Utility functions
+import { canBuildBuilding } from "features/building/utils";
+import { canAffordResourceAmount } from "features/resource/utils";
 
 export const BuildingModal: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const theme = useTheme();
-  const modalBuildingId = useAppSelector(selectModalBuildingId);
+  const building = useAppSelector(selectModalBuilding);
+  const townBuilding = useAppSelector(selectModalTownBuilding);
+  const town = useAppSelector(selectPlayerTown);
 
   // Handlers
   const onModalClose = () => {
     dispatch(closeModal());
   };
 
-  if (!modalBuildingId) {
+  const onBuild = () => {
+    dispatch(buildBuilding(building.id));
+  };
+
+  const onRepair = () => {
+    dispatch(repairBuilding(building.id));
+  };
+
+  if (!building) {
     return null;
   }
 
   // Derived variables
-  const modalBuilding = ID_TO_BUILDING[modalBuildingId];
+  const isBuilt = townBuilding?.state === "built";
+  const isBuilding = townBuilding?.state === "under construction";
+  const isRepairing = townBuilding?.state === "being repaired";
+  const isDamaged = townBuilding?.state === "damaged";
+  const isDestroyed = townBuilding?.state === "destroyed";
+  const canBuild = (building.canBuild && !isBuilt) || isDestroyed;
+  const canAffordRepair = canAffordResourceAmount(
+    town.resources,
+    building.repairResources,
+  );
+  const canAffordBuild = canBuildBuilding(town, building);
+  const affectedResources = (
+    Object.keys(building.gatherResources) as Resource[]
+  ).filter((resource) => building.gatherResources[resource] !== 0);
+
+  // Utility functions
+  const getTooltipTitle = (isBuild: boolean): ReactNode => {
+    let resourcesRequired = building.repairResources;
+    if (isBuild) {
+      resourcesRequired = building.buildResources;
+    }
+
+    const resourceRequirementsJsx = (
+      Object.keys(resourcesRequired) as Resource[]
+    )
+      .filter((resource) => resourcesRequired[resource] !== 0)
+      .map((resource) => (
+        <Typography key={resource} variant="body2">
+          {resource}: {Math.abs(resourcesRequired[resource])}
+        </Typography>
+      ));
+
+    let buildingIdsRequired: number[] = [];
+    if (isBuild) {
+      buildingIdsRequired = building.requirements.buildingIds;
+    }
+    const buildingRequirementsJsx = buildingIdsRequired.map(
+      (buildingId) => (
+        <Typography key={buildingId} variant="body2">
+          {ID_TO_BUILDING[buildingId].name}
+        </Typography>
+      ),
+    );
+
+    let villagerIdsRequired: number[] = [];
+    if (isBuild) {
+      villagerIdsRequired = building.requirements.villagerIds;
+    }
+    const villagerRequirementsJsx = villagerIdsRequired.map(
+      (villagerId) => (
+        <Typography key={villagerId} variant="body2">
+          {ID_TO_VILLAGER[villagerId].name}
+        </Typography>
+      ),
+    );
+
+    return (
+      <Grid container direction="column">
+        <Typography sx={{ fontWeight: 700 }} variant="body2">
+          Resource requirements
+        </Typography>
+        {resourceRequirementsJsx}
+        {buildingIdsRequired.length !== 0 && (
+          <>
+            <Typography sx={{ fontWeight: 700 }} variant="body2">
+              Building requirements
+            </Typography>
+            {buildingRequirementsJsx}
+          </>
+        )}
+        {villagerIdsRequired.length !== 0 && (
+          <>
+            <Typography sx={{ fontWeight: 700 }} variant="body2">
+              Villager requirements
+            </Typography>
+            {villagerRequirementsJsx}
+          </>
+        )}
+      </Grid>
+    );
+  };
 
   return (
     <Dialog
       onClose={onModalClose}
-      open={modalBuildingId !== null}
+      open={building !== undefined}
       PaperComponent={StyledPaper}
     >
-      {modalBuilding && (
-        <>
-          <DialogTitle>{modalBuilding.name}</DialogTitle>
-          <DialogContent>
-            <Typography variant="body2">
-              {modalBuilding.description}
+      <DialogTitle>{building.name}</DialogTitle>
+
+      <DialogContent>
+        <Typography variant="body2">
+          {building.description}
+        </Typography>
+
+        {affectedResources.length !== 0 && (
+          <>
+            <Divider sx={{ marginTop: theme.spacing(1) }} />
+            <Grid container sx={{ marginTop: theme.spacing(1) }}>
+              {affectedResources.map((resource) => {
+                const amount = building.gatherResources[resource];
+                const isPositive = amount > 0;
+                return (
+                  <Grid
+                    key={resource}
+                    alignItems="center"
+                    container
+                    item
+                    xs={6}
+                  >
+                    <OutcomeIcon
+                      icon={RESOURCE_TO_ICON[resource as Resource]}
+                      outcome={isPositive ? "positive" : "negative"}
+                    />
+                    <Typography
+                      sx={{ marginLeft: theme.spacing(1) }}
+                      variant="body2"
+                    >
+                      {`${
+                        isPositive ? "+" : "-"
+                      } ${amount} ${resource} per turn`}
+                    </Typography>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </>
+        )}
+
+        {isBuilding && (
+          <>
+            <Divider sx={{ marginTop: theme.spacing(1) }} />
+            <Typography
+              sx={{ marginTop: theme.spacing(1) }}
+              variant="body2"
+            >
+              Building in progress. Turns remaining:{" "}
+              {townBuilding?.buildTimeRemaining}
             </Typography>
-            {modalBuilding.id === 152 && (
-              <>
-                <Divider sx={{ marginTop: theme.spacing(1) }} />
-                <MarketStall />
-              </>
-            )}
-          </DialogContent>
-        </>
+          </>
+        )}
+
+        {isRepairing && (
+          <>
+            <Divider sx={{ marginTop: theme.spacing(1) }} />
+            <Typography
+              sx={{ marginTop: theme.spacing(1) }}
+              variant="body2"
+            >
+              Repair in progress. Turns remaining:{" "}
+              {townBuilding?.repairTimeRemaining}
+            </Typography>
+          </>
+        )}
+
+        {isBuilt && building.id === 152 && (
+          <>
+            <Divider sx={{ marginTop: theme.spacing(1) }} />
+            <MarketStall />
+          </>
+        )}
+      </DialogContent>
+
+      {!(isBuilding || isRepairing) && (canBuild || isDamaged) && (
+        <DialogActions>
+          {canBuild && (
+            <Tooltip title={getTooltipTitle(true)}>
+              <span>
+                <StyledButton
+                  disabled={!canAffordBuild}
+                  onClick={onBuild}
+                  startIcon={<ConstructionIcon />}
+                >
+                  {isDestroyed ? "Re-build" : "Build"}
+                </StyledButton>
+              </span>
+            </Tooltip>
+          )}
+          {isDamaged && (
+            <Tooltip title={getTooltipTitle(false)}>
+              <span>
+                <StyledButton
+                  disabled={!canAffordRepair}
+                  onClick={onRepair}
+                  startIcon={<BuildIcon />}
+                >
+                  Repair
+                </StyledButton>
+              </span>
+            </Tooltip>
+          )}
+        </DialogActions>
       )}
     </Dialog>
   );

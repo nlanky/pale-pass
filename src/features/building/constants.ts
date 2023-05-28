@@ -22,9 +22,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       villagerIds: [],
     },
     gatherResources: getResources({ Wood: 1, Stone: 1 }),
-    buildResources: getResources({ Wood: 10, Stone: 10 }),
+    buildResources: getResources({ Wood: -10, Stone: -10 }),
     buildTime: 8,
-    repairResources: getResources({ Wood: 5, Stone: 5 }),
+    repairResources: getResources({ Wood: -5, Stone: -5 }),
     repairTime: 4,
     icons: {
       built: buildingIcon,
@@ -46,9 +46,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       villagerIds: [],
     },
     gatherResources: NO_RESOURCES,
-    buildResources: getResources({ Wood: 10, Stone: 10 }),
+    buildResources: getResources({ Wood: -10, Stone: -10 }),
     buildTime: 6,
-    repairResources: getResources({ Wood: 5, Stone: 5 }),
+    repairResources: getResources({ Wood: -5, Stone: -5 }),
     repairTime: 3,
     icons: {
       built: buildingIcon,

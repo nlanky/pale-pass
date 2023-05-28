@@ -2,13 +2,12 @@
 // Constants
 import { TIER_TO_REQUIREMENTS } from "features/town/constants";
 // Interfaces & Types
-import type { Resource } from "features/resource/types";
 import type { TierRequirements } from "features/town/types";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectPlayerTown } from "features/town/townSlice";
 // Utility functions
-import { mergeResources } from "features/resource/utils";
+import { canAffordResourceAmount } from "features/resource/utils";
 
 export const useCanAdvanceTier = (): boolean => {
   // Hooks
@@ -23,9 +22,9 @@ export const useCanAdvanceTier = (): boolean => {
     TIER_TO_REQUIREMENTS[town.tier + 1];
 
   // Check player has required buildings
-  const townBuildingIds = town.buildings.map(
-    (building) => building.id,
-  );
+  const townBuildingIds = town.buildings
+    .filter((building) => building.state === "built")
+    .map((building) => building.id);
   const hasBuildings =
     buildingIds.filter((buildingId) =>
       townBuildingIds.includes(buildingId),
@@ -35,9 +34,9 @@ export const useCanAdvanceTier = (): boolean => {
   }
 
   // Check player has required villagers
-  const townVillagerIds = town.villagers.map(
-    (villager) => villager.id,
-  );
+  const townVillagerIds = town.villagers
+    .filter((villager) => villager.state === "healthy")
+    .map((villager) => villager.id);
   const hasVillagers =
     villagerIds.filter((villagerId) =>
       townVillagerIds.includes(villagerId),
@@ -47,14 +46,8 @@ export const useCanAdvanceTier = (): boolean => {
   }
 
   // Check player has enough resources
-  const resourcesAfterAdvance = mergeResources(
-    town.resources,
-    resources,
-  );
-  for (const resource in resourcesAfterAdvance) {
-    if (resourcesAfterAdvance[resource as Resource] < 0) {
-      return false;
-    }
+  if (!canAffordResourceAmount(town.resources, resources)) {
+    return false;
   }
 
   return true;

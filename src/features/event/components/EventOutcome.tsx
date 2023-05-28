@@ -6,7 +6,7 @@ import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { EventOutcomeIcon } from "features/event/components";
+import { OutcomeIcon } from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -118,7 +118,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
+              <OutcomeIcon
                 icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="positive"
               />
@@ -138,7 +138,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
+              <OutcomeIcon
                 icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="positive"
               />
@@ -159,10 +159,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
-                icon={buildingIcon}
-                outcome="positive"
-              />
+              <OutcomeIcon icon={buildingIcon} outcome="positive" />
               <Typography
                 sx={{ marginLeft: theme.spacing(1) }}
                 variant="body2"
@@ -179,10 +176,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
-                icon={villagerIcon}
-                outcome="positive"
-              />
+              <OutcomeIcon icon={villagerIcon} outcome="positive" />
               <Typography
                 sx={{ marginLeft: theme.spacing(1) }}
                 variant="body2"
@@ -208,7 +202,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
+              <OutcomeIcon
                 icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="negative"
               />
@@ -228,7 +222,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
+              <OutcomeIcon
                 icon={RESOURCE_TO_ICON[resource as Resource]}
                 outcome="negative"
               />
@@ -249,10 +243,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
-                icon={buildingIcon}
-                outcome="negative"
-              />
+              <OutcomeIcon icon={buildingIcon} outcome="negative" />
               <Typography
                 sx={{ marginLeft: theme.spacing(1) }}
                 variant="body2"
@@ -269,10 +260,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
               item
               xs={6}
             >
-              <EventOutcomeIcon
-                icon={villagerIcon}
-                outcome="negative"
-              />
+              <OutcomeIcon icon={villagerIcon} outcome="negative" />
               <Typography
                 sx={{ marginLeft: theme.spacing(1) }}
                 variant="body2"

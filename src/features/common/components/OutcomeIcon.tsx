@@ -11,12 +11,12 @@ import {
   positiveOutcomeIcon,
 } from "assets/common";
 
-interface EventOutcomeIconProps {
+interface OutcomeIconProps {
   icon: string;
   outcome: "positive" | "negative";
 }
 
-export const EventOutcomeIcon: FC<EventOutcomeIconProps> = ({
+export const OutcomeIcon: FC<OutcomeIconProps> = ({
   icon,
   outcome,
 }) => (

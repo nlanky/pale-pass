@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
+// Constants
+import { ID_TO_BUILDING } from "features/building/constants";
 // Redux
 import type { RootState } from "features/redux/store";
 import { triggerEvent } from "features/event/eventSlice";
@@ -36,7 +38,11 @@ export const buildingSlice = createSlice({
 export const { closeModal, openModal } = buildingSlice.actions;
 
 // Selectors
-export const selectModalBuildingId = (state: RootState) =>
-  state.building.modalId;
+export const selectModalBuilding = (state: RootState) =>
+  ID_TO_BUILDING[state.building.modalId || NaN];
+export const selectModalTownBuilding = (state: RootState) =>
+  state.town.player.buildings.find(
+    (building) => building.id === state.building.modalId,
+  );
 
 export const buildingReducer = buildingSlice.reducer;

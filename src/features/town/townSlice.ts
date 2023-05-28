@@ -90,6 +90,43 @@ export const townSlice = createSlice({
         resourceChanges,
       );
     },
+    buildBuilding: (state, action: PayloadAction<number>) => {
+      const buildingId = action.payload;
+      const nextBuildings = [...state.player.buildings];
+
+      // Check if this building is in town but destroyed
+      const existingBuildingIndex = nextBuildings.findIndex(
+        (existingBuilding) => existingBuilding.id === buildingId,
+      );
+      if (existingBuildingIndex !== -1) {
+        // Start rebuild
+        nextBuildings[existingBuildingIndex].state =
+          "under construction";
+      } else {
+        // Start construction of new building
+        const { id, buildTime } = ID_TO_BUILDING[buildingId];
+        nextBuildings.push({
+          id,
+          state: "under construction",
+          buildTimeRemaining: buildTime,
+          repairTimeRemaining: 0,
+        });
+      }
+
+      state.player.buildings = nextBuildings;
+    },
+    repairBuilding: (state, action: PayloadAction<number>) => {
+      const buildingId = action.payload;
+      const nextBuildings = [...state.player.buildings];
+      const existingBuildingIndex = nextBuildings.findIndex(
+        (existingBuilding) => existingBuilding.id === buildingId,
+      );
+      if (existingBuildingIndex !== -1) {
+        nextBuildings[existingBuildingIndex].state = "being repaired";
+      }
+
+      state.player.buildings = nextBuildings;
+    },
   },
   extraReducers(builder) {
     builder.addCase(incrementTurn, (state) => {
@@ -205,7 +242,12 @@ export const townSlice = createSlice({
   },
 });
 
-export const { advanceTier, tradeResources } = townSlice.actions;
+export const {
+  advanceTier,
+  buildBuilding,
+  repairBuilding,
+  tradeResources,
+} = townSlice.actions;
 
 // SELECTORS
 export const selectPlayerTown = (state: RootState) =>

@@ -57,3 +57,23 @@ export const getMaxTradeQuantity = (
 export const getResources = (
   resources: Partial<Resources>,
 ): Resources => Object.assign({ ...NO_RESOURCES }, resources);
+
+/**
+ * Checks if player's town can afford to use an amount of resources.
+ */
+export const canAffordResourceAmount = (
+  townResources: Resources,
+  resourcesCost: Resources,
+): boolean => {
+  const resourcesAfterPurchase = mergeResources(
+    townResources,
+    resourcesCost,
+  );
+  for (const resource in resourcesAfterPurchase) {
+    if (resourcesAfterPurchase[resource as Resource] < 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
