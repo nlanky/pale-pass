@@ -161,7 +161,9 @@ export const townSlice = createSlice({
         const existingBuildingIndex = nextTownBuildings.findIndex(
           (existingBuilding) => existingBuilding.id === id,
         );
-        nextTownBuildings.splice(existingBuildingIndex, 1);
+        if (existingBuildingIndex !== -1) {
+          nextTownBuildings.splice(existingBuildingIndex, 1);
+        }
 
         // Add new building state
         const building = ID_TO_BUILDING[id];
@@ -185,7 +187,9 @@ export const townSlice = createSlice({
         const existingVillagerIndex = nextTownVillagers.findIndex(
           (existingVillager) => existingVillager.id === id,
         );
-        nextTownVillagers.splice(existingVillagerIndex, 1);
+        if (existingVillagerIndex !== -1) {
+          nextTownVillagers.splice(existingVillagerIndex, 1);
+        }
 
         // Add new villager state
         const villager = ID_TO_VILLAGER[id];

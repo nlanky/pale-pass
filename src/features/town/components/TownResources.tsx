@@ -2,7 +2,13 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Icon, Typography, useTheme } from "@mui/material";
+import {
+  Grid,
+  Icon,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import {
   ArrowDownward,
   ArrowUpward,
@@ -60,24 +66,32 @@ export const TownResources: FC<{}> = () => {
             key={resource}
             alignItems="center"
             container
-            spacing={2}
+            justifyContent="space-around"
             sx={{ paddingTop: index !== 0 ? theme.spacing(1) : 0 }}
           >
-            <Grid item>
-              <img
-                src={RESOURCE_TO_ICON[resource]}
-                style={{ width: 32, height: 32 }}
-              />
-            </Grid>
-            <Grid item>
-              <Typography variant="body2">{resource}</Typography>
-            </Grid>
+            <Tooltip
+              title={
+                <Typography variant="body2">{resource}</Typography>
+              }
+            >
+              <Grid item>
+                <img
+                  src={RESOURCE_TO_ICON[resource]}
+                  style={{ width: 32, height: 32 }}
+                />
+              </Grid>
+            </Tooltip>
             <Grid item>
               <Typography variant="body2">
                 {resources[resource]}
               </Typography>
             </Grid>
-            <Grid alignItems="center" container item xs>
+            <Grid
+              alignItems="center"
+              container
+              item
+              sx={{ width: "auto" }}
+            >
               <Icon>
                 {rpt > 0 && <ArrowUpward color="success" />}
                 {rpt === 0 && <Remove />}

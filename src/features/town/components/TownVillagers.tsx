@@ -17,8 +17,6 @@ import { Info as InfoIcon } from "@mui/icons-material";
 // LOCAL FILES
 // Constants
 import { ID_TO_VILLAGER } from "features/villager/constants";
-// CSS
-import "features/town/components/TownBuildings.css";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectPlayerVillagers } from "features/town/townSlice";

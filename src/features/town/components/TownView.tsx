@@ -2,14 +2,13 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Container, Grid, useTheme } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { BuildingModal } from "features/building/components";
 import {
   TownAdvanceTierButton,
-  TownBuildings,
+  TownBuildingsButton,
   TownExploreButton,
   TownImage,
   TownResources,
@@ -21,35 +20,32 @@ import { useTurnTimer } from "features/game/hooks";
 
 export const TownView: FC<{}> = () => {
   // Hooks
-  const theme = useTheme();
   useTurnTimer();
   useEventTimer();
 
   return (
     <Container maxWidth="lg">
-      <Grid container spacing={1}>
-        <Grid item xs={9}>
+      <Grid container spacing={1} wrap="nowrap">
+        <Grid item xs={10}>
           <TownImage />
         </Grid>
-        <Grid item xs={3}>
-          <TownResources />
-          <Grid
-            container
-            direction="column"
-            spacing={1}
-            sx={{ paddingTop: theme.spacing(1) }}
-          >
+        <Grid container direction="column" item spacing={1} xs={2}>
+          <Grid item>
+            <TownResources />
+          </Grid>
+          <Grid item>
+            <TownExploreButton />
+          </Grid>
+          <Grid item>
+            <TownAdvanceTierButton />
+          </Grid>
+          <Grid item>
             <Grid item>
-              <TownExploreButton />
-            </Grid>
-            <Grid item>
-              <TownAdvanceTierButton />
+              <TownBuildingsButton />
             </Grid>
           </Grid>
         </Grid>
       </Grid>
-      <TownBuildings />
-      <BuildingModal />
       <TownVillagers />
     </Container>
   );

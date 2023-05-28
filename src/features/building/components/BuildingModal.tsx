@@ -17,8 +17,6 @@ import { MarketStall } from "features/building/components";
 import { StyledPaper } from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-// CSS
-import "features/town/components/TownBuildings.css";
 // Redux
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
