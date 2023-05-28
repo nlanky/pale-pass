@@ -2,7 +2,11 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Badge, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Build as BuildIcon,
+  Construction as ConstructionIcon,
+} from "@mui/icons-material";
 
 // LOCAL FILES
 // Interfaces & Types
@@ -33,45 +37,79 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
   const { id, name, icons } = building;
   const state = townBuilding?.state;
 
+  // Utility functions
+  const getBadgeContent = () => {
+    if (state === "being repaired") {
+      return (
+        <>
+          <ConstructionIcon />
+          <Typography
+            sx={{ marginLeft: theme.spacing(0.25) }}
+            variant="body1"
+          >
+            {townBuilding?.repairTimeRemaining}
+          </Typography>
+        </>
+      );
+    }
+
+    if (state === "under construction") {
+      return (
+        <>
+          <BuildIcon />
+          <Typography
+            sx={{ marginLeft: theme.spacing(0.25) }}
+            variant="body1"
+          >
+            {townBuilding?.buildTimeRemaining}
+          </Typography>
+        </>
+      );
+    }
+
+    return null;
+  };
+
   return (
-    <Grid
-      alignItems="center"
-      container
-      direction="column"
-      item
-      onClick={() => {
-        onBuildingClick(id);
-      }}
-      onMouseEnter={() => {
-        onBuildingMouseEnter(id);
-      }}
-      onMouseLeave={() => {
-        onBuildingMouseLeave();
-      }}
-      sx={{
-        cursor: "pointer",
-        marginRight: theme.spacing(1),
-        position: "relative",
-        width: "auto",
-      }}
-    >
-      <img
-        src={icons[state || "built"]}
-        style={{ width: 128, height: 128 }}
-      />
-      <Typography variant="body2">{name}</Typography>
-      {hoveringOnBuilding && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            border: `3px solid ${theme.palette.parchmentDark.main}`,
-          }}
+    <Badge badgeContent={getBadgeContent()} overlap="circular">
+      <Grid
+        alignItems="center"
+        container
+        direction="column"
+        item
+        onClick={() => {
+          onBuildingClick(id);
+        }}
+        onMouseEnter={() => {
+          onBuildingMouseEnter(id);
+        }}
+        onMouseLeave={() => {
+          onBuildingMouseLeave();
+        }}
+        sx={{
+          cursor: "pointer",
+          position: "relative",
+          width: "auto",
+        }}
+      >
+        <img
+          src={icons[state || "built"]}
+          style={{ width: 128, height: 128 }}
         />
-      )}
-    </Grid>
+        <Typography variant="body2">{name}</Typography>
+        {hoveringOnBuilding && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              border: `3px solid ${theme.palette.parchmentDark.main}`,
+            }}
+          />
+        )}
+      </Grid>
+    </Badge>
   );
 };
