@@ -10,12 +10,12 @@ import { selectPlayerTown } from "features/town/townSlice";
 // Utility functions
 import { mergeResources } from "features/resource/utils";
 
-export const usePlayerResourcesPerTurn = (): Resources => {
+export const usePlayerResourcesPerDay = (): Resources => {
   // Hooks
   const town = useAppSelector(selectPlayerTown);
 
   // Base gather rate + any changes from events
-  let resources = { ...town.resourcesPerTurn };
+  let resources = { ...town.resourcesPerDay };
 
   // Add building modifiers
   town.buildings.forEach((townBuilding) => {

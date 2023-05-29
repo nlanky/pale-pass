@@ -25,7 +25,7 @@ export interface Villager {
   requirements: VillagerRequirements;
   /** How much of each resource we should improve gather rate by */
   gatherResources: Resources;
-  /** Number of turns to recover */
+  /** Number of days to recover */
   recoveryTime: number;
   /** Paths to icon locations */
   icons: Record<VillagerState, string>;

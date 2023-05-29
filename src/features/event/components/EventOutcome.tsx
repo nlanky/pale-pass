@@ -43,14 +43,14 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     }
   }
 
-  for (const resource in outcome.resourcesPerTurn) {
+  for (const resource in outcome.resourcesPerDay) {
     const resourceAmount =
-      outcome.resourcesPerTurn[resource as Resource];
+      outcome.resourcesPerDay[resource as Resource];
     if (resourceAmount !== 0) {
       const isPositive = resourceAmount > 0;
       const iconText = `${
         isPositive ? "+ " : ""
-      }${resourceAmount} ${resource} per turn`;
+      }${resourceAmount} ${resource} per day`;
       outcomeJsx.push(
         <OutcomeIconWithText
           key={`rpt_${resource}`}

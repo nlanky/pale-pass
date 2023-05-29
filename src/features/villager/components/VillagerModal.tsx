@@ -150,7 +150,7 @@ export const VillagerModal: FC<{}> = () => {
                     outcome={isPositive ? "positive" : "negative"}
                     text={`${
                       isPositive ? "+" : ""
-                    } ${amount} ${resource} per turn`}
+                    } ${amount} ${resource} per day`}
                   />
                 );
               })}
@@ -165,7 +165,7 @@ export const VillagerModal: FC<{}> = () => {
               sx={{ marginTop: theme.spacing(1) }}
               variant="body2"
             >
-              Villager is recovering. Turns remaining:{" "}
+              Villager is recovering. Days remaining:{" "}
               {townVillager?.recoveryTimeRemaining}
             </Typography>
           </>

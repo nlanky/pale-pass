@@ -17,11 +17,11 @@ import {
 } from "features/town/components";
 // Hooks
 import { useEventTimer } from "features/event/hooks";
-import { useTurnTimer } from "features/game/hooks";
+import { useDayTimer } from "features/game/hooks";
 
 export const TownView: FC<{}> = () => {
   // Hooks
-  useTurnTimer();
+  useDayTimer();
   useEventTimer();
 
   return (

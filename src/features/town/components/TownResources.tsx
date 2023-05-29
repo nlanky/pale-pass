@@ -21,7 +21,7 @@ import { StyledPaper } from "features/common/components";
 // Constants
 import { RESOURCE_TO_ICON } from "features/resource/constants";
 // Hooks
-import { usePlayerResourcesPerTurn } from "features/resource/hooks";
+import { usePlayerResourcesPerDay } from "features/resource/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
@@ -35,7 +35,7 @@ export const TownResources: FC<{}> = () => {
   // Hooks
   const theme = useTheme();
   const resources = useAppSelector(selectPlayerResources);
-  const resourcesPerTurn = usePlayerResourcesPerTurn();
+  const resourcesPerDay = usePlayerResourcesPerDay();
   const enabledResources = useAppSelector(selectEnabledResources);
 
   // Derived variables
@@ -44,12 +44,12 @@ export const TownResources: FC<{}> = () => {
   );
 
   // Utility functions
-  const getRptColour = (rpt: number): string => {
-    if (rpt > 0) {
+  const getRpdColour = (rpd: number): string => {
+    if (rpd > 0) {
       return theme.palette.success.main;
     }
 
-    if (rpt < 0) {
+    if (rpd < 0) {
       return theme.palette.error.main;
     }
 
@@ -59,7 +59,7 @@ export const TownResources: FC<{}> = () => {
   return (
     <StyledPaper>
       {resourceNames.map((resource, index) => {
-        const rpt = resourcesPerTurn[resource];
+        const rpd = resourcesPerDay[resource];
 
         return (
           <Grid
@@ -93,12 +93,12 @@ export const TownResources: FC<{}> = () => {
               sx={{ width: "auto" }}
             >
               <Icon>
-                {rpt > 0 && <ArrowUpward color="success" />}
-                {rpt === 0 && <Remove />}
-                {rpt < 0 && <ArrowDownward color="error" />}
+                {rpd > 0 && <ArrowUpward color="success" />}
+                {rpd === 0 && <Remove />}
+                {rpd < 0 && <ArrowDownward color="error" />}
               </Icon>
-              <Typography color={getRptColour(rpt)} variant="body2">
-                {resourcesPerTurn[resource]}
+              <Typography color={getRpdColour(rpd)} variant="body2">
+                {resourcesPerDay[resource]}
               </Typography>
             </Grid>
           </Grid>

@@ -25,7 +25,7 @@ export const NO_RESOURCES: Resources = {
 /**
  * Set resource values to INCREASE in each resource when advancing tiers.
  */
-export const TIER_TO_RESOURCES_PER_TURN: Record<number, Resources> = {
+export const TIER_TO_RESOURCES_PER_DAY: Record<number, Resources> = {
   1: getResources({ Wood: 5, Stone: 5 }),
   2: getResources({ Iron: 5 }),
   3: getResources({ Steel: 5 }),

@@ -193,7 +193,7 @@ export const BuildingModal: FC<{}> = () => {
                     >
                       {`${
                         isPositive ? "+" : "-"
-                      } ${amount} ${resource} per turn`}
+                      } ${amount} ${resource} per day`}
                     </Typography>
                   </Grid>
                 );
@@ -209,7 +209,7 @@ export const BuildingModal: FC<{}> = () => {
               sx={{ marginTop: theme.spacing(1) }}
               variant="body2"
             >
-              Building in progress. Turns remaining:{" "}
+              Building in progress. Days remaining:{" "}
               {townBuilding?.buildTimeRemaining}
             </Typography>
           </>
@@ -222,7 +222,7 @@ export const BuildingModal: FC<{}> = () => {
               sx={{ marginTop: theme.spacing(1) }}
               variant="body2"
             >
-              Repair in progress. Turns remaining:{" "}
+              Repair in progress. Days remaining:{" "}
               {townBuilding?.repairTimeRemaining}
             </Typography>
           </>

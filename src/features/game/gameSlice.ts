@@ -10,14 +10,14 @@ import type { View } from "features/game/types";
 import { triggerEvent } from "features/event/eventSlice";
 
 interface GameState {
-  turn: number;
+  day: number;
   view: View;
   speed: number;
   paused: boolean;
 }
 
 const initialState: GameState = {
-  turn: 0,
+  day: 0,
   view: "menu",
   speed: 1,
   paused: false,
@@ -30,8 +30,8 @@ export const gameSlice = createSlice({
     setView: (state, action: PayloadAction<View>) => {
       state.view = action.payload;
     },
-    incrementTurn: (state) => {
-      state.turn += 1;
+    incrementDay: (state) => {
+      state.day += 1;
     },
     increaseGameSpeed: (state) => {
       state.speed = state.speed * 2;
@@ -52,14 +52,14 @@ export const gameSlice = createSlice({
 
 export const {
   decreaseGameSpeed,
-  incrementTurn,
+  incrementDay,
   increaseGameSpeed,
   setView,
   togglePause,
 } = gameSlice.actions;
 
 // SELECTORS
-export const selectTurn = (state: RootState) => state.game.turn;
+export const selectDay = (state: RootState) => state.game.day;
 export const selectView = (state: RootState) => state.game.view;
 export const selectGameSpeed = (state: RootState) => state.game.speed;
 export const selectGamePaused = (state: RootState) =>

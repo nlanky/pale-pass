@@ -27,11 +27,11 @@ export interface Building {
   gatherResources: Resources;
   /** How much of each resource is required to build */
   buildResources: Resources; //
-  /** Number of turns to build */
+  /** Number of days to build */
   buildTime: number;
   /** How much of each resource is required to repair */
   repairResources: Resources;
-  /** Number of turns to repair */
+  /** Number of days to repair */
   repairTime: number;
   /** Paths to icon locations */
   icons: Record<BuildingState, string>;

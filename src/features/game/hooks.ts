@@ -3,17 +3,20 @@ import { useEffect } from "react";
 
 // LOCAL FILES
 // Constants
-import { TURN_TIME } from "features/game/constants";
+import { DAY_TIME } from "features/game/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
 import {
-  incrementTurn,
+  incrementDay,
   selectGamePaused,
   selectGameSpeed,
 } from "features/game/gameSlice";
 
-export const useTurnTimer = () => {
+/**
+ * Responsible for controlling day cycle.
+ */
+export const useDayTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const gamePaused = useAppSelector(selectGamePaused);
@@ -26,8 +29,8 @@ export const useTurnTimer = () => {
     }
 
     const timer = setInterval(() => {
-      dispatch(incrementTurn());
-    }, TURN_TIME / gameSpeed);
+      dispatch(incrementDay());
+    }, DAY_TIME / gameSpeed);
     return () => {
       clearInterval(timer);
     };

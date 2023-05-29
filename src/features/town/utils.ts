@@ -8,11 +8,11 @@ import type { Town } from "features/town/types";
 import { mergeResources } from "features/resource/utils";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 
-export const getNextTurnResources = (town: Town): Resources => {
-  // Add base resources per turn
-  let nextTurnResources = mergeResources(
+export const getNextDayResources = (town: Town): Resources => {
+  // Add base resources per day
+  let nextDayResources = mergeResources(
     town.resources,
-    town.resourcesPerTurn,
+    town.resourcesPerDay,
   );
 
   // Add building modifiers
@@ -25,8 +25,8 @@ export const getNextTurnResources = (town: Town): Resources => {
     }
 
     const building = ID_TO_BUILDING[id];
-    nextTurnResources = mergeResources(
-      nextTurnResources,
+    nextDayResources = mergeResources(
+      nextDayResources,
       building.gatherResources,
     );
   });
@@ -41,11 +41,11 @@ export const getNextTurnResources = (town: Town): Resources => {
     }
 
     const villager = ID_TO_VILLAGER[id];
-    nextTurnResources = mergeResources(
-      nextTurnResources,
+    nextDayResources = mergeResources(
+      nextDayResources,
       villager.gatherResources,
     );
   });
 
-  return nextTurnResources;
+  return nextDayResources;
 };

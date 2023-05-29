@@ -7,7 +7,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { ID_TO_BUILDING } from "features/building/constants";
 import {
   NO_RESOURCES,
-  TIER_TO_RESOURCES_PER_TURN,
+  TIER_TO_RESOURCES_PER_DAY,
   RESOURCE_TO_TRADE_RATES,
 } from "features/resource/constants";
 import {
@@ -21,13 +21,13 @@ import type { Resource } from "features/resource/types";
 import type { Town } from "features/town/types";
 // Redux
 import { completeEvent } from "features/event/eventSlice";
-import { incrementTurn } from "features/game/gameSlice";
+import { incrementDay } from "features/game/gameSlice";
 // Utility functions
 import {
   getResources,
   mergeResources,
 } from "features/resource/utils";
-import { getNextTurnResources } from "features/town/utils";
+import { getNextDayResources } from "features/town/utils";
 
 interface TownState {
   player: Town;
@@ -39,7 +39,7 @@ const INITIAL_TOWN_STATE: Town = {
   isPlayer: false,
   tier: 1,
   resources: NO_RESOURCES,
-  resourcesPerTurn: TIER_TO_RESOURCES_PER_TURN[1],
+  resourcesPerDay: TIER_TO_RESOURCES_PER_DAY[1],
   buildings: [],
   villagers: [],
   image: "",
@@ -63,11 +63,11 @@ export const townSlice = createSlice({
         TIER_TO_REQUIREMENTS[newTier].resources,
       );
 
-      // Assign new tier and increase base resources per turn
+      // Assign new tier and increase base resources per day
       state.player.tier = newTier;
-      state.player.resourcesPerTurn = mergeResources(
-        state.player.resourcesPerTurn,
-        TIER_TO_RESOURCES_PER_TURN[newTier],
+      state.player.resourcesPerDay = mergeResources(
+        state.player.resourcesPerDay,
+        TIER_TO_RESOURCES_PER_DAY[newTier],
       );
     },
     tradeResources: (
@@ -167,8 +167,8 @@ export const townSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(incrementTurn, (state) => {
-      state.player.resources = getNextTurnResources(state.player);
+    builder.addCase(incrementDay, (state) => {
+      state.player.resources = getNextDayResources(state.player);
 
       // Check building repair/building times
       const nextTownBuildings = [...state.player.buildings];
@@ -212,7 +212,7 @@ export const townSlice = createSlice({
       state.player.villagers = nextTownVillagers;
     });
     builder.addCase(completeEvent, (state, action) => {
-      const { resources, resourcesPerTurn, buildings, villagers } =
+      const { resources, resourcesPerDay, buildings, villagers } =
         action.payload;
 
       // Modify resources
@@ -221,10 +221,10 @@ export const townSlice = createSlice({
         resources,
       );
 
-      // Modify resources per turn
-      state.player.resourcesPerTurn = mergeResources(
-        state.player.resourcesPerTurn,
-        resourcesPerTurn,
+      // Modify resources per day
+      state.player.resourcesPerDay = mergeResources(
+        state.player.resourcesPerDay,
+        resourcesPerDay,
       );
 
       // Update buildings

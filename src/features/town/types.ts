@@ -8,9 +8,9 @@ export interface TownBuilding {
   /** Matches building ID */
   id: number;
   state: BuildingState;
-  /** Turns left until building is constructed */
+  /** Days left until building is constructed */
   buildTimeRemaining: number;
-  /** Turns left until building is repaired */
+  /** Days left until building is repaired */
   repairTimeRemaining: number;
 }
 
@@ -18,7 +18,7 @@ export interface TownVillager {
   /** Matches villager ID */
   id: number;
   state: VillagerState;
-  /** Turns left until villager has recovered */
+  /** Days left until villager has recovered */
   recoveryTimeRemaining: number;
 }
 
@@ -27,7 +27,7 @@ export interface Town {
   isPlayer: boolean;
   tier: number;
   resources: Resources;
-  resourcesPerTurn: Resources;
+  resourcesPerDay: Resources;
   /** Keeps track of building states in town */
   buildings: TownBuilding[];
   /** Keeps track of villager states in town */

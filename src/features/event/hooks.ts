@@ -4,8 +4,8 @@ import { useEffect } from "react";
 // LOCAL FILES
 // Constants
 import {
+  DAYS_PER_EVENT,
   EVENT_PROBABILITY,
-  TURNS_PER_EVENT,
 } from "features/event/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
@@ -14,7 +14,7 @@ import {
   selectSeenEvents,
   triggerEvent,
 } from "features/event/eventSlice";
-import { selectTurn } from "features/game/gameSlice";
+import { selectDay } from "features/game/gameSlice";
 import { selectPlayerTown } from "features/town/townSlice";
 // Utility functions
 import { getValidEvent } from "features/event/utils";
@@ -22,7 +22,7 @@ import { getValidEvent } from "features/event/utils";
 export const useEventTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const turn = useAppSelector(selectTurn);
+  const day = useAppSelector(selectDay);
   const seenEvents = useAppSelector(selectSeenEvents);
   const town = useAppSelector(selectPlayerTown);
 
@@ -30,23 +30,22 @@ export const useEventTimer = () => {
     // Don't want to trigger event too often or before the game starts
     const numberOfSeenEvents = seenEvents.length;
     if (
-      turn === 0 ||
+      day === 0 ||
       (numberOfSeenEvents !== 0 &&
-        Math.ceil(turn / numberOfSeenEvents) <= TURNS_PER_EVENT)
+        Math.ceil(day / numberOfSeenEvents) <= DAYS_PER_EVENT)
     ) {
       return;
     }
 
     /*
       Breaking down these checks:
-      1) No events in first TURNS_PER_EVENT, auto-trigger
-      2) Not maintaining quota of TURNS_PER_EVENT, auto-trigger
+      1) No events in first DAYS_PER_EVENT, auto-trigger
+      2) Not maintaining quota of DAYS_PER_EVENT, auto-trigger
       3) Randomly trigger event
     */
     if (
-      (numberOfSeenEvents === 0 && turn === TURNS_PER_EVENT) ||
-      Math.floor(turn / (numberOfSeenEvents + 1)) >=
-        TURNS_PER_EVENT ||
+      (numberOfSeenEvents === 0 && day === DAYS_PER_EVENT) ||
+      Math.floor(day / (numberOfSeenEvents + 1)) >= DAYS_PER_EVENT ||
       Math.random() < EVENT_PROBABILITY
     ) {
       /*
@@ -58,5 +57,5 @@ export const useEventTimer = () => {
         dispatch(triggerEvent(event));
       }
     }
-  }, [dispatch, town, seenEvents, turn]);
+  }, [day, dispatch, town, seenEvents]);
 };

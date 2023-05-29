@@ -9,8 +9,8 @@ export interface Outcome {
   text: string; // Flavour text
   /** Resource changes */
   resources: Resources;
-  /** Resource per turn changes */
-  resourcesPerTurn: Resources;
+  /** Resource per day changes */
+  resourcesPerDay: Resources;
   /** Building changes */
   buildings: { id: number; state: BuildingState }[];
   /** Villager changes */
