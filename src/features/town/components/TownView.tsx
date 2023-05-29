@@ -6,6 +6,7 @@ import { Container, Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
+import { SpeedControls } from "features/game/components";
 import {
   TownAdvanceTierButton,
   TownBuildingsButton,
@@ -32,6 +33,9 @@ export const TownView: FC<{}> = () => {
         <Grid container direction="column" item spacing={1} xs={2}>
           <Grid item>
             <TownResources />
+          </Grid>
+          <Grid item>
+            <SpeedControls />
           </Grid>
           <Grid item>
             <TownExploreButton />

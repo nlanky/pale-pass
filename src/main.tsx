@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 
 // LOCAL FILES
 // Components
-import { Game } from "features/game/Game";
+import { Game } from "features/game/components";
 // CSS
 import "@fontsource/cormorant-garamond";
 import "main.css";
