@@ -6,7 +6,7 @@ import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { OutcomeIcon } from "features/common/components";
+import { EventOutcomeIconWithText } from "features/event/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -29,25 +29,16 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     const resourceAmount = outcome.resources[resource as Resource];
     if (resourceAmount !== 0) {
       const isPositive = resourceAmount > 0;
+      const iconText = `${
+        isPositive ? "+ " : ""
+      }${resourceAmount} ${resource}`;
       outcomeJsx.push(
-        <Grid
+        <EventOutcomeIconWithText
           key={`resource_${resource}`}
-          alignItems="center"
-          container
-          item
-          wrap="nowrap"
-        >
-          <OutcomeIcon
-            icon={RESOURCE_TO_ICON[resource as Resource]}
-            outcome="positive"
-          />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
-            {`${isPositive ? "+ " : ""}${resourceAmount} ${resource}`}
-          </Typography>
-        </Grid>,
+          icon={RESOURCE_TO_ICON[resource as Resource]}
+          outcome={isPositive ? "positive" : "negative"}
+          text={iconText}
+        />,
       );
     }
   }
@@ -57,27 +48,16 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       outcome.resourcesPerTurn[resource as Resource];
     if (resourceAmount !== 0) {
       const isPositive = resourceAmount > 0;
+      const iconText = `${
+        isPositive ? "+ " : ""
+      }${resourceAmount} ${resource} per turn`;
       outcomeJsx.push(
-        <Grid
+        <EventOutcomeIconWithText
           key={`rpt_${resource}`}
-          alignItems="center"
-          container
-          item
-          wrap="nowrap"
-        >
-          <OutcomeIcon
-            icon={RESOURCE_TO_ICON[resource as Resource]}
-            outcome={isPositive ? "positive" : "negative"}
-          />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
-            {`${
-              isPositive ? "+ " : ""
-            }${resourceAmount} ${resource} per turn`}
-          </Typography>
-        </Grid>,
+          icon={RESOURCE_TO_ICON[resource as Resource]}
+          outcome={isPositive ? "positive" : "negative"}
+          text={iconText}
+        />,
       );
     }
   }
@@ -91,24 +71,12 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       "being repaired",
     ].includes(state);
     outcomeJsx.push(
-      <Grid
+      <EventOutcomeIconWithText
         key={`building_${id}`}
-        alignItems="center"
-        container
-        item
-        wrap="nowrap"
-      >
-        <OutcomeIcon
-          icon={icons[state]}
-          outcome={isPositive ? "positive" : "negative"}
-        />
-        <Typography
-          sx={{ marginLeft: theme.spacing(1) }}
-          variant="body2"
-        >
-          {`${name} ${state}`}
-        </Typography>
-      </Grid>,
+        icon={icons[state]}
+        outcome={isPositive ? "positive" : "negative"}
+        text={`${name} ${state}`}
+      />,
     );
   });
 
@@ -117,26 +85,14 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     const { name, occupation, icons } = ID_TO_VILLAGER[id];
     const isPositive = ["healthy", "recovering"].includes(state);
     outcomeJsx.push(
-      <Grid
+      <EventOutcomeIconWithText
         key={`villager_${id}`}
-        alignItems="center"
-        container
-        item
-        wrap="nowrap"
-      >
-        <OutcomeIcon
-          icon={icons[state]}
-          outcome={isPositive ? "positive" : "negative"}
-        />
-        <Typography
-          sx={{ marginLeft: theme.spacing(1) }}
-          variant="body2"
-        >
-          {`${name} the ${occupation} ${
-            state === "healthy" ? "joins the town" : `is ${state}`
-          }`}
-        </Typography>
-      </Grid>,
+        icon={icons[state]}
+        outcome={isPositive ? "positive" : "negative"}
+        text={`${name} the ${occupation} ${
+          state === "healthy" ? "joins the town" : `is ${state}`
+        }`}
+      />,
     );
   });
 
