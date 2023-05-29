@@ -1,6 +1,6 @@
 // LOCAL FILES
 // Assets
-import { event1Image } from "assets/event";
+import { event1Image, event2Image } from "assets/event";
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
 // Interfaces & Types
@@ -63,6 +63,62 @@ export const EVENTS: Event[] = [
             buildings: [],
             villagers: [],
             probability: 0.05,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    image: event2Image,
+    requirements: {
+      tier: 1,
+      resources: NO_RESOURCES,
+      buildingIds: [],
+      villagerIds: [],
+    },
+    introductionText:
+      "As you make your way through a dense forest, you stumble upon a small hole in the ground. Upon closer inspection, you notice a pair of eyes peering back at you from inside the hole. You manage to translate the slurred, broken English and copious amounts of swearing in the individual's speech to learn that this is Jaakko, a Finnish man hiding from the quartermaster.\n\nHe tells you that he was falsely accused of a crime and doesn't want to return to the town out of fear that he will be reprimanded.\n\nDespite his drunken state and rough exterior, Jaakko is knowledgeable about the local area and offers the limited resources he has gathered in exchange for a place to stay in your town. His drinking and unpredictable behaviour could prove to be a liability though, not to mention the potential for the quartermaster to find out about your actions. What do you do?",
+    choices: [
+      {
+        text: "Offer Jaakko a hideout in the town",
+        outcomes: [
+          {
+            text: "Jaakko is relieved to hear your offer and swiftly exits the hole, carrying with him resources in a hemp sack.",
+            resources: getResources({ Wood: 10, Stone: 10 }),
+            resourcesPerTurn: NO_RESOURCES,
+            buildings: [],
+            villagers: [{ id: 32, state: "healthy" }],
+            probability: 0.5,
+          },
+          {
+            text: 'Jaakko accompanies you back to the town, telling numerous stories of his prowess. Upon questioning him about the resources promised, he shrugs and mutters "beta cuck" under his breath.',
+            resources: NO_RESOURCES,
+            resourcesPerTurn: NO_RESOURCES,
+            buildings: [],
+            villagers: [{ id: 32, state: "healthy" }],
+            probability: 0.5,
+          },
+        ],
+      },
+      {
+        text: "Return to the town and notify the quartermaster about where Jaakko is hiding",
+        outcomes: [
+          {
+            text: "The quartermaster grants you some spare resources in exchange for the information. Later that day, you see Jaakko's lifeless corpse being wheeled back into town on the back of a wagon. It appears negotiations were short.",
+            resources: getResources({ Wood: 10, Stone: 10 }),
+            resourcesPerTurn: NO_RESOURCES,
+            buildings: [],
+            villagers: [{ id: 32, state: "dead" }],
+            probability: 0.5,
+          },
+          {
+            text: 'While returning to your abode in the evening, you hear a rustle in a bush nearby. Unperturbed, you put the noise down to the local wildlife. However, just as you go to open your front door, you could have sworn you heard the words "dumb cunt" muttered from the same bush. Did Jaakko survive his encounter with the quartermaster?',
+            resources: NO_RESOURCES,
+            resourcesPerTurn: NO_RESOURCES,
+            buildings: [],
+            villagers: [{ id: 32, state: "injured" }],
+            probability: 0.5,
           },
         ],
       },

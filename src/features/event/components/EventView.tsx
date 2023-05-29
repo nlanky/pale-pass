@@ -61,7 +61,7 @@ export const EventView: FC<{}> = () => {
   return (
     <StyledContainer>
       <Grid container direction="column">
-        <Typography variant="body2">
+        <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
           {event.introductionText}
         </Typography>
         <Grid item sx={{ margin: theme.spacing(1, 0) }}>
