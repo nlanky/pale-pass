@@ -64,8 +64,11 @@ export const EventView: FC<{}> = () => {
         <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
           {event.introductionText}
         </Typography>
-        <Grid item sx={{ margin: theme.spacing(1, 0) }}>
-          <img src={event.image} />
+        <Grid
+          item
+          sx={{ margin: theme.spacing(1, 0), width: "100%" }}
+        >
+          <img src={event.image} style={{ maxWidth: "100%" }} />
         </Grid>
         <Grid
           container

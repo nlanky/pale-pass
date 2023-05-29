@@ -111,9 +111,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       >
         {outcome.text}
       </Typography>
-      <Grid container wrap="nowrap">
-        {outcomeJsx}
-      </Grid>
+      <Grid container>{outcomeJsx}</Grid>
     </Grid>
   );
 };
