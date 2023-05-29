@@ -21,7 +21,7 @@ import {
 // LOCAL FILES
 // Components
 import {
-  OutcomeIcon,
+  OutcomeIconWithText,
   StyledButton,
   StyledPaper,
 } from "features/common/components";
@@ -135,31 +135,23 @@ export const VillagerModal: FC<{}> = () => {
         {affectedResources.length !== 0 && (
           <>
             <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Grid container sx={{ marginTop: theme.spacing(1) }}>
+            <Grid
+              container
+              spacing={1}
+              sx={{ marginTop: theme.spacing(1) }}
+            >
               {affectedResources.map((resource) => {
                 const amount = villager.gatherResources[resource];
                 const isPositive = amount > 0;
                 return (
-                  <Grid
+                  <OutcomeIconWithText
                     key={resource}
-                    alignItems="center"
-                    container
-                    item
-                    xs={6}
-                  >
-                    <OutcomeIcon
-                      icon={RESOURCE_TO_ICON[resource as Resource]}
-                      outcome={isPositive ? "positive" : "negative"}
-                    />
-                    <Typography
-                      sx={{ marginLeft: theme.spacing(1) }}
-                      variant="body2"
-                    >
-                      {`${
-                        isPositive ? "+" : ""
-                      } ${amount} ${resource} per turn`}
-                    </Typography>
-                  </Grid>
+                    icon={RESOURCE_TO_ICON[resource]}
+                    outcome={isPositive ? "positive" : "negative"}
+                    text={`${
+                      isPositive ? "+" : ""
+                    } ${amount} ${resource} per turn`}
+                  />
                 );
               })}
             </Grid>

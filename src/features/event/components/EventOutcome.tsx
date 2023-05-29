@@ -6,7 +6,7 @@ import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { EventOutcomeIconWithText } from "features/event/components";
+import { OutcomeIconWithText } from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -33,7 +33,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
         isPositive ? "+ " : ""
       }${resourceAmount} ${resource}`;
       outcomeJsx.push(
-        <EventOutcomeIconWithText
+        <OutcomeIconWithText
           key={`resource_${resource}`}
           icon={RESOURCE_TO_ICON[resource as Resource]}
           outcome={isPositive ? "positive" : "negative"}
@@ -52,7 +52,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
         isPositive ? "+ " : ""
       }${resourceAmount} ${resource} per turn`;
       outcomeJsx.push(
-        <EventOutcomeIconWithText
+        <OutcomeIconWithText
           key={`rpt_${resource}`}
           icon={RESOURCE_TO_ICON[resource as Resource]}
           outcome={isPositive ? "positive" : "negative"}
@@ -71,7 +71,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       "being repaired",
     ].includes(state);
     outcomeJsx.push(
-      <EventOutcomeIconWithText
+      <OutcomeIconWithText
         key={`building_${id}`}
         icon={icons[state]}
         outcome={isPositive ? "positive" : "negative"}
@@ -85,7 +85,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     const { name, occupation, icons } = ID_TO_VILLAGER[id];
     const isPositive = ["healthy", "recovering"].includes(state);
     outcomeJsx.push(
-      <EventOutcomeIconWithText
+      <OutcomeIconWithText
         key={`villager_${id}`}
         icon={icons[state]}
         outcome={isPositive ? "positive" : "negative"}
@@ -111,7 +111,9 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       >
         {outcome.text}
       </Typography>
-      <Grid container>{outcomeJsx}</Grid>
+      <Grid container spacing={1}>
+        {outcomeJsx}
+      </Grid>
     </Grid>
   );
 };

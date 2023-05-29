@@ -8,20 +8,28 @@ import { Grid, Typography, useTheme } from "@mui/material";
 // Components
 import { OutcomeIcon } from "features/common/components";
 
-interface EventOutcomeIconWithTextProps {
+interface OutcomeIconWithTextProps {
   icon: string;
   outcome: "positive" | "negative";
   text: string;
 }
 
-export const EventOutcomeIconWithText: FC<
-  EventOutcomeIconWithTextProps
-> = ({ icon, outcome, text }) => {
+export const OutcomeIconWithText: FC<OutcomeIconWithTextProps> = ({
+  icon,
+  outcome,
+  text,
+}) => {
   // Hooks
   const theme = useTheme();
 
   return (
-    <Grid alignItems="center" container item wrap="nowrap">
+    <Grid
+      alignItems="center"
+      container
+      item
+      sx={{ width: "auto" }}
+      wrap="nowrap"
+    >
       <OutcomeIcon icon={icon} outcome={outcome} />
       <Typography
         sx={{ marginLeft: theme.spacing(1) }}
