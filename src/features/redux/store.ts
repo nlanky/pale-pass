@@ -7,6 +7,7 @@ import { buildingReducer } from "features/building/buildingSlice";
 import { eventReducer } from "features/event/eventSlice";
 import { gameReducer } from "features/game/gameSlice";
 import { townReducer } from "features/town/townSlice";
+import { villagerReducer } from "features/villager/villagerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     event: eventReducer,
     game: gameReducer,
     town: townReducer,
+    villager: villagerReducer,
   },
 });
 

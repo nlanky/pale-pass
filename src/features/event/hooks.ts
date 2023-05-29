@@ -7,8 +7,9 @@ import {
   EVENT_PROBABILITY,
   TURNS_PER_EVENT,
 } from "features/event/constants";
-// Redux
+// Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
+// Redux
 import {
   selectSeenEvents,
   triggerEvent,

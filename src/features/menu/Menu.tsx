@@ -10,8 +10,9 @@ import {
   StyledButton,
   StyledContainer,
 } from "features/common/components";
-// Redux
+// Hooks
 import { useAppDispatch } from "features/redux/hooks";
+// Redux
 import { setView } from "features/game/gameSlice";
 
 export const Menu: FC<{}> = () => {

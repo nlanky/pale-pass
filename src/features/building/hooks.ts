@@ -3,10 +3,10 @@
 import { ID_TO_BUILDING } from "features/building/constants";
 // Interfaces & Types
 import type { Building } from "features/building/types";
+import type { TownBuilding } from "features/town/types";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectPlayerTown } from "features/town/townSlice";
-import { TownBuilding } from "features/town/types";
 
 /**
  * Returns all buildings that should be available to the player
@@ -26,8 +26,8 @@ export const useAvailableBuildings = (): Building[] => {
   return Object.values(ID_TO_BUILDING)
     .filter(
       (building) =>
-        (building.canBuild || idToTownBuilding[building.id]) &&
-        building.requirements.tier <= tier,
+        idToTownBuilding[building.id] ||
+        (building.canBuild && building.requirements.tier <= tier),
     )
     .sort((buildingA, buildingB) => {
       const { tier: tierA } = buildingA.requirements;

@@ -13,10 +13,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import {
-  Build as BuildIcon,
-  Construction as ConstructionIcon,
-} from "@mui/icons-material";
+import { Construction as ConstructionIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
@@ -30,10 +27,11 @@ import {
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
+// Hooks
+import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
-import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
   closeModal,
   selectModalBuilding,
@@ -79,7 +77,8 @@ export const BuildingModal: FC<{}> = () => {
   const isRepairing = townBuilding?.state === "being repaired";
   const isDamaged = townBuilding?.state === "damaged";
   const isDestroyed = townBuilding?.state === "destroyed";
-  const canBuild = (building.canBuild && !isBuilt) || isDestroyed;
+  const canBuild =
+    (building.canBuild && townBuilding === undefined) || isDestroyed;
   const canAffordRepair = canAffordResourceAmount(
     town.resources,
     building.repairResources,
@@ -258,7 +257,7 @@ export const BuildingModal: FC<{}> = () => {
                 <StyledButton
                   disabled={!canAffordRepair}
                   onClick={onRepair}
-                  startIcon={<BuildIcon />}
+                  startIcon={<ConstructionIcon />}
                 >
                   Repair
                 </StyledButton>

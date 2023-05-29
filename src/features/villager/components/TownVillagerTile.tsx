@@ -4,68 +4,54 @@ import type { FC } from "react";
 // PUBLIC MODULES
 import { Badge, Grid, Typography, useTheme } from "@mui/material";
 import {
-  Construction as ConstructionIcon,
-  Error as ErrorIcon,
+  Healing as HealingIcon,
+  MonitorHeart as MonitorHeartIcon,
 } from "@mui/icons-material";
 
 // LOCAL FILES
 // Interfaces & Types
-import type { Building } from "features/building/types";
-import type { TownBuilding } from "features/town/types";
+import type { TownVillager } from "features/town/types";
+import type { Villager } from "features/villager/types";
 
-interface TownBuildingTileProps {
-  building: Building;
-  townBuilding?: TownBuilding;
-  hoveringOnBuilding: boolean;
-  onBuildingClick: (id: number) => void;
-  onBuildingMouseEnter: (id: number) => void;
-  onBuildingMouseLeave: () => void;
+interface TownVillagerTileProps {
+  villager: Villager;
+  townVillager?: TownVillager;
+  hoveringOnVillager: boolean;
+  onVillagerClick: (id: number) => void;
+  onVillagerMouseEnter: (id: number) => void;
+  onVillagerMouseLeave: () => void;
 }
 
-export const TownBuildingTile: FC<TownBuildingTileProps> = ({
-  building,
-  townBuilding,
-  hoveringOnBuilding,
-  onBuildingClick,
-  onBuildingMouseEnter,
-  onBuildingMouseLeave,
+export const TownVillagerTile: FC<TownVillagerTileProps> = ({
+  villager,
+  townVillager,
+  hoveringOnVillager,
+  onVillagerClick,
+  onVillagerMouseEnter,
+  onVillagerMouseLeave,
 }) => {
   // Hooks
   const theme = useTheme();
 
   // Derived variables
-  const { id, name, icons } = building;
-  const state = townBuilding?.state;
+  const { id, name, icons } = villager;
+  const state = townVillager?.state;
 
   // Utility functions
   const getBadgeContent = () => {
-    if (state === "damaged") {
-      return <ErrorIcon />;
+    if (state === "injured") {
+      return <MonitorHeartIcon />;
     }
 
-    if (state === "being repaired") {
+    if (state === "recovering") {
       return (
         <>
-          <ConstructionIcon />
+          <HealingIcon />
           <Typography
             sx={{ marginLeft: theme.spacing(0.25) }}
             variant="body1"
           >
-            {townBuilding?.repairTimeRemaining}
-          </Typography>
-        </>
-      );
-    }
-
-    if (state === "under construction") {
-      return (
-        <>
-          <ConstructionIcon />
-          <Typography
-            sx={{ marginLeft: theme.spacing(0.25) }}
-            variant="body1"
-          >
-            {townBuilding?.buildTimeRemaining}
+            {townVillager?.recoveryTimeRemaining}
           </Typography>
         </>
       );
@@ -82,13 +68,13 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
         direction="column"
         item
         onClick={() => {
-          onBuildingClick(id);
+          onVillagerClick(id);
         }}
         onMouseEnter={() => {
-          onBuildingMouseEnter(id);
+          onVillagerMouseEnter(id);
         }}
         onMouseLeave={() => {
-          onBuildingMouseLeave();
+          onVillagerMouseLeave();
         }}
         sx={{
           cursor: "pointer",
@@ -97,11 +83,11 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
         }}
       >
         <img
-          src={icons[state || "built"]}
+          src={icons[state || "healthy"]}
           style={{ width: 128, height: 128 }}
         />
         <Typography variant="body2">{name}</Typography>
-        {hoveringOnBuilding && (
+        {hoveringOnVillager && (
           <div
             style={{
               position: "absolute",

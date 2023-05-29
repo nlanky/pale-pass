@@ -137,6 +137,34 @@ export const townSlice = createSlice({
         repairResources,
       );
     },
+    recruitVillager: (state, action: PayloadAction<number>) => {
+      const villagerId = action.payload;
+      const nextVillagers = [...state.player.villagers];
+      const existingVillagerIndex = nextVillagers.findIndex(
+        (existingVillager) => existingVillager.id === villagerId,
+      );
+      if (existingVillagerIndex === -1) {
+        nextVillagers.push({
+          id: villagerId,
+          state: "healthy",
+          recoveryTimeRemaining: 0,
+        });
+      }
+
+      state.player.villagers = nextVillagers;
+    },
+    healVillager: (state, action: PayloadAction<number>) => {
+      const villagerId = action.payload;
+      const nextVillagers = [...state.player.villagers];
+      const existingVillagerIndex = nextVillagers.findIndex(
+        (existingVillager) => existingVillager.id === villagerId,
+      );
+      if (existingVillagerIndex !== -1) {
+        nextVillagers[existingVillagerIndex].state = "recovering";
+      }
+
+      state.player.villagers = nextVillagers;
+    },
   },
   extraReducers(builder) {
     builder.addCase(incrementTurn, (state) => {
@@ -255,6 +283,8 @@ export const townSlice = createSlice({
 export const {
   advanceTier,
   buildBuilding,
+  healVillager,
+  recruitVillager,
   repairBuilding,
   tradeResources,
 } = townSlice.actions;

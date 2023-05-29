@@ -10,27 +10,27 @@ import { StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Images & Icons
-import { buildingIcon } from "assets/building";
+import { villagerIcon } from "assets/villager";
 // Redux
 import { setView } from "features/game/gameSlice";
 
-export const TownBuildingsButton: FC<{}> = () => {
+export const TownVillagersButton: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
 
   // Handlers
-  const onBuildingsClick = () => {
-    dispatch(setView("building"));
+  const onVillagersClick = () => {
+    dispatch(setView("villager"));
   };
 
   return (
     <StyledButton
       fullWidth
-      onClick={onBuildingsClick}
+      onClick={onVillagersClick}
       startIcon={
         <Icon>
           <img
-            src={buildingIcon}
+            src={villagerIcon}
             style={{
               display: "flex",
               width: "inherit",
@@ -41,7 +41,7 @@ export const TownBuildingsButton: FC<{}> = () => {
       }
       variant="contained"
     >
-      Buildings
+      Villagers
     </StyledButton>
   );
 };

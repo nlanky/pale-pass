@@ -17,10 +17,11 @@ import {
   RESOURCE_TO_ICON,
   RESOURCE_TO_TRADE_RATES,
 } from "features/resource/constants";
+// Hooks
+import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
-import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
   selectEnabledResources,
   selectPlayerResources,

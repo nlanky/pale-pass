@@ -5,9 +5,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-// Redux
+// Interfaces & Types
 import type { RootState } from "features/redux/store";
-import { triggerEvent } from "features/event/eventSlice";
 
 interface BuildingState {
   modalId: number | null;
@@ -27,11 +26,6 @@ export const buildingSlice = createSlice({
     openModal: (state, action: PayloadAction<number>) => {
       state.modalId = action.payload;
     },
-  },
-  extraReducers(builder) {
-    builder.addCase(triggerEvent, (state) => {
-      state.modalId = null;
-    });
   },
 });
 

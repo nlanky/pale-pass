@@ -12,10 +12,11 @@ import {
   StyledContainer,
 } from "features/common/components";
 import { EventOutcome } from "features/event/components";
+// Hooks
+import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Outcome } from "features/event/types";
 // Redux
-import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
   completeEvent,
   selectActiveEvent,

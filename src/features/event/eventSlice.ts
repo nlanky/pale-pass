@@ -6,8 +6,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // Constants
 import { EVENTS } from "features/event/constants";
 // Interfaces & Types
-import type { RootState } from "features/redux/store";
 import type { Event, Outcome } from "features/event/types";
+import type { RootState } from "features/redux/store";
 
 interface EventState {
   active: number | null; // ID of active event

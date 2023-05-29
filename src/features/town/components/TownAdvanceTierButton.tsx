@@ -12,6 +12,7 @@ import { StyledButton } from "features/common/components";
 import { ID_TO_BUILDING } from "features/building/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
+import { useAppDispatch } from "features/redux/hooks";
 import {
   useCanAdvanceTier,
   useTierRequirements,
@@ -19,7 +20,6 @@ import {
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
-import { useAppDispatch } from "features/redux/hooks";
 import { advanceTier } from "features/town/townSlice";
 
 export const TownAdvanceTierButton: FC<{}> = () => {

@@ -17,10 +17,10 @@ import {
 } from "features/common/components";
 // Hooks
 import { useAvailableBuildings } from "features/building/hooks";
+import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { TownBuilding } from "features/town/types";
 // Redux
-import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import { openModal } from "features/building/buildingSlice";
 import { setView } from "features/game/gameSlice";
 import { selectPlayerBuildings } from "features/town/townSlice";

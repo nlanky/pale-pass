@@ -4,8 +4,9 @@ import { useEffect } from "react";
 // LOCAL FILES
 // Constants
 import { TURN_TIME } from "features/game/constants";
-// Redux
+// Hooks
 import { useAppDispatch } from "features/redux/hooks";
+// Redux
 import { incrementTurn } from "features/game/gameSlice";
 
 export const useTurnTimer = () => {

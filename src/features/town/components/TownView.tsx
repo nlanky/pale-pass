@@ -12,7 +12,7 @@ import {
   TownExploreButton,
   TownImage,
   TownResources,
-  TownVillagers,
+  TownVillagersButton,
 } from "features/town/components";
 // Hooks
 import { useEventTimer } from "features/event/hooks";
@@ -40,13 +40,13 @@ export const TownView: FC<{}> = () => {
             <TownAdvanceTierButton />
           </Grid>
           <Grid item>
-            <Grid item>
-              <TownBuildingsButton />
-            </Grid>
+            <TownBuildingsButton />
+          </Grid>
+          <Grid item>
+            <TownVillagersButton />
           </Grid>
         </Grid>
       </Grid>
-      <TownVillagers />
     </Container>
   );
 };

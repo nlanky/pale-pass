@@ -8,17 +8,25 @@ export type VillagerState =
   | "injured"
   | "dead";
 
+export interface VillagerRequirements {
+  tier: number;
+  buildingIds: number[];
+  villagerIds: number[];
+}
+
 export interface Villager {
   id: number;
   name: string;
+  occupation: string;
   description: string;
   /** Whether player can recruit villager manually */
   canRecruit: boolean;
-  occupation: string;
+  /** Tier, building, villager requirements for villager */
+  requirements: VillagerRequirements;
   /** How much of each resource we should improve gather rate by */
   gatherResources: Resources;
   /** Number of turns to recover */
   recoveryTime: number;
-  /** Path to icon location */
-  icon: string;
+  /** Paths to icon locations */
+  icons: Record<VillagerState, string>;
 }

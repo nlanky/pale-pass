@@ -8,6 +8,7 @@ import { EventView } from "features/event/components";
 import { Introduction } from "features/tutorial/Introduction";
 import { Menu } from "features/menu/Menu";
 import { TownView } from "features/town/components";
+import { TownVillagers } from "features/villager/components";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import { selectView } from "features/game/gameSlice";
@@ -23,6 +24,7 @@ export const Game: FC<{}> = () => {
       {view === "town" && <TownView />}
       {view === "event" && <EventView />}
       {view === "building" && <TownBuildings />}
+      {view === "villager" && <TownVillagers />}
     </>
   );
 };
