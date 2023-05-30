@@ -1,5 +1,6 @@
 export { OutcomeIcon } from "features/common/components/OutcomeIcon";
 export { OutcomeIconWithText } from "features/common/components/OutcomeIconWithText";
+export { PlaceholderText } from "features/common/components/PlaceholderText";
 export { StyledButton } from "features/common/components/StyledButton";
 export { StyledContainer } from "features/common/components/StyledContainer";
 export { StyledGrid } from "features/common/components/StyledGrid";

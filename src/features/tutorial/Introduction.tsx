@@ -3,11 +3,12 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Typography, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
 import {
+  PlaceholderText,
   StyledButton,
   StyledContainer,
 } from "features/common/components";
@@ -43,12 +44,11 @@ export const Introduction: FC<{}> = () => {
 
   return (
     <StyledContainer>
-      <Typography
+      <PlaceholderText
         sx={{ marginBottom: theme.spacing(1) }}
+        text={screen.text}
         variant="body2"
-      >
-        {screen.text}
-      </Typography>
+      />
       <StyledButton onClick={advanceScreen} variant="contained">
         {buttonText}
       </StyledButton>

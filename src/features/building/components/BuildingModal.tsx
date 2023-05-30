@@ -20,6 +20,7 @@ import { Construction as ConstructionIcon } from "@mui/icons-material";
 import { MarketStall } from "features/building/components";
 import {
   OutcomeIcon,
+  PlaceholderText,
   StyledButton,
   StyledPaper,
 } from "features/common/components";
@@ -164,9 +165,10 @@ export const BuildingModal: FC<{}> = () => {
       <DialogTitle>{building.name}</DialogTitle>
 
       <DialogContent>
-        <Typography variant="body2">
-          {building.description}
-        </Typography>
+        <PlaceholderText
+          text={building.description}
+          variant="body2"
+        />
 
         {affectedResources.length !== 0 && (
           <>
@@ -209,8 +211,7 @@ export const BuildingModal: FC<{}> = () => {
               sx={{ marginTop: theme.spacing(1) }}
               variant="body2"
             >
-              Building in progress. Days remaining:{" "}
-              {townBuilding?.buildTimeRemaining}
+              {`Building in progress. Days remaining: ${townBuilding?.buildTimeRemaining}`}
             </Typography>
           </>
         )}
@@ -222,8 +223,7 @@ export const BuildingModal: FC<{}> = () => {
               sx={{ marginTop: theme.spacing(1) }}
               variant="body2"
             >
-              Repair in progress. Days remaining:{" "}
-              {townBuilding?.repairTimeRemaining}
+              {`Repair in progress. Days remaining: ${townBuilding?.repairTimeRemaining}`}
             </Typography>
           </>
         )}

@@ -2,11 +2,14 @@
 import type { FC, ReactNode } from "react";
 
 // PUBLiC MODULES
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { OutcomeIconWithText } from "features/common/components";
+import {
+  OutcomeIconWithText,
+  PlaceholderText,
+} from "features/common/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -102,15 +105,14 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       direction="column"
       sx={{ marginTop: theme.spacing(1) }}
     >
-      <Typography
+      <PlaceholderText
         sx={{
           marginBottom:
             outcomeJsx.length === 0 ? 0 : theme.spacing(1),
         }}
+        text={outcome.text}
         variant="body2"
-      >
-        {outcome.text}
-      </Typography>
+      />
       <Grid container spacing={1}>
         {outcomeJsx}
       </Grid>

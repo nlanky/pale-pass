@@ -22,6 +22,7 @@ import {
 // Components
 import {
   OutcomeIconWithText,
+  PlaceholderText,
   StyledButton,
   StyledPaper,
 } from "features/common/components";
@@ -128,9 +129,10 @@ export const VillagerModal: FC<{}> = () => {
       <DialogTitle>{`${villager.name} the ${villager.occupation}`}</DialogTitle>
 
       <DialogContent>
-        <Typography variant="body2">
-          {villager.description}
-        </Typography>
+        <PlaceholderText
+          text={villager.description}
+          variant="body2"
+        />
 
         {affectedResources.length !== 0 && (
           <>
@@ -165,8 +167,7 @@ export const VillagerModal: FC<{}> = () => {
               sx={{ marginTop: theme.spacing(1) }}
               variant="body2"
             >
-              Villager is recovering. Days remaining:{" "}
-              {townVillager?.recoveryTimeRemaining}
+              {`Villager is recovering. Days remaining: ${townVillager?.recoveryTimeRemaining}`}
             </Typography>
           </>
         )}

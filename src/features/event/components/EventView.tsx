@@ -3,11 +3,12 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLiC MODULES
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
 import {
+  PlaceholderText,
   StyledButton,
   StyledContainer,
 } from "features/common/components";
@@ -61,9 +62,10 @@ export const EventView: FC<{}> = () => {
   return (
     <StyledContainer>
       <Grid container direction="column">
-        <Typography sx={{ whiteSpace: "pre-line" }} variant="body2">
-          {event.introductionText}
-        </Typography>
+        <PlaceholderText
+          text={event.introductionText}
+          variant="body2"
+        />
         <Grid
           item
           sx={{ margin: theme.spacing(1, 0), width: "100%" }}
