@@ -8,10 +8,12 @@ import type { Pronouns } from "features/player/types";
 import type { RootState } from "features/redux/store";
 
 interface PlayerState {
+  name: string;
   pronouns: Pronouns;
 }
 
 const initialState: PlayerState = {
+  name: "",
   pronouns: {
     second: [
       {
@@ -40,15 +42,22 @@ export const playerSlice = createSlice({
   name: "player",
   initialState,
   reducers: {
-    setPronouns: (state, action: PayloadAction<Pronouns>) => {
-      state.pronouns = action.payload;
+    setNameAndPronouns: (
+      state,
+      action: PayloadAction<{ name: string; pronouns: Pronouns }>,
+    ) => {
+      const { name, pronouns } = action.payload;
+      state.name = name;
+      state.pronouns = pronouns;
     },
   },
 });
 
-export const { setPronouns } = playerSlice.actions;
+export const { setNameAndPronouns } = playerSlice.actions;
 
 // SELECTORS
+export const selectPlayerName = (state: RootState) =>
+  state.player.name;
 export const selectPlayerPronouns = (state: RootState) =>
   state.player.pronouns;
 

@@ -1,6 +1,9 @@
 import { FC } from "react";
 import { Typography, TypographyProps } from "@mui/material";
-import { selectPlayerPronouns } from "features/player/playerSlice";
+import {
+  selectPlayerName,
+  selectPlayerPronouns,
+} from "features/player/playerSlice";
 import { useAppSelector } from "features/redux/hooks";
 
 interface PlaceholderTextProps extends TypographyProps {
@@ -16,6 +19,7 @@ export const PlaceholderText: FC<PlaceholderTextProps> = ({
   let { text } = props;
 
   // Hooks
+  const playerName = useAppSelector(selectPlayerName);
   const { second, third } = useAppSelector(selectPlayerPronouns);
 
   // Derived variables
@@ -24,6 +28,7 @@ export const PlaceholderText: FC<PlaceholderTextProps> = ({
   const thirdPersonPronouns =
     third[Math.floor(Math.random() * third.length)];
   text = text
+    .replace(/{player.name}/g, playerName)
     .replace(/{second.subject}/g, secondPersonPronouns.subject)
     .replace(/{second.object}/g, secondPersonPronouns.object)
     .replace(

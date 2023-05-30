@@ -32,7 +32,7 @@ import type {
 } from "features/player/types";
 // Redux
 import { setView } from "features/game/gameSlice";
-import { setPronouns } from "features/player/playerSlice";
+import { setNameAndPronouns } from "features/player/playerSlice";
 
 export const CreateCharacter: FC<{}> = () => {
   // Hooks
@@ -117,19 +117,22 @@ export const CreateCharacter: FC<{}> = () => {
     }
 
     dispatch(
-      setPronouns({
-        second: secondPersonPronouns.map(
-          (secondPersonPronounGender) =>
-            PRONOUN_GENDER_TO_SECOND_PERSON_PRONOUNS[
-              secondPersonPronounGender
-            ],
-        ),
-        third: thirdPersonPronouns.map(
-          (thirdPersonPronounGender) =>
-            PRONOUN_GENDER_TO_THIRD_PERSON_PRONOUNS[
-              thirdPersonPronounGender
-            ],
-        ),
+      setNameAndPronouns({
+        name,
+        pronouns: {
+          second: secondPersonPronouns.map(
+            (secondPersonPronounGender) =>
+              PRONOUN_GENDER_TO_SECOND_PERSON_PRONOUNS[
+                secondPersonPronounGender
+              ],
+          ),
+          third: thirdPersonPronouns.map(
+            (thirdPersonPronounGender) =>
+              PRONOUN_GENDER_TO_THIRD_PERSON_PRONOUNS[
+                thirdPersonPronounGender
+              ],
+          ),
+        },
       }),
     );
     dispatch(setView("town"));
