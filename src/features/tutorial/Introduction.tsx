@@ -28,13 +28,13 @@ export const Introduction: FC<{}> = () => {
 
   // Derived variables
   const screen = SCREEN_ID_TO_SCREEN[screenId];
-  const buttonText = screenId === 4 ? "Start Game" : "Next";
+  const buttonText = screenId === 4 ? "Create Character" : "Next";
 
   // Handlers
   const advanceScreen = () => {
     // Last screen, start game!
     if (screenId === 4) {
-      dispatch(setView("town"));
+      dispatch(setView("createCharacter"));
       return;
     }
 

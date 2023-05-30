@@ -7,6 +7,7 @@ import { TownBuildings } from "features/building/components";
 import { EventView } from "features/event/components";
 import { Introduction } from "features/tutorial/Introduction";
 import { Menu } from "features/menu/Menu";
+import { CreateCharacter } from "features/player/components";
 import { TownView } from "features/town/components";
 import { TownVillagers } from "features/villager/components";
 // Redux
@@ -21,6 +22,7 @@ export const Game: FC<{}> = () => {
     <>
       {view === "menu" && <Menu />}
       {view === "introduction" && <Introduction />}
+      {view === "createCharacter" && <CreateCharacter />}
       {view === "town" && <TownView />}
       {view === "event" && <EventView />}
       {view === "building" && <TownBuildings />}

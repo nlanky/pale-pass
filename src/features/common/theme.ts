@@ -93,3 +93,17 @@ declare module "@mui/material/SvgIcon" {
     parchmentDark: true;
   }
 }
+
+declare module "@mui/material/TextField" {
+  interface TextFieldPropsColorOverrides {
+    parchment: true;
+    parchmentDark: true;
+  }
+}
+
+declare module "@mui/material/Checkbox" {
+  interface CheckboxPropsColorOverrides {
+    parchment: true;
+    parchmentDark: true;
+  }
+}
