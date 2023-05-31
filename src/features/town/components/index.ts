@@ -2,6 +2,7 @@ export { TownAdvanceTierButton } from "features/town/components/TownAdvanceTierB
 export { TownBuildingsButton } from "features/town/components/TownBuildingsButton";
 export { TownExploreButton } from "features/town/components/TownExploreButton";
 export { TownImage } from "features/town/components/TownImage";
+export { TownMapButton } from "features/town/components/TownMapButton";
 export { TownResources } from "features/town/components/TownResources";
 export { TownView } from "features/town/components/TownView";
 export { TownVillagersButton } from "features/town/components/TownVillagersButton";

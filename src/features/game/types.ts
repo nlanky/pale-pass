@@ -3,6 +3,7 @@ export type View =
   | "introduction"
   | "createCharacter"
   | "town"
+  | "map"
   | "event"
   | "building"
   | "villager";

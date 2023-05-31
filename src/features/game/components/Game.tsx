@@ -6,6 +6,7 @@ import type { FC } from "react";
 import { TownBuildings } from "features/building/components";
 import { EventView } from "features/event/components";
 import { Introduction } from "features/tutorial/Introduction";
+import { Map } from "features/map/components";
 import { Menu } from "features/menu/Menu";
 import { CreateCharacter } from "features/player/components";
 import { TownView } from "features/town/components";
@@ -24,6 +25,7 @@ export const Game: FC<{}> = () => {
       {view === "introduction" && <Introduction />}
       {view === "createCharacter" && <CreateCharacter />}
       {view === "town" && <TownView />}
+      {view === "map" && <Map />}
       {view === "event" && <EventView />}
       {view === "building" && <TownBuildings />}
       {view === "villager" && <TownVillagers />}

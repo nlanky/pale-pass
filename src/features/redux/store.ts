@@ -6,6 +6,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { buildingReducer } from "features/building/buildingSlice";
 import { eventReducer } from "features/event/eventSlice";
 import { gameReducer } from "features/game/gameSlice";
+import { mapReducer } from "features/map/mapSlice";
 import { playerReducer } from "features/player/playerSlice";
 import { townReducer } from "features/town/townSlice";
 import { villagerReducer } from "features/villager/villagerSlice";
@@ -15,6 +16,7 @@ export const store = configureStore({
     building: buildingReducer,
     event: eventReducer,
     game: gameReducer,
+    map: mapReducer,
     player: playerReducer,
     town: townReducer,
     villager: villagerReducer,
