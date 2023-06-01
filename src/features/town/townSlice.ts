@@ -17,7 +17,7 @@ import {
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
-import type { Resource } from "features/resource/types";
+import type { Resource, Resources } from "features/resource/types";
 import type { Town } from "features/town/types";
 // Redux
 import { completeEvent } from "features/event/eventSlice";
@@ -165,6 +165,13 @@ export const townSlice = createSlice({
 
       state.player.villagers = nextVillagers;
     },
+    gainResources: (state, action: PayloadAction<Resources>) => {
+      const nextResources = mergeResources(
+        state.player.resources,
+        action.payload,
+      );
+      state.player.resources = nextResources;
+    },
   },
   extraReducers(builder) {
     builder.addCase(incrementDay, (state) => {
@@ -283,6 +290,7 @@ export const townSlice = createSlice({
 export const {
   advanceTier,
   buildBuilding,
+  gainResources,
   healVillager,
   recruitVillager,
   repairBuilding,

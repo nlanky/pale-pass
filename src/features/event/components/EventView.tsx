@@ -9,6 +9,7 @@ import { Grid, useTheme } from "@mui/material";
 // Components
 import {
   PlaceholderText,
+  ReturnToTownButton,
   StyledButton,
   StyledContainer,
 } from "features/common/components";
@@ -54,8 +55,7 @@ export const EventView: FC<{}> = () => {
     }
   };
 
-  const returnToTown = () => {
-    dispatch(setView("town"));
+  const onCompleteEvent = () => {
     dispatch(completeEvent(eventOutcome as Outcome));
   };
 
@@ -104,13 +104,10 @@ export const EventView: FC<{}> = () => {
         {eventOutcome && (
           <>
             <EventOutcome outcome={eventOutcome} />
-            <StyledButton
-              onClick={returnToTown}
+            <ReturnToTownButton
+              onClick={onCompleteEvent}
               sx={{ marginTop: theme.spacing(1) }}
-              variant="contained"
-            >
-              Return to town
-            </StyledButton>
+            />
           </>
         )}
       </Grid>

@@ -31,7 +31,13 @@ import {
   selectPlayerResources,
 } from "features/town/townSlice";
 
-export const TownResources: FC<{}> = () => {
+interface TownResourcesProps {
+  showRpt?: boolean;
+}
+
+export const TownResources: FC<TownResourcesProps> = ({
+  showRpt = true,
+}) => {
   // Hooks
   const theme = useTheme();
   const resources = useAppSelector(selectPlayerResources);
@@ -86,21 +92,23 @@ export const TownResources: FC<{}> = () => {
                 {resources[resource]}
               </Typography>
             </Grid>
-            <Grid
-              alignItems="center"
-              container
-              item
-              sx={{ width: "auto" }}
-            >
-              <Icon>
-                {rpd > 0 && <ArrowUpward color="success" />}
-                {rpd === 0 && <Remove />}
-                {rpd < 0 && <ArrowDownward color="error" />}
-              </Icon>
-              <Typography color={getRpdColour(rpd)} variant="body2">
-                {resourcesPerDay[resource]}
-              </Typography>
-            </Grid>
+            {showRpt && (
+              <Grid
+                alignItems="center"
+                container
+                item
+                sx={{ width: "auto" }}
+              >
+                <Icon>
+                  {rpd > 0 && <ArrowUpward color="success" />}
+                  {rpd === 0 && <Remove />}
+                  {rpd < 0 && <ArrowDownward color="error" />}
+                </Icon>
+                <Typography color={getRpdColour(rpd)} variant="body2">
+                  {resourcesPerDay[resource]}
+                </Typography>
+              </Grid>
+            )}
           </Grid>
         );
       })}

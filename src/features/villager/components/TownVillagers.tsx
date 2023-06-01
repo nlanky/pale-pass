@@ -12,7 +12,7 @@ import {
   VillagerModal,
 } from "features/villager/components";
 import {
-  StyledButton,
+  ReturnToTownButton,
   StyledContainer,
 } from "features/common/components";
 // Hooks
@@ -21,7 +21,6 @@ import { useAvailableVillagers } from "features/villager/hooks";
 // Interfaces & Types
 import type { TownVillager } from "features/town/types";
 // Redux
-import { setView } from "features/game/gameSlice";
 import { selectPlayerVillagers } from "features/town/townSlice";
 import { openModal } from "features/villager/villagerSlice";
 
@@ -56,17 +55,11 @@ export const TownVillagers: FC<{}> = () => {
     dispatch(openModal(villagerId));
   };
 
-  const onReturnToTown = () => {
-    dispatch(setView("town"));
-  };
-
   return (
     <StyledContainer>
       <Grid container direction="column">
         <Grid item>
-          <StyledButton onClick={onReturnToTown}>
-            Return to Town
-          </StyledButton>
+          <ReturnToTownButton />
         </Grid>
         <Grid container item sx={{ marginTop: theme.spacing(1) }}>
           {availableVillagers.map((villager) => {

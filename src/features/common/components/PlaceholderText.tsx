@@ -1,10 +1,18 @@
-import { FC } from "react";
-import { Typography, TypographyProps } from "@mui/material";
+// REACT
+import type { FC } from "react";
+
+// PUBLIC MODULES
+import { Typography } from "@mui/material";
+import type { TypographyProps } from "@mui/material";
+
+// LOCAL FILES
+// Hooks
+import { useAppSelector } from "features/redux/hooks";
+// Redux
 import {
   selectPlayerName,
   selectPlayerPronouns,
 } from "features/player/playerSlice";
-import { useAppSelector } from "features/redux/hooks";
 
 interface PlaceholderTextProps extends TypographyProps {
   text: string;

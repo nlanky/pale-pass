@@ -12,7 +12,7 @@ import {
   TownBuildingTile,
 } from "features/building/components";
 import {
-  StyledButton,
+  ReturnToTownButton,
   StyledContainer,
 } from "features/common/components";
 // Hooks
@@ -22,7 +22,6 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import type { TownBuilding } from "features/town/types";
 // Redux
 import { openModal } from "features/building/buildingSlice";
-import { setView } from "features/game/gameSlice";
 import { selectPlayerBuildings } from "features/town/townSlice";
 
 export const TownBuildings: FC<{}> = () => {
@@ -56,17 +55,11 @@ export const TownBuildings: FC<{}> = () => {
     dispatch(openModal(buildingId));
   };
 
-  const onReturnToTown = () => {
-    dispatch(setView("town"));
-  };
-
   return (
     <StyledContainer>
       <Grid container direction="column">
         <Grid item>
-          <StyledButton onClick={onReturnToTown}>
-            Return to Town
-          </StyledButton>
+          <ReturnToTownButton />
         </Grid>
         <Grid container item sx={{ marginTop: theme.spacing(1) }}>
           {availableBuildings.map((building) => {
