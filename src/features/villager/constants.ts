@@ -25,7 +25,6 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       Mythril: 0,
       Amethyst: 0,
     },
-    recoveryTime: 8,
     icons: {
       healthy: villagerIcon,
       recovering: villagerIcon,

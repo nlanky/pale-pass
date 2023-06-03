@@ -14,7 +14,7 @@ import {
   TIER_TO_ENABLED_RESOURCES,
   TIER_TO_REQUIREMENTS,
 } from "features/town/constants";
-import { ID_TO_VILLAGER } from "features/villager/constants";
+// import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Resource, Resources } from "features/resource/types";
@@ -274,12 +274,12 @@ export const townSlice = createSlice({
         }
 
         // Add new villager state
-        const villager = ID_TO_VILLAGER[id];
+        // TODO: Dynamic recovery time based on town
+        // const villager = ID_TO_VILLAGER[id];
         nextTownVillagers.push({
           id,
           state,
-          recoveryTimeRemaining:
-            state === "injured" ? villager.recoveryTime : 0,
+          recoveryTimeRemaining: state === "injured" ? 8 : 0,
         });
       });
       state.player.villagers = nextTownVillagers;
