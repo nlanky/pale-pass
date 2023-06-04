@@ -23,8 +23,8 @@ export interface TownVillager {
 }
 
 export interface Town {
-  /** True if this belongs to player */
-  isPlayer: boolean;
+  /** ID of player this town belongs to */
+  playerId: number;
   tier: number;
   resources: Resources;
   resourcesPerDay: Resources;

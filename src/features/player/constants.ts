@@ -65,3 +65,5 @@ export const PRONOUN_GENDER_TO_THIRD_PERSON_PRONOUNS: Record<
     reflexivePlural: "themselves",
   },
 };
+
+export const PLAYER_ID = 1;

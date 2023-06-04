@@ -2,7 +2,13 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Container, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 
 // LOCAL FILES
@@ -10,51 +16,48 @@ import { Search as SearchIcon } from "@mui/icons-material";
 import { ReturnToTownButton } from "features/common/components";
 import { TownResources } from "features/town/components";
 // Constants
-import { EVENTS } from "features/event/constants";
+import { PLAYER_ID } from "features/player/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { MapTile } from "features/map/types";
 // Redux
-import { triggerEvent } from "features/event/eventSlice";
-import { setView } from "features/game/gameSlice";
+import { selectConqueredPlayerIds } from "features/combat/combatSlice";
 import { exploreTile, selectMapTiles } from "features/map/mapSlice";
-import { gainResources } from "features/town/townSlice";
 
 export const Map: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const mapTiles = useAppSelector(selectMapTiles);
+  const conqueredPlayerIds = useAppSelector(selectConqueredPlayerIds);
 
   // Handlers
   const onTileClick = (tile: MapTile) => {
-    // Show town view if player clicks on their town on map
-    if (tile.townId === 1) {
-      dispatch(setView("town"));
+    if (tile.playerId && conqueredPlayerIds.includes(tile.playerId)) {
       return;
     }
 
-    // Explore tile and optionally trigger event
-    // TODO: Spy amount check
-    if (tile.visible && !tile.explored) {
-      dispatch(exploreTile(tile));
+    // TODO: Check scout amount
+    dispatch(exploreTile(tile));
+  };
 
-      // TODO: Enemy town attacks
-
-      if (tile.resources) {
-        dispatch(gainResources(tile.resources));
-      }
-
-      if (tile.eventId) {
-        const event = EVENTS.find(
-          (event) => event.id === tile.eventId,
-        );
-        if (event) {
-          dispatch(triggerEvent(event));
-        }
-      }
+  // Utility functions
+  const getTooltipTitle = (tile: MapTile): string => {
+    if (tile.playerId === PLAYER_ID) {
+      return "Go to your town";
     }
+
+    if (
+      tile.visible &&
+      tile.playerId &&
+      !conqueredPlayerIds.includes(tile.playerId)
+    ) {
+      // TODO: Add known military strength
+      return "Attack enemy town";
+    }
+
+    return "";
   };
 
   return (
@@ -75,15 +78,17 @@ export const Map: FC<{}> = () => {
           }}
         >
           {mapTiles.map((tile) => {
-            const { x, y, spyAmount, visible, explored, townId } =
+            const { x, y, spyAmount, visible, explored, playerId } =
               tile;
 
             // TODO: Icons
             let backgroundColor = "black";
-            if (townId === 1) {
+            if (playerId === PLAYER_ID) {
               backgroundColor = "blue";
             } else if (visible) {
-              if (townId) {
+              if (playerId && conqueredPlayerIds.includes(playerId)) {
+                backgroundColor = "green";
+              } else if (playerId) {
                 backgroundColor = "red";
               } else if (explored) {
                 backgroundColor = "gray";
@@ -93,42 +98,51 @@ export const Map: FC<{}> = () => {
             }
 
             return (
-              <Grid
+              <Tooltip
                 key={`tile_${x}_${y}`}
-                alignItems="center"
-                container
-                item
-                justifyContent="center"
-                onClick={() => {
-                  onTileClick(tile);
-                }}
-                sx={{
-                  backgroundColor,
-                  position: "absolute",
-                  width: 96,
-                  height: 96,
-                  top: y * 96,
-                  left: x * 96,
-                  cursor:
-                    townId || (visible && !explored)
-                      ? "pointer"
-                      : "default",
-                }}
+                title={getTooltipTitle(tile)}
               >
-                {visible && townId && (
-                  <Typography color="white" variant="h4">
-                    {townId}
-                  </Typography>
-                )}
-                {visible && !explored && !townId && (
-                  <>
-                    <SearchIcon />
-                    <Typography variant="body2">
-                      {spyAmount}
+                <Grid
+                  alignItems="center"
+                  container
+                  item
+                  justifyContent="center"
+                  onClick={() => {
+                    onTileClick(tile);
+                  }}
+                  sx={{
+                    backgroundColor,
+                    position: "absolute",
+                    width: 96,
+                    height: 96,
+                    top: y * 96,
+                    left: x * 96,
+                    cursor:
+                      playerId === PLAYER_ID ||
+                      (visible &&
+                        (!explored ||
+                          (playerId &&
+                            !conqueredPlayerIds.includes(playerId))))
+                        ? "pointer"
+                        : "default",
+                  }}
+                >
+                  {visible && playerId && (
+                    <Typography color="white" variant="h4">
+                      {playerId}
                     </Typography>
-                  </>
-                )}
-              </Grid>
+                  )}
+
+                  {visible && !explored && !playerId && (
+                    <>
+                      <SearchIcon />
+                      <Typography variant="body2">
+                        {spyAmount}
+                      </Typography>
+                    </>
+                  )}
+                </Grid>
+              </Tooltip>
             );
           })}
         </Grid>

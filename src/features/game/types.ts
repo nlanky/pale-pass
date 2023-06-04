@@ -6,4 +6,5 @@ export type View =
   | "map"
   | "event"
   | "building"
-  | "villager";
+  | "villager"
+  | "combat";

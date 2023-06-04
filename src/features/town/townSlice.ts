@@ -17,7 +17,7 @@ import {
 // import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
-import type { Resource, Resources } from "features/resource/types";
+import type { Resource } from "features/resource/types";
 import type { Town } from "features/town/types";
 // Redux
 import { completeEvent } from "features/event/eventSlice";
@@ -28,15 +28,14 @@ import {
   mergeResources,
 } from "features/resource/utils";
 import { getNextDayResources } from "features/town/utils";
+import { exploreTile } from "features/map/mapSlice";
 
 interface TownState {
   player: Town;
-  otherPlayers: Town[];
 }
 
-// TODO: Other players start with resources, buildings, villagers?
 const INITIAL_TOWN_STATE: Town = {
-  isPlayer: false,
+  playerId: 1,
   tier: 1,
   resources: NO_RESOURCES,
   resourcesPerDay: TIER_TO_RESOURCES_PER_DAY[1],
@@ -46,8 +45,7 @@ const INITIAL_TOWN_STATE: Town = {
 };
 
 const initialState: TownState = {
-  player: { ...INITIAL_TOWN_STATE, isPlayer: true },
-  otherPlayers: [],
+  player: { ...INITIAL_TOWN_STATE },
 };
 
 export const townSlice = createSlice({
@@ -165,13 +163,6 @@ export const townSlice = createSlice({
 
       state.player.villagers = nextVillagers;
     },
-    gainResources: (state, action: PayloadAction<Resources>) => {
-      const nextResources = mergeResources(
-        state.player.resources,
-        action.payload,
-      );
-      state.player.resources = nextResources;
-    },
   },
   extraReducers(builder) {
     builder.addCase(incrementDay, (state) => {
@@ -284,13 +275,21 @@ export const townSlice = createSlice({
       });
       state.player.villagers = nextTownVillagers;
     });
+    builder.addCase(exploreTile, (state, action) => {
+      if (action.payload.resources) {
+        const nextResources = mergeResources(
+          state.player.resources,
+          action.payload.resources,
+        );
+        state.player.resources = nextResources;
+      }
+    });
   },
 });
 
 export const {
   advanceTier,
   buildBuilding,
-  gainResources,
   healVillager,
   recruitVillager,
   repairBuilding,

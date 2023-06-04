@@ -31,7 +31,6 @@ import type {
   ThirdPersonPronounGender,
 } from "features/player/types";
 // Redux
-import { setView } from "features/game/gameSlice";
 import { setNameAndPronouns } from "features/player/playerSlice";
 
 export const CreateCharacter: FC<{}> = () => {
@@ -135,7 +134,6 @@ export const CreateCharacter: FC<{}> = () => {
         },
       }),
     );
-    dispatch(setView("town"));
   };
 
   return (
@@ -143,7 +141,7 @@ export const CreateCharacter: FC<{}> = () => {
       <Typography
         component="h1"
         sx={{ marginBottom: theme.spacing(1) }}
-        variant="h3"
+        variant="h4"
       >
         Create Your Character
       </Typography>

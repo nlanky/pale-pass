@@ -1,5 +1,6 @@
 // LOCAL FILES
 // Interfaces & Types
+import type { MilitaryStrength } from "features/combat/types";
 import type { Resources } from "features/resource/types";
 
 export type VillagerState =
@@ -25,6 +26,8 @@ export interface Villager {
   requirements: VillagerRequirements;
   /** How much of each resource we should improve gather rate by */
   gatherResources: Resources;
+  /** How competent a villager is at each type of combat */
+  militaryStrength: MilitaryStrength;
   /** Paths to icon locations */
   icons: Record<VillagerState, string>;
 }

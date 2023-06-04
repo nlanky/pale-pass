@@ -33,7 +33,6 @@ export const TIER_TO_RESOURCES_PER_DAY: Record<number, Resources> = {
   5: getResources({ Amethyst: 5 }),
 };
 
-// TODO: Replace with actual icons
 export const RESOURCE_TO_ICON: Record<Resource, string> = {
   Wood: woodIcon,
   Stone: stoneIcon,

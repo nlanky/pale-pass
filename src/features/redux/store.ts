@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Redux
 import { buildingReducer } from "features/building/buildingSlice";
+import { combatReducer } from "features/combat/combatSlice";
 import { eventReducer } from "features/event/eventSlice";
 import { gameReducer } from "features/game/gameSlice";
 import { mapReducer } from "features/map/mapSlice";
@@ -14,6 +15,7 @@ import { villagerReducer } from "features/villager/villagerSlice";
 export const store = configureStore({
   reducer: {
     building: buildingReducer,
+    combat: combatReducer,
     event: eventReducer,
     game: gameReducer,
     map: mapReducer,

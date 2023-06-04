@@ -173,33 +173,32 @@ export const VillagerModal: FC<{}> = () => {
         )}
       </DialogContent>
 
-      {canRecruit ||
-        (!isRecovering && isInjured && (
-          <DialogActions>
-            {canRecruit && (
-              <Tooltip title={getTooltipTitle()}>
-                <span>
-                  <StyledButton
-                    disabled={!canRecruitVillager(town, villager)}
-                    onClick={onRecruit}
-                    startIcon={<AssignmentTurnedInIcon />}
-                  >
-                    Recruit
-                  </StyledButton>
-                </span>
-              </Tooltip>
-            )}
+      {(canRecruit || (!isRecovering && isInjured)) && (
+        <DialogActions>
+          {canRecruit && (
+            <Tooltip title={getTooltipTitle()}>
+              <span>
+                <StyledButton
+                  disabled={!canRecruitVillager(town, villager)}
+                  onClick={onRecruit}
+                  startIcon={<AssignmentTurnedInIcon />}
+                >
+                  Recruit
+                </StyledButton>
+              </span>
+            </Tooltip>
+          )}
 
-            {isInjured && (
-              <StyledButton
-                onClick={onHeal}
-                startIcon={<HealingIcon />}
-              >
-                Heal
-              </StyledButton>
-            )}
-          </DialogActions>
-        ))}
+          {isInjured && (
+            <StyledButton
+              onClick={onHeal}
+              startIcon={<HealingIcon />}
+            >
+              Heal
+            </StyledButton>
+          )}
+        </DialogActions>
+      )}
     </Dialog>
   );
 };

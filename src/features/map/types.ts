@@ -17,6 +17,6 @@ export interface MapTile {
   explored: boolean;
   /** Amount of each resource acquired for exploring tile */
   resources: Resources | null;
-  /** If town tile, this is ID of town. Player town is ID 1. */
-  townId: number | null;
+  /** If town tile, this is ID of player who owns it. Player is ID 1. */
+  playerId: number | null;
 }

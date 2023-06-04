@@ -11,11 +11,9 @@ export const mergeResources = (
   resources2: Resources,
 ): Resources => {
   const mergedResources = { ...resources1 };
-  for (const resource in resources2) {
-    mergedResources[resource as Resource] +=
-      resources2[resource as Resource];
-  }
-
+  (Object.keys(resources2) as Resource[]).forEach((resource) => {
+    mergedResources[resource] += resources2[resource];
+  });
   return mergedResources;
 };
 

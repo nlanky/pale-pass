@@ -11,7 +11,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -21,7 +21,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -31,7 +31,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -41,7 +41,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -51,7 +51,7 @@ export const MAP_TILES: MapTile[] = [
     visible: true,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -61,7 +61,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -71,7 +71,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -81,7 +81,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -91,7 +91,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -101,7 +101,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -111,7 +111,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -121,7 +121,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -131,7 +131,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -141,7 +141,7 @@ export const MAP_TILES: MapTile[] = [
     visible: true,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -151,7 +151,7 @@ export const MAP_TILES: MapTile[] = [
     visible: true,
     explored: true,
     resources: null,
-    townId: 1,
+    playerId: 1,
   },
   {
     x: 5,
@@ -161,7 +161,7 @@ export const MAP_TILES: MapTile[] = [
     visible: true,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -171,7 +171,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -181,7 +181,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -191,7 +191,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -201,7 +201,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -211,7 +211,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -221,7 +221,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -231,7 +231,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -241,7 +241,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -251,7 +251,7 @@ export const MAP_TILES: MapTile[] = [
     visible: true,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -261,7 +261,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -271,7 +271,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -281,7 +281,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -291,7 +291,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -301,7 +301,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -311,7 +311,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -321,7 +321,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -331,7 +331,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -341,7 +341,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -351,7 +351,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -361,7 +361,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -371,7 +371,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -381,7 +381,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -391,7 +391,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -401,7 +401,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -411,7 +411,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -421,7 +421,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: 2,
+    playerId: 2,
   },
   {
     x: 2,
@@ -431,7 +431,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -441,7 +441,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -451,7 +451,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -461,7 +461,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -471,7 +471,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -481,7 +481,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -491,7 +491,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -501,7 +501,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -511,7 +511,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -521,7 +521,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -531,7 +531,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -541,7 +541,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -551,7 +551,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -561,7 +561,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -571,7 +571,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -581,7 +581,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -591,7 +591,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -601,7 +601,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -611,7 +611,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -621,7 +621,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -631,7 +631,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -641,7 +641,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -651,7 +651,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -661,7 +661,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -671,7 +671,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -681,7 +681,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -691,7 +691,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: 3,
+    playerId: 3,
   },
   {
     x: 9,
@@ -701,7 +701,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -711,7 +711,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -721,7 +721,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -731,7 +731,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -741,7 +741,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -751,7 +751,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -761,7 +761,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -771,7 +771,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -781,7 +781,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -791,7 +791,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -801,7 +801,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -811,7 +811,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -821,7 +821,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -831,7 +831,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -841,7 +841,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -851,7 +851,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -861,7 +861,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 6,
@@ -871,7 +871,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -881,7 +881,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -891,7 +891,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -901,7 +901,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 0,
@@ -911,7 +911,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 1,
@@ -921,7 +921,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 2,
@@ -931,7 +931,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 3,
@@ -941,7 +941,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 4,
@@ -951,7 +951,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 5,
@@ -961,7 +961,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: 4,
+    playerId: 4,
   },
   {
     x: 6,
@@ -971,7 +971,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 7,
@@ -981,7 +981,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 8,
@@ -991,7 +991,7 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
   {
     x: 9,
@@ -1001,6 +1001,6 @@ export const MAP_TILES: MapTile[] = [
     visible: false,
     explored: false,
     resources: null,
-    townId: null,
+    playerId: null,
   },
 ];
