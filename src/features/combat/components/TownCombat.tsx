@@ -379,17 +379,20 @@ export const TownCombat: FC<{}> = () => {
 
             const selected = selectedVillagerIds.includes(id);
             const injured = townVillager.state === "injured";
+            const dead = townVillager.state === "dead";
             let listItemText = `${villager.name} the ${villager.occupation}`;
             if (selected) {
               listItemText += " (selected)";
             } else if (injured) {
               listItemText += " (injured)";
+            } else if (dead) {
+              listItemText += " (dead)";
             }
 
             return (
               <ListItem disableGutters disablePadding key={id}>
                 <ListItemButton
-                  disabled={selected || injured}
+                  disabled={selected || injured || dead}
                   onClick={() => {
                     onVillagerSelect(modalArmyPosition as number, id);
                     onModalClose();

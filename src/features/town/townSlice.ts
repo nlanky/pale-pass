@@ -20,15 +20,16 @@ import type { RootState } from "features/redux/store";
 import type { Resource } from "features/resource/types";
 import type { Town } from "features/town/types";
 // Redux
+import { completeBattle } from "features/combat/combatSlice";
 import { completeEvent } from "features/event/eventSlice";
 import { incrementDay } from "features/game/gameSlice";
+import { exploreTile } from "features/map/mapSlice";
 // Utility functions
 import {
   getResources,
   mergeResources,
 } from "features/resource/utils";
 import { getNextDayResources } from "features/town/utils";
-import { exploreTile } from "features/map/mapSlice";
 
 interface TownState {
   player: Town;
@@ -283,6 +284,19 @@ export const townSlice = createSlice({
         );
         state.player.resources = nextResources;
       }
+    });
+    builder.addCase(completeBattle, (state, action) => {
+      const nextTownVillagers = [...state.player.villagers];
+      action.payload.villagers.forEach((villager) => {
+        const villagerIndex = nextTownVillagers.findIndex(
+          (townVillager) => townVillager.id === villager.id,
+        );
+        if (villagerIndex !== -1) {
+          nextTownVillagers[villagerIndex].state = villager.state;
+        }
+      });
+
+      state.player.villagers = nextTownVillagers;
     });
   },
 });
