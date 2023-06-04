@@ -26,7 +26,7 @@ export interface Building {
   /** How much of each resource we should improve gather rate by */
   gatherResources: Resources;
   /** How much of each resource is required to build */
-  buildResources: Resources; //
+  buildResources: Resources;
   /** Number of days to build */
   buildTime: number;
   /** How much of each resource is required to repair */

@@ -4,6 +4,13 @@ import type { BuildingState } from "features/building/types";
 import type { Resources } from "features/resource/types";
 import type { VillagerState } from "features/villager/types";
 
+export interface EventRequirements {
+  tier: number;
+  resources: Resources;
+  buildingIds: number[];
+  villagerIds: number[];
+}
+
 export interface Outcome {
   /** Text displayed to player if this outcome is reached */
   text: string; // Flavour text
@@ -29,12 +36,7 @@ interface Choice {
 export interface Event {
   id: number;
   image: string; // TODO: Multiple images for outcomes?
-  requirements: {
-    tier: number;
-    resources: Resources;
-    buildingIds: number[];
-    villagerIds: number[];
-  };
+  requirements: EventRequirements;
   introductionText: string;
   choices: Choice[];
 }

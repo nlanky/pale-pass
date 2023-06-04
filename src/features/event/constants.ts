@@ -4,23 +4,24 @@ import { event1Image, event2Image } from "assets/event";
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
 // Interfaces & Types
-import type { Event } from "features/event/types";
+import type { Event, EventRequirements } from "features/event/types";
 // Utility functions
 import { getResources } from "features/resource/utils";
 
 export const DAYS_PER_EVENT = 12;
 export const EVENT_PROBABILITY = 0.1; // Probability of an event triggering on a day
+export const NO_EVENT_REQUIREMENTS: EventRequirements = {
+  tier: 1,
+  resources: NO_RESOURCES,
+  buildingIds: [],
+  villagerIds: [],
+};
 
 export const EVENTS: Event[] = [
   {
     id: 1,
     image: event1Image,
-    requirements: {
-      tier: 1,
-      resources: NO_RESOURCES,
-      buildingIds: [],
-      villagerIds: [],
-    },
+    requirements: NO_EVENT_REQUIREMENTS,
     introductionText:
       "In a matter of hours you have set up your tent, caught fish and stoked a small but merry fire in the middle of a beautiful clearing. This would make a fine start for a town, plentiful fish in the water, golden rye and wheat growing in the clearings nearby, strong pine trees reaching for the sky. What's more, there is a small outcropping of stone nearby that would be perfect for building - it might even contain some ores if your cursory survey proves correct! Full of flaky fish and content with your new outpost, you slip into sleep thinking about the future. On waking, you splash your face with crystal clear water and turn your eyes on your camp. It seems you will need to manage several resources to grow - what would you like to focus on first?",
     choices: [
@@ -71,12 +72,7 @@ export const EVENTS: Event[] = [
   {
     id: 2,
     image: event2Image,
-    requirements: {
-      tier: 1,
-      resources: NO_RESOURCES,
-      buildingIds: [],
-      villagerIds: [],
-    },
+    requirements: NO_EVENT_REQUIREMENTS,
     introductionText:
       "As you make your way through a dense forest, you stumble upon a small hole in the ground. Upon closer inspection, you notice a pair of eyes peering back at you from inside the hole. You manage to translate the slurred, broken English and copious amounts of swearing in the individual's speech to learn that this is Jaakko, a Finnish man hiding from the quartermaster.\n\nHe tells you that he was falsely accused of a crime and doesn't want to return to the town out of fear that he will be reprimanded.\n\nDespite his drunken state and rough exterior, Jaakko is knowledgeable about the local area and offers the limited resources he has gathered in exchange for a place to stay in your town. His drinking and unpredictable behaviour could prove to be a liability though, not to mention the potential for the quartermaster to find out about your actions. What do you do?",
     choices: [
