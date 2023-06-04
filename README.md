@@ -2,7 +2,7 @@
 
 [Live Demo](https://nlanky.github.io/pale-pass/)
 
-## Running Locally
+## Running locally
 ### Requirements:
 * [Node.js](https://nodejs.org/en)
 * [Git](https://git-scm.com/downloads)
@@ -99,7 +99,7 @@ Then re-export it by adding the imported constant (which will end up compiling a
 export { event[event ID]Image };
 ```
 
-## Placeholder Text
+## Placeholder text
 The player can set their name and preferred pronouns at the start of the game and this can feed in to your text for events or descriptions for buildings and villagers. Here is a list of placeholders you can add in your text string:
 - `{player.name}` - Player's name
 - `{second.subject}` - you, it
