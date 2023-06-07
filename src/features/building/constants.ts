@@ -187,6 +187,34 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  12: {
+    id: 12,
+    name: "Charcoal Maker",
+    description:
+      "A bang on the door rouses you from a peaceful slumber by the fire. Groggily you answer and are accosted by the smith! 'M'lord, it's no bloody good! We need better fuel if we're to keep up production - we're just going through too much wood!' Before a response can rise to your lips the smith is gone, returned to the wind and the night as quickly as they arrived. Right-o, then! I've seen smoke over the trees near the far fields, tomorrow a guard is being sent to recruit those bloody charcoal makers and have them send their goods to town. Maybe then people around here will be able to sleep in peace!",
+    canBuild: true,
+    requirements: { tier: 2, buildingIds: [9], villagerIds: [] },
+    gatherResources: getResources({ Wood: 1 }),
+    buildResources: getResources({
+      Wood: -50,
+      Stone: -20,
+      Iron: -5,
+    }),
+    buildTime: 5,
+    repairResources: getResources({
+      Wood: -25,
+      Stone: -10,
+      Iron: -3,
+    }),
+    repairTime: 2,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   152: {
     id: 152,
     name: "Market Stall",
