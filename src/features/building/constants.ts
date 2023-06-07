@@ -139,6 +139,26 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  10: {
+    id: 10,
+    name: "Woodcutter",
+    description:
+      "The smell of fresh pine sap and drying racks of wood fills the air. With a smile and a huge noseful of the pleasant scent you check on the work of the Woodcutter. Quickly realising much more has been done than you thought you are presented with a large and industrious wood cutting shop - full of the tools and space needed to efficiently increase production in your burgeoning town!",
+    canBuild: true,
+    requirements: NO_BUILDING_REQUIREMENTS,
+    gatherResources: getResources({ Wood: 1 }),
+    buildResources: getResources({ Wood: -100, Stone: -100 }),
+    buildTime: 10,
+    repairResources: getResources({ Wood: -50, Stone: -50 }),
+    repairTime: 5,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   152: {
     id: 152,
     name: "Market Stall",
