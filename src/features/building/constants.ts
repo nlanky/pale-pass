@@ -19,6 +19,26 @@ export const NO_BUILDING_REQUIREMENTS: BuildingRequirements = {
 
 /** Reference object for all buildings in the game */
 export const ID_TO_BUILDING: Record<number, Building> = {
+  1: {
+    id: 1,
+    name: "Small Cottages",
+    description:
+      "New faces are joinng the village almost every day now. It's time people had a proper place to live! A row of small cottages can be put together quickly if we all work together. A few days of labour and you stand before small, but cosy and warm cottages. Much better than the tents and shelters people were using! People are sure to work harder with a good roof over their heads.",
+    canBuild: true,
+    requirements: NO_BUILDING_REQUIREMENTS,
+    gatherResources: getResources({ Wood: 1 }),
+    buildResources: getResources({ Wood: -50, Stone: -50 }),
+    buildTime: 14,
+    repairResources: getResources({ Wood: -25, Stone: -25 }),
+    repairTime: 7,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   9: {
     id: 9,
     name: "Blacksmith",
