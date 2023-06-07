@@ -123,7 +123,7 @@ export const TownCombat: FC<{}> = () => {
         playerMilitaryStrength,
         enemyPlayerId as number,
         enemyMilitaryStrength,
-        villagers.map((villager) => villager.id),
+        selectedVillagerIds as number[],
       ),
     );
   };
