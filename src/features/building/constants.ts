@@ -215,6 +215,34 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  13: {
+    id: 13,
+    name: "Fishery",
+    description:
+      "Gods! What a day in the village! The sun is high in the sky, and the waters are crystal clear in the river. Abundance surrounds you, and you notice for the first time that the number of fat slow fish in the river has increased steadily in your time here. Thoughts of fried fish on your mind you have a word with one of the lads nearby and send them running to fetch the builders. A proper fishery will help us take advantage of the blessings the gods of water have sent. And think of all the delicious fish!",
+    canBuild: true,
+    requirements: { tier: 2, buildingIds: [], villagerIds: [] },
+    gatherResources: getResources({ Wood: 1, Stone: 1, Iron: 1 }),
+    buildResources: getResources({
+      Wood: -100,
+      Stone: -50,
+      Iron: -50,
+    }),
+    buildTime: 13,
+    repairResources: getResources({
+      Wood: -50,
+      Stone: -25,
+      Iron: -25,
+    }),
+    repairTime: 7,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   152: {
     id: 152,
     name: "Market Stall",
