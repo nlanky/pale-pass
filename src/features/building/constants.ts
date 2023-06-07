@@ -89,6 +89,36 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  7: {
+    id: 7,
+    name: "Knight's Motte & Bailey",
+    description:
+      "If war is to come to the valley and your siblings are to be brought to heel then we must be able to defend ourselves. A true motte and bailey is quickly erected on your orders, rising over the highest hill in the town and displaying to all your martial might! ",
+    canBuild: true,
+    requirements: { tier: 4, buildingIds: [5], villagerIds: [] },
+    gatherResources: getResources({ Stone: -1, Iron: -1, Steel: 1 }),
+    buildResources: getResources({
+      Wood: -500,
+      Stone: -500,
+      Iron: -300,
+      Steel: -200,
+    }),
+    buildTime: 50,
+    repairResources: getResources({
+      Wood: -250,
+      Stone: -250,
+      Iron: -150,
+      Steel: -100,
+    }),
+    repairTime: 25,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   9: {
     id: 9,
     name: "Blacksmith",
