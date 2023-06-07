@@ -39,6 +39,26 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  2: {
+    id: 2,
+    name: "Houses",
+    description:
+      "Well! A few weeks of planning and storing up some spare resources has flown by and now you can proudly welcome families from those cramped cottages and offer them a house worth being proud off. They seem overjoyed and plans for decorating quickly overtake the conversations at dinner!",
+    canBuild: true,
+    requirements: { tier: 2, buildingIds: [1], villagerIds: [] },
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
+    buildResources: getResources({ Wood: -100, Stone: -130 }),
+    buildTime: 26,
+    repairResources: getResources({ Wood: -50, Stone: -75 }),
+    repairTime: 15,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   9: {
     id: 9,
     name: "Blacksmith",
