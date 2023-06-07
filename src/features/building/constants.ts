@@ -59,6 +59,36 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  5: {
+    id: 5,
+    name: "Manor House",
+    description:
+      "Providing for the people of the town worked extremely well in terms of housing. The only problem is you also need a suitable home! A few stern words with a passing foreman and plans are quickly arranged. A matter of days and a swarm of helpful and grateful townspeople are putting together the finishing touches on your new Manor, as befits your station. Lovely!",
+    canBuild: true,
+    requirements: { tier: 3, buildingIds: [2], villagerIds: [] },
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: 1 }),
+    buildResources: getResources({
+      Wood: -300,
+      Stone: -300,
+      Iron: -100,
+      Steel: -50,
+    }),
+    buildTime: 40,
+    repairResources: getResources({
+      Wood: -150,
+      Stone: -150,
+      Iron: -50,
+      Steel: -25,
+    }),
+    repairTime: 20,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   9: {
     id: 9,
     name: "Blacksmith",

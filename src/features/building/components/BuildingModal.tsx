@@ -19,7 +19,7 @@ import { Construction as ConstructionIcon } from "@mui/icons-material";
 // Components
 import { MarketStall } from "features/building/components";
 import {
-  OutcomeIcon,
+  OutcomeIconWithText,
   PlaceholderText,
   StyledButton,
   StyledPaper,
@@ -173,31 +173,24 @@ export const BuildingModal: FC<{}> = () => {
         {affectedResources.length !== 0 && (
           <>
             <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Grid container sx={{ marginTop: theme.spacing(1) }}>
+            <Grid
+              container
+              spacing={1}
+              sx={{ marginTop: theme.spacing(1) }}
+            >
               {affectedResources.map((resource) => {
                 const amount = building.gatherResources[resource];
                 const isPositive = amount > 0;
+                const iconText = `${
+                  isPositive ? "+ " : ""
+                }${amount} ${resource}`;
                 return (
-                  <Grid
+                  <OutcomeIconWithText
                     key={resource}
-                    alignItems="center"
-                    container
-                    item
-                    xs={6}
-                  >
-                    <OutcomeIcon
-                      icon={RESOURCE_TO_ICON[resource as Resource]}
-                      outcome={isPositive ? "positive" : "negative"}
-                    />
-                    <Typography
-                      sx={{ marginLeft: theme.spacing(1) }}
-                      variant="body2"
-                    >
-                      {`${
-                        isPositive ? "+" : "-"
-                      } ${amount} ${resource} per day`}
-                    </Typography>
-                  </Grid>
+                    icon={RESOURCE_TO_ICON[resource]}
+                    outcome={isPositive ? "positive" : "negative"}
+                    text={iconText}
+                  />
                 );
               })}
             </Grid>
