@@ -243,6 +243,32 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  14: {
+    id: 14,
+    name: "Bakery",
+    description:
+      "Walking home after a day of gathering resources you are led by your nose down a path you normally would not take. A scintilating smell pulls you along until you stop at a pie and a loaf of spiced bread cooling on a window sill. You are just about to take a bite of fruit pie when a firm smack with a rolling pin brings you to your senses. 'You listen here, king or not, you ask when you want a slice of my pie! If you want I'd be happy to make you your own, I'll make as many as the town needs but manners cost nothing!' Utterly ashamed and now utterly starving you rush to order a bakery put together for this fine woman so she can supply her treats to the whole town.",
+    canBuild: true,
+    requirements: NO_BUILDING_REQUIREMENTS,
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
+    buildResources: getResources({
+      Wood: -60,
+      Stone: -40,
+    }),
+    buildTime: 8,
+    repairResources: getResources({
+      Wood: -30,
+      Stone: -20,
+    }),
+    repairTime: 4,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   152: {
     id: 152,
     name: "Market Stall",
