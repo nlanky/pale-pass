@@ -159,6 +159,34 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  11: {
+    id: 11,
+    name: "Mill",
+    description:
+      "Food is becoming an issue in the town. Enough is grown but the speed of processing leaves much to be desired, and leaves much rotting in the fields! If you could make the food last longer it would be much easier to steady the food supply. Nothing for it but to order a Mill built so we can properly process the crops. No more than a week later you hear the creak and crack of the great sails of the Mill turning for the first time in the wind. Excellent! On to the next crisis!",
+    canBuild: true,
+    requirements: { tier: 2, buildingIds: [17], villagerIds: [] },
+    gatherResources: getResources({ Wood: 1, Stone: 1, Iron: 1 }),
+    buildResources: getResources({
+      Wood: -150,
+      Stone: -250,
+      Iron: -35,
+    }),
+    buildTime: 20,
+    repairResources: getResources({
+      Wood: -75,
+      Stone: -125,
+      Iron: -15,
+    }),
+    repairTime: 10,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   152: {
     id: 152,
     name: "Market Stall",
