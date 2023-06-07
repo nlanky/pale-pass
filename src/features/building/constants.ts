@@ -269,6 +269,32 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingIcon,
     },
   },
+  17: {
+    id: 17,
+    name: "Grain Field",
+    description:
+      "The sun beats down as you inspect the area outlined by rough stakes. Surely this will be enough land, our people need vittles and our small vegetable patches are not filling bellies any longer. These few hectares will grow sufficient grain to keep our nascent town full of bread and beer for several seasons at least, giving us a foothold we sorely need in this valley. Several long afternoons in the sun and the ground is turned, rocks have been removed and the land stands surrounded by a simple but effective stone wall. It's time for planting!",
+    canBuild: true,
+    requirements: { tier: 2, buildingIds: [], villagerIds: [] },
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
+    buildResources: getResources({
+      Wood: -35,
+      Stone: -100,
+    }),
+    buildTime: 10,
+    repairResources: getResources({
+      Wood: -15,
+      Stone: -50,
+    }),
+    repairTime: 5,
+    icons: {
+      built: buildingIcon,
+      "under construction": buildingIcon,
+      "being repaired": buildingIcon,
+      damaged: buildingIcon,
+      destroyed: buildingIcon,
+    },
+  },
   152: {
     id: 152,
     name: "Market Stall",
