@@ -38,6 +38,11 @@ export const Map: FC<{}> = () => {
       return;
     }
 
+    // Can only explore tiles player can see
+    if (!tile.visible) {
+      return;
+    }
+
     // TODO: Check scout amount
     dispatch(exploreTile(tile));
   };
