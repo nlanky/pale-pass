@@ -67,7 +67,9 @@ export const VillagerModalTitle: FC<VillagerModalTitleProps> = ({
           variant="h6"
         >{`${name} the ${occupation}`}</Typography>
       </Grid>
-      <Tooltip title={specialty}>
+      <Tooltip
+        title={<Typography variant="body2">{specialty}</Typography>}
+      >
         <Grid item>{getClassIcon()}</Grid>
       </Tooltip>
     </Grid>

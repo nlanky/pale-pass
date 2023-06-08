@@ -1,5 +1,5 @@
 // REACT
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
 import { Grid, Tooltip, Typography } from "@mui/material";
@@ -63,18 +63,24 @@ export const MapTile: FC<MapTileProps> = ({ tile }) => {
   };
 
   // Utility functions
-  const getTooltipTitle = (): string => {
+  const getTooltipTitle = (): ReactNode => {
     if (playerId === PLAYER_ID) {
-      return "Go to your town";
+      return <Typography variant="body2">Go to your town</Typography>;
     }
 
     if (visible) {
       if (playerId && !isConquered) {
-        return "Attack enemy town";
+        return (
+          <Typography variant="body2">Attack enemy town</Typography>
+        );
       }
 
       if (scoutAmount > numberOfScouts * 2) {
-        return "You need additional scouts";
+        return (
+          <Typography variant="body2">
+            You need additional scouts
+          </Typography>
+        );
       }
     }
 
