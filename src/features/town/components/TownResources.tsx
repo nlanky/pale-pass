@@ -2,13 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import {
-  Grid,
-  Icon,
-  Tooltip,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Grid, Icon, Tooltip, Typography } from "@mui/material";
 import {
   ArrowDownward,
   ArrowUpward,
@@ -39,7 +33,6 @@ export const TownResources: FC<TownResourcesProps> = ({
   showRpt = true,
 }) => {
   // Hooks
-  const theme = useTheme();
   const resources = useAppSelector(selectPlayerResources);
   const resourcesPerDay = usePlayerResourcesPerDay();
   const enabledResources = useAppSelector(selectEnabledResources);
@@ -52,14 +45,14 @@ export const TownResources: FC<TownResourcesProps> = ({
   // Utility functions
   const getRpdColour = (rpd: number): string => {
     if (rpd > 0) {
-      return theme.palette.success.main;
+      return "success.main";
     }
 
     if (rpd < 0) {
-      return theme.palette.error.main;
+      return "error.main";
     }
 
-    return theme.palette.text.primary;
+    return "text.primary";
   };
 
   return (
@@ -73,7 +66,7 @@ export const TownResources: FC<TownResourcesProps> = ({
             alignItems="center"
             container
             justifyContent="space-around"
-            sx={{ paddingTop: index !== 0 ? theme.spacing(1) : 0 }}
+            sx={{ pt: index !== 0 ? 1 : 0 }}
           >
             <Tooltip
               title={

@@ -11,7 +11,6 @@ import {
   Grid,
   Tooltip,
   Typography,
-  useTheme,
 } from "@mui/material";
 import {
   AssignmentTurnedIn as AssignmentTurnedInIcon,
@@ -26,6 +25,7 @@ import {
   StyledButton,
   StyledPaper,
 } from "features/common/components";
+import { VillagerModalTitle } from "features/villager/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -51,7 +51,6 @@ import { canRecruitVillager } from "features/villager/utils";
 export const VillagerModal: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
   const villager = useAppSelector(selectModalVillager);
   const townVillager = useAppSelector(selectModalTownVillager);
   const town = useAppSelector(selectPlayerTown);
@@ -74,6 +73,7 @@ export const VillagerModal: FC<{}> = () => {
   }
 
   // Derived variables
+  const isHealthy = townVillager?.state === "healthy";
   const isRecovering = townVillager?.state === "recovering";
   const isInjured = townVillager?.state === "injured";
   const canRecruit =
@@ -98,11 +98,18 @@ export const VillagerModal: FC<{}> = () => {
         </Typography>
       ));
 
+    if (
+      buildingRequirementsJsx.length === 0 &&
+      villagerRequirementsJsx.length === 0
+    ) {
+      return "";
+    }
+
     return (
       <Grid container direction="column">
         {buildingRequirementsJsx.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body2">
+            <Typography sx={{ fontWeight: "bold" }} variant="body2">
               Building requirements
             </Typography>
             {buildingRequirementsJsx}
@@ -110,7 +117,7 @@ export const VillagerModal: FC<{}> = () => {
         )}
         {villagerRequirementsJsx.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body2">
+            <Typography sx={{ fontWeight: "bold" }} variant="body2">
               Villager requirements
             </Typography>
             {villagerRequirementsJsx}
@@ -126,7 +133,7 @@ export const VillagerModal: FC<{}> = () => {
       open={villager !== undefined}
       PaperComponent={StyledPaper}
     >
-      <DialogTitle>{`${villager.name} the ${villager.occupation}`}</DialogTitle>
+      <VillagerModalTitle villager={villager} />
 
       <DialogContent>
         <PlaceholderText
@@ -136,12 +143,8 @@ export const VillagerModal: FC<{}> = () => {
 
         {affectedResources.length !== 0 && (
           <>
-            <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Grid
-              container
-              spacing={1}
-              sx={{ marginTop: theme.spacing(1) }}
-            >
+            <Divider sx={{ mt: 1 }} />
+            <Grid container spacing={1} sx={{ mt: 1 }}>
               {affectedResources.map((resource) => {
                 const amount = villager.gatherResources[resource];
                 const isPositive = amount > 0;
@@ -149,10 +152,11 @@ export const VillagerModal: FC<{}> = () => {
                   <OutcomeIconWithText
                     key={resource}
                     icon={RESOURCE_TO_ICON[resource]}
-                    outcome={isPositive ? "positive" : "negative"}
+                    isPositive={isPositive}
                     text={`${
                       isPositive ? "+" : ""
                     } ${amount} ${resource} per day`}
+                    disabled={!isHealthy}
                   />
                 );
               })}
@@ -162,11 +166,8 @@ export const VillagerModal: FC<{}> = () => {
 
         {isRecovering && (
           <>
-            <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Typography
-              sx={{ marginTop: theme.spacing(1) }}
-              variant="body2"
-            >
+            <Divider sx={{ mt: 1 }} />
+            <Typography sx={{ mt: 1 }} variant="body2">
               {`Villager is recovering. Days remaining: ${townVillager?.recoveryTimeRemaining}`}
             </Typography>
           </>

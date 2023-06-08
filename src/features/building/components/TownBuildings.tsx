@@ -3,7 +3,7 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -27,7 +27,6 @@ import { selectPlayerBuildings } from "features/town/townSlice";
 export const TownBuildings: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
   const townBuildings = useAppSelector(selectPlayerBuildings);
   const availableBuildings = useAvailableBuildings();
 
@@ -61,7 +60,7 @@ export const TownBuildings: FC<{}> = () => {
         <Grid item>
           <ReturnToTownButton />
         </Grid>
-        <Grid container item sx={{ marginTop: theme.spacing(1) }}>
+        <Grid container item sx={{ mt: 1 }}>
           {availableBuildings.map((building) => {
             const { id } = building;
 

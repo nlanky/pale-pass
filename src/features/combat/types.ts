@@ -16,3 +16,9 @@ export interface MilitaryStrength {
   archery: number;
   mounted: number;
 }
+
+export interface DisplayMilitaryStrength {
+  handToHand: string;
+  archery: string;
+  mounted: string;
+}

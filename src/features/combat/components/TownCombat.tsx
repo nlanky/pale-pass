@@ -28,6 +28,7 @@ import {
 import { PLAYER_ID_TO_MILITARY_STRENGTH } from "features/combat/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
+import { useEnemyDisplayMilitaryStrength } from "features/combat/hooks";
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Icons & Images
 import { archery, handToHand, mounted } from "assets/combat";
@@ -53,6 +54,8 @@ export const TownCombat: FC<{}> = () => {
   const theme = useTheme();
   const villagers = useAppSelector(selectPlayerVillagers);
   const enemyPlayerId = useAppSelector(selectAttackingPlayerId);
+  const enemyDisplayMilitaryStrength =
+    useEnemyDisplayMilitaryStrength(enemyPlayerId);
 
   // Local state
   const [selectedVillagerIds, setSelectedVillagerIds] = useState<
@@ -76,15 +79,15 @@ export const TownCombat: FC<{}> = () => {
     switch (battleOutcome.victoryState) {
       case "defeat":
         battleOutcomeText = "Your army was defeated";
-        battleOutcomeTextColour = theme.palette.error.main;
+        battleOutcomeTextColour = "error.main";
         break;
       case "stalemate":
         battleOutcomeText = "The battle ends in a stalemate";
-        battleOutcomeTextColour = theme.palette.primary.main;
+        battleOutcomeTextColour = "error.main";
         break;
       case "victory":
         battleOutcomeText = "Your army was victorious";
-        battleOutcomeTextColour = theme.palette.success.main;
+        battleOutcomeTextColour = "success.main";
         break;
     }
   }
@@ -186,15 +189,11 @@ export const TownCombat: FC<{}> = () => {
         </Grid>
       )}
 
-      <Divider sx={{ marginTop: theme.spacing(2) }} />
+      <Divider sx={{ mt: 2 }} />
 
-      <Grid container sx={{ marginTop: theme.spacing(2) }}>
+      <Grid container sx={{ mt: 2 }}>
         <Grid alignItems="center" container item xs={6}>
-          <Typography
-            component="h2"
-            sx={{ marginRight: theme.spacing(2) }}
-            variant="h5"
-          >
+          <Typography component="h2" sx={{ mr: 2 }} variant="h5">
             Your Military Strength
           </Typography>
           <img
@@ -204,10 +203,7 @@ export const TownCombat: FC<{}> = () => {
               height: 32,
             }}
           />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
+          <Typography sx={{ ml: 1 }} variant="body2">
             {playerMilitaryStrength.handToHand}
           </Typography>
           <img
@@ -218,10 +214,7 @@ export const TownCombat: FC<{}> = () => {
               marginLeft: theme.spacing(1),
             }}
           />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
+          <Typography sx={{ ml: 1 }} variant="body2">
             {playerMilitaryStrength.archery}
           </Typography>
           <img
@@ -232,20 +225,13 @@ export const TownCombat: FC<{}> = () => {
               marginLeft: theme.spacing(1),
             }}
           />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
+          <Typography sx={{ ml: 1 }} variant="body2">
             {playerMilitaryStrength.mounted}
           </Typography>
         </Grid>
 
         <Grid alignItems="center" container item xs={6}>
-          <Typography
-            component="h2"
-            sx={{ marginRight: theme.spacing(2) }}
-            variant="h5"
-          >
+          <Typography component="h2" sx={{ mr: 2 }} variant="h5">
             Enemy Military Strength
           </Typography>
           <img
@@ -255,11 +241,8 @@ export const TownCombat: FC<{}> = () => {
               height: 32,
             }}
           />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
-            {enemyMilitaryStrength.handToHand}
+          <Typography sx={{ ml: 1 }} variant="body2">
+            {enemyDisplayMilitaryStrength.handToHand}
           </Typography>
           <img
             src={archery}
@@ -269,11 +252,8 @@ export const TownCombat: FC<{}> = () => {
               marginLeft: theme.spacing(1),
             }}
           />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
-            {enemyMilitaryStrength.archery}
+          <Typography sx={{ ml: 1 }} variant="body2">
+            {enemyDisplayMilitaryStrength.archery}
           </Typography>
           <img
             src={mounted}
@@ -283,23 +263,16 @@ export const TownCombat: FC<{}> = () => {
               marginLeft: theme.spacing(1),
             }}
           />
-          <Typography
-            sx={{ marginLeft: theme.spacing(1) }}
-            variant="body2"
-          >
-            {enemyMilitaryStrength.mounted}
+          <Typography sx={{ ml: 1 }} variant="body2">
+            {enemyDisplayMilitaryStrength.mounted}
           </Typography>
         </Grid>
       </Grid>
 
-      <Divider sx={{ marginTop: theme.spacing(2) }} />
+      <Divider sx={{ mt: 2 }} />
 
       {!battleOutcome && (
-        <Grid
-          container
-          justifyContent="space-between"
-          sx={{ marginTop: theme.spacing(2) }}
-        >
+        <Grid container justifyContent="space-between" sx={{ mt: 2 }}>
           <StyledButton onClick={onRetreat}>Retreat</StyledButton>
           <StyledButton
             disabled={
@@ -316,11 +289,7 @@ export const TownCombat: FC<{}> = () => {
 
       {battleOutcome && (
         <>
-          <Grid
-            container
-            direction="column"
-            sx={{ marginTop: theme.spacing(2) }}
-          >
+          <Grid container direction="column" sx={{ mt: 2 }}>
             <Typography
               color={battleOutcomeTextColour}
               component="p"
@@ -329,11 +298,7 @@ export const TownCombat: FC<{}> = () => {
               {battleOutcomeText}
             </Typography>
             {battleOutcome.villagers.length !== 0 && (
-              <Grid
-                container
-                spacing={1}
-                sx={{ marginTop: theme.spacing(1) }}
-              >
+              <Grid container spacing={1} sx={{ mt: 1 }}>
                 {battleOutcome.villagers.map((armyVillager) => {
                   const { id, state } = armyVillager;
                   const { name, occupation, icons } =
@@ -346,7 +311,7 @@ export const TownCombat: FC<{}> = () => {
                     <OutcomeIconWithText
                       key={id}
                       icon={icons[state]}
-                      outcome={isPositive ? "positive" : "negative"}
+                      isPositive={isPositive}
                       text={`${name} the ${occupation} ${
                         state === "healthy"
                           ? "survived"
@@ -358,11 +323,8 @@ export const TownCombat: FC<{}> = () => {
               </Grid>
             )}
           </Grid>
-          <Divider sx={{ marginTop: theme.spacing(2) }} />
-          <StyledButton
-            onClick={onCompleteBattle}
-            sx={{ marginTop: theme.spacing(2) }}
-          >
+          <Divider sx={{ mt: 2 }} />
+          <StyledButton onClick={onCompleteBattle} sx={{ mt: 2 }}>
             Return to Map
           </StyledButton>
         </>
@@ -413,10 +375,7 @@ export const TownCombat: FC<{}> = () => {
                       marginLeft: theme.spacing(1),
                     }}
                   />
-                  <Typography
-                    sx={{ marginLeft: theme.spacing(1) }}
-                    variant="body2"
-                  >
+                  <Typography sx={{ ml: 1 }} variant="body2">
                     {militaryStrength.handToHand}
                   </Typography>
                   <img
@@ -427,10 +386,7 @@ export const TownCombat: FC<{}> = () => {
                       marginLeft: theme.spacing(1),
                     }}
                   />
-                  <Typography
-                    sx={{ marginLeft: theme.spacing(1) }}
-                    variant="body2"
-                  >
+                  <Typography sx={{ ml: 1 }} variant="body2">
                     {militaryStrength.archery}
                   </Typography>
                   <img
@@ -441,10 +397,7 @@ export const TownCombat: FC<{}> = () => {
                       marginLeft: theme.spacing(1),
                     }}
                   />
-                  <Typography
-                    sx={{ marginLeft: theme.spacing(1) }}
-                    variant="body2"
-                  >
+                  <Typography sx={{ ml: 1 }} variant="body2">
                     {militaryStrength.mounted}
                   </Typography>
                 </ListItemButton>

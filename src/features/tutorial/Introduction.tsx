@@ -2,9 +2,6 @@
 import { useState } from "react";
 import type { FC } from "react";
 
-// PUBLIC MODULES
-import { useTheme } from "@mui/material";
-
 // LOCAL FILES
 // Components
 import {
@@ -22,7 +19,6 @@ import { setView } from "features/game/gameSlice";
 export const Introduction: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
 
   // Local state
   const [screenId, setScreenId] = useState(1);
@@ -45,7 +41,7 @@ export const Introduction: FC<{}> = () => {
   return (
     <StyledContainer>
       <PlaceholderText
-        sx={{ marginBottom: theme.spacing(1) }}
+        sx={{ mb: 1 }}
         text={screen.text}
         variant="body2"
       />

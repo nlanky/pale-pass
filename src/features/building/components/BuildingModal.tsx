@@ -11,7 +11,6 @@ import {
   Grid,
   Tooltip,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { Construction as ConstructionIcon } from "@mui/icons-material";
 
@@ -50,7 +49,6 @@ import { canAffordResourceAmount } from "features/resource/utils";
 export const BuildingModal: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
   const building = useAppSelector(selectModalBuilding);
   const townBuilding = useAppSelector(selectModalTownBuilding);
   const town = useAppSelector(selectPlayerTown);
@@ -78,6 +76,7 @@ export const BuildingModal: FC<{}> = () => {
   const isRepairing = townBuilding?.state === "being repaired";
   const isDamaged = townBuilding?.state === "damaged";
   const isDestroyed = townBuilding?.state === "destroyed";
+  const isUnbuiltOrBuilding = !townBuilding || isBuilding;
   const canBuild =
     (building.canBuild && townBuilding === undefined) || isDestroyed;
   const canAffordRepair = canAffordResourceAmount(
@@ -130,15 +129,23 @@ export const BuildingModal: FC<{}> = () => {
       ),
     );
 
+    if (
+      resourceRequirementsJsx.length === 0 &&
+      buildingRequirementsJsx.length === 0 &&
+      villagerRequirementsJsx.length === 0
+    ) {
+      return "";
+    }
+
     return (
       <Grid container direction="column">
-        <Typography sx={{ fontWeight: 700 }} variant="body2">
+        <Typography sx={{ fontWeight: "bold" }} variant="body2">
           Resource requirements
         </Typography>
         {resourceRequirementsJsx}
         {buildingIdsRequired.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body2">
+            <Typography sx={{ fontWeight: "bold" }} variant="body2">
               Building requirements
             </Typography>
             {buildingRequirementsJsx}
@@ -146,7 +153,7 @@ export const BuildingModal: FC<{}> = () => {
         )}
         {villagerIdsRequired.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body2">
+            <Typography sx={{ fontWeight: "bold" }} variant="body2">
               Villager requirements
             </Typography>
             {villagerRequirementsJsx}
@@ -165,19 +172,23 @@ export const BuildingModal: FC<{}> = () => {
       <DialogTitle>{building.name}</DialogTitle>
 
       <DialogContent>
-        <PlaceholderText
-          text={building.description}
-          variant="body2"
-        />
+        {isUnbuiltOrBuilding && (
+          <PlaceholderText
+            text={building.text.preBuild}
+            variant="body2"
+          />
+        )}
+        {!isUnbuiltOrBuilding && (
+          <PlaceholderText
+            text={building.text.postBuild}
+            variant="body2"
+          />
+        )}
 
         {affectedResources.length !== 0 && (
           <>
-            <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Grid
-              container
-              spacing={1}
-              sx={{ marginTop: theme.spacing(1) }}
-            >
+            <Divider sx={{ mt: 1 }} />
+            <Grid container spacing={1} sx={{ mt: 1 }}>
               {affectedResources.map((resource) => {
                 const amount = building.gatherResources[resource];
                 const isPositive = amount > 0;
@@ -188,8 +199,9 @@ export const BuildingModal: FC<{}> = () => {
                   <OutcomeIconWithText
                     key={resource}
                     icon={RESOURCE_TO_ICON[resource]}
-                    outcome={isPositive ? "positive" : "negative"}
+                    isPositive={isPositive}
                     text={iconText}
+                    disabled={!isBuilt}
                   />
                 );
               })}
@@ -199,11 +211,8 @@ export const BuildingModal: FC<{}> = () => {
 
         {isBuilding && (
           <>
-            <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Typography
-              sx={{ marginTop: theme.spacing(1) }}
-              variant="body2"
-            >
+            <Divider sx={{ mt: 1 }} />
+            <Typography sx={{ mt: 1 }} variant="body2">
               {`Building in progress. Days remaining: ${townBuilding?.buildTimeRemaining}`}
             </Typography>
           </>
@@ -211,19 +220,16 @@ export const BuildingModal: FC<{}> = () => {
 
         {isRepairing && (
           <>
-            <Divider sx={{ marginTop: theme.spacing(1) }} />
-            <Typography
-              sx={{ marginTop: theme.spacing(1) }}
-              variant="body2"
-            >
+            <Divider sx={{ mt: 1 }} />
+            <Typography sx={{ mt: 1 }} variant="body2">
               {`Repair in progress. Days remaining: ${townBuilding?.repairTimeRemaining}`}
             </Typography>
           </>
         )}
 
-        {isBuilt && building.id === 152 && (
+        {isBuilt && building.id === 42 && (
           <>
-            <Divider sx={{ marginTop: theme.spacing(1) }} />
+            <Divider sx={{ mt: 1 }} />
             <MarketStall />
           </>
         )}

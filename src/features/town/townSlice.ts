@@ -14,7 +14,7 @@ import {
   TIER_TO_ENABLED_RESOURCES,
   TIER_TO_REQUIREMENTS,
 } from "features/town/constants";
-// import { ID_TO_VILLAGER } from "features/villager/constants";
+import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Resource } from "features/resource/types";
@@ -105,10 +105,18 @@ export const townSlice = createSlice({
           "under construction";
       } else {
         // Start construction of new building
+        const numberOfBuilders = state.player.villagers.filter(
+          (villager) =>
+            ID_TO_VILLAGER[villager.id].specialty === "Builder" &&
+            villager.state === "healthy",
+        ).length;
         nextBuildings.push({
           id,
           state: "under construction",
-          buildTimeRemaining: buildTime,
+          buildTimeRemaining: Math.max(
+            buildTime - numberOfBuilders,
+            1,
+          ),
           repairTimeRemaining: 0,
         });
       }
@@ -228,6 +236,11 @@ export const townSlice = createSlice({
 
       // Update buildings
       const nextTownBuildings = [...state.player.buildings];
+      const numberOfBuilders = state.player.villagers.filter(
+        (villager) =>
+          ID_TO_VILLAGER[villager.id].specialty === "Builder" &&
+          villager.state === "healthy",
+      ).length;
       buildings.forEach((townBuilding) => {
         const { id, state } = townBuilding;
 
@@ -245,15 +258,24 @@ export const townSlice = createSlice({
           id,
           state,
           buildTimeRemaining:
-            state === "destroyed" ? building.buildTime : 0,
+            state === "destroyed"
+              ? Math.max(building.buildTime - numberOfBuilders, 1)
+              : 0,
           repairTimeRemaining:
-            state === "damaged" ? building.repairTime : 0,
+            state === "damaged"
+              ? Math.max(building.repairTime - numberOfBuilders, 1)
+              : 0,
         });
       });
       state.player.buildings = nextTownBuildings;
 
       // Update villagers
       const nextTownVillagers = [...state.player.villagers];
+      const numberOfHealers = nextTownVillagers.filter(
+        (villager) =>
+          ID_TO_VILLAGER[villager.id].specialty === "Healer" &&
+          villager.state === "healthy",
+      ).length;
       villagers.forEach((townVillager) => {
         const { id, state } = townVillager;
 
@@ -266,12 +288,13 @@ export const townSlice = createSlice({
         }
 
         // Add new villager state
-        // TODO: Dynamic recovery time based on town
-        // const villager = ID_TO_VILLAGER[id];
         nextTownVillagers.push({
           id,
           state,
-          recoveryTimeRemaining: state === "injured" ? 8 : 0,
+          recoveryTimeRemaining:
+            state === "injured"
+              ? Math.max(8 - numberOfHealers, 1)
+              : 0,
         });
       });
       state.player.villagers = nextTownVillagers;
@@ -321,5 +344,17 @@ export const selectPlayerBuildings = (state: RootState) =>
   state.town.player.buildings;
 export const selectPlayerVillagers = (state: RootState) =>
   state.town.player.villagers;
+export const selectPlayerScouts = (state: RootState) =>
+  state.town.player.villagers.filter(
+    (villager) =>
+      villager.state === "healthy" &&
+      ID_TO_VILLAGER[villager.id].specialty === "Scout",
+  ).length;
+export const selectPlayerSpies = (state: RootState) =>
+  state.town.player.villagers.filter(
+    (villager) =>
+      villager.state === "healthy" &&
+      ID_TO_VILLAGER[villager.id].specialty === "Spy",
+  ).length;
 
 export const townReducer = townSlice.reducer;

@@ -47,10 +47,7 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
       return (
         <>
           <ConstructionIcon />
-          <Typography
-            sx={{ marginLeft: theme.spacing(0.25) }}
-            variant="body1"
-          >
+          <Typography sx={{ ml: 0.25 }} variant="body1">
             {townBuilding?.repairTimeRemaining}
           </Typography>
         </>
@@ -61,10 +58,7 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
       return (
         <>
           <ConstructionIcon />
-          <Typography
-            sx={{ marginLeft: theme.spacing(0.25) }}
-            variant="body1"
-          >
+          <Typography sx={{ ml: 0.25 }} variant="body1">
             {townBuilding?.buildTimeRemaining}
           </Typography>
         </>

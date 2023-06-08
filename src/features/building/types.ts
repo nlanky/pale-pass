@@ -18,7 +18,12 @@ export interface BuildingRequirements {
 export interface Building {
   id: number;
   name: string;
-  description: string;
+  text: {
+    /** Text that will show before player has built/discovered building */
+    preBuild: string;
+    /** Text that will show after player has built/discovered building */
+    postBuild: string;
+  };
   /** Whether player can build building manually */
   canBuild: boolean;
   /** Tier, building, villager requirements for building */

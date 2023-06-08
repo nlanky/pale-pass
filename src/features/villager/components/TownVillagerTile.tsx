@@ -47,10 +47,7 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
       return (
         <>
           <HealingIcon />
-          <Typography
-            sx={{ marginLeft: theme.spacing(0.25) }}
-            variant="body1"
-          >
+          <Typography sx={{ ml: 0.25 }} variant="body1">
             {townVillager?.recoveryTimeRemaining}
           </Typography>
         </>

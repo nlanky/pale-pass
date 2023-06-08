@@ -20,7 +20,7 @@ In order for a building to appear in the game, you must amend the `ID_TO_BUILDIN
 Here is a summary of those properties:
 - `id` - A unique identifier for each building. We match this up to the # column in the Google Sheet.
 - `name` - How you want the name of the building to appear in the UI.
-- `description` - This is shown when you click on a building on the buildings view.
+- `text` - An object that allows us to set text that appears before a building is built(`preBuild`) and after it is built (`postBuild`). This is shown when you click on a building on the buildings view.
 - `canBuild` - Whether the player can build this building by spending an amount of resources in the buildings view.
 - `requirements` - What the building requires before the player can build it. An object with three properties - `tier`, `buildingIds`, and `villagerIds`. `tier` refers to the player's town tier. `buildingIds` and `villagerIds` are arrays of IDs. Make sure these match up to the correct IDs using the codebase or the Google Sheet.
 - `gatherResources` - A `Resources` object (see `src/features/resource/types.ts`) that indicates the quantity of each resource this building will produce each day when built and undamaged.
@@ -44,6 +44,7 @@ Here is a summary of those properties:
 - `name` - How you want the name of the villager to appear in the UI.
 - `occupation` - This will be shown in several places in the UI to add some character to the villager.
 - `description` - This is shown when you click on a villager on the villagers view.
+- `specialty` - A villager can have one of six specialties: Builder (decreased build/repair times), Gatherer (increased resource gathering rates), Healer (decreased recovery times), Scout (allows exploring more map tiles), Soldier (increased military strength), or Spy (shows more enemy town stats).
 - `canRecruit` - Whether the player can recruit this villager in the villagers view.
 - `requirements` - See "Adding a building".
 - `gatherResources` - See "Adding a building".

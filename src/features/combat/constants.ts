@@ -2,7 +2,6 @@
 // Interfaces & Types
 import type { MilitaryStrength } from "features/combat/types";
 
-// TODO: Set difficulty of each enemy player
 export const PLAYER_ID_TO_MILITARY_STRENGTH: Record<
   number,
   MilitaryStrength
@@ -14,19 +13,19 @@ export const PLAYER_ID_TO_MILITARY_STRENGTH: Record<
     mounted: 0,
   },
   2: {
-    handToHand: 0,
-    archery: 0,
-    mounted: 0,
+    handToHand: 1,
+    archery: 2,
+    mounted: 1,
   },
   3: {
-    handToHand: 0,
-    archery: 0,
-    mounted: 0,
+    handToHand: 2,
+    archery: 1,
+    mounted: 2,
   },
   4: {
-    handToHand: 0,
-    archery: 0,
-    mounted: 0,
+    handToHand: 3,
+    archery: 3,
+    mounted: 3,
   },
 };
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLiC MODULES
-import { Grid, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -17,7 +17,7 @@ import { EventOutcome } from "features/event/components";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
-import type { Outcome } from "features/event/types";
+import type { Choice, Outcome } from "features/event/types";
 // Redux
 import {
   completeEvent,
@@ -28,7 +28,6 @@ import { setView } from "features/game/gameSlice";
 export const EventView: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
   const event = useAppSelector(selectActiveEvent);
 
   // Local state
@@ -59,6 +58,12 @@ export const EventView: FC<{}> = () => {
     dispatch(completeEvent(eventOutcome as Outcome));
   };
 
+  // Utility functions
+  const isPlayerChoice = (choice: Choice) =>
+    choice.outcomes
+      .map((outcome) => outcome.text)
+      .includes(eventOutcome?.text || "");
+
   return (
     <StyledContainer>
       <Grid container direction="column">
@@ -66,10 +71,7 @@ export const EventView: FC<{}> = () => {
           text={event.introductionText}
           variant="body2"
         />
-        <Grid
-          item
-          sx={{ margin: theme.spacing(1, 0), width: "100%" }}
-        >
+        <Grid item sx={{ mx: 0, my: 1, width: "100%" }}>
           <img src={event.image} style={{ maxWidth: "100%" }} />
         </Grid>
         <Grid
@@ -88,11 +90,10 @@ export const EventView: FC<{}> = () => {
                   onChoiceClick(choice.outcomes);
                 }}
                 sx={{
-                  border: choice.outcomes
-                    .map((outcome) => outcome.text)
-                    .includes(eventOutcome?.text || "")
-                    ? `2px solid ${theme.palette.parchmentDark.main}`
-                    : "2px solid transparent",
+                  border: 2,
+                  borderColor: isPlayerChoice(choice)
+                    ? "parchmentDark.main"
+                    : "transparent",
                 }}
                 variant="contained"
               >
@@ -106,7 +107,7 @@ export const EventView: FC<{}> = () => {
             <EventOutcome outcome={eventOutcome} />
             <ReturnToTownButton
               onClick={onCompleteEvent}
-              sx={{ marginTop: theme.spacing(1) }}
+              sx={{ mt: 1 }}
             />
           </>
         )}

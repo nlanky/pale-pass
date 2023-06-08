@@ -9,7 +9,6 @@ import {
   FormGroup,
   TextField,
   Typography,
-  useTheme,
 } from "@mui/material";
 
 // LOCAL FILES
@@ -36,7 +35,6 @@ import { setNameAndPronouns } from "features/player/playerSlice";
 export const CreateCharacter: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
 
   // Local state
   const [name, setName] = useState("");
@@ -138,18 +136,10 @@ export const CreateCharacter: FC<{}> = () => {
 
   return (
     <StyledContainer>
-      <Typography
-        component="h1"
-        sx={{ marginBottom: theme.spacing(1) }}
-        variant="h4"
-      >
+      <Typography component="h1" sx={{ mb: 1 }} variant="h4">
         Create Your Character
       </Typography>
-      <Typography
-        component="h2"
-        sx={{ marginTop: theme.spacing(1) }}
-        variant="h5"
-      >
+      <Typography component="h2" sx={{ mt: 1 }} variant="h5">
         Name
       </Typography>
       <TextField
@@ -158,21 +148,13 @@ export const CreateCharacter: FC<{}> = () => {
         required
         value={name}
       />
-      <Typography
-        component="h2"
-        sx={{ marginTop: theme.spacing(1) }}
-        variant="h5"
-      >
+      <Typography component="h2" sx={{ mt: 1 }} variant="h5">
         Pronouns
       </Typography>
       <Typography variant="body2">
         Choose all that apply for each person
       </Typography>
-      <Typography
-        component="h3"
-        sx={{ marginTop: theme.spacing(1) }}
-        variant="h6"
-      >
+      <Typography component="h3" sx={{ mt: 1 }} variant="h6">
         2nd Person
       </Typography>
       <FormGroup row>
@@ -207,11 +189,7 @@ export const CreateCharacter: FC<{}> = () => {
           label="it / its / itself"
         />
       </FormGroup>
-      <Typography
-        component="h3"
-        sx={{ marginTop: theme.spacing(1) }}
-        variant="h6"
-      >
+      <Typography component="h3" sx={{ mt: 1 }} variant="h6">
         3rd Person
       </Typography>
       <FormGroup row>
@@ -276,18 +254,11 @@ export const CreateCharacter: FC<{}> = () => {
           label="they / them / their / theirs / themself / themselves"
         />
       </FormGroup>
-      <StyledButton
-        onClick={onStartGame}
-        sx={{ marginTop: theme.spacing(1) }}
-      >
+      <StyledButton onClick={onStartGame} sx={{ mt: 1 }}>
         Start Game
       </StyledButton>
       {error && (
-        <Typography
-          color="error"
-          sx={{ marginTop: theme.spacing(1) }}
-          variant="body2"
-        >
+        <Typography color="error" sx={{ mt: 1 }} variant="body2">
           Please enter a name and at least one choice for your 2nd and
           3rd person pronouns
         </Typography>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Slider, Typography, useTheme } from "@mui/material";
+import { Grid, Slider, Typography } from "@mui/material";
 import {
   ArrowRightAlt as ArrowRightAltIcon,
   Handshake as HandshakeIcon,
@@ -36,7 +36,6 @@ import {
 export const MarketStall: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
   const enabledResources = useAppSelector(selectEnabledResources);
   const playerResources = useAppSelector(selectPlayerResources);
 
@@ -90,19 +89,9 @@ export const MarketStall: FC<{}> = () => {
   }
 
   return (
-    <Grid
-      container
-      direction="column"
-      sx={{ marginTop: theme.spacing(1) }}
-    >
+    <Grid container direction="column" sx={{ mt: 1 }}>
       <Typography variant="body2">{tradeText}</Typography>
-      <Grid
-        container
-        item
-        spacing={2}
-        sx={{ marginTop: 0 }}
-        wrap="nowrap"
-      >
+      <Grid container item spacing={2} sx={{ mt: 0 }} wrap="nowrap">
         <Grid container direction="column" item>
           <Typography align="center" variant="body2">
             Player Resources
@@ -122,9 +111,10 @@ export const MarketStall: FC<{}> = () => {
                     onSelectFromResource(resource);
                   }}
                   sx={{
-                    border: isSelected
-                      ? `2px solid ${theme.palette.parchmentDark.light}`
-                      : `2px solid ${theme.palette.parchmentDark.dark}`,
+                    border: 2,
+                    borderColor: isSelected
+                      ? "parchmentDark.light"
+                      : "parchmentDark.dark",
                     cursor: "pointer",
                   }}
                   xs={6}
@@ -173,9 +163,10 @@ export const MarketStall: FC<{}> = () => {
                     onSelectToResource(resource);
                   }}
                   sx={{
-                    border: isSelected
-                      ? `2px solid ${theme.palette.parchmentDark.light}`
-                      : `2px solid ${theme.palette.parchmentDark.dark}`,
+                    border: 2,
+                    borderColor: isSelected
+                      ? "parchmentDark.light"
+                      : "parchmentDark.dark",
                     cursor: "pointer",
                   }}
                   xs={6}
@@ -200,7 +191,7 @@ export const MarketStall: FC<{}> = () => {
           <Grid
             alignItems="center"
             container
-            sx={{ marginTop: theme.spacing(2) }}
+            sx={{ mt: 2 }}
             wrap="nowrap"
           >
             <Grid

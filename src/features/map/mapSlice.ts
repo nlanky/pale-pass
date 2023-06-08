@@ -4,24 +4,24 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Constants
-import { MAP_TILES } from "features/map/constants";
+import { TILES } from "features/map/constants";
 // Interfaces & Types
-import type { MapTile } from "features/map/types";
+import type { Tile } from "features/map/types";
 import type { RootState } from "features/redux/store";
 
 interface MapState {
-  tiles: MapTile[];
+  tiles: Tile[];
 }
 
 const initialState: MapState = {
-  tiles: MAP_TILES,
+  tiles: TILES,
 };
 
 export const mapSlice = createSlice({
   name: "map",
   initialState,
   reducers: {
-    exploreTile: (state, action: PayloadAction<MapTile>) => {
+    exploreTile: (state, action: PayloadAction<Tile>) => {
       const { x, y } = action.payload;
       const tileIndex = state.tiles.findIndex(
         (tile) => tile.x === x && tile.y === y,

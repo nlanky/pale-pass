@@ -2,7 +2,7 @@
 import type { FC, ReactNode } from "react";
 
 // PUBLiC MODULES
-import { Grid, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -23,9 +23,6 @@ interface EventOutcomeProps {
 }
 
 export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
-  // Hooks
-  const theme = useTheme();
-
   // Derived variables
   const outcomeJsx: ReactNode[] = [];
   for (const resource in outcome.resources) {
@@ -39,7 +36,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
         <OutcomeIconWithText
           key={`resource_${resource}`}
           icon={RESOURCE_TO_ICON[resource as Resource]}
-          outcome={isPositive ? "positive" : "negative"}
+          isPositive={isPositive}
           text={iconText}
         />,
       );
@@ -58,7 +55,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
         <OutcomeIconWithText
           key={`rpt_${resource}`}
           icon={RESOURCE_TO_ICON[resource as Resource]}
-          outcome={isPositive ? "positive" : "negative"}
+          isPositive={isPositive}
           text={iconText}
         />,
       );
@@ -77,7 +74,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       <OutcomeIconWithText
         key={`building_${id}`}
         icon={icons[state]}
-        outcome={isPositive ? "positive" : "negative"}
+        isPositive={isPositive}
         text={`${name} ${state}`}
       />,
     );
@@ -91,7 +88,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       <OutcomeIconWithText
         key={`villager_${id}`}
         icon={icons[state]}
-        outcome={isPositive ? "positive" : "negative"}
+        isPositive={isPositive}
         text={`${name} the ${occupation} ${
           state === "healthy" ? "joins the town" : `is ${state}`
         }`}
@@ -100,15 +97,10 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
   });
 
   return (
-    <Grid
-      container
-      direction="column"
-      sx={{ marginTop: theme.spacing(1) }}
-    >
+    <Grid container direction="column" sx={{ mt: 1 }}>
       <PlaceholderText
         sx={{
-          marginBottom:
-            outcomeJsx.length === 0 ? 0 : theme.spacing(1),
+          mb: outcomeJsx.length === 0 ? 0 : 1,
         }}
         text={outcome.text}
         variant="body2"

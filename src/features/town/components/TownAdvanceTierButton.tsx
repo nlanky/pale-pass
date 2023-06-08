@@ -69,13 +69,13 @@ export const TownAdvanceTierButton: FC<{}> = () => {
 
     return (
       <Grid container direction="column">
-        <Typography sx={{ fontWeight: 700 }} variant="body2">
+        <Typography sx={{ fontWeight: "bold" }} variant="body2">
           Resource requirements
         </Typography>
         {resourceRequirements}
         {buildingRequirements.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body2">
+            <Typography sx={{ fontWeight: "bold" }} variant="body2">
               Building requirements
             </Typography>
             {buildingRequirements}
@@ -83,7 +83,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
         )}
         {villagerRequirements.length !== 0 && (
           <>
-            <Typography sx={{ fontWeight: 700 }} variant="body2">
+            <Typography sx={{ fontWeight: "bold" }} variant="body2">
               Villager requirements
             </Typography>
             {villagerRequirements}

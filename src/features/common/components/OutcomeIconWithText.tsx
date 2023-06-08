@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLiC MODULES
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -10,33 +10,37 @@ import { OutcomeIcon } from "features/common/components";
 
 interface OutcomeIconWithTextProps {
   icon: string;
-  outcome: "positive" | "negative";
+  isPositive: boolean;
   text: string;
+  disabled?: boolean;
 }
 
 export const OutcomeIconWithText: FC<OutcomeIconWithTextProps> = ({
   icon,
-  outcome,
+  isPositive,
   text,
-}) => {
-  // Hooks
-  const theme = useTheme();
-
-  return (
-    <Grid
-      alignItems="center"
-      container
-      item
-      sx={{ width: "auto" }}
-      wrap="nowrap"
+  disabled = false,
+}) => (
+  <Grid
+    alignItems="center"
+    container
+    item
+    sx={{ width: "auto" }}
+    wrap="nowrap"
+  >
+    <OutcomeIcon
+      icon={icon}
+      isPositive={isPositive}
+      disabled={disabled}
+    />
+    <Typography
+      sx={{
+        color: disabled ? "text.disabled" : "text.primary",
+        ml: 1,
+      }}
+      variant="body2"
     >
-      <OutcomeIcon icon={icon} outcome={outcome} />
-      <Typography
-        sx={{ marginLeft: theme.spacing(1) }}
-        variant="body2"
-      >
-        {text}
-      </Typography>
-    </Grid>
-  );
-};
+      {text}
+    </Typography>
+  </Grid>
+);

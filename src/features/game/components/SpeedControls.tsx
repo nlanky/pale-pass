@@ -2,12 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import {
-  Grid,
-  IconButton,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import {
   FastForward as FastForwardIcon,
   FastRewind as FastRewindIcon,
@@ -35,7 +30,6 @@ import {
 export const SpeedControls: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const theme = useTheme();
   const gamePaused = useAppSelector(selectGamePaused);
   const gameSpeed = useAppSelector(selectGameSpeed);
 
@@ -60,7 +54,7 @@ export const SpeedControls: FC<{}> = () => {
       wrap="nowrap"
     >
       <Grid alignItems="center" container direction="column">
-        <Typography sx={{ fontWeight: 700 }} variant="body2">
+        <Typography sx={{ fontWeight: "bold" }} variant="body2">
           Speed
         </Typography>
         <Typography variant="body2">{gameSpeed}x</Typography>
@@ -69,10 +63,10 @@ export const SpeedControls: FC<{}> = () => {
         disabled={gameSpeed === MIN_GAME_SPEED}
         onClick={onGameSpeedDecrease}
         sx={{
-          backgroundColor: theme.palette.parchmentDark.main,
+          backgroundColor: "parchmentDark.main",
           color: "white",
           "&:hover": {
-            backgroundColor: theme.palette.parchmentDark.light,
+            backgroundColor: "parchmentDark.light",
           },
           "&:disabled": {
             backgroundColor: "lightgray",
@@ -84,11 +78,11 @@ export const SpeedControls: FC<{}> = () => {
       <IconButton
         onClick={onGamePauseToggle}
         sx={{
-          backgroundColor: theme.palette.parchmentDark.main,
+          backgroundColor: "parchmentDark.main",
           color: "white",
-          marginLeft: theme.spacing(0.25),
+          ml: 0.25,
           "&:hover": {
-            backgroundColor: theme.palette.parchmentDark.light,
+            backgroundColor: "parchmentDark.light",
           },
           "&:disabled": {
             backgroundColor: "lightgray",
@@ -101,11 +95,11 @@ export const SpeedControls: FC<{}> = () => {
         disabled={gameSpeed === MAX_GAME_SPEED}
         onClick={onGameSpeedIncrease}
         sx={{
-          backgroundColor: theme.palette.parchmentDark.main,
+          backgroundColor: "parchmentDark.main",
           color: "white",
-          marginLeft: theme.spacing(0.25),
+          ml: 0.25,
           "&:hover": {
-            backgroundColor: theme.palette.parchmentDark.light,
+            backgroundColor: "parchmentDark.light",
           },
           "&:disabled": {
             backgroundColor: "lightgray",

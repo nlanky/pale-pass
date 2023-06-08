@@ -15,11 +15,21 @@ export interface VillagerRequirements {
   villagerIds: number[];
 }
 
+export type VillagerSpecialty =
+  | "Builder"
+  | "Gatherer"
+  | "Healer"
+  | "Scout"
+  | "Soldier"
+  | "Spy";
+
 export interface Villager {
   id: number;
   name: string;
   occupation: string;
   description: string;
+  /** Villager's specialty which dictates their ability */
+  specialty: VillagerSpecialty;
   /** Whether player can recruit villager manually */
   canRecruit: boolean;
   /** Tier, building, villager requirements for villager */

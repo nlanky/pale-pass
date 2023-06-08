@@ -26,7 +26,7 @@ export interface Outcome {
   probability: number;
 }
 
-interface Choice {
+export interface Choice {
   /** Text displayed on choice button */
   text: string;
   /** List of possible outcomes given choice */

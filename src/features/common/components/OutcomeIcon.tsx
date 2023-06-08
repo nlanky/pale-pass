@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Icons & Images
@@ -13,35 +13,54 @@ import {
 
 interface OutcomeIconProps {
   icon: string;
-  outcome: "positive" | "negative";
+  isPositive: boolean;
+  disabled: boolean;
 }
 
 export const OutcomeIcon: FC<OutcomeIconProps> = ({
   icon,
-  outcome,
-}) => (
-  <Grid item sx={{ position: "relative" }}>
-    {outcome === "positive" && (
+  isPositive,
+  disabled,
+}) => {
+  // Hooks
+  const theme = useTheme();
+
+  return (
+    <Grid item sx={{ position: "relative" }}>
+      {isPositive && (
+        <img
+          src={positiveOutcomeIcon}
+          style={{ width: 64, height: 64 }}
+        />
+      )}
+      {!isPositive && (
+        <img
+          src={negativeOutcomeIcon}
+          style={{ width: 64, height: 64 }}
+        />
+      )}
       <img
-        src={positiveOutcomeIcon}
-        style={{ width: 64, height: 64 }}
+        src={icon}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: 64,
+          height: 64,
+        }}
       />
-    )}
-    {outcome === "negative" && (
-      <img
-        src={negativeOutcomeIcon}
-        style={{ width: 64, height: 64 }}
-      />
-    )}
-    <img
-      src={icon}
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: 64,
-        height: 64,
-      }}
-    />
-  </Grid>
-);
+      {disabled && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: 64,
+            height: 64,
+            backgroundColor: theme.palette.action.disabled,
+          }}
+        />
+      )}
+    </Grid>
+  );
+};
