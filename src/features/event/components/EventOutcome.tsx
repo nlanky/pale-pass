@@ -53,7 +53,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
       }${resourceAmount} ${resource} per day`;
       outcomeJsx.push(
         <OutcomeIconWithText
-          key={`rpt_${resource}`}
+          key={`rpd_${resource}`}
           icon={RESOURCE_TO_ICON[resource as Resource]}
           isPositive={isPositive}
           text={iconText}

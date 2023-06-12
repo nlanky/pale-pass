@@ -8,9 +8,10 @@ import { DAY_TIME } from "features/game/constants";
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
 import {
-  incrementDay,
+  selectDay,
   selectGamePaused,
   selectGameSpeed,
+  setDay,
 } from "features/game/gameSlice";
 
 /**
@@ -19,6 +20,7 @@ import {
 export const useDayTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  const day = useAppSelector(selectDay);
   const gamePaused = useAppSelector(selectGamePaused);
   const gameSpeed = useAppSelector(selectGameSpeed);
 
@@ -29,10 +31,10 @@ export const useDayTimer = () => {
     }
 
     const timer = setInterval(() => {
-      dispatch(incrementDay());
+      dispatch(setDay(day + 1));
     }, DAY_TIME / gameSpeed);
     return () => {
       clearInterval(timer);
     };
-  }, [dispatch, gamePaused, gameSpeed]);
+  }, [day, dispatch, gamePaused, gameSpeed]);
 };

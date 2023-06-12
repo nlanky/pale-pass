@@ -77,15 +77,15 @@ export const TownCombat: FC<{}> = () => {
   let battleOutcomeTextColour = "";
   if (battleOutcome) {
     switch (battleOutcome.victoryState) {
-      case "defeat":
+      case "Defeat":
         battleOutcomeText = "Your army was defeated";
         battleOutcomeTextColour = "error.main";
         break;
-      case "stalemate":
+      case "Stalemate":
         battleOutcomeText = "The battle ends in a stalemate";
         battleOutcomeTextColour = "error.main";
         break;
-      case "victory":
+      case "Victory":
         battleOutcomeText = "Your army was victorious";
         battleOutcomeTextColour = "success.main";
         break;

@@ -110,11 +110,11 @@ export const determineBattleOutcome = (
 
   let victoryState: VictoryState;
   if (outcomesByType.victory >= 2) {
-    victoryState = "victory";
+    victoryState = "Victory";
   } else if (outcomesByType.defeat >= 2) {
-    victoryState = "defeat";
+    victoryState = "Defeat";
   } else {
-    victoryState = "stalemate";
+    victoryState = "Stalemate";
   }
 
   // Determine if villagers get injured or die
@@ -128,15 +128,15 @@ export const determineBattleOutcome = (
     let deathProbability = 0;
     let injuryProbability = 0;
     switch (victoryState) {
-      case "victory":
+      case "Victory":
         deathProbability += VICTORY_DEATH_BASE_PROBABILITY;
         injuryProbability += VICTORY_INJURY_BASE_PROBABILITY;
         break;
-      case "stalemate":
+      case "Stalemate":
         deathProbability += STALEMATE_DEATH_BASE_PROBABILITY;
         injuryProbability += STALEMATE_INJURY_BASE_PROBABILITY;
         break;
-      case "defeat":
+      case "Defeat":
         deathProbability += DEFEAT_DEATH_BASE_PROBABILITY;
         injuryProbability += DEFEAT_INJURY_BASE_PROBABILITY;
         break;

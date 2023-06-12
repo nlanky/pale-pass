@@ -12,6 +12,7 @@ import {
   TownBuildingsButton,
   TownExploreButton,
   TownImage,
+  TownLogButton,
   TownMapButton,
   TownResources,
   TownVillagersButton,
@@ -52,6 +53,9 @@ export const TownView: FC<{}> = () => {
           </Grid>
           <Grid item>
             <TownMapButton />
+          </Grid>
+          <Grid item>
+            <TownLogButton />
           </Grid>
         </Grid>
       </Grid>

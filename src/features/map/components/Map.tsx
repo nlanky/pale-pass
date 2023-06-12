@@ -38,7 +38,7 @@ export const Map: FC<{}> = () => {
             <ReturnToTownButton />
           </Grid>
           <Grid item>
-            <TownResources showRpt={false} />
+            <TownResources showRpd={false} />
           </Grid>
         </Grid>
       </Grid>

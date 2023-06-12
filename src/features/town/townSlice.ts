@@ -22,7 +22,7 @@ import type { Town } from "features/town/types";
 // Redux
 import { completeBattle } from "features/combat/combatSlice";
 import { completeEvent } from "features/event/eventSlice";
-import { incrementDay } from "features/game/gameSlice";
+import { setDay } from "features/game/gameSlice";
 import { exploreTile } from "features/map/mapSlice";
 // Utility functions
 import {
@@ -53,8 +53,8 @@ export const townSlice = createSlice({
   name: "town",
   initialState,
   reducers: {
-    advanceTier: (state) => {
-      const newTier = state.player.tier + 1;
+    setTier: (state, action: PayloadAction<number>) => {
+      const newTier = action.payload;
 
       // Player pays cost in resources to advance tier
       state.player.resources = mergeResources(
@@ -174,7 +174,7 @@ export const townSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(incrementDay, (state) => {
+    builder.addCase(setDay, (state) => {
       state.player.resources = getNextDayResources(state.player);
 
       // Check building repair/building times
@@ -325,17 +325,19 @@ export const townSlice = createSlice({
 });
 
 export const {
-  advanceTier,
   buildBuilding,
   healVillager,
   recruitVillager,
   repairBuilding,
+  setTier,
   tradeResources,
 } = townSlice.actions;
 
 // SELECTORS
 export const selectPlayerTown = (state: RootState) =>
   state.town.player;
+export const selectPlayerTier = (state: RootState) =>
+  state.town.player.tier;
 export const selectPlayerResources = (state: RootState) =>
   state.town.player.resources;
 export const selectEnabledResources = (state: RootState) =>

@@ -35,8 +35,8 @@ export const gameSlice = createSlice({
     setView: (state, action: PayloadAction<View>) => {
       state.view = action.payload;
     },
-    incrementDay: (state) => {
-      state.day += 1;
+    setDay: (state, action: PayloadAction<number>) => {
+      state.day = action.payload;
     },
     increaseGameSpeed: (state) => {
       state.speed = state.speed * 2;
@@ -74,8 +74,8 @@ export const gameSlice = createSlice({
 
 export const {
   decreaseGameSpeed,
-  incrementDay,
   increaseGameSpeed,
+  setDay,
   setView,
   togglePause,
 } = gameSlice.actions;

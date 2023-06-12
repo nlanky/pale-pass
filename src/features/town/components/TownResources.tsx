@@ -26,11 +26,11 @@ import {
 } from "features/town/townSlice";
 
 interface TownResourcesProps {
-  showRpt?: boolean;
+  showRpd?: boolean;
 }
 
 export const TownResources: FC<TownResourcesProps> = ({
-  showRpt = true,
+  showRpd = true,
 }) => {
   // Hooks
   const resources = useAppSelector(selectPlayerResources);
@@ -85,7 +85,7 @@ export const TownResources: FC<TownResourcesProps> = ({
                 {resources[resource]}
               </Typography>
             </Grid>
-            {showRpt && (
+            {showRpd && (
               <Grid
                 alignItems="center"
                 container

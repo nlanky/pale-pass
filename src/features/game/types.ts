@@ -7,4 +7,5 @@ export type View =
   | "event"
   | "building"
   | "villager"
-  | "combat";
+  | "combat"
+  | "log";

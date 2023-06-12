@@ -6,11 +6,12 @@ import type { FC } from "react";
 import { TownBuildings } from "features/building/components";
 import { TownCombat } from "features/combat/components";
 import { EventView } from "features/event/components";
-import { Introduction } from "features/tutorial/Introduction";
+import { Log } from "features/log/components";
 import { Map } from "features/map/components";
 import { Menu } from "features/menu/Menu";
 import { CreateCharacter } from "features/player/components";
 import { TownView } from "features/town/components";
+import { Introduction } from "features/tutorial/Introduction";
 import { TownVillagers } from "features/villager/components";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
@@ -31,6 +32,7 @@ export const Game: FC<{}> = () => {
       {view === "building" && <TownBuildings />}
       {view === "villager" && <TownVillagers />}
       {view === "combat" && <TownCombat />}
+      {view === "log" && <Log />}
     </>
   );
 };

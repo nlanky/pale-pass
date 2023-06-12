@@ -2,7 +2,7 @@
 // Interfaces & Types
 import type { VillagerState } from "features/villager/types";
 
-export type VictoryState = "defeat" | "stalemate" | "victory";
+export type VictoryState = "Defeat" | "Stalemate" | "Victory";
 
 export interface BattleOutcome {
   enemyPlayerId: number;

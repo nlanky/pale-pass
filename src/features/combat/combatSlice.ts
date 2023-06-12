@@ -29,7 +29,7 @@ export const combatSlice = createSlice({
   reducers: {
     completeBattle: (state, action: PayloadAction<BattleOutcome>) => {
       if (
-        action.payload.victoryState === "victory" &&
+        action.payload.victoryState === "Victory" &&
         state.attackingPlayerId
       ) {
         state.conqueredPlayerIds = [
