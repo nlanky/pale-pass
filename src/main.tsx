@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 // PUBLIC MODULES
 import { ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 // LOCAL FILES
 // Components
@@ -13,7 +14,7 @@ import { Game } from "features/game/components";
 import "@fontsource/cormorant-garamond";
 import "main.css";
 // Redux
-import { store } from "features/redux/store";
+import { persistor, store } from "features/redux/store";
 // Theme
 import { theme } from "features/common/theme";
 
@@ -23,7 +24,9 @@ ReactDOM.createRoot(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <Game />
+        <PersistGate loading={<Game />} persistor={persistor}>
+          <Game />
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   </StrictMode>,

@@ -1,5 +1,17 @@
 // PUBLIC MODULES
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
+import type { PersistorOptions } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 // LOCAL FILES
 // Redux
@@ -13,19 +25,44 @@ import { playerReducer } from "features/player/playerSlice";
 import { townReducer } from "features/town/townSlice";
 import { villagerReducer } from "features/villager/villagerSlice";
 
-export const store = configureStore({
-  reducer: {
-    building: buildingReducer,
-    combat: combatReducer,
-    event: eventReducer,
-    game: gameReducer,
-    log: logReducer,
-    map: mapReducer,
-    player: playerReducer,
-    town: townReducer,
-    villager: villagerReducer,
-  },
+const rootReducer = combineReducers({
+  building: buildingReducer,
+  combat: combatReducer,
+  event: eventReducer,
+  game: gameReducer,
+  log: logReducer,
+  map: mapReducer,
+  player: playerReducer,
+  town: townReducer,
+  villager: villagerReducer,
 });
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [
+          FLUSH,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          REHYDRATE,
+        ],
+      },
+    }),
+});
+export const persistor = persistStore(store, {
+  // Ensures saved game is not loaded without user action
+  manualPersist: true,
+} as unknown as PersistorOptions);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
