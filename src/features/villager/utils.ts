@@ -1,7 +1,12 @@
 // LOCAL FILES
+// Constants
+import { NO_VILLAGER_REQUIREMENTS } from "features/villager/constants";
 // Interfaces & Types
 import type { Town } from "features/town/types";
-import type { Villager } from "features/villager/types";
+import type {
+  Villager,
+  VillagerRequirements,
+} from "features/villager/types";
 
 export const canRecruitVillager = (
   town: Town,
@@ -39,3 +44,11 @@ export const canRecruitVillager = (
 
   return true;
 };
+
+/**
+ * Simple function to create a full VillagerRequirements object from a partial definition.
+ */
+export const getVillagerRequirements = (
+  requirements: Partial<VillagerRequirements>,
+): VillagerRequirements =>
+  Object.assign({ ...NO_VILLAGER_REQUIREMENTS }, requirements);

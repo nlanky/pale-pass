@@ -1,7 +1,12 @@
 // LOCAL FILES
+// Constants
+import { NO_BUILDING_REQUIREMENTS } from "features/building/constants";
 // Interfaces & Types
 import type { Town } from "features/town/types";
-import type { Building } from "features/building/types";
+import type {
+  Building,
+  BuildingRequirements,
+} from "features/building/types";
 // Utility functions
 import { canAffordResourceAmount } from "features/resource/utils";
 
@@ -47,3 +52,11 @@ export const canBuildBuilding = (
 
   return true;
 };
+
+/**
+ * Simple function to create a full BuildingRequirements object from a partial definition.
+ */
+export const getBuildingRequirements = (
+  requirements: Partial<BuildingRequirements>,
+): BuildingRequirements =>
+  Object.assign({ ...NO_BUILDING_REQUIREMENTS }, requirements);

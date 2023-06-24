@@ -10,6 +10,7 @@ import type {
 } from "features/villager/types";
 // Utility functions
 import { getResources } from "features/resource/utils";
+import { getVillagerRequirements } from "features/villager/utils";
 
 export const NO_VILLAGER_REQUIREMENTS: VillagerRequirements = {
   tier: 1,
@@ -947,11 +948,19 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     id: 45,
     name: "TJ",
     occupation: "Sea Captain",
-    description: "",
+    description:
+      "A hardened salty sea dog, unwilling to even say please and thank you to an old lady.",
     specialty: "Soldier",
-    canRecruit: true,
-    requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    canRecruit: false,
+    requirements: getVillagerRequirements({ tier: 5 }),
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: -1,
+      Steel: -1,
+      Mythril: -1,
+      Amethyst: -1,
+    }),
     militaryStrength: {
       handToHand: 5,
       archery: 5,
@@ -968,11 +977,19 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     id: 46,
     name: "Sandpiper",
     occupation: "Knife Bird",
-    description: "",
+    description:
+      "A malevolent overlord of the pass, that seems strangely to look kindly upon your little town.",
     specialty: "Soldier",
-    canRecruit: true,
-    requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    canRecruit: false,
+    requirements: getVillagerRequirements({ tier: 5 }),
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: -1,
+      Steel: -1,
+      Mythril: -1,
+      Amethyst: -1,
+    }),
     militaryStrength: {
       handToHand: 5,
       archery: 5,
