@@ -358,5 +358,7 @@ export const selectPlayerSpies = (state: RootState) =>
       villager.state === "healthy" &&
       ID_TO_VILLAGER[villager.id].specialty === "Spy",
   ).length;
+export const selectPlayerHasCartographer = (state: RootState) =>
+  state.town.player.buildings.some((building) => building.id === 36);
 
 export const townReducer = townSlice.reducer;

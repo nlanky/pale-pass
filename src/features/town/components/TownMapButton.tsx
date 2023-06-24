@@ -2,19 +2,25 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
+import { Tooltip, Typography } from "@mui/material";
 import { Map as MapIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
 import { StyledButton } from "features/common/components";
 // Hooks
-import { useAppDispatch } from "features/redux/hooks";
+import {
+  useAppDispatch /*,useAppSelector*/,
+} from "features/redux/hooks";
 // Redux
 import { setView } from "features/game/gameSlice";
+// import { selectPlayerHasCartographer } from "features/town/townSlice";
 
 export const TownMapButton: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  // TODO: Add check back when map testing complete
+  // const hasCartographer = useAppSelector(selectPlayerHasCartographer);
 
   // Handlers
   const onMapClick = () => {
@@ -22,13 +28,24 @@ export const TownMapButton: FC<{}> = () => {
   };
 
   return (
-    <StyledButton
-      fullWidth
-      onClick={onMapClick}
-      startIcon={<MapIcon />}
-      variant="contained"
+    <Tooltip
+      title={
+        <Typography variant="body2">
+          {true ? "" : "You must build a Cartographer"}
+        </Typography>
+      }
     >
-      Map
-    </StyledButton>
+      <span>
+        <StyledButton
+          // disabled={!hasCartographer}
+          fullWidth
+          onClick={onMapClick}
+          startIcon={<MapIcon />}
+          variant="contained"
+        >
+          Map
+        </StyledButton>
+      </span>
+    </Tooltip>
   );
 };

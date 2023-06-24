@@ -95,7 +95,7 @@ export const TownAdvanceTierButton: FC<{}> = () => {
   };
 
   return (
-    <Tooltip arrow followCursor title={getTooltipTitle()}>
+    <Tooltip title={getTooltipTitle()}>
       <span>
         <StyledButton
           disabled={!canAdvanceTier}
