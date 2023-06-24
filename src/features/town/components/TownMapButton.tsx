@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Tooltip, Typography } from "@mui/material";
+// import { Tooltip, Typography } from "@mui/material";
 import { Map as MapIcon } from "@mui/icons-material";
 
 // LOCAL FILES
@@ -28,24 +28,24 @@ export const TownMapButton: FC<{}> = () => {
   };
 
   return (
-    <Tooltip
-      title={
-        <Typography variant="body2">
-          {true ? "" : "You must build a Cartographer"}
-        </Typography>
-      }
+    // <Tooltip
+    //   title={
+    //     <Typography variant="body2">
+    //       {true ? "" : "You must build a Cartographer"}
+    //     </Typography>
+    //   }
+    // >
+    //   <span>
+    <StyledButton
+      // disabled={!hasCartographer}
+      fullWidth
+      onClick={onMapClick}
+      startIcon={<MapIcon />}
+      variant="contained"
     >
-      <span>
-        <StyledButton
-          // disabled={!hasCartographer}
-          fullWidth
-          onClick={onMapClick}
-          startIcon={<MapIcon />}
-          variant="contained"
-        >
-          Map
-        </StyledButton>
-      </span>
-    </Tooltip>
+      Map
+    </StyledButton>
+    //   </span>
+    // </Tooltip>
   );
 };
