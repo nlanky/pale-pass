@@ -105,7 +105,7 @@ export const logSlice = createSlice({
         outcome;
       const newLogs: Log[] = [
         {
-          entry: `EVENT | Event ${event.id} complete`,
+          entry: `EVENT | Event: ${event.introductionText}`,
           shouldNotify: false,
         },
         {
@@ -151,9 +151,10 @@ export const logSlice = createSlice({
       const villagerChanges: string[] = [];
       villagers.forEach((eventVillager) => {
         const villager = ID_TO_VILLAGER[eventVillager.id];
-        villagerChanges.push(
-          `${villager.name} ${eventVillager.state}`,
-        );
+        const state = `${eventVillager.state
+          .slice(0, 1)
+          .toUpperCase()}${eventVillager.state.slice(1)}`;
+        villagerChanges.push(`${villager.name} (${state})`);
       });
 
       if (resourceChanges.length !== 0) {
