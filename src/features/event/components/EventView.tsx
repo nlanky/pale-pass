@@ -1,5 +1,5 @@
 // REACT
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FC } from "react";
 
 // PUBLiC MODULES
@@ -31,6 +31,7 @@ export const EventView: FC<{}> = () => {
   const event = useAppSelector(selectActiveEvent);
 
   // Local state
+  const [eventChoice, setEventChoice] = useState<Choice | null>(null);
   const [eventOutcome, setEventOutcome] = useState<Outcome | null>(
     null,
   );
@@ -42,27 +43,36 @@ export const EventView: FC<{}> = () => {
   }
 
   // Handlers
-  const onChoiceClick = (outcomes: Outcome[]) => {
-    const roll = Math.random();
-    let cumulativeProbability = 0;
-    for (const outcome of outcomes) {
-      cumulativeProbability += outcome.probability;
-      if (roll < cumulativeProbability) {
-        setEventOutcome(outcome);
-        break;
-      }
-    }
+  const onChoiceClick = (choice: Choice) => {
+    setEventChoice(choice);
   };
 
   const onCompleteEvent = () => {
-    dispatch(completeEvent(eventOutcome as Outcome));
+    if (eventChoice && eventOutcome) {
+      dispatch(
+        completeEvent({
+          event,
+          choice: eventChoice,
+          outcome: eventOutcome,
+        }),
+      );
+    }
   };
 
-  // Utility functions
-  const isPlayerChoice = (choice: Choice) =>
-    choice.outcomes
-      .map((outcome) => outcome.text)
-      .includes(eventOutcome?.text || "");
+  // Effects
+  useEffect(() => {
+    if (eventChoice) {
+      const roll = Math.random();
+      let cumulativeProbability = 0;
+      for (const outcome of eventChoice.outcomes) {
+        cumulativeProbability += outcome.probability;
+        if (roll < cumulativeProbability) {
+          setEventOutcome(outcome);
+          break;
+        }
+      }
+    }
+  }, [eventChoice]);
 
   return (
     <StyledContainer>
@@ -87,13 +97,14 @@ export const EventView: FC<{}> = () => {
                 disabled={eventOutcome !== null}
                 fullWidth
                 onClick={() => {
-                  onChoiceClick(choice.outcomes);
+                  onChoiceClick(choice);
                 }}
                 sx={{
                   border: 2,
-                  borderColor: isPlayerChoice(choice)
-                    ? "parchmentDark.main"
-                    : "transparent",
+                  borderColor:
+                    eventChoice?.text === choice.text
+                      ? "parchmentDark.main"
+                      : "transparent",
                 }}
                 variant="contained"
               >

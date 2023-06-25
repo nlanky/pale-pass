@@ -11,6 +11,16 @@ export interface EventRequirements {
   villagerIds: number[];
 }
 
+export interface EventBuilding {
+  id: number;
+  state: BuildingState;
+}
+
+export interface EventVillager {
+  id: number;
+  state: VillagerState;
+}
+
 export interface Outcome {
   /** Text displayed to player if this outcome is reached */
   text: string; // Flavour text
@@ -19,9 +29,9 @@ export interface Outcome {
   /** Resource per day changes */
   resourcesPerDay: Resources;
   /** Building changes */
-  buildings: { id: number; state: BuildingState }[];
+  buildings: EventBuilding[];
   /** Villager changes */
-  villagers: { id: number; state: VillagerState }[];
+  villagers: EventVillager[];
   /** Probability of outcome occurring. Between 0 and 1. All outcomes should add to 1. */
   probability: number;
 }

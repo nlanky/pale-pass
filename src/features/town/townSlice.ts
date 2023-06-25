@@ -220,7 +220,7 @@ export const townSlice = createSlice({
     });
     builder.addCase(completeEvent, (state, action) => {
       const { resources, resourcesPerDay, buildings, villagers } =
-        action.payload;
+        action.payload.outcome;
 
       // Modify resources
       state.player.resources = mergeResources(

@@ -94,17 +94,26 @@ export const logSlice = createSlice({
       state.logs = [
         ...state.logs,
         {
-          entry: `EVENT | Event ID ${id} triggered`,
+          entry: `EVENT | Event ${id} triggered`,
           shouldNotify: false,
         },
       ];
     });
     builder.addCase(completeEvent, (state, action) => {
+      const { event, choice, outcome } = action.payload;
       const { resources, resourcesPerDay, buildings, villagers } =
-        action.payload;
+        outcome;
       const newLogs: Log[] = [
         {
-          entry: `EVENT | Event complete`,
+          entry: `EVENT | Event ${event.id} complete`,
+          shouldNotify: false,
+        },
+        {
+          entry: `EVENT | Choice: ${choice.text}`,
+          shouldNotify: false,
+        },
+        {
+          entry: `EVENT | Outcome: ${outcome.text}`,
           shouldNotify: false,
         },
       ];
@@ -228,7 +237,7 @@ export const logSlice = createSlice({
 
       if (eventId) {
         newLogs.push({
-          entry: `MAP | Event ID ${eventId} triggered`,
+          entry: `MAP | Event ${eventId} triggered`,
           shouldNotify: false,
         });
       }

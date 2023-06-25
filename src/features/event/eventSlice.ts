@@ -6,7 +6,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // Constants
 import { EVENTS } from "features/event/constants";
 // Interfaces & Types
-import type { Event, Outcome } from "features/event/types";
+import type { Choice, Event, Outcome } from "features/event/types";
 import type { RootState } from "features/redux/store";
 // Redux
 import { exploreTile } from "features/map/mapSlice";
@@ -25,8 +25,15 @@ export const eventSlice = createSlice({
   name: "event",
   initialState,
   reducers: {
-    // @ts-ignore Need to specify action type for other slices
-    completeEvent: (state, action: PayloadAction<Outcome>) => {
+    completeEvent: (
+      state,
+      // @ts-ignore Need to specify action type for other slices
+      action: PayloadAction<{
+        event: Event;
+        choice: Choice;
+        outcome: Outcome;
+      }>,
+    ) => {
       state.active = null;
     },
     triggerEvent: (state, action: PayloadAction<Event>) => {

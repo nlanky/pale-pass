@@ -13,10 +13,10 @@ import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type {
   BattleOutcome,
+  BattleVillager,
   MilitaryStrength,
   VictoryState,
 } from "features/combat/types";
-import type { VillagerState } from "features/villager/types";
 
 /**
  * Gets average of villagers' military strengths
@@ -118,8 +118,7 @@ export const determineBattleOutcome = (
   }
 
   // Determine if villagers get injured or die
-  const nextVillagersState: { id: number; state: VillagerState }[] =
-    [];
+  const nextVillagersState: BattleVillager[] = [];
   villagerIds.forEach((villagerId) => {
     // See /combat/constants for explanation on all of this
     const { id, militaryStrength } = ID_TO_VILLAGER[villagerId];
