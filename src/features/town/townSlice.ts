@@ -18,7 +18,11 @@ import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 import type { Resource } from "features/resource/types";
-import type { Town } from "features/town/types";
+import type {
+  Town,
+  TownBuilding,
+  TownVillager,
+} from "features/town/types";
 // Redux
 import { completeBattle } from "features/combat/combatSlice";
 import { completeEvent } from "features/event/eventSlice";
@@ -344,6 +348,22 @@ export const selectEnabledResources = (state: RootState) =>
   TIER_TO_ENABLED_RESOURCES[state.town.player.tier];
 export const selectPlayerBuildings = (state: RootState) =>
   state.town.player.buildings;
+export const selectPlayerBuildingIdToBuilding = (state: RootState) =>
+  state.town.player.buildings.reduce(
+    (buildingIdToBuilding, building) => {
+      buildingIdToBuilding[building.id] = building;
+      return buildingIdToBuilding;
+    },
+    {} as Record<number, TownBuilding>,
+  );
+export const selectPlayerVillagerIdToVillager = (state: RootState) =>
+  state.town.player.villagers.reduce(
+    (villagerIdToVillager, villager) => {
+      villagerIdToVillager[villager.id] = villager;
+      return villagerIdToVillager;
+    },
+    {} as Record<number, TownVillager>,
+  );
 export const selectPlayerVillagers = (state: RootState) =>
   state.town.player.villagers;
 export const selectPlayerScouts = (state: RootState) =>

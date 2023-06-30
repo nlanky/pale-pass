@@ -9,12 +9,14 @@ import { Container, Grid } from "@mui/material";
 import { SpeedControls } from "features/game/components";
 import {
   TownAdvanceTierButton,
+  TownBuildingNotification,
   TownBuildingsButton,
   TownExploreButton,
   TownImage,
   TownLogButton,
   TownMapButton,
   TownResources,
+  TownVillagerNotification,
   TownVillagersButton,
 } from "features/town/components";
 // Hooks
@@ -59,6 +61,8 @@ export const TownView: FC<{}> = () => {
           </Grid>
         </Grid>
       </Grid>
+      <TownBuildingNotification />
+      <TownVillagerNotification />
     </Container>
   );
 };
