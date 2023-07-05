@@ -9,24 +9,28 @@ import { Container, Grid } from "@mui/material";
 import { SpeedControls } from "features/game/components";
 import {
   TownAdvanceTierButton,
-  TownBuildingNotification,
   TownBuildingsButton,
   TownExploreButton,
   TownImage,
   TownLogButton,
   TownMapButton,
   TownResources,
-  TownVillagerNotification,
   TownVillagersButton,
 } from "features/town/components";
 // Hooks
 import { useEventTimer } from "features/event/hooks";
 import { useDayTimer } from "features/game/hooks";
+import {
+  useBuildingNotifications,
+  useVillagerNotifications,
+} from "features/town/hooks";
 
 export const TownView: FC<{}> = () => {
   // Hooks
   useDayTimer();
   useEventTimer();
+  useBuildingNotifications();
+  useVillagerNotifications();
 
   return (
     <Container maxWidth="lg">
@@ -61,8 +65,6 @@ export const TownView: FC<{}> = () => {
           </Grid>
         </Grid>
       </Grid>
-      <TownBuildingNotification />
-      <TownVillagerNotification />
     </Container>
   );
 };
