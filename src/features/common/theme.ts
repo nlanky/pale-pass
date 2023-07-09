@@ -10,6 +10,19 @@ const createColour = (mainColour: string) =>
   defaultTheme.palette.augmentColor({ color: { main: mainColour } });
 
 export const theme = createTheme({
+  components: {
+    MuiTooltip: {
+      defaultProps: {
+        followCursor: true,
+      },
+    },
+  },
+  palette: {
+    error: createColour("#8f252e"),
+    success: createColour("#0d421c"),
+    parchment: createColour("#fffef0"),
+    parchmentDark: createColour("#af895e"),
+  },
   typography: {
     fontFamily: "Cormorant Garamond, Times New Roman, sans-serif",
     htmlFontSize: 10,
@@ -53,12 +66,6 @@ export const theme = createTheme({
     // overline: {
     //   fontSize: "1.6rem",
     // },
-  },
-  palette: {
-    error: createColour("#8f252e"),
-    success: createColour("#0d421c"),
-    parchment: createColour("#fffef0"),
-    parchmentDark: createColour("#af895e"),
   },
 });
 
