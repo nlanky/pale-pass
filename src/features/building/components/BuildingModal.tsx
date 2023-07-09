@@ -90,11 +90,9 @@ export const BuildingModal: FC<{}> = () => {
 
   // Utility functions
   const getTooltipTitle = (isBuild: boolean): ReactNode => {
-    let resourcesRequired = building.repairResources;
-    if (isBuild) {
-      resourcesRequired = building.buildResources;
-    }
-
+    const resourcesRequired = isBuild
+      ? building.buildResources
+      : building.repairResources;
     const resourceRequirementsJsx = (
       Object.keys(resourcesRequired) as Resource[]
     )
@@ -105,10 +103,9 @@ export const BuildingModal: FC<{}> = () => {
         </Typography>
       ));
 
-    let buildingIdsRequired: number[] = [];
-    if (isBuild) {
-      buildingIdsRequired = building.requirements.buildingIds;
-    }
+    const buildingIdsRequired: number[] = isBuild
+      ? building.requirements.buildingIds
+      : [];
     const buildingRequirementsJsx = buildingIdsRequired.map(
       (buildingId) => (
         <Typography key={buildingId} variant="body2">
@@ -117,10 +114,9 @@ export const BuildingModal: FC<{}> = () => {
       ),
     );
 
-    let villagerIdsRequired: number[] = [];
-    if (isBuild) {
-      villagerIdsRequired = building.requirements.villagerIds;
-    }
+    const villagerIdsRequired: number[] = isBuild
+      ? building.requirements.villagerIds
+      : [];
     const villagerRequirementsJsx = villagerIdsRequired.map(
       (villagerId) => (
         <Typography key={villagerId} variant="body2">

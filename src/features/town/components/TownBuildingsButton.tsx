@@ -10,7 +10,7 @@ import { StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Images & Icons
-import { buildingIcon } from "assets/building";
+import { buildingBuiltIcon } from "assets/building";
 // Redux
 import { setView } from "features/game/gameSlice";
 
@@ -30,7 +30,7 @@ export const TownBuildingsButton: FC<{}> = () => {
       startIcon={
         <Icon>
           <img
-            src={buildingIcon}
+            src={buildingBuiltIcon}
             style={{
               display: "flex",
               width: "inherit",
