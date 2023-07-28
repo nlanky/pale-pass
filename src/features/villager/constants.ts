@@ -2,7 +2,15 @@
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
 // Icons & Images
-import { villagerIcon } from "assets/villager";
+import {
+  villager1Image,
+  villager2Image,
+  villager3Image,
+  villager4Image,
+  villager5Image,
+  villager6Image,
+  villagerIcon,
+} from "assets/villager";
 // Interfaces & Types
 import type {
   Villager,
@@ -35,10 +43,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 5,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager1Image,
+      recovering: villager1Image,
+      injured: villager1Image,
+      dead: villager1Image,
     },
   },
   2: {
@@ -57,10 +65,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager2Image,
+      recovering: villager2Image,
+      injured: villager2Image,
+      dead: villager2Image,
     },
   },
   3: {
@@ -79,10 +87,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager3Image,
+      recovering: villager3Image,
+      injured: villager3Image,
+      dead: villager3Image,
     },
   },
   4: {
@@ -101,10 +109,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager4Image,
+      recovering: villager4Image,
+      injured: villager4Image,
+      dead: villager4Image,
     },
   },
   5: {
@@ -123,10 +131,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 2,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager5Image,
+      recovering: villager5Image,
+      injured: villager5Image,
+      dead: villager5Image,
     },
   },
   6: {
@@ -145,10 +153,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 2,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager6Image,
+      recovering: villager6Image,
+      injured: villager6Image,
+      dead: villager6Image,
     },
   },
   7: {

@@ -2,7 +2,13 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Badge, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Avatar,
+  Badge,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import {
   Healing as HealingIcon,
   MonitorHeart as MonitorHeartIcon,
@@ -64,6 +70,7 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
         container
         direction="column"
         item
+        justifyContent="center"
         onClick={() => {
           onVillagerClick(id);
         }}
@@ -75,24 +82,29 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
         }}
         sx={{
           cursor: "pointer",
+          p: 1,
           position: "relative",
           width: "auto",
         }}
       >
-        <img
+        <Avatar
+          alt={name}
           src={icons[state || "healthy"]}
-          style={{ width: 128, height: 128 }}
+          sx={{ width: 128, height: 128 }}
         />
-        <Typography variant="body2">{name}</Typography>
+        <Typography sx={{ mt: 1 }} variant="body2">
+          {name}
+        </Typography>
         {hoveringOnVillager && (
           <div
             style={{
               position: "absolute",
               top: 0,
               left: 0,
-              width: "100%",
-              height: "100%",
+              width: "calc(100% - 3px)",
+              height: "calc(100% - 3px)",
               border: `3px solid ${theme.palette.parchmentDark.main}`,
+              borderRadius: "10px",
             }}
           />
         )}

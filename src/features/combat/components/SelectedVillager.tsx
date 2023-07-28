@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Typography } from "@mui/material";
+import { Avatar, Grid, Typography } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -11,7 +11,6 @@ import { StyledButton } from "features/common/components";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Icons & Images
 import { archery, handToHand, mounted } from "assets/combat";
-import { villagerIcon } from "assets/villager";
 
 interface SelectedVillagerProps {
   villagerId: number | null;
@@ -41,15 +40,22 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
     >
       {villager && (
         <>
-          <img
-            src={villagerIcon}
-            style={{ width: 128, height: 128 }}
+          <Avatar
+            alt={villager.name}
+            src={villager.icons.healthy} // TODO: Different image based on state
+            sx={{ width: 128, height: 128 }}
           />
           <Typography
             align="center"
+            sx={{ mt: 1 }}
             variant="body2"
           >{`${villager.name} the ${villager.occupation}`}</Typography>
-          <Grid container item justifyContent="center" sx={{ mt: 1 }}>
+          <Grid
+            container
+            item
+            justifyContent="center"
+            sx={{ mt: 1.5 }}
+          >
             <img src={handToHand} style={{ width: 32, height: 32 }} />
             <Typography component="span" sx={{ ml: 1 }} variant="h5">
               {villager.militaryStrength.handToHand}
@@ -72,7 +78,7 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
             onClick={() => {
               onClearSelection(armyPosition);
             }}
-            sx={{ mt: 2.5 }}
+            sx={{ mt: 2 }}
           >
             Clear selection
           </StyledButton>
