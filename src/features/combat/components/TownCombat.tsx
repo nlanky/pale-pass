@@ -33,7 +33,6 @@ import { useEnemyDisplayMilitaryStrength } from "features/combat/hooks";
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Icons & Images
 import { archery, handToHand, mounted } from "assets/combat";
-import { villagerIcon } from "assets/villager";
 // Interfaces & Types
 import type { BattleOutcome } from "features/combat/types";
 // Redux
