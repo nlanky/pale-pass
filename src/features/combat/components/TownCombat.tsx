@@ -148,7 +148,7 @@ export const TownCombat: FC<{}> = () => {
       )}
 
       {townVillagers.length !== 0 && (
-        <Grid container spacing={1} wrap="nowrap">
+        <Grid container sx={{ mt: 2 }} wrap="nowrap">
           <SelectedVillager
             villagerId={selectedVillagerIds[0]}
             armyPosition={0}
