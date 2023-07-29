@@ -116,6 +116,7 @@ export const MarketStall: FC<{}> = () => {
                       ? "parchmentDark.light"
                       : "parchmentDark.dark",
                     cursor: "pointer",
+                    p: 0.5,
                   }}
                   xs={6}
                 >
@@ -168,6 +169,7 @@ export const MarketStall: FC<{}> = () => {
                       ? "parchmentDark.light"
                       : "parchmentDark.dark",
                     cursor: "pointer",
+                    p: 0.5,
                   }}
                   xs={6}
                 >

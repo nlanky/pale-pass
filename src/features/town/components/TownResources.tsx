@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Icon, Tooltip, Typography } from "@mui/material";
+import { Stack, Tooltip, Typography } from "@mui/material";
 import {
   ArrowDownward,
   ArrowUpward,
@@ -61,48 +61,41 @@ export const TownResources: FC<TownResourcesProps> = ({
         const rpd = resourcesPerDay[resource];
 
         return (
-          <Grid
+          <Stack
             key={resource}
             alignItems="center"
-            container
+            direction="row"
             justifyContent="space-around"
-            sx={{ pt: index !== 0 ? 1 : 0 }}
+            sx={{ pt: index !== 0 ? 0.5 : 0 }}
           >
             <Tooltip
               title={
                 <Typography variant="body2">{resource}</Typography>
               }
             >
-              <Grid item>
-                <img
-                  src={RESOURCE_TO_ICON[resource]}
-                  style={{ width: 32, height: 32 }}
-                />
-              </Grid>
+              <img
+                src={RESOURCE_TO_ICON[resource]}
+                style={{ width: 32, height: 32 }}
+              />
             </Tooltip>
-            <Grid item>
-              <Typography variant="body2">
-                {resources[resource]}
-              </Typography>
-            </Grid>
+            <Typography variant="body2">
+              {resources[resource]}
+            </Typography>
             {showRpd && (
-              <Grid
-                alignItems="center"
-                container
-                item
-                sx={{ width: "auto" }}
-              >
-                <Icon>
-                  {rpd > 0 && <ArrowUpward color="success" />}
-                  {rpd === 0 && <Remove />}
-                  {rpd < 0 && <ArrowDownward color="error" />}
-                </Icon>
+              <Stack alignItems="center" direction="row">
+                {rpd > 0 && (
+                  <ArrowUpward color="success" fontSize="small" />
+                )}
+                {rpd === 0 && <Remove fontSize="small" />}
+                {rpd < 0 && (
+                  <ArrowDownward color="error" fontSize="small" />
+                )}
                 <Typography color={getRpdColour(rpd)} variant="body2">
                   {resourcesPerDay[resource]}
                 </Typography>
-              </Grid>
+              </Stack>
             )}
-          </Grid>
+          </Stack>
         );
       })}
     </StyledPaper>

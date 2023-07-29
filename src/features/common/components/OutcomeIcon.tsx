@@ -43,10 +43,11 @@ export const OutcomeIcon: FC<OutcomeIconProps> = ({
         src={icon}
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          width: 64,
-          height: 64,
+          // Icons need to be offset to show all of positive/negative icon
+          top: 12,
+          left: 12,
+          width: 40,
+          height: 40,
         }}
       />
       {disabled && (
