@@ -30,7 +30,7 @@ import type {
   ThirdPersonPronounGender,
 } from "features/player/types";
 // Redux
-import { setNameAndPronouns } from "features/player/playerSlice";
+import { setNameAndPronouns } from "features/player/actions";
 
 export const CreateCharacter: FC<{}> = () => {
   // Hooks

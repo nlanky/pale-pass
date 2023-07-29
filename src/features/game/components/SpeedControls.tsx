@@ -22,9 +22,11 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import {
   decreaseGameSpeed,
   increaseGameSpeed,
+  togglePause,
+} from "features/game/actions";
+import {
   selectGamePaused,
   selectGameSpeed,
-  togglePause,
 } from "features/game/gameSlice";
 
 export const SpeedControls: FC<{}> = () => {

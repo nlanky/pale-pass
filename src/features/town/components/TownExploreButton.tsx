@@ -7,35 +7,22 @@ import { Search as SearchIcon } from "@mui/icons-material";
 // LOCAL FILES
 // Components
 import { StyledButton } from "features/common/components";
-// Constants
-import { DAYS_PER_EVENT } from "features/event/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
+import { triggerEvent } from "features/event/actions";
 import {
-  selectSeenEvents,
-  triggerEvent,
+  selectCanExplore,
+  selectValidEvents,
 } from "features/event/eventSlice";
-import { selectDay } from "features/game/gameSlice";
-import { selectPlayerTown } from "features/town/townSlice";
 // Utility functions
-import { getRandomEvent, getValidEvents } from "features/event/utils";
+import { getRandomEvent } from "features/event/utils";
 
 export const TownExploreButton: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const town = useAppSelector(selectPlayerTown);
-  const day = useAppSelector(selectDay);
-  const eventsSeen = useAppSelector(selectSeenEvents);
-
-  // Derived variables
-  const validEvents = getValidEvents(town, eventsSeen);
-  const numberOfSeenEvents = eventsSeen.length;
-  const canExplore =
-    day !== 0 &&
-    validEvents.length !== 0 &&
-    (numberOfSeenEvents === 0 ||
-      Math.ceil(day / numberOfSeenEvents) > DAYS_PER_EVENT);
+  const canExplore = useAppSelector(selectCanExplore);
+  const validEvents = useAppSelector(selectValidEvents);
 
   // Handlers
   const onEventTrigger = () => {

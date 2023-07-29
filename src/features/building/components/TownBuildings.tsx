@@ -16,30 +16,20 @@ import {
   StyledContainer,
 } from "features/common/components";
 // Hooks
-import { useAvailableBuildings } from "features/building/hooks";
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
-// Interfaces & Types
-import type { TownBuilding } from "features/town/types";
 // Redux
-import { openModal } from "features/building/buildingSlice";
-import { selectPlayerBuildings } from "features/town/townSlice";
+import { openModal } from "features/building/actions";
+import { selectAvailableBuildings } from "features/town/townSlice";
 
 export const TownBuildings: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const townBuildings = useAppSelector(selectPlayerBuildings);
-  const availableBuildings = useAvailableBuildings();
+  const availableBuildings = useAppSelector(selectAvailableBuildings);
 
   // Local state
   const [hoveringOnBuilding, setHoveringOnBuilding] = useState<
     number | null
   >(null);
-
-  // Derived variables
-  const idToTownBuilding: Record<number, TownBuilding> = {};
-  townBuildings.forEach((townBuilding) => {
-    idToTownBuilding[townBuilding.id] = townBuilding;
-  });
 
   // Handlers
   const onBuildingMouseEnter = (buildingId: number) => {
@@ -61,21 +51,16 @@ export const TownBuildings: FC<{}> = () => {
           <ReturnToTownButton />
         </Grid>
         <Grid container item sx={{ mt: 1 }}>
-          {availableBuildings.map((building) => {
-            const { id } = building;
-
-            return (
-              <TownBuildingTile
-                key={id}
-                building={building}
-                townBuilding={idToTownBuilding[id]}
-                hoveringOnBuilding={hoveringOnBuilding === id}
-                onBuildingClick={onBuildingClick}
-                onBuildingMouseEnter={onBuildingMouseEnter}
-                onBuildingMouseLeave={onBuildingMouseLeave}
-              />
-            );
-          })}
+          {availableBuildings.map((building) => (
+            <TownBuildingTile
+              key={building.id}
+              buildingId={building.id}
+              hoveringOnBuilding={hoveringOnBuilding === building.id}
+              onBuildingClick={onBuildingClick}
+              onBuildingMouseEnter={onBuildingMouseEnter}
+              onBuildingMouseLeave={onBuildingMouseLeave}
+            />
+          ))}
         </Grid>
       </Grid>
       <BuildingModal />

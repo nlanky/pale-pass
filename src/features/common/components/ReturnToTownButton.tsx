@@ -10,7 +10,7 @@ import { StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Redux
-import { setView } from "features/game/gameSlice";
+import { setView } from "features/game/actions";
 
 export const ReturnToTownButton: FC<ButtonProps> = ({ ...props }) => {
   // Hooks

@@ -6,12 +6,12 @@ import { useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { DisplayMilitaryStrength } from "features/combat/types";
 // Redux
-import { selectPlayerSpies } from "features/town/townSlice";
+import { selectTownSpies } from "features/town/townSlice";
 
 export const useEnemyDisplayMilitaryStrength = (
   playerId: number | null,
 ): DisplayMilitaryStrength => {
-  const numberOfSpies = useAppSelector(selectPlayerSpies);
+  const numberOfSpies = useAppSelector(selectTownSpies);
 
   if (!playerId) {
     return {

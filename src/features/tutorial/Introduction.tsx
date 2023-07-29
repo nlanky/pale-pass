@@ -14,7 +14,7 @@ import { SCREEN_ID_TO_SCREEN } from "features/tutorial/constants";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Redux
-import { setView } from "features/game/gameSlice";
+import { setView } from "features/game/actions";
 
 export const Introduction: FC<{}> = () => {
   // Hooks

@@ -14,15 +14,12 @@ import {
 import { StyledPaper } from "features/common/components";
 // Constants
 import { RESOURCE_TO_ICON } from "features/resource/constants";
-// Hooks
-import { usePlayerResourcesPerDay } from "features/resource/hooks";
-// Interfaces & Types
-import type { Resource } from "features/resource/types";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import {
+  selectCombinedTownResourcesPerDay,
   selectEnabledResources,
-  selectPlayerResources,
+  selectTownResources,
 } from "features/town/townSlice";
 
 interface TownResourcesProps {
@@ -33,14 +30,11 @@ export const TownResources: FC<TownResourcesProps> = ({
   showRpd = true,
 }) => {
   // Hooks
-  const resources = useAppSelector(selectPlayerResources);
-  const resourcesPerDay = usePlayerResourcesPerDay();
-  const enabledResources = useAppSelector(selectEnabledResources);
-
-  // Derived variables
-  const resourceNames = (Object.keys(resources) as Resource[]).filter(
-    (resource) => enabledResources.includes(resource),
+  const resources = useAppSelector(selectTownResources);
+  const resourcesPerDay = useAppSelector(
+    selectCombinedTownResourcesPerDay,
   );
+  const enabledResources = useAppSelector(selectEnabledResources);
 
   // Utility functions
   const getRpdColour = (rpd: number): string => {
@@ -57,7 +51,7 @@ export const TownResources: FC<TownResourcesProps> = ({
 
   return (
     <StyledPaper>
-      {resourceNames.map((resource, index) => {
+      {enabledResources.map((resource, index) => {
         const rpd = resourcesPerDay[resource];
 
         return (

@@ -22,10 +22,10 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
+import { tradeResources } from "features/town/actions";
 import {
   selectEnabledResources,
-  selectPlayerResources,
-  tradeResources,
+  selectTownResources,
 } from "features/town/townSlice";
 // Utility functions
 import {
@@ -37,7 +37,7 @@ export const MarketStall: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const enabledResources = useAppSelector(selectEnabledResources);
-  const playerResources = useAppSelector(selectPlayerResources);
+  const townResources = useAppSelector(selectTownResources);
 
   // Local state
   const [fromResource, setFromResource] = useState<Resource | null>(
@@ -99,7 +99,7 @@ export const MarketStall: FC<{}> = () => {
           <Grid container item>
             {enabledResources.map((resource) => {
               const isSelected = resource === fromResource;
-              const playerAmount = playerResources[resource];
+              const playerAmount = townResources[resource];
               return (
                 <Grid
                   key={`from_${resource}`}
@@ -218,7 +218,7 @@ export const MarketStall: FC<{}> = () => {
                 disabled={fromResource === toResource}
                 min={0}
                 max={getMaxTradeQuantity(
-                  playerResources,
+                  townResources,
                   fromResource,
                   toResource,
                 )}

@@ -20,14 +20,15 @@ import { buildingUnbuiltIcon } from "assets/building";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
+// Hooks
+import { useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
-import type { Building } from "features/building/types";
 import type { Resource } from "features/resource/types";
-import type { TownBuilding } from "features/town/types";
+// Redux
+import { selectTownBuilding } from "features/town/townSlice";
 
 interface TownBuildingTileProps {
-  building: Building;
-  townBuilding?: TownBuilding;
+  buildingId: number;
   hoveringOnBuilding: boolean;
   onBuildingClick: (id: number) => void;
   onBuildingMouseEnter: (id: number) => void;
@@ -35,8 +36,7 @@ interface TownBuildingTileProps {
 }
 
 export const TownBuildingTile: FC<TownBuildingTileProps> = ({
-  building,
-  townBuilding,
+  buildingId,
   hoveringOnBuilding,
   onBuildingClick,
   onBuildingMouseEnter,
@@ -44,8 +44,10 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
 }) => {
   // Hooks
   const theme = useTheme();
+  const townBuilding = useAppSelector(selectTownBuilding(buildingId));
 
   // Derived variables
+  const building = ID_TO_BUILDING[buildingId];
   const { id, name, icons } = building;
   const state = townBuilding?.state;
   const canBuild =

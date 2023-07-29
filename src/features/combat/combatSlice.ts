@@ -1,15 +1,14 @@
 // PUBLIC MODULES
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Constants
 import { PLAYER_ID } from "features/player/constants";
 // Interfaces & Types
-import type { BattleOutcome } from "features/combat/types";
 import type { RootState } from "features/redux/store";
 // Redux
-import { exploreTile } from "features/map/mapSlice";
+import { completeBattle } from "features/combat/actions";
+import { exploreTile } from "features/map/actions";
 
 interface CombatState {
   /** ID of enemy that player is attacking */
@@ -26,32 +25,30 @@ const initialState: CombatState = {
 export const combatSlice = createSlice({
   name: "combat",
   initialState,
-  reducers: {
-    completeBattle: (state, action: PayloadAction<BattleOutcome>) => {
-      if (
-        action.payload.victoryState === "Victory" &&
-        state.attackingPlayerId
-      ) {
-        state.conqueredPlayerIds = [
-          ...state.conqueredPlayerIds,
-          state.attackingPlayerId,
-        ];
-      }
-
-      state.attackingPlayerId = null;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
-    builder.addCase(exploreTile, (state, action) => {
-      const { playerId } = action.payload;
-      if (playerId !== PLAYER_ID) {
-        state.attackingPlayerId = playerId;
-      }
-    });
+    builder
+      .addCase(completeBattle, (state, action) => {
+        if (
+          action.payload.victoryState === "Victory" &&
+          state.attackingPlayerId
+        ) {
+          state.conqueredPlayerIds = [
+            ...state.conqueredPlayerIds,
+            state.attackingPlayerId,
+          ];
+        }
+
+        state.attackingPlayerId = null;
+      })
+      .addCase(exploreTile, (state, action) => {
+        const { playerId } = action.payload;
+        if (playerId !== PLAYER_ID) {
+          state.attackingPlayerId = playerId;
+        }
+      });
   },
 });
-
-export const { completeBattle } = combatSlice.actions;
 
 // SELECTORS
 export const selectAttackingPlayerId = (state: RootState) =>

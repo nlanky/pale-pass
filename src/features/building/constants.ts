@@ -24,6 +24,9 @@ export const NO_BUILDING_REQUIREMENTS: BuildingRequirements = {
   villagerIds: [],
 };
 
+export const BUILDING_ID_CARTROGRAPHER = 36;
+export const BUILDING_ID_MARKET_STALL = 42;
+
 /** Reference object for all buildings in the game */
 export const ID_TO_BUILDING: Record<number, Building> = {
   1: {
@@ -1081,8 +1084,8 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingDestroyedIcon,
     },
   },
-  36: {
-    id: 36,
+  [BUILDING_ID_CARTROGRAPHER]: {
+    id: BUILDING_ID_CARTROGRAPHER,
     name: "Cartographer",
     text: {
       preBuild: "",
@@ -1213,8 +1216,8 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       destroyed: buildingDestroyedIcon,
     },
   },
-  42: {
-    id: 42,
+  [BUILDING_ID_MARKET_STALL]: {
+    id: BUILDING_ID_MARKET_STALL,
     name: "Market Stall",
     text: {
       preBuild: "",

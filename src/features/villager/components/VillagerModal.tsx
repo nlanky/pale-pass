@@ -34,25 +34,20 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
+import { healVillager, recruitVillager } from "features/town/actions";
+import { closeModal } from "features/villager/actions";
 import {
-  healVillager,
-  recruitVillager,
-  selectPlayerTown,
-} from "features/town/townSlice";
-import {
-  closeModal,
+  selectCanRecruitModalVillager,
   selectModalTownVillager,
   selectModalVillager,
 } from "features/villager/villagerSlice";
-// Utility functions
-import { canRecruitVillager } from "features/villager/utils";
 
 export const VillagerModal: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const villager = useAppSelector(selectModalVillager);
   const townVillager = useAppSelector(selectModalTownVillager);
-  const town = useAppSelector(selectPlayerTown);
+  const canRecruit = useAppSelector(selectCanRecruitModalVillager);
 
   // Handlers
   const onModalClose = () => {
@@ -75,7 +70,7 @@ export const VillagerModal: FC<{}> = () => {
   const isHealthy = townVillager?.state === "healthy";
   const isRecovering = townVillager?.state === "recovering";
   const isInjured = townVillager?.state === "injured";
-  const canRecruit =
+  const canRecruitEnabled =
     villager.canRecruit && townVillager === undefined;
   const affectedResources = (
     Object.keys(villager.gatherResources) as Resource[]
@@ -173,13 +168,13 @@ export const VillagerModal: FC<{}> = () => {
         )}
       </DialogContent>
 
-      {(canRecruit || (!isRecovering && isInjured)) && (
+      {(canRecruitEnabled || (!isRecovering && isInjured)) && (
         <DialogActions>
-          {canRecruit && (
+          {canRecruitEnabled && (
             <Tooltip title={getTooltipTitle()}>
               <span>
                 <StyledButton
-                  disabled={!canRecruitVillager(town, villager)}
+                  disabled={!canRecruit}
                   onClick={onRecruit}
                   startIcon={<AssignmentTurnedInIcon />}
                 >

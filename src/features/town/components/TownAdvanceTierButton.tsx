@@ -13,21 +13,22 @@ import { ID_TO_BUILDING } from "features/building/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
-import {
-  useCanAdvanceTier,
-  useTierRequirements,
-} from "features/town/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
-import { selectPlayerTier, setTier } from "features/town/townSlice";
+import { setTier } from "features/town/actions";
+import {
+  selectCanAdvanceTier,
+  selectTierRequirements,
+  selectTownTier,
+} from "features/town/townSlice";
 
 export const TownAdvanceTierButton: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const tier = useAppSelector(selectPlayerTier);
-  const canAdvanceTier = useCanAdvanceTier();
-  const tierRequirements = useTierRequirements();
+  const tier = useAppSelector(selectTownTier);
+  const canAdvanceTier = useAppSelector(selectCanAdvanceTier);
+  const tierRequirements = useAppSelector(selectTierRequirements);
 
   // Handlers
   const onAdvanceTier = () => {

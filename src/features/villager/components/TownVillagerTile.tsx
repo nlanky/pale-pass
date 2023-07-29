@@ -15,13 +15,15 @@ import {
 } from "@mui/icons-material";
 
 // LOCAL FILES
-// Interfaces & Types
-import type { TownVillager } from "features/town/types";
-import type { Villager } from "features/villager/types";
+// Constants
+import { ID_TO_VILLAGER } from "features/villager/constants";
+// Hooks
+import { useAppSelector } from "features/redux/hooks";
+// Redux
+import { selectTownVillager } from "features/town/townSlice";
 
 interface TownVillagerTileProps {
-  villager: Villager;
-  townVillager?: TownVillager;
+  villagerId: number;
   hoveringOnVillager: boolean;
   onVillagerClick: (id: number) => void;
   onVillagerMouseEnter: (id: number) => void;
@@ -29,8 +31,7 @@ interface TownVillagerTileProps {
 }
 
 export const TownVillagerTile: FC<TownVillagerTileProps> = ({
-  villager,
-  townVillager,
+  villagerId,
   hoveringOnVillager,
   onVillagerClick,
   onVillagerMouseEnter,
@@ -38,9 +39,10 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
 }) => {
   // Hooks
   const theme = useTheme();
+  const townVillager = useAppSelector(selectTownVillager(villagerId));
 
   // Derived variables
-  const { id, name, icons } = villager;
+  const { id, name, icons } = ID_TO_VILLAGER[villagerId];
   const state = townVillager?.state;
 
   // Utility functions

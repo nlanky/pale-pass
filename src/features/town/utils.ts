@@ -3,20 +3,20 @@
 import { ID_TO_BUILDING } from "features/building/constants";
 // Interfaces & Types
 import type { Resources } from "features/resource/types";
-import type { Town } from "features/town/types";
+import type { Town, TownVillager } from "features/town/types";
 // Utility functions
 import { mergeResources } from "features/resource/utils";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 
 export const getNextDayResources = (town: Town): Resources => {
-  // Add base resources per day
+  // Add base resources per day, this includes any modifiers from events
   let nextDayResources = mergeResources(
     town.resources,
     town.resourcesPerDay,
   );
 
   // Add building modifiers
-  town.buildings.forEach((townBuilding) => {
+  Object.values(town.buildingIdToBuilding).forEach((townBuilding) => {
     const { id, state } = townBuilding;
 
     // Building must not be under construction, being repaired, damaged or destroyed
@@ -32,7 +32,7 @@ export const getNextDayResources = (town: Town): Resources => {
   });
 
   // Add villager modifiers
-  town.villagers.forEach((townVillager) => {
+  Object.values(town.villagerIdToVillager).forEach((townVillager) => {
     const { id, state } = townVillager;
 
     // Villager must not be recovering, injured or dead
@@ -49,3 +49,21 @@ export const getNextDayResources = (town: Town): Resources => {
 
   return nextDayResources;
 };
+
+export const getNumberOfBuilders = (
+  villagerIdToVillager: Record<number, TownVillager>,
+): number =>
+  Object.values(villagerIdToVillager).filter(
+    (villager) =>
+      villager.state === "healthy" &&
+      ID_TO_VILLAGER[villager.id].specialty === "Builder",
+  ).length;
+
+export const getNumberOfHealers = (
+  villagerIdToVillager: Record<number, TownVillager>,
+): number =>
+  Object.values(villagerIdToVillager).filter(
+    (villager) =>
+      ID_TO_VILLAGER[villager.id].specialty === "Healer" &&
+      villager.state === "healthy",
+  ).length;

@@ -7,11 +7,11 @@ import { DAY_TIME } from "features/game/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
+import { setDay } from "features/game/actions";
 import {
   selectDay,
   selectGamePaused,
   selectGameSpeed,
-  setDay,
 } from "features/game/gameSlice";
 
 /**

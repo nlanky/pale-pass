@@ -10,25 +10,23 @@ import {
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
+import { triggerEvent } from "features/event/actions";
 import {
-  selectSeenEvents,
-  triggerEvent,
+  selectSeenEventIds,
+  selectValidEvent,
 } from "features/event/eventSlice";
 import { selectDay } from "features/game/gameSlice";
-import { selectPlayerTown } from "features/town/townSlice";
-// Utility functions
-import { getValidEvent } from "features/event/utils";
 
 export const useEventTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const day = useAppSelector(selectDay);
-  const seenEvents = useAppSelector(selectSeenEvents);
-  const town = useAppSelector(selectPlayerTown);
+  const seenEventIds = useAppSelector(selectSeenEventIds);
+  const validEvent = useAppSelector(selectValidEvent);
 
   useEffect(() => {
     // Don't want to trigger event too often or before the game starts
-    const numberOfSeenEvents = seenEvents.length;
+    const numberOfSeenEvents = seenEventIds.length;
     if (
       day === 0 ||
       (numberOfSeenEvents !== 0 &&
@@ -48,14 +46,9 @@ export const useEventTimer = () => {
       Math.floor(day / (numberOfSeenEvents + 1)) >= DAYS_PER_EVENT ||
       Math.random() < EVENT_PROBABILITY
     ) {
-      /*
-        TODO: This will probably end up in the final release but should
-        really find a way of avoiding running getValidEvent so often.
-      */
-      const event = getValidEvent(town, seenEvents);
-      if (event) {
-        dispatch(triggerEvent(event));
+      if (validEvent) {
+        dispatch(triggerEvent(validEvent));
       }
     }
-  }, [day, dispatch, town, seenEvents]);
+  }, [day, dispatch, seenEventIds, validEvent]);
 };

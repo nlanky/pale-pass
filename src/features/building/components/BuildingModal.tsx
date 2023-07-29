@@ -24,7 +24,10 @@ import {
   StyledPaper,
 } from "features/common/components";
 // Constants
-import { ID_TO_BUILDING } from "features/building/constants";
+import {
+  BUILDING_ID_MARKET_STALL,
+  ID_TO_BUILDING,
+} from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
@@ -32,26 +35,22 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
+import { closeModal } from "features/building/actions";
 import {
-  closeModal,
+  selectCanBuildModalBuilding,
+  selectCanRepairModalBuilding,
   selectModalBuilding,
   selectModalTownBuilding,
 } from "features/building/buildingSlice";
-import {
-  buildBuilding,
-  repairBuilding,
-  selectPlayerTown,
-} from "features/town/townSlice";
-// Utility functions
-import { canBuildBuilding } from "features/building/utils";
-import { canAffordResourceAmount } from "features/resource/utils";
+import { buildBuilding, repairBuilding } from "features/town/actions";
 
 export const BuildingModal: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const building = useAppSelector(selectModalBuilding);
   const townBuilding = useAppSelector(selectModalTownBuilding);
-  const town = useAppSelector(selectPlayerTown);
+  const canBuild = useAppSelector(selectCanBuildModalBuilding);
+  const canRepair = useAppSelector(selectCanRepairModalBuilding);
 
   // Handlers
   const onModalClose = () => {
@@ -77,13 +76,8 @@ export const BuildingModal: FC<{}> = () => {
   const isDamaged = townBuilding?.state === "damaged";
   const isDestroyed = townBuilding?.state === "destroyed";
   const isUnbuiltOrBuilding = !townBuilding || isBuilding;
-  const canBuild =
+  const canBuildEnabled =
     (building.canBuild && townBuilding === undefined) || isDestroyed;
-  const canAffordRepair = canAffordResourceAmount(
-    town.resources,
-    building.repairResources,
-  );
-  const canAffordBuild = canBuildBuilding(town, building);
   const affectedResources = (
     Object.keys(building.gatherResources) as Resource[]
   ).filter((resource) => building.gatherResources[resource] !== 0);
@@ -223,7 +217,7 @@ export const BuildingModal: FC<{}> = () => {
           </>
         )}
 
-        {isBuilt && building.id === 42 && (
+        {isBuilt && building.id === BUILDING_ID_MARKET_STALL && (
           <>
             <Divider sx={{ mt: 1 }} />
             <MarketStall />
@@ -231,36 +225,37 @@ export const BuildingModal: FC<{}> = () => {
         )}
       </DialogContent>
 
-      {!(isBuilding || isRepairing) && (canBuild || isDamaged) && (
-        <DialogActions>
-          {canBuild && (
-            <Tooltip title={getTooltipTitle(true)}>
-              <span>
-                <StyledButton
-                  disabled={!canAffordBuild}
-                  onClick={onBuild}
-                  startIcon={<ConstructionIcon />}
-                >
-                  {isDestroyed ? "Re-build" : "Build"}
-                </StyledButton>
-              </span>
-            </Tooltip>
-          )}
-          {isDamaged && (
-            <Tooltip title={getTooltipTitle(false)}>
-              <span>
-                <StyledButton
-                  disabled={!canAffordRepair}
-                  onClick={onRepair}
-                  startIcon={<ConstructionIcon />}
-                >
-                  Repair
-                </StyledButton>
-              </span>
-            </Tooltip>
-          )}
-        </DialogActions>
-      )}
+      {!(isBuilding || isRepairing) &&
+        (canBuildEnabled || isDamaged) && (
+          <DialogActions>
+            {canBuildEnabled && (
+              <Tooltip title={getTooltipTitle(true)}>
+                <span>
+                  <StyledButton
+                    disabled={!canBuild}
+                    onClick={onBuild}
+                    startIcon={<ConstructionIcon />}
+                  >
+                    {isDestroyed ? "Re-build" : "Build"}
+                  </StyledButton>
+                </span>
+              </Tooltip>
+            )}
+            {isDamaged && (
+              <Tooltip title={getTooltipTitle(false)}>
+                <span>
+                  <StyledButton
+                    disabled={!canRepair}
+                    onClick={onRepair}
+                    startIcon={<ConstructionIcon />}
+                  >
+                    Repair
+                  </StyledButton>
+                </span>
+              </Tooltip>
+            )}
+          </DialogActions>
+        )}
     </Dialog>
   );
 };

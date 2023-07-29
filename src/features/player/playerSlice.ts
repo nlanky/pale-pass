@@ -1,11 +1,12 @@
 // PUBLIC MODULES
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Interfaces & Types
 import type { Pronouns } from "features/player/types";
 import type { RootState } from "features/redux/store";
+// Redux
+import { setNameAndPronouns } from "features/player/actions";
 
 interface PlayerState {
   name: string;
@@ -41,19 +42,15 @@ const initialState: PlayerState = {
 export const playerSlice = createSlice({
   name: "player",
   initialState,
-  reducers: {
-    setNameAndPronouns: (
-      state,
-      action: PayloadAction<{ name: string; pronouns: Pronouns }>,
-    ) => {
+  reducers: {},
+  extraReducers(builder) {
+    builder.addCase(setNameAndPronouns, (state, action) => {
       const { name, pronouns } = action.payload;
       state.name = name;
       state.pronouns = pronouns;
-    },
+    });
   },
 });
-
-export const { setNameAndPronouns } = playerSlice.actions;
 
 // SELECTORS
 export const selectPlayerName = (state: RootState) =>

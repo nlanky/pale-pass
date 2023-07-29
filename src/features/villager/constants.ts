@@ -26,6 +26,8 @@ export const NO_VILLAGER_REQUIREMENTS: VillagerRequirements = {
   villagerIds: [],
 };
 
+export const VILLAGER_RECOVERY_DAYS = 8;
+
 export const ID_TO_VILLAGER: Record<number, Villager> = {
   1: {
     id: 1,
@@ -448,7 +450,8 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     id: 20,
     name: "Jack",
     occupation: "Content Thief",
-    description: "",
+    description:
+      "A content thief is an unscrupulous individual who illicitly duplicates and utilizes other people's original work without permission or attribution, often for personal gain and without regard for the creator's rights or efforts.",
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,

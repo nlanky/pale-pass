@@ -13,7 +13,7 @@ import {
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Redux
-import { setView } from "features/game/gameSlice";
+import { setView } from "features/game/actions";
 import { persistor } from "features/redux/store";
 // Utility functions
 import {

@@ -29,9 +29,9 @@ export interface Town {
   resources: Resources;
   resourcesPerDay: Resources;
   /** Keeps track of building states in town */
-  buildings: TownBuilding[];
+  buildingIdToBuilding: Record<number, TownBuilding>;
   /** Keeps track of villager states in town */
-  villagers: TownVillager[];
+  villagerIdToVillager: Record<number, TownVillager>;
   /** Path to image location */
   image: string;
 }

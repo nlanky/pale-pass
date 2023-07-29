@@ -11,14 +11,11 @@ import type { RootState } from "features/redux/store";
 import type { Log } from "features/log/types";
 import type { Resource } from "features/resource/types";
 // Redux
-import { completeBattle } from "features/combat/combatSlice";
-import {
-  completeEvent,
-  triggerEvent,
-} from "features/event/eventSlice";
-import { setDay } from "features/game/gameSlice";
-import { exploreTile } from "features/map/mapSlice";
-import { setNameAndPronouns } from "features/player/playerSlice";
+import { completeBattle } from "features/combat/actions";
+import { completeEvent, triggerEvent } from "features/event/actions";
+import { setDay } from "features/game/actions";
+import { exploreTile } from "features/map/actions";
+import { setNameAndPronouns } from "features/player/actions";
 import {
   buildBuilding,
   healVillager,
@@ -26,7 +23,7 @@ import {
   repairBuilding,
   setTier,
   tradeResources,
-} from "features/town/townSlice";
+} from "features/town/actions";
 
 interface LogState {
   logs: Log[];

@@ -17,29 +17,19 @@ import {
 } from "features/common/components";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
-import { useAvailableVillagers } from "features/villager/hooks";
-// Interfaces & Types
-import type { TownVillager } from "features/town/types";
 // Redux
-import { selectPlayerVillagers } from "features/town/townSlice";
-import { openModal } from "features/villager/villagerSlice";
+import { selectAvailableVillagers } from "features/town/townSlice";
+import { openModal } from "features/villager/actions";
 
 export const TownVillagers: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
-  const townVillagers = useAppSelector(selectPlayerVillagers);
-  const availableVillagers = useAvailableVillagers();
+  const availableVillagers = useAppSelector(selectAvailableVillagers);
 
   // Local state
   const [hoveringOnVillager, setHoveringOnVillager] = useState<
     number | null
   >(null);
-
-  // Derived variables
-  const idToTownVillager: Record<number, TownVillager> = {};
-  townVillagers.forEach((townVillager) => {
-    idToTownVillager[townVillager.id] = townVillager;
-  });
 
   // Handlers
   const onVillagerMouseEnter = (villagerId: number) => {
@@ -61,21 +51,16 @@ export const TownVillagers: FC<{}> = () => {
           <ReturnToTownButton />
         </Grid>
         <Grid container item sx={{ mt: 1 }}>
-          {availableVillagers.map((villager) => {
-            const { id } = villager;
-
-            return (
-              <TownVillagerTile
-                key={id}
-                villager={villager}
-                townVillager={idToTownVillager[id]}
-                hoveringOnVillager={hoveringOnVillager === id}
-                onVillagerClick={onVillagerClick}
-                onVillagerMouseEnter={onVillagerMouseEnter}
-                onVillagerMouseLeave={onVillagerMouseLeave}
-              />
-            );
-          })}
+          {availableVillagers.map((villager) => (
+            <TownVillagerTile
+              key={villager.id}
+              villagerId={villager.id}
+              hoveringOnVillager={hoveringOnVillager === villager.id}
+              onVillagerClick={onVillagerClick}
+              onVillagerMouseEnter={onVillagerMouseEnter}
+              onVillagerMouseLeave={onVillagerMouseLeave}
+            />
+          ))}
         </Grid>
       </Grid>
       <VillagerModal />

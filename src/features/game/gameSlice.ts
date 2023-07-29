@@ -1,6 +1,5 @@
 // PUBLIC MODULES
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Constants
@@ -9,10 +8,17 @@ import { PLAYER_ID } from "features/player/constants";
 import type { RootState } from "features/redux/store";
 import type { View } from "features/game/types";
 // Redux
-import { triggerEvent } from "features/event/eventSlice";
-import { exploreTile } from "features/map/mapSlice";
-import { setNameAndPronouns } from "features/player/playerSlice";
-import { completeBattle } from "features/combat/combatSlice";
+import { completeBattle } from "features/combat/actions";
+import { triggerEvent } from "features/event/actions";
+import {
+  decreaseGameSpeed,
+  increaseGameSpeed,
+  setDay,
+  setView,
+  togglePause,
+} from "features/game/actions";
+import { exploreTile } from "features/map/actions";
+import { setNameAndPronouns } from "features/player/actions";
 
 interface GameState {
   day: number;
@@ -31,54 +37,46 @@ const initialState: GameState = {
 export const gameSlice = createSlice({
   name: "game",
   initialState,
-  reducers: {
-    setView: (state, action: PayloadAction<View>) => {
-      state.view = action.payload;
-    },
-    setDay: (state, action: PayloadAction<number>) => {
-      state.day = action.payload;
-    },
-    increaseGameSpeed: (state) => {
-      state.speed = state.speed * 2;
-    },
-    decreaseGameSpeed: (state) => {
-      state.speed = state.speed / 2;
-    },
-    togglePause: (state) => {
-      state.paused = !state.paused;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
-    builder.addCase(triggerEvent, (state) => {
-      state.view = "event";
-    });
-    builder.addCase(setNameAndPronouns, (state) => {
-      // Once player has set these, we start the game
-      state.view = "town";
-    });
-    builder.addCase(exploreTile, (state, action) => {
-      const { playerId } = action.payload;
-      if (playerId === PLAYER_ID) {
-        // Show town view if player clicks on their town on map
+    builder
+      .addCase(setView, (state, action) => {
+        state.view = action.payload;
+      })
+      .addCase(setDay, (state, action) => {
+        state.day = action.payload;
+      })
+      .addCase(increaseGameSpeed, (state) => {
+        state.speed = state.speed * 2;
+      })
+      .addCase(decreaseGameSpeed, (state) => {
+        state.speed = state.speed / 2;
+      })
+      .addCase(togglePause, (state) => {
+        state.paused = !state.paused;
+      })
+      .addCase(triggerEvent, (state) => {
+        state.view = "event";
+      })
+      .addCase(setNameAndPronouns, (state) => {
+        // Once player has set these, we start the game
         state.view = "town";
-      } else if (playerId) {
-        // Show combat screen if player clicks on enemy town
-        state.view = "combat";
-      }
-    });
-    builder.addCase(completeBattle, (state) => {
-      state.view = "map";
-    });
+      })
+      .addCase(exploreTile, (state, action) => {
+        const { playerId } = action.payload;
+        if (playerId === PLAYER_ID) {
+          // Show town view if player clicks on their town on map
+          state.view = "town";
+        } else if (playerId) {
+          // Show combat screen if player clicks on enemy town
+          state.view = "combat";
+        }
+      })
+      .addCase(completeBattle, (state) => {
+        state.view = "map";
+      });
   },
 });
-
-export const {
-  decreaseGameSpeed,
-  increaseGameSpeed,
-  setDay,
-  setView,
-  togglePause,
-} = gameSlice.actions;
 
 // SELECTORS
 export const selectDay = (state: RootState) => state.game.day;

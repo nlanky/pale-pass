@@ -36,12 +36,10 @@ import { archery, handToHand, mounted } from "assets/combat";
 // Interfaces & Types
 import type { BattleOutcome } from "features/combat/types";
 // Redux
-import {
-  completeBattle,
-  selectAttackingPlayerId,
-} from "features/combat/combatSlice";
-import { setView } from "features/game/gameSlice";
-import { selectPlayerVillagers } from "features/town/townSlice";
+import { completeBattle } from "features/combat/actions";
+import { selectAttackingPlayerId } from "features/combat/combatSlice";
+import { setView } from "features/game/actions";
+import { selectTownVillagers } from "features/town/townSlice";
 // Utility functions
 import {
   determineBattleOutcome,
@@ -52,7 +50,7 @@ export const TownCombat: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const theme = useTheme();
-  const villagers = useAppSelector(selectPlayerVillagers);
+  const townVillagers = useAppSelector(selectTownVillagers);
   const enemyPlayerId = useAppSelector(selectAttackingPlayerId);
   const enemyDisplayMilitaryStrength =
     useEnemyDisplayMilitaryStrength(enemyPlayerId);
@@ -143,13 +141,13 @@ export const TownCombat: FC<{}> = () => {
         </Typography>
       </Grid>
 
-      {villagers.length === 0 && (
+      {townVillagers.length === 0 && (
         <Typography color="error" variant="body2">
           No villagers available for selection
         </Typography>
       )}
 
-      {villagers.length !== 0 && (
+      {townVillagers.length !== 0 && (
         <Grid container spacing={1} wrap="nowrap">
           <SelectedVillager
             villagerId={selectedVillagerIds[0]}
@@ -335,7 +333,7 @@ export const TownCombat: FC<{}> = () => {
         open={modalArmyPosition !== null}
       >
         <List disablePadding>
-          {villagers.map((townVillager) => {
+          {townVillagers.map((townVillager) => {
             const villager = ID_TO_VILLAGER[townVillager.id];
             const { id, name, icons, militaryStrength } = villager;
 

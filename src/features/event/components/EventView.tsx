@@ -19,11 +19,9 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Choice, Outcome } from "features/event/types";
 // Redux
-import {
-  completeEvent,
-  selectActiveEvent,
-} from "features/event/eventSlice";
-import { setView } from "features/game/gameSlice";
+import { completeEvent } from "features/event/actions";
+import { selectActiveEvent } from "features/event/eventSlice";
+import { setView } from "features/game/actions";
 
 export const EventView: FC<{}> = () => {
   // Hooks

@@ -13,14 +13,14 @@ import {
   useAppDispatch /*,useAppSelector*/,
 } from "features/redux/hooks";
 // Redux
-import { setView } from "features/game/gameSlice";
-// import { selectPlayerHasCartographer } from "features/town/townSlice";
+import { setView } from "features/game/actions";
+// import { selectTownHasCartographer } from "features/town/townSlice";
 
 export const TownMapButton: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   // TODO: Add check back when map testing complete
-  // const hasCartographer = useAppSelector(selectPlayerHasCartographer);
+  // const hasCartographer = useAppSelector(selectTownHasCartographer);
 
   // Handlers
   const onMapClick = () => {

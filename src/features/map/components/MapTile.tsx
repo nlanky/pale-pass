@@ -14,8 +14,8 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 import type { Tile } from "features/map/types";
 // Redux
 import { selectConqueredPlayerIds } from "features/combat/combatSlice";
-import { exploreTile } from "features/map/mapSlice";
-import { selectPlayerScouts } from "features/town/townSlice";
+import { exploreTile } from "features/map/actions";
+import { selectTownScouts } from "features/town/townSlice";
 
 interface MapTileProps {
   tile: Tile;
@@ -27,7 +27,7 @@ export const MapTile: FC<MapTileProps> = ({ tile }) => {
   // Hooks
   const dispatch = useAppDispatch();
   const conqueredPlayerIds = useAppSelector(selectConqueredPlayerIds);
-  const numberOfScouts = useAppSelector(selectPlayerScouts);
+  const numberOfScouts = useAppSelector(selectTownScouts);
 
   // Derived variables
   const isConquered =
