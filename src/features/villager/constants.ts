@@ -446,11 +446,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
   },
   20: {
     id: 20,
-    name: "Vilidoug",
-    occupation: "Metalurgist",
-    description:
-      "A metallurgist, adorned in a laboratory coat, epitomizes the marriage of science and industry. With meticulous precision, they unravel the secrets of metals, probing their atomic structure and properties. Through careful experimentation and analysis, they refine alloys, bestowing strength and resilience upon materials. Their keen intellect guides them to develop innovative techniques, pushing the boundaries of metallurgical knowledge. In the forge of their expertise, raw ores are transformed into gleaming creations that shape the modern world. A metallurgist's presence radiates a passion for discovery, harnessing the power of science to unlock the hidden potential within metals.",
-    specialty: "Gatherer",
+    name: "Jack",
+    occupation: "Content Thief",
+    description: "",
+    specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
     gatherResources: NO_RESOURCES,
@@ -560,7 +559,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     occupation: "Tax Collector",
     description:
       "A tax collector, draped in officious attire, embodies the weight of fiscal responsibility. With stern countenance and meticulous record-keeping, they navigate the intricate realm of taxation. Armed with knowledge of laws and regulations, they ensure compliance and collect dues to sustain public services. Their presence carries a mix of authority and, at times, reluctance, as they bear the burden of enforcing financial obligations. Often met with disdain, a tax collector's role is both essential and contentious, as they balance the scales of fiscal order, fostering the functioning of society while facing the ire of those who part with their hard-earned wealth.",
-    specialty: "Spy",
+    specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
     gatherResources: NO_RESOURCES,

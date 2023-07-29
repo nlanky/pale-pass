@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { Avatar, Grid, Tooltip, Typography } from "@mui/material";
 import type { SxProps } from "@mui/material";
 import {
   Carpenter as BuilderIcon,
@@ -17,6 +17,14 @@ import {
 // Interfaces & Types
 import type { Villager } from "features/villager/types";
 
+const iconSx: SxProps = {
+  p: 0.5,
+  backgroundColor: "parchmentDark.main",
+  color: "white",
+  borderRadius: "50%",
+  fontSize: "4rem",
+};
+
 interface VillagerModalTitleProps {
   villager: Villager;
 }
@@ -24,31 +32,23 @@ interface VillagerModalTitleProps {
 export const VillagerModalTitle: FC<VillagerModalTitleProps> = ({
   villager,
 }) => {
-  const { name, occupation, specialty } = villager;
+  const { icons, name, occupation, specialty } = villager;
 
   // Utility functions
   const getClassIcon = () => {
-    const sx: SxProps = {
-      p: 0.5,
-      backgroundColor: "parchmentDark.main",
-      color: "white",
-      borderRadius: "50%",
-      fontSize: "4rem",
-    };
-
     switch (specialty) {
       case "Builder":
-        return <BuilderIcon sx={sx} />;
+        return <BuilderIcon sx={iconSx} />;
       case "Gatherer":
-        return <GathererIcon sx={sx} />;
+        return <GathererIcon sx={iconSx} />;
       case "Healer":
-        return <HealerIcon sx={sx} />;
+        return <HealerIcon sx={iconSx} />;
       case "Scout":
-        return <ScoutIcon sx={sx} />;
+        return <ScoutIcon sx={iconSx} />;
       case "Soldier":
-        return <SoldierIcon sx={sx} />;
+        return <SoldierIcon sx={iconSx} />;
       case "Spy":
-        return <SpyIcon sx={sx} />;
+        return <SpyIcon sx={iconSx} />;
       default:
         break;
     }
@@ -61,9 +61,15 @@ export const VillagerModalTitle: FC<VillagerModalTitleProps> = ({
       justifyContent="space-between"
       sx={{ minWidth: 350, pt: 1, px: 2.5 }}
     >
-      <Grid item>
+      <Grid alignItems="center" container item sx={{ width: "auto" }}>
+        <Avatar
+          alt={name}
+          src={icons["healthy"]}
+          sx={{ width: 48, height: 48 }}
+        />
         <Typography
           component="h2"
+          sx={{ ml: 1 }}
           variant="h6"
         >{`${name} the ${occupation}`}</Typography>
       </Grid>
