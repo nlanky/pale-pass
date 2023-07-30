@@ -300,10 +300,23 @@ export const townSlice = createSlice({
         const nextVillagerIdToVillager = {
           ...state.villagerIdToVillager,
         };
+        const numberOfHealers = getNumberOfHealers(
+          state.villagerIdToVillager,
+        );
         action.payload.villagers.forEach((villager) => {
-          if (nextVillagerIdToVillager[villager.id]) {
-            nextVillagerIdToVillager[villager.id].state =
-              villager.state;
+          const { id, state } = villager;
+          if (nextVillagerIdToVillager[id]) {
+            nextVillagerIdToVillager[id] = {
+              id,
+              state,
+              recoveryTimeRemaining:
+                state === "injured"
+                  ? Math.max(
+                      VILLAGER_RECOVERY_DAYS - numberOfHealers,
+                      1,
+                    )
+                  : 0,
+            };
           }
         });
 
