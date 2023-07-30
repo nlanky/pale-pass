@@ -28,6 +28,16 @@ import {
   villager23Image,
   villager24Image,
   villager25Image,
+  villager26Image,
+  villager27Image,
+  villager28Image,
+  villager29Image,
+  villager30Image,
+  villager31Image,
+  villager32Image,
+  villager33Image,
+  villager34Image,
+  villager35Image,
   villagerIcon,
 } from "assets/villager";
 // Interfaces & Types
@@ -613,10 +623,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 2,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager26Image,
+      recovering: villager26Image,
+      injured: villager26Image,
+      dead: villager26Image,
     },
   },
   27: {
@@ -635,10 +645,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 2,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager27Image,
+      recovering: villager27Image,
+      injured: villager27Image,
+      dead: villager27Image,
     },
   },
   28: {
@@ -657,10 +667,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 2,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager28Image,
+      recovering: villager28Image,
+      injured: villager28Image,
+      dead: villager28Image,
     },
   },
   29: {
@@ -679,10 +689,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 3,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager29Image,
+      recovering: villager29Image,
+      injured: villager29Image,
+      dead: villager29Image,
     },
   },
   30: {
@@ -701,10 +711,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 2,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager30Image,
+      recovering: villager30Image,
+      injured: villager30Image,
+      dead: villager30Image,
     },
   },
   31: {
@@ -723,10 +733,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager31Image,
+      recovering: villager31Image,
+      injured: villager31Image,
+      dead: villager31Image,
     },
   },
   32: {
@@ -745,10 +755,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager32Image,
+      recovering: villager32Image,
+      injured: villager32Image,
+      dead: villager32Image,
     },
   },
   33: {
@@ -767,10 +777,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager33Image,
+      recovering: villager33Image,
+      injured: villager33Image,
+      dead: villager33Image,
     },
   },
   34: {
@@ -789,10 +799,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 4,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager34Image,
+      recovering: villager34Image,
+      injured: villager34Image,
+      dead: villager34Image,
     },
   },
   35: {
@@ -811,10 +821,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       mounted: 1,
     },
     icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
+      healthy: villager35Image,
+      recovering: villager35Image,
+      injured: villager35Image,
+      dead: villager35Image,
     },
   },
   36: {
