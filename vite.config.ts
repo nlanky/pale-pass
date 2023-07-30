@@ -5,7 +5,19 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          [
+            "babel-plugin-direct-import",
+            { modules: ["@mui/material", "@mui/icons-material"] },
+          ],
+        ],
+      },
+    }),
+    tsconfigPaths(),
+  ],
   base: "/pale-pass/",
   server: {
     open: true,
