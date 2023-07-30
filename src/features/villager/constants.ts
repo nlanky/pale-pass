@@ -284,7 +284,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     occupation: "Swede",
     description:
       "A Swede, hailing from the enchanting lands of Sweden, embodies a blend of warmth and stoic resilience. With fair skin and often light hair, they exude a sense of tranquility and understated elegance. Grounded in a rich cultural heritage, Swedes embrace a balance of tradition and progress, valuing societal harmony and egalitarian values. They find solace in nature, embracing the beauty of their pristine landscapes. Known for their warmth, hospitality, and fika (coffee break) culture, Swedes create an inviting atmosphere, fostering a sense of community that reflects their enduring spirit and appreciation for life's simple pleasures.",
-    specialty: "Healer",
+    specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
     gatherResources: NO_RESOURCES,
@@ -522,10 +522,10 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
   22: {
     id: 22,
     name: "Zoarino",
-    occupation: "Archeologist",
+    occupation: "Doctor",
     description:
-      "An archaeologist, draped in layers of dust and history, delves into the depths of ancient civilizations. With a keen eye and meticulous precision, they unearth artifacts and fragments that whisper tales of bygone eras. Armed with brushes and trowels, they carefully extract remnants from the earth's embrace, piecing together the puzzle of human history. Their scholarly passion transcends time, deciphering inscriptions and unraveling cultural mysteries. With each discovery, they breathe life into forgotten narratives, offering glimpses into the rich tapestry of humanity's past. An archaeologist's presence is a bridge between worlds, connecting us to the marvels and enigmas of ancient civilizations.",
-    specialty: "Scout",
+      "A doctor is a highly trained medical professional who diagnoses and treats illnesses, injuries, and medical conditions. With extensive knowledge and expertise, doctors provide healthcare and support to patients, employing various medical interventions, therapies, and medications to improve well-being and save lives.",
+    specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
     gatherResources: NO_RESOURCES,
