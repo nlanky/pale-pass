@@ -41,3 +41,5 @@ export interface Building {
   /** Paths to icon locations */
   icons: Record<BuildingState, string>;
 }
+
+export type BuildingNotificationType = "built" | "repaired";

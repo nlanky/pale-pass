@@ -1,10 +1,11 @@
 export { TownAdvanceTierButton } from "features/town/components/TownAdvanceTierButton";
+export { TownBuildingNotification } from "features/town/components/TownBuildingNotification";
 export { TownBuildingsButton } from "features/town/components/TownBuildingsButton";
 export { TownExploreButton } from "features/town/components/TownExploreButton";
 export { TownImage } from "features/town/components/TownImage";
 export { TownLogButton } from "features/town/components/TownLogButton";
 export { TownMapButton } from "features/town/components/TownMapButton";
-export { TownNotification } from "features/town/components/TownNotification";
 export { TownResources } from "features/town/components/TownResources";
 export { TownView } from "features/town/components/TownView";
+export { TownVillagerNotification } from "features/town/components/TownVillagerNotification";
 export { TownVillagersButton } from "features/town/components/TownVillagersButton";

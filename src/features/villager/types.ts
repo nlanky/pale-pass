@@ -41,3 +41,5 @@ export interface Villager {
   /** Paths to icon locations */
   icons: Record<VillagerState, string>;
 }
+
+export type VillagerNotificationType = "healed";

@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useSnackbar } from "notistack";
 
 // LOCAL FILES
-// Constants
-import { ID_TO_BUILDING } from "features/building/constants";
 // Hooks
 import { usePrevious } from "features/common/hooks";
 // Redux
@@ -59,14 +57,17 @@ export const useBuildingNotifications = () => {
 
     buildingIdsBuilt.forEach((buildingId) => {
       enqueueSnackbar({
-        variant: "success",
-        message: `${ID_TO_BUILDING[buildingId].name} built`,
+        buildingId,
+        type: "built",
+        variant: "building",
       });
     });
 
     buildingIdsRepaired.forEach((buildingId) => {
       enqueueSnackbar({
-        message: `${ID_TO_BUILDING[buildingId].name} repaired`,
+        buildingId,
+        type: "repaired",
+        variant: "building",
       });
     });
   }, [buildingIdToBuilding, previousBuildingIdToBuilding]);
@@ -108,7 +109,9 @@ export const useVillagerNotifications = () => {
 
     villagerIdsHealed.forEach((villagerId) => {
       enqueueSnackbar({
-        message: `${ID_TO_BUILDING[villagerId].name} healed`,
+        type: "healed",
+        variant: "villager",
+        villagerId,
       });
     });
   }, [villagerIdToVillager, previousVillagerIdToVillager]);
