@@ -3,6 +3,7 @@ import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
 import {
+  Avatar,
   Dialog,
   DialogActions,
   DialogContent,
@@ -130,10 +131,18 @@ export const VillagerModal: FC<{}> = () => {
       <VillagerModalTitle villager={villager} />
 
       <DialogContent>
-        <PlaceholderText
-          text={villager.description}
-          variant="body2"
-        />
+        <Grid container wrap="nowrap">
+          <PlaceholderText
+            sx={{ mr: 1 }}
+            text={villager.description}
+            variant="body2"
+          />
+          <Avatar
+            alt={villager.name}
+            src={villager.icons["healthy"]}
+            sx={{ width: 200, height: 200 }}
+          />
+        </Grid>
 
         {affectedResources.length !== 0 && (
           <>
