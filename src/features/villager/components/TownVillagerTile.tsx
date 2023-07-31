@@ -2,13 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import {
-  Avatar,
-  Badge,
-  Grid,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Badge, Grid, Typography, useTheme } from "@mui/material";
 import {
   Healing as HealingIcon,
   MonitorHeart as MonitorHeartIcon,
@@ -21,6 +15,7 @@ import { ID_TO_VILLAGER } from "features/villager/constants";
 import { useAppSelector } from "features/redux/hooks";
 // Redux
 import { selectTownVillager } from "features/town/townSlice";
+import { VillagerAvatar } from ".";
 
 interface TownVillagerTileProps {
   villagerId: number;
@@ -42,7 +37,7 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
   const townVillager = useAppSelector(selectTownVillager(villagerId));
 
   // Derived variables
-  const { id, name, image } = ID_TO_VILLAGER[villagerId];
+  const { id, name } = ID_TO_VILLAGER[villagerId];
   const state = townVillager?.state;
 
   // Utility functions
@@ -89,11 +84,7 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
           width: "auto",
         }}
       >
-        <Avatar
-          alt={name}
-          src={image}
-          sx={{ width: 128, height: 128 }}
-        />
+        <VillagerAvatar villagerId={villagerId} hideStateText />
         <Typography sx={{ mt: 1 }} variant="body2">
           {name}
         </Typography>

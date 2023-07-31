@@ -3,7 +3,6 @@ import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
 import {
-  Avatar,
   Dialog,
   DialogActions,
   DialogContent,
@@ -25,7 +24,10 @@ import {
   StyledButton,
   StyledPaper,
 } from "features/common/components";
-import { VillagerModalTitle } from "features/villager/components";
+import {
+  VillagerAvatar,
+  VillagerModalTitle,
+} from "features/villager/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -137,10 +139,11 @@ export const VillagerModal: FC<{}> = () => {
             text={villager.description}
             variant="body2"
           />
-          <Avatar
-            alt={villager.name}
-            src={villager.image}
-            sx={{ width: 200, height: 200 }}
+          <VillagerAvatar
+            villagerId={villager.id}
+            hideStateOverlay
+            width={200}
+            height={200}
           />
         </Grid>
 

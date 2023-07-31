@@ -4,7 +4,6 @@ import type { FC } from "react";
 
 // PUBLIC MODULES
 import {
-  Avatar,
   Dialog,
   Divider,
   Grid,
@@ -25,6 +24,7 @@ import {
   StyledButton,
   StyledContainer,
 } from "features/common/components";
+import { VillagerAvatar } from "features/villager/components";
 // Constants
 import { PLAYER_ID_TO_MILITARY_STRENGTH } from "features/combat/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
@@ -335,7 +335,7 @@ export const TownCombat: FC<{}> = () => {
         <List disablePadding>
           {townVillagers.map((townVillager) => {
             const villager = ID_TO_VILLAGER[townVillager.id];
-            const { id, name, image, militaryStrength } = villager;
+            const { id, militaryStrength } = villager;
 
             const selected = selectedVillagerIds.includes(id);
             const injured = townVillager.state === "injured";
@@ -359,7 +359,12 @@ export const TownCombat: FC<{}> = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <Avatar alt={name} src={image} />
+                    <VillagerAvatar
+                      villagerId={id}
+                      hideStateText
+                      width={40}
+                      height={40}
+                    />
                   </ListItemIcon>
                   <ListItemText
                     primary={listItemText}

@@ -2,11 +2,12 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Avatar, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 // LOCAL FILES
 // Components
 import { StyledButton } from "features/common/components";
+import { VillagerAvatar } from "features/villager/components";
 // Constants
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Icons & Images
@@ -40,10 +41,9 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
     >
       {villager && (
         <>
-          <Avatar
-            alt={villager.name}
-            src={villager.image}
-            sx={{ width: 128, height: 128 }}
+          <VillagerAvatar
+            villagerId={villagerId || NaN}
+            hideStateText
           />
           <Typography
             align="center"
