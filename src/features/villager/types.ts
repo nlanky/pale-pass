@@ -38,8 +38,8 @@ export interface Villager {
   gatherResources: Resources;
   /** How competent a villager is at each type of combat */
   militaryStrength: MilitaryStrength;
-  /** Paths to icon locations */
-  icons: Record<VillagerState, string>;
+  /** Path to image location */
+  image: string;
 }
 
 export type VillagerNotificationType = "healed";

@@ -82,12 +82,12 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
 
   outcome.villagers.forEach((outcomeVillager) => {
     const { id, state } = outcomeVillager;
-    const { name, occupation, icons } = ID_TO_VILLAGER[id];
+    const { name, occupation, image } = ID_TO_VILLAGER[id];
     const isPositive = ["healthy", "recovering"].includes(state);
     outcomeJsx.push(
       <OutcomeIconWithText
         key={`villager_${id}`}
-        icon={icons[state]}
+        icon={image}
         isPositive={isPositive}
         text={`${name} the ${occupation} ${
           state === "healthy" ? "joins the town" : `is ${state}`

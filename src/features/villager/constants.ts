@@ -38,7 +38,20 @@ import {
   villager33Image,
   villager34Image,
   villager35Image,
-  villagerIcon,
+  villager36Image,
+  villager37Image,
+  villager38Image,
+  villager39Image,
+  villager40Image,
+  villager41Image,
+  villager42Image,
+  villager43Image,
+  villager44Image,
+  villager45Image,
+  villager46Image,
+  villager47Image,
+  villager48Image,
+  villager49Image,
 } from "assets/villager";
 // Interfaces & Types
 import type {
@@ -73,12 +86,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 5,
       mounted: 5,
     },
-    icons: {
-      healthy: villager1Image,
-      recovering: villager1Image,
-      injured: villager1Image,
-      dead: villager1Image,
-    },
+    image: villager1Image,
   },
   2: {
     id: 2,
@@ -95,12 +103,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villager2Image,
-      recovering: villager2Image,
-      injured: villager2Image,
-      dead: villager2Image,
-    },
+    image: villager2Image,
   },
   3: {
     id: 3,
@@ -117,12 +120,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 1,
     },
-    icons: {
-      healthy: villager3Image,
-      recovering: villager3Image,
-      injured: villager3Image,
-      dead: villager3Image,
-    },
+    image: villager3Image,
   },
   4: {
     id: 4,
@@ -139,12 +137,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villager4Image,
-      recovering: villager4Image,
-      injured: villager4Image,
-      dead: villager4Image,
-    },
+    image: villager4Image,
   },
   5: {
     id: 5,
@@ -161,12 +154,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 2,
     },
-    icons: {
-      healthy: villager5Image,
-      recovering: villager5Image,
-      injured: villager5Image,
-      dead: villager5Image,
-    },
+    image: villager5Image,
   },
   6: {
     id: 6,
@@ -183,12 +171,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 2,
     },
-    icons: {
-      healthy: villager6Image,
-      recovering: villager6Image,
-      injured: villager6Image,
-      dead: villager6Image,
-    },
+    image: villager6Image,
   },
   7: {
     id: 7,
@@ -205,12 +188,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 1,
     },
-    icons: {
-      healthy: villager7Image,
-      recovering: villager7Image,
-      injured: villager7Image,
-      dead: villager7Image,
-    },
+    image: villager7Image,
   },
   8: {
     id: 8,
@@ -227,12 +205,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 2,
     },
-    icons: {
-      healthy: villager8Image,
-      recovering: villager8Image,
-      injured: villager8Image,
-      dead: villager8Image,
-    },
+    image: villager8Image,
   },
   9: {
     id: 9,
@@ -249,12 +222,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 4,
     },
-    icons: {
-      healthy: villager9Image,
-      recovering: villager9Image,
-      injured: villager9Image,
-      dead: villager9Image,
-    },
+    image: villager9Image,
   },
   10: {
     id: 10,
@@ -271,12 +239,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villager10Image,
-      recovering: villager10Image,
-      injured: villager10Image,
-      dead: villager10Image,
-    },
+    image: villager10Image,
   },
   11: {
     id: 11,
@@ -293,12 +256,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 1,
     },
-    icons: {
-      healthy: villager11Image,
-      recovering: villager11Image,
-      injured: villager11Image,
-      dead: villager11Image,
-    },
+    image: villager11Image,
   },
   12: {
     id: 12,
@@ -315,12 +273,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 5,
       mounted: 5,
     },
-    icons: {
-      healthy: villager12Image,
-      recovering: villager12Image,
-      injured: villager12Image,
-      dead: villager12Image,
-    },
+    image: villager12Image,
   },
   13: {
     id: 13,
@@ -337,12 +290,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 5,
       mounted: 3,
     },
-    icons: {
-      healthy: villager13Image,
-      recovering: villager13Image,
-      injured: villager13Image,
-      dead: villager13Image,
-    },
+    image: villager13Image,
   },
   14: {
     id: 14,
@@ -359,12 +307,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villager14Image,
-      recovering: villager14Image,
-      injured: villager14Image,
-      dead: villager14Image,
-    },
+    image: villager14Image,
   },
   15: {
     id: 15,
@@ -381,12 +324,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 2,
     },
-    icons: {
-      healthy: villager15Image,
-      recovering: villager15Image,
-      injured: villager15Image,
-      dead: villager15Image,
-    },
+    image: villager15Image,
   },
   16: {
     id: 16,
@@ -402,12 +340,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 3,
     },
-    icons: {
-      healthy: villager16Image,
-      recovering: villager16Image,
-      injured: villager16Image,
-      dead: villager16Image,
-    },
+    image: villager16Image,
   },
   17: {
     id: 17,
@@ -424,12 +357,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villager17Image,
-      recovering: villager17Image,
-      injured: villager17Image,
-      dead: villager17Image,
-    },
+    image: villager17Image,
   },
   18: {
     id: 18,
@@ -446,12 +374,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 4,
       mounted: 3,
     },
-    icons: {
-      healthy: villager18Image,
-      recovering: villager18Image,
-      injured: villager18Image,
-      dead: villager18Image,
-    },
+    image: villager18Image,
   },
   19: {
     id: 19,
@@ -468,12 +391,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 2,
     },
-    icons: {
-      healthy: villager19Image,
-      recovering: villager19Image,
-      injured: villager19Image,
-      dead: villager19Image,
-    },
+    image: villager19Image,
   },
   20: {
     id: 20,
@@ -490,12 +408,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villager20Image,
-      recovering: villager20Image,
-      injured: villager20Image,
-      dead: villager20Image,
-    },
+    image: villager20Image,
   },
   21: {
     id: 21,
@@ -512,12 +425,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 4,
       mounted: 2,
     },
-    icons: {
-      healthy: villager21Image,
-      recovering: villager21Image,
-      injured: villager21Image,
-      dead: villager21Image,
-    },
+    image: villager21Image,
   },
   22: {
     id: 22,
@@ -534,12 +442,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 4,
       mounted: 4,
     },
-    icons: {
-      healthy: villager22Image,
-      recovering: villager22Image,
-      injured: villager22Image,
-      dead: villager22Image,
-    },
+    image: villager22Image,
   },
   23: {
     id: 23,
@@ -556,12 +459,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 3,
     },
-    icons: {
-      healthy: villager23Image,
-      recovering: villager23Image,
-      injured: villager23Image,
-      dead: villager23Image,
-    },
+    image: villager23Image,
   },
   24: {
     id: 24,
@@ -578,12 +476,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 2,
     },
-    icons: {
-      healthy: villager24Image,
-      recovering: villager24Image,
-      injured: villager24Image,
-      dead: villager24Image,
-    },
+    image: villager24Image,
   },
   25: {
     id: 25,
@@ -600,12 +493,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 4,
       mounted: 2,
     },
-    icons: {
-      healthy: villager25Image,
-      recovering: villager25Image,
-      injured: villager25Image,
-      dead: villager25Image,
-    },
+    image: villager25Image,
   },
   26: {
     id: 26,
@@ -622,12 +510,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villager26Image,
-      recovering: villager26Image,
-      injured: villager26Image,
-      dead: villager26Image,
-    },
+    image: villager26Image,
   },
   27: {
     id: 27,
@@ -644,12 +527,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 2,
     },
-    icons: {
-      healthy: villager27Image,
-      recovering: villager27Image,
-      injured: villager27Image,
-      dead: villager27Image,
-    },
+    image: villager27Image,
   },
   28: {
     id: 28,
@@ -666,12 +544,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 2,
     },
-    icons: {
-      healthy: villager28Image,
-      recovering: villager28Image,
-      injured: villager28Image,
-      dead: villager28Image,
-    },
+    image: villager28Image,
   },
   29: {
     id: 29,
@@ -688,12 +561,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 4,
       mounted: 3,
     },
-    icons: {
-      healthy: villager29Image,
-      recovering: villager29Image,
-      injured: villager29Image,
-      dead: villager29Image,
-    },
+    image: villager29Image,
   },
   30: {
     id: 30,
@@ -710,12 +578,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 5,
       mounted: 2,
     },
-    icons: {
-      healthy: villager30Image,
-      recovering: villager30Image,
-      injured: villager30Image,
-      dead: villager30Image,
-    },
+    image: villager30Image,
   },
   31: {
     id: 31,
@@ -732,12 +595,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villager31Image,
-      recovering: villager31Image,
-      injured: villager31Image,
-      dead: villager31Image,
-    },
+    image: villager31Image,
   },
   32: {
     id: 32,
@@ -754,12 +612,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 1,
     },
-    icons: {
-      healthy: villager32Image,
-      recovering: villager32Image,
-      injured: villager32Image,
-      dead: villager32Image,
-    },
+    image: villager32Image,
   },
   33: {
     id: 33,
@@ -776,12 +629,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villager33Image,
-      recovering: villager33Image,
-      injured: villager33Image,
-      dead: villager33Image,
-    },
+    image: villager33Image,
   },
   34: {
     id: 34,
@@ -798,12 +646,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 4,
     },
-    icons: {
-      healthy: villager34Image,
-      recovering: villager34Image,
-      injured: villager34Image,
-      dead: villager34Image,
-    },
+    image: villager34Image,
   },
   35: {
     id: 35,
@@ -820,12 +663,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villager35Image,
-      recovering: villager35Image,
-      injured: villager35Image,
-      dead: villager35Image,
-    },
+    image: villager35Image,
   },
   36: {
     id: 36,
@@ -842,12 +680,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager36Image,
   },
   37: {
     id: 37,
@@ -864,12 +697,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 3,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager37Image,
   },
   38: {
     id: 38,
@@ -886,12 +714,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 1,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager38Image,
   },
   39: {
     id: 39,
@@ -908,12 +731,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 2,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager39Image,
   },
   40: {
     id: 40,
@@ -930,12 +748,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 3,
       mounted: 3,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager40Image,
   },
   41: {
     id: 41,
@@ -952,12 +765,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 1,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager41Image,
   },
   42: {
     id: 42,
@@ -974,12 +782,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager42Image,
   },
   43: {
     id: 43,
@@ -996,12 +799,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager43Image,
   },
   44: {
     id: 44,
@@ -1018,12 +816,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 1,
       mounted: 5,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager44Image,
   },
   45: {
     id: 45,
@@ -1047,12 +840,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 5,
       mounted: 5,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager45Image,
   },
   46: {
     id: 46,
@@ -1076,12 +864,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 5,
       mounted: 5,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager46Image,
   },
   47: {
     id: 47,
@@ -1098,12 +881,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 4,
       mounted: 1,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager47Image,
   },
   48: {
     id: 48,
@@ -1120,12 +898,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager48Image,
   },
   49: {
     id: 49,
@@ -1142,11 +915,6 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
       archery: 2,
       mounted: 2,
     },
-    icons: {
-      healthy: villagerIcon,
-      recovering: villagerIcon,
-      injured: villagerIcon,
-      dead: villagerIcon,
-    },
+    image: villager49Image,
   },
 };

@@ -139,7 +139,7 @@ export const VillagerModal: FC<{}> = () => {
           />
           <Avatar
             alt={villager.name}
-            src={villager.icons["healthy"]}
+            src={villager.image}
             sx={{ width: 200, height: 200 }}
           />
         </Grid>

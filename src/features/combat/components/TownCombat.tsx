@@ -299,7 +299,7 @@ export const TownCombat: FC<{}> = () => {
               <Grid container spacing={1} sx={{ mt: 1 }}>
                 {battleOutcome.villagers.map((armyVillager) => {
                   const { id, state } = armyVillager;
-                  const { name, occupation, icons } =
+                  const { name, occupation, image } =
                     ID_TO_VILLAGER[armyVillager.id];
                   const isPositive = [
                     "healthy",
@@ -308,7 +308,7 @@ export const TownCombat: FC<{}> = () => {
                   return (
                     <OutcomeIconWithText
                       key={id}
-                      icon={icons[state]}
+                      icon={image}
                       isPositive={isPositive}
                       text={`${name} the ${occupation} ${
                         state === "healthy"
@@ -335,7 +335,7 @@ export const TownCombat: FC<{}> = () => {
         <List disablePadding>
           {townVillagers.map((townVillager) => {
             const villager = ID_TO_VILLAGER[townVillager.id];
-            const { id, name, icons, militaryStrength } = villager;
+            const { id, name, image, militaryStrength } = villager;
 
             const selected = selectedVillagerIds.includes(id);
             const injured = townVillager.state === "injured";
@@ -359,10 +359,7 @@ export const TownCombat: FC<{}> = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <Avatar
-                      alt={name}
-                      src={icons[townVillager.state]}
-                    />
+                    <Avatar alt={name} src={image} />
                   </ListItemIcon>
                   <ListItemText
                     primary={listItemText}

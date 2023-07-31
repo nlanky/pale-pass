@@ -33,6 +33,20 @@ import villager32Image from "assets/villager/32.png";
 import villager33Image from "assets/villager/33.png";
 import villager34Image from "assets/villager/34.png";
 import villager35Image from "assets/villager/35.png";
+import villager36Image from "assets/villager/36.png";
+import villager37Image from "assets/villager/37.png";
+import villager38Image from "assets/villager/38.png";
+import villager39Image from "assets/villager/39.png";
+import villager40Image from "assets/villager/40.png";
+import villager41Image from "assets/villager/41.png";
+import villager42Image from "assets/villager/42.png";
+import villager43Image from "assets/villager/43.png";
+import villager44Image from "assets/villager/44.png";
+import villager45Image from "assets/villager/45.png";
+import villager46Image from "assets/villager/46.png";
+import villager47Image from "assets/villager/47.png";
+import villager48Image from "assets/villager/48.png";
+import villager49Image from "assets/villager/49.png";
 import villagerIcon from "assets/villager/villager.svg";
 
 export {
@@ -71,5 +85,19 @@ export {
   villager33Image,
   villager34Image,
   villager35Image,
+  villager36Image,
+  villager37Image,
+  villager38Image,
+  villager39Image,
+  villager40Image,
+  villager41Image,
+  villager42Image,
+  villager43Image,
+  villager44Image,
+  villager45Image,
+  villager46Image,
+  villager47Image,
+  villager48Image,
+  villager49Image,
   villagerIcon,
 };

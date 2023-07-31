@@ -42,7 +42,7 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
         <>
           <Avatar
             alt={villager.name}
-            src={villager.icons.healthy} // TODO: Different image based on state
+            src={villager.image}
             sx={{ width: 128, height: 128 }}
           />
           <Typography

@@ -42,7 +42,7 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
   const townVillager = useAppSelector(selectTownVillager(villagerId));
 
   // Derived variables
-  const { id, name, icons } = ID_TO_VILLAGER[villagerId];
+  const { id, name, image } = ID_TO_VILLAGER[villagerId];
   const state = townVillager?.state;
 
   // Utility functions
@@ -91,7 +91,7 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
       >
         <Avatar
           alt={name}
-          src={icons[state || "healthy"]}
+          src={image}
           sx={{ width: 128, height: 128 }}
         />
         <Typography sx={{ mt: 1 }} variant="body2">
