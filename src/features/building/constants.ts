@@ -34,7 +34,7 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     name: "Small Cottages",
     text: {
       preBuild:
-        "New faces are joinng the village almost every day now. It's time people had a proper place to live! A row of small cottages can be put together quickly if we all work together.",
+        "New faces are joining the village almost every day now. It's time people had a proper place to live! A row of small cottages can be put together quickly if we all work together.",
       postBuild:
         "A few days of labour and you stand before small, but cosy and warm cottages. Much better than the tents and shelters people were using! People are sure to work harder with a good roof over their heads.",
     },
