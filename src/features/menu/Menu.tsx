@@ -2,14 +2,13 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Tooltip, Typography } from "@mui/material";
+import { Container, Grid, Tooltip, Typography } from "@mui/material";
 
 // LOCAL FILES
+// Assets
+import { titleImage } from "assets/menu";
 // Components
-import {
-  StyledButton,
-  StyledContainer,
-} from "features/common/components";
+import { StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Redux
@@ -43,32 +42,28 @@ export const Menu: FC<{}> = () => {
   const savedGameDetails = getGameDetailsFromLocalStorage();
 
   return (
-    <StyledContainer sx={{ p: 2 }}>
-      <Grid alignItems="center" container direction="column">
-        <Typography align="center" sx={{ mb: 1 }} variant="h1">
-          Pale Pass
-        </Typography>
-        <Grid item>
-          <StyledButton onClick={onGameStart}>New Game</StyledButton>
-          <Tooltip
-            title={
-              savedGame && (
-                <Typography variant="body2">{`${savedGameDetails.name}, Day ${savedGameDetails.day}`}</Typography>
-              )
-            }
-          >
-            <span>
-              <StyledButton
-                disabled={!savedGame}
-                onClick={onGameLoad}
-                sx={{ ml: 2 }}
-              >
-                Load Game
-              </StyledButton>
-            </span>
-          </Tooltip>
-        </Grid>
+    <Container maxWidth="lg">
+      <img src={titleImage} style={{ width: "100%" }} />
+      <Grid container justifyContent="space-around" sx={{ pt: 1 }}>
+        <StyledButton onClick={onGameStart}>New Game</StyledButton>
+        <Tooltip
+          title={
+            savedGame && (
+              <Typography variant="body2">{`${savedGameDetails.name}, Day ${savedGameDetails.day}`}</Typography>
+            )
+          }
+        >
+          <span>
+            <StyledButton
+              disabled={!savedGame}
+              onClick={onGameLoad}
+              sx={{ ml: 2 }}
+            >
+              Load Game
+            </StyledButton>
+          </span>
+        </Tooltip>
       </Grid>
-    </StyledContainer>
+    </Container>
   );
 };
