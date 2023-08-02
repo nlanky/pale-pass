@@ -3,10 +3,10 @@ import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
 import { Grid, Tooltip, Typography } from "@mui/material";
-import { Search as SearchIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Constants
+import { MAP_TILE_WIDTH } from "features/map/constants";
 import { PLAYER_ID } from "features/player/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
@@ -22,7 +22,8 @@ interface MapTileProps {
 }
 
 export const MapTile: FC<MapTileProps> = ({ tile }) => {
-  const { x, y, scoutAmount, visible, explored, playerId } = tile;
+  const { x, y, image, scoutAmount, visible, explored, playerId } =
+    tile;
 
   // Hooks
   const dispatch = useAppDispatch();
@@ -32,21 +33,6 @@ export const MapTile: FC<MapTileProps> = ({ tile }) => {
   // Derived variables
   const isConquered =
     playerId && conqueredPlayerIds.includes(playerId);
-  // TODO: Icons
-  let backgroundColor = "black";
-  if (playerId === PLAYER_ID) {
-    backgroundColor = "blue";
-  } else if (visible) {
-    if (playerId && isConquered) {
-      backgroundColor = "green";
-    } else if (playerId) {
-      backgroundColor = "red";
-    } else if (explored) {
-      backgroundColor = "gray";
-    } else {
-      backgroundColor = "lightgray";
-    }
-  }
   const enabled =
     playerId === PLAYER_ID ||
     (visible &&
@@ -99,26 +85,26 @@ export const MapTile: FC<MapTileProps> = ({ tile }) => {
         }}
         role="button"
         sx={{
-          backgroundColor,
           position: "absolute",
-          width: 96,
-          height: 96,
-          top: y * 96,
-          left: x * 96,
+          width: MAP_TILE_WIDTH,
+          height: MAP_TILE_WIDTH,
+          top: (y - 1) * MAP_TILE_WIDTH,
+          left: (x - 1) * MAP_TILE_WIDTH,
           cursor: enabled ? "pointer" : "default",
         }}
       >
-        {visible && playerId && (
-          <Typography color="white" variant="h4">
-            {playerId}
-          </Typography>
-        )}
-
-        {visible && !explored && !playerId && (
-          <>
-            <SearchIcon />
-            <Typography variant="body2">{scoutAmount}</Typography>
-          </>
+        {visible && <img src={image} />}
+        {visible && !explored && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+            }}
+          />
         )}
       </Grid>
     </Tooltip>

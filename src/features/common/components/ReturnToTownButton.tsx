@@ -3,6 +3,7 @@ import type { FC } from "react";
 
 // PUBLIC MODULES
 import type { ButtonProps } from "@mui/material";
+import { Home as HomeIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
@@ -28,8 +29,9 @@ export const ReturnToTownButton: FC<ButtonProps> = ({ ...props }) => {
         props.onClick && props.onClick(event);
         onReturnToTown();
       }}
+      startIcon={<HomeIcon />}
     >
-      Return to Town
+      Town
     </StyledButton>
   );
 };

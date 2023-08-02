@@ -7,6 +7,8 @@ export interface Tile {
   x: number;
   /** y coordinate in map, 0 indexed */
   y: number;
+  /** Image to display when tile is visible */
+  image: string;
   /** If tile triggers event, this is ID that should trigger */
   eventId: number | null;
   /** Number of scouts required to explore tile */
