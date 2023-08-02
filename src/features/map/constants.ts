@@ -414,7 +414,7 @@ export const TILES: Tile[] = [
     visible: false,
     explored: false,
     resources: null,
-    playerId: null,
+    playerId: 3,
   },
   {
     x: 9,
@@ -612,7 +612,7 @@ export const TILES: Tile[] = [
     visible: false,
     explored: false,
     resources: null,
-    playerId: null,
+    playerId: 2,
   },
   {
     x: 7,
@@ -1096,7 +1096,7 @@ export const TILES: Tile[] = [
     visible: false,
     explored: false,
     resources: null,
-    playerId: null,
+    playerId: 4,
   },
   {
     x: 1,
