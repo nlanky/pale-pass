@@ -868,8 +868,10 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     id: 26,
     name: "Orchard",
     text: {
-      preBuild: "",
-      postBuild: "",
+      preBuild:
+        "The village lacks the vibrant abundance of fruit trees, leaving its residents longing for the taste of nature's sweet harvest. An orchard, with its bountiful array of apple, pear, and cherry trees, would bring color to the landscape and provide a vital source of nourishment. It would be a sanctuary where families gather, children play, and the fragrance of blossoms intermingles with the whispers of a community's dreams.",
+      postBuild:
+        "Within the village, a newfound sense of vibrancy and abundance fills the air. The once barren landscape has transformed into a flourishing orchard, bursting with life and color. Lush apple, pear, and cherry trees stand tall, their branches heavy with ripe fruits. The village now enjoys a bounty of nourishment and sustenance, bringing joy to the faces of its residents. Families gather beneath the shade of the trees, sharing laughter and stories as they savor the sweetness of nature's gifts. The orchard has become the heart of the community, a sanctuary of serenity and prosperity that uplifts the spirits of all who dwell within its embrace.",
     },
     canBuild: true,
     requirements: getBuildingRequirements({ tier: 3 }),
@@ -890,8 +892,10 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     id: 27,
     name: "Barn",
     text: {
-      preBuild: "",
-      postBuild: "",
+      preBuild:
+        "In the heart of the village, a collective yearning for a shelter for their precious livestock and harvested crops echoes through the air. With each passing day, the need for a sturdy barn grows more evident. The village lacks a central space to store their provisions, protect their animals, and gather during inclement weather. The desire for a barn becomes a shared dream, where animals find refuge, bountiful harvests are preserved, and community bonds are strengthened. With the construction of a barn, the village would gain a symbol of resilience and unity, providing the foundation for their sustenance and prosperity.",
+      postBuild:
+        "Within the village, a sense of fulfillment and security emanates from the recently constructed barn. Its sturdy beams and thatched roof stand as a testament to the hard work and collective effort of the villagers. The barn is now a bustling hub of activity, with livestock finding shelter within its protective walls and bales of harvested crops neatly stored. Villagers gather within its warm confines, sharing stories and enjoying the fruits of their labor. The barn has become the heart of the community, providing a tangible symbol of abundance and resilience, ensuring a prosperous future for all who call the village home.",
     },
     canBuild: true,
     requirements: getBuildingRequirements({ tier: 2 }),
