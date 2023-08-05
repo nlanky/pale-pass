@@ -251,6 +251,7 @@ export const MarketStall: FC<{}> = () => {
               disabled={quantity === 0 || fromResource === toResource}
               onClick={onConfirmTrade}
               startIcon={<HandshakeIcon />}
+              width={100}
             >
               Trade
             </StyledButton>

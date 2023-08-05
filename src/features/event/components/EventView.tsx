@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import type { FC } from "react";
 
 // PUBLiC MODULES
-import { Grid } from "@mui/material";
+import { Divider, Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -26,6 +26,7 @@ import { setView } from "features/game/actions";
 export const EventView: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  const theme = useTheme();
   const event = useAppSelector(selectActiveEvent);
 
   // Local state
@@ -74,53 +75,74 @@ export const EventView: FC<{}> = () => {
 
   return (
     <StyledContainer>
-      <Grid container direction="column">
-        <PlaceholderText
-          text={event.introductionText}
-          variant="body2"
-        />
-        <Grid item sx={{ mx: 0, my: 1, width: "100%" }}>
-          <img src={event.image} style={{ maxWidth: "100%" }} />
-        </Grid>
-        <Grid
-          container
-          item
-          justifyContent="space-between"
-          spacing={2}
-          wrap="nowrap"
-        >
-          {event.choices.map((choice, index) => (
-            <Grid key={index} item xs={6}>
+      <PlaceholderText
+        text={event.introductionText}
+        variant="body2"
+      />
+      <Grid item sx={{ mt: 1 }}>
+        <img src={event.image} style={{ maxWidth: "100%" }} />
+      </Grid>
+      <Divider sx={{ my: 1 }} />
+      <Grid
+        container
+        item
+        justifyContent="space-between"
+        wrap="nowrap"
+      >
+        {event.choices.map((choice, index) => {
+          const isSelected = eventChoice?.text === choice.text;
+
+          return (
+            <Grid
+              key={index}
+              container
+              direction="column"
+              item
+              sx={{
+                border: isSelected ? 2 : 0,
+                borderColor: "parchmentDark.main",
+                borderStyle: "ridge",
+                mr: 2,
+                padding: eventOutcome ? 1 : 0,
+              }}
+              xs={6}
+            >
+              <Typography fontWeight="bold" variant="body2">
+                Choice {index + 1}
+              </Typography>
+              <PlaceholderText text={choice.text} variant="body2" />
               <StyledButton
                 disabled={eventOutcome !== null}
-                fullWidth
+                nineSliceStyles={{
+                  container: {
+                    marginTop: theme.spacing(1),
+                  },
+                }}
                 onClick={() => {
                   onChoiceClick(choice);
                 }}
-                sx={{
-                  border: 2,
-                  borderColor:
-                    eventChoice?.text === choice.text
-                      ? "parchmentDark.main"
-                      : "transparent",
-                }}
-                variant="contained"
+                width={100}
               >
-                {choice.text}
+                Choose
               </StyledButton>
             </Grid>
-          ))}
-        </Grid>
-        {eventOutcome && (
-          <>
-            <EventOutcome outcome={eventOutcome} />
-            <ReturnToTownButton
-              onClick={onCompleteEvent}
-              sx={{ mt: 1 }}
-            />
-          </>
-        )}
+          );
+        })}
       </Grid>
+      {eventOutcome && (
+        <>
+          <Divider sx={{ my: 1 }} />
+          <EventOutcome outcome={eventOutcome} />
+          <ReturnToTownButton
+            nineSliceStyles={{
+              container: {
+                marginTop: theme.spacing(1),
+              },
+            }}
+            onClick={onCompleteEvent}
+          />
+        </>
+      )}
     </StyledContainer>
   );
 };

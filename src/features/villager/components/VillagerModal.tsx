@@ -132,7 +132,7 @@ export const VillagerModal: FC<{}> = () => {
     >
       <VillagerModalTitle villager={villager} />
 
-      <DialogContent>
+      <DialogContent sx={{ p: 1.5 }}>
         <Grid container wrap="nowrap">
           <PlaceholderText
             sx={{ mr: 1 }}
@@ -142,8 +142,8 @@ export const VillagerModal: FC<{}> = () => {
           <VillagerAvatar
             villagerId={villager.id}
             hideStateOverlay
-            width={200}
-            height={200}
+            width={170}
+            height={170}
           />
         </Grid>
 
@@ -189,6 +189,7 @@ export const VillagerModal: FC<{}> = () => {
                   disabled={!canRecruit}
                   onClick={onRecruit}
                   startIcon={<AssignmentTurnedInIcon />}
+                  width={120}
                 >
                   Recruit
                 </StyledButton>
@@ -200,6 +201,7 @@ export const VillagerModal: FC<{}> = () => {
             <StyledButton
               onClick={onHeal}
               startIcon={<HealingIcon />}
+              width={100}
             >
               Heal
             </StyledButton>

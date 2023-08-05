@@ -58,7 +58,7 @@ export const VillagerModalTitle: FC<VillagerModalTitleProps> = ({
     <Grid
       alignItems="center"
       container
-      sx={{ minWidth: 350, pt: 1, px: 2.5 }}
+      sx={{ minWidth: 350, pt: 1.5, px: 1.5 }}
     >
       <Tooltip
         title={<Typography variant="body2">{specialty}</Typography>}

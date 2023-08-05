@@ -271,7 +271,9 @@ export const TownCombat: FC<{}> = () => {
 
       {!battleOutcome && (
         <Grid container justifyContent="space-between" sx={{ mt: 2 }}>
-          <StyledButton onClick={onRetreat}>Retreat</StyledButton>
+          <StyledButton onClick={onRetreat} width={80}>
+            Retreat
+          </StyledButton>
           <StyledButton
             disabled={
               selectedVillagerIds.filter(
@@ -279,6 +281,7 @@ export const TownCombat: FC<{}> = () => {
               ).length !== 5
             }
             onClick={onAttack}
+            width={80}
           >
             Attack
           </StyledButton>
@@ -308,7 +311,7 @@ export const TownCombat: FC<{}> = () => {
                   return (
                     <OutcomeIconWithText
                       key={id}
-                      icon={image}
+                      icon={image} // TODO: Use villager avatar
                       isPositive={isPositive}
                       text={`${name} the ${occupation} ${
                         state === "healthy"
@@ -322,7 +325,15 @@ export const TownCombat: FC<{}> = () => {
             )}
           </Grid>
           <Divider sx={{ mt: 2 }} />
-          <StyledButton onClick={onCompleteBattle} sx={{ mt: 2 }}>
+          <StyledButton
+            nineSliceStyles={{
+              container: {
+                marginTop: theme.spacing(2),
+              },
+            }}
+            onClick={onCompleteBattle}
+            width={140}
+          >
             Return to Map
           </StyledButton>
         </>

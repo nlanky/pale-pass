@@ -32,10 +32,9 @@ export const TownExploreButton: FC<{}> = () => {
   return (
     <StyledButton
       disabled={!canExplore}
-      fullWidth
       onClick={onEventTrigger}
       startIcon={<SearchIcon />}
-      variant="contained"
+      width={185}
     >
       Explore
     </StyledButton>

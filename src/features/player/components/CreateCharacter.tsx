@@ -9,6 +9,7 @@ import {
   FormGroup,
   TextField,
   Typography,
+  useTheme,
 } from "@mui/material";
 
 // LOCAL FILES
@@ -35,6 +36,7 @@ import { setNameAndPronouns } from "features/player/actions";
 export const CreateCharacter: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
+  const theme = useTheme();
 
   // Local state
   const [name, setName] = useState("");
@@ -254,7 +256,13 @@ export const CreateCharacter: FC<{}> = () => {
           label="they / them / their / theirs / themself / themselves"
         />
       </FormGroup>
-      <StyledButton onClick={onStartGame} sx={{ mt: 1 }}>
+      <StyledButton
+        nineSliceStyles={{
+          container: { marginTop: theme.spacing(1) },
+        }}
+        onClick={onStartGame}
+        width={120}
+      >
         Start Game
       </StyledButton>
       {error && (

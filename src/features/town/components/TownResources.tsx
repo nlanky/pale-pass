@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Stack, Tooltip, Typography } from "@mui/material";
+import { Grid, Tooltip, Typography, useTheme } from "@mui/material";
 import {
   ArrowDownward,
   ArrowUpward,
@@ -11,9 +11,10 @@ import {
 
 // LOCAL FILES
 // Components
-import { StyledPaper } from "features/common/components";
+import { NineSlice } from "features/common/components";
 // Constants
 import { RESOURCE_TO_ICON } from "features/resource/constants";
+import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import {
@@ -23,13 +24,14 @@ import {
 } from "features/town/townSlice";
 
 interface TownResourcesProps {
-  showRpd?: boolean;
+  hideRpd?: boolean;
 }
 
 export const TownResources: FC<TownResourcesProps> = ({
-  showRpd = true,
+  hideRpd = false,
 }) => {
   // Hooks
+  const theme = useTheme();
   const resources = useAppSelector(selectTownResources);
   const resourcesPerDay = useAppSelector(
     selectCombinedTownResourcesPerDay,
@@ -50,48 +52,77 @@ export const TownResources: FC<TownResourcesProps> = ({
   };
 
   return (
-    <StyledPaper>
-      {enabledResources.map((resource, index) => {
-        const rpd = resourcesPerDay[resource];
+    <NineSlice
+      width={185}
+      height={
+        TOWN_RESOURCE_ITEM_HEIGHT * enabledResources.length +
+        theme.gap(0.5) * (enabledResources.length - 1) +
+        theme.gap(4)
+      }
+      styles={{
+        content: {
+          padding: theme.spacing(2, 1),
+        },
+      }}
+    >
+      <Grid container direction="column" wrap="nowrap">
+        {enabledResources.map((resource, index) => {
+          const rpd = resourcesPerDay[resource];
 
-        return (
-          <Stack
-            key={resource}
-            alignItems="center"
-            direction="row"
-            justifyContent="space-around"
-            sx={{ pt: index !== 0 ? 0.5 : 0 }}
-          >
-            <Tooltip
-              title={
-                <Typography variant="body2">{resource}</Typography>
-              }
+          return (
+            <Grid
+              key={resource}
+              alignItems="center"
+              container
+              item
+              justifyContent="space-around"
+              sx={{
+                pt: index !== 0 ? 0.5 : 0,
+              }}
+              wrap="nowrap"
             >
-              <img
-                src={RESOURCE_TO_ICON[resource]}
-                style={{ width: 32, height: 32 }}
-              />
-            </Tooltip>
-            <Typography variant="body2">
-              {resources[resource]}
-            </Typography>
-            {showRpd && (
-              <Stack alignItems="center" direction="row">
-                {rpd > 0 && (
-                  <ArrowUpward color="success" fontSize="small" />
-                )}
-                {rpd === 0 && <Remove fontSize="small" />}
-                {rpd < 0 && (
-                  <ArrowDownward color="error" fontSize="small" />
-                )}
-                <Typography color={getRpdColour(rpd)} variant="body2">
-                  {resourcesPerDay[resource]}
-                </Typography>
-              </Stack>
-            )}
-          </Stack>
-        );
-      })}
-    </StyledPaper>
+              <Tooltip
+                title={
+                  <Typography variant="body2">{resource}</Typography>
+                }
+              >
+                <img
+                  src={RESOURCE_TO_ICON[resource]}
+                  style={{
+                    width: TOWN_RESOURCE_ITEM_HEIGHT,
+                    height: TOWN_RESOURCE_ITEM_HEIGHT,
+                  }}
+                />
+              </Tooltip>
+              <Typography variant="body2">
+                {resources[resource]}
+              </Typography>
+              {!hideRpd && (
+                <Grid
+                  alignItems="center"
+                  container
+                  item
+                  style={{ width: "auto" }}
+                >
+                  {rpd > 0 && (
+                    <ArrowUpward color="success" fontSize="small" />
+                  )}
+                  {rpd === 0 && <Remove fontSize="small" />}
+                  {rpd < 0 && (
+                    <ArrowDownward color="error" fontSize="small" />
+                  )}
+                  <Typography
+                    color={getRpdColour(rpd)}
+                    variant="body2"
+                  >
+                    {resourcesPerDay[resource]}
+                  </Typography>
+                </Grid>
+              )}
+            </Grid>
+          );
+        })}
+      </Grid>
+    </NineSlice>
   );
 };

@@ -38,10 +38,9 @@ export const TownMapButton: FC<{}> = () => {
     //   <span>
     <StyledButton
       // disabled={!hasCartographer}
-      fullWidth
       onClick={onMapClick}
       startIcon={<MapIcon />}
-      variant="contained"
+      width={185}
     >
       Map
     </StyledButton>

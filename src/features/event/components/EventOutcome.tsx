@@ -97,7 +97,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
   });
 
   return (
-    <Grid container direction="column" sx={{ mt: 1 }}>
+    <Grid container direction="column">
       <PlaceholderText
         sx={{
           mb: outcomeJsx.length === 0 ? 0 : 1,

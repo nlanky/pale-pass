@@ -25,7 +25,8 @@ export const Introduction: FC<{}> = () => {
 
   // Derived variables
   const screen = SCREEN_ID_TO_SCREEN[screenId];
-  const buttonText = screenId === 4 ? "Create Character" : "Next";
+  const isFinalScreen = screenId === 4;
+  const buttonText = isFinalScreen ? "Create Character" : "Next";
 
   // Handlers
   const advanceScreen = () => {
@@ -45,7 +46,10 @@ export const Introduction: FC<{}> = () => {
         text={screen.text}
         variant="body2"
       />
-      <StyledButton onClick={advanceScreen} variant="contained">
+      <StyledButton
+        onClick={advanceScreen}
+        width={isFinalScreen ? 170 : 90}
+      >
         {buttonText}
       </StyledButton>
     </StyledContainer>

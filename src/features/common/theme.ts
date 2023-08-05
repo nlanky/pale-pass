@@ -5,9 +5,19 @@ import type {
   PaletteColorOptions,
 } from "@mui/material";
 
+declare module "@mui/material/styles" {
+  interface ExtendedTheme {
+    gap: (spacing: number) => number;
+  }
+  interface Theme extends ExtendedTheme {}
+  interface ThemeOptions extends ExtendedTheme {}
+}
+
 const defaultTheme = createTheme();
 const createColour = (mainColour: string) =>
   defaultTheme.palette.augmentColor({ color: { main: mainColour } });
+const gap = (spacing: number) =>
+  parseInt(defaultTheme.spacing(spacing), 10);
 
 export const theme = createTheme({
   components: {
@@ -67,6 +77,8 @@ export const theme = createTheme({
     //   fontSize: "1.6rem",
     // },
   },
+  // Utility function for spacing maths
+  gap,
 });
 
 declare module "@mui/material/styles" {

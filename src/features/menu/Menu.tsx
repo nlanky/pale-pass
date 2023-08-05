@@ -45,7 +45,9 @@ export const Menu: FC<{}> = () => {
     <Container maxWidth="lg">
       <img src={titleImage} style={{ width: "100%" }} />
       <Grid container justifyContent="space-around" sx={{ pt: 1 }}>
-        <StyledButton onClick={onGameStart}>New Game</StyledButton>
+        <StyledButton onClick={onGameStart} width={120}>
+          New Game
+        </StyledButton>
         <Tooltip
           title={
             savedGame && (
@@ -57,7 +59,7 @@ export const Menu: FC<{}> = () => {
             <StyledButton
               disabled={!savedGame}
               onClick={onGameLoad}
-              sx={{ ml: 2 }}
+              width={130}
             >
               Load Game
             </StyledButton>

@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -28,6 +28,9 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
   onClearSelection,
   disabled,
 }) => {
+  // Hooks
+  const theme = useTheme();
+
   // Derived variables
   const villager = ID_TO_VILLAGER[villagerId || NaN];
 
@@ -75,10 +78,13 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
           </Grid>
           <StyledButton
             disabled={disabled}
+            nineSliceStyles={{
+              container: { marginTop: theme.spacing(2) },
+            }}
             onClick={() => {
               onClearSelection(armyPosition);
             }}
-            sx={{ mt: 2 }}
+            width={140}
           >
             Clear selection
           </StyledButton>
@@ -90,7 +96,7 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
           onClick={() => {
             onSelect(armyPosition);
           }}
-          sx={{ mt: 1 }}
+          width={64}
         >
           Select
         </StyledButton>

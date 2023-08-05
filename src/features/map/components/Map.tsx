@@ -53,7 +53,7 @@ export const Map: FC<{}> = () => {
             <ReturnToTownButton />
           </Grid>
           <Grid item>
-            <TownResources showRpd={false} />
+            <TownResources hideRpd />
           </Grid>
         </Grid>
       </Grid>

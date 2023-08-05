@@ -100,10 +100,9 @@ export const TownAdvanceTierButton: FC<{}> = () => {
       <span>
         <StyledButton
           disabled={!canAdvanceTier}
-          fullWidth
           onClick={onAdvanceTier}
           startIcon={<KeyboardDoubleArrowUpIcon />}
-          variant="contained"
+          width={185}
         >
           Advance Tier
         </StyledButton>

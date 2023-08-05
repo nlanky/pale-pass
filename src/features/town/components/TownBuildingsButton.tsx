@@ -25,7 +25,6 @@ export const TownBuildingsButton: FC<{}> = () => {
 
   return (
     <StyledButton
-      fullWidth
       onClick={onBuildingsClick}
       startIcon={
         <Icon>
@@ -39,7 +38,7 @@ export const TownBuildingsButton: FC<{}> = () => {
           />
         </Icon>
       }
-      variant="contained"
+      width={185}
     >
       Buildings
     </StyledButton>

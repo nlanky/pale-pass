@@ -16,6 +16,8 @@ import {
   ReturnToTownButton,
   StyledContainer,
 } from "features/common/components";
+// Constants
+import { BUTTON_HEIGHT } from "features/common/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
 // Redux
@@ -27,37 +29,27 @@ export const Log: FC<{}> = () => {
   const logs = useAppSelector(selectLogs);
 
   return (
-    <StyledContainer
-      sx={{
-        // Adjust for margin around container
-        height: `calc(100vh - ${theme.spacing(2)})`,
-      }}
-    >
-      <Grid
-        container
-        direction="column"
-        sx={{ height: "100%" }}
-        wrap="nowrap"
-      >
-        <Grid item>
-          <ReturnToTownButton sx={{ height: 44 }} />
-        </Grid>
-        <List
-          dense
-          disablePadding
-          sx={{
-            height: `calc(100% - 44px - ${theme.spacing(2)})`,
-            mt: 2,
-            overflowY: "auto",
-          }}
-        >
-          {logs.map((log, index) => (
-            <ListItem key={index} disablePadding>
-              <ListItemText>{log.entry}</ListItemText>
-            </ListItem>
-          ))}
-        </List>
+    <StyledContainer>
+      <Grid item>
+        <ReturnToTownButton />
       </Grid>
+      <List
+        dense
+        disablePadding
+        sx={{
+          height: `calc(100% - ${BUTTON_HEIGHT}px - ${theme.spacing(
+            2,
+          )})`,
+          mt: 2,
+          overflowY: "auto",
+        }}
+      >
+        {logs.map((log, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemText>{log.entry}</ListItemText>
+          </ListItem>
+        ))}
+      </List>
     </StyledContainer>
   );
 };

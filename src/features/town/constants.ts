@@ -64,3 +64,5 @@ export const TIER_TO_ENABLED_RESOURCES: Record<number, Resource[]> = {
   4: ["Wood", "Stone", "Iron", "Steel", "Mythril"],
   5: ["Wood", "Stone", "Iron", "Steel", "Mythril", "Amethyst"],
 };
+
+export const TOWN_RESOURCE_ITEM_HEIGHT = 32;

@@ -23,10 +23,9 @@ export const TownLogButton: FC<{}> = () => {
 
   return (
     <StyledButton
-      fullWidth
       onClick={onMapClick}
       startIcon={<MenuBookIcon />}
-      variant="contained"
+      width={185}
     >
       Log
     </StyledButton>

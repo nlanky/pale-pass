@@ -235,6 +235,7 @@ export const BuildingModal: FC<{}> = () => {
                     disabled={!canBuild}
                     onClick={onBuild}
                     startIcon={<ConstructionIcon />}
+                    width={120}
                   >
                     {isDestroyed ? "Re-build" : "Build"}
                   </StyledButton>
@@ -248,6 +249,7 @@ export const BuildingModal: FC<{}> = () => {
                     disabled={!canRepair}
                     onClick={onRepair}
                     startIcon={<ConstructionIcon />}
+                    width={120}
                   >
                     Repair
                   </StyledButton>
