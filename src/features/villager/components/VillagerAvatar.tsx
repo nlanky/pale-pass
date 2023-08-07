@@ -55,23 +55,33 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
           )}
 
           {state === "recovering" && (
-            <SvgIcon
-              htmlColor="#fff"
-              sx={{
+            <div
+              style={{
+                alignItems: "center",
+                color: "white",
+                display: "flex",
+                left: "50%",
                 position: "absolute",
                 top: "50%",
-                left: "50%",
-                fontSize: "5rem",
                 transform: "translate(-50%, -50%)",
               }}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
+              <SvgIcon
+                sx={{
+                  fontSize: "5rem",
+                }}
               >
-                <path d="M13 4H11L10 2H14L13 4M14 8V6H15V5H9V6H10V8C7.24 8 5 10.24 5 13V22H19V13C19 10.24 16.76 8 14 8M16 17H13V20H11V17H8V15H11V12H13V15H16V17Z" />
-              </svg>
-            </SvgIcon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M13 4H11L10 2H14L13 4M14 8V6H15V5H9V6H10V8C7.24 8 5 10.24 5 13V22H19V13C19 10.24 16.76 8 14 8M16 17H13V20H11V17H8V15H11V12H13V15H16V17Z" />
+                </svg>
+              </SvgIcon>
+              <Typography component="span" variant="h4">
+                {townVillager?.recoveryTimeRemaining || 5}
+              </Typography>
+            </div>
           )}
 
           {state === "injured" && (
@@ -127,8 +137,9 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
           </Typography>
           {state === "recovering" && (
             <Typography
-              sx={{ mt: 1 }}
-            >{`${townVillager.recoveryTimeRemaining} days to recover`}</Typography>
+              textAlign="center"
+              variant="body1"
+            >{`${townVillager?.recoveryTimeRemaining} days to recover`}</Typography>
           )}
         </>
       )}
