@@ -49,32 +49,30 @@ export const TownBuildings: FC<{}> = () => {
 
   return (
     <StyledContainer>
-      <Grid container direction="column">
-        <Grid item>
-          <ReturnToTownButton />
-        </Grid>
-        <Grid
-          container
-          item
-          sx={{
-            height: `calc(100% - ${BUTTON_HEIGHT}px - ${theme.gap(
-              2,
-            )})px`,
-            mt: 2,
-            overflowY: "auto",
-          }}
-        >
-          {availableBuildings.map((building) => (
-            <TownBuildingTile
-              key={building.id}
-              buildingId={building.id}
-              hoveringOnBuilding={hoveringOnBuilding === building.id}
-              onBuildingClick={onBuildingClick}
-              onBuildingMouseEnter={onBuildingMouseEnter}
-              onBuildingMouseLeave={onBuildingMouseLeave}
-            />
-          ))}
-        </Grid>
+      <Grid item>
+        <ReturnToTownButton />
+      </Grid>
+      <Grid
+        container
+        item
+        sx={{
+          height: `calc(100% - ${BUTTON_HEIGHT}px - ${theme.gap(
+            2,
+          )})px`,
+          mt: 2,
+          overflowY: "auto",
+        }}
+      >
+        {availableBuildings.map((building) => (
+          <TownBuildingTile
+            key={building.id}
+            buildingId={building.id}
+            hoveringOnBuilding={hoveringOnBuilding === building.id}
+            onBuildingClick={onBuildingClick}
+            onBuildingMouseEnter={onBuildingMouseEnter}
+            onBuildingMouseLeave={onBuildingMouseLeave}
+          />
+        ))}
       </Grid>
       <BuildingModal />
     </StyledContainer>

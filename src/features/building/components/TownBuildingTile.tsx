@@ -2,13 +2,7 @@
 import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
-import {
-  Badge,
-  Grid,
-  Tooltip,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Badge, Grid, Tooltip, Typography } from "@mui/material";
 import {
   Construction as ConstructionIcon,
   Error as ErrorIcon,
@@ -43,7 +37,6 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
   onBuildingMouseLeave,
 }) => {
   // Hooks
-  const theme = useTheme();
   const townBuilding = useAppSelector(selectTownBuilding(buildingId));
 
   // Derived variables
@@ -117,9 +110,11 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
 
     return (
       <Grid container direction="column">
-        <Typography sx={{ fontWeight: "bold" }} variant="body2">
-          Resource requirements
-        </Typography>
+        {resourceRequirementsJsx.length !== 0 && (
+          <Typography sx={{ fontWeight: "bold" }} variant="body2">
+            Resource requirements
+          </Typography>
+        )}
         {resourceRequirementsJsx}
         {buildingIdsRequired.length !== 0 && (
           <>
@@ -190,7 +185,11 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
             onBuildingMouseLeave();
           }}
           sx={{
+            backgroundColor: hoveringOnBuilding
+              ? "action.hover"
+              : "transparent",
             cursor: "pointer",
+            p: 1,
             position: "relative",
             width: "auto",
           }}
@@ -200,18 +199,6 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
             style={{ width: 128, height: 128 }}
           />
           <Typography variant="body2">{name}</Typography>
-          {hoveringOnBuilding && (
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: `3px solid ${theme.palette.parchmentDark.main}`,
-              }}
-            />
-          )}
         </Grid>
       </Badge>
     </Tooltip>

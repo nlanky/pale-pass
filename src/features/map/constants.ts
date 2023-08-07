@@ -105,7 +105,7 @@ import {
 // Interfaces & Types
 import type { Tile } from "features/map/types";
 
-export const MAP_TILE_WIDTH = 102;
+export const MAP_TILE_WIDTH = 80;
 
 export const TILES: Tile[] = [
   {

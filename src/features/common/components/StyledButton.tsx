@@ -12,34 +12,57 @@ import {
   type NineSliceStyles,
 } from "features/common/components";
 // Constants
-import { BUTTON_HEIGHT } from "features/common/constants";
+import {
+  BUTTON_HEIGHT,
+  DEFAULT_NINE_SLICE_BUTTON_HORIZONTAL_BORDER_WIDTH,
+  DEFAULT_NINE_SLICE_BUTTON_VERTICAL_BORDER_WIDTH,
+} from "features/common/constants";
 
 export interface StyledButtonProps extends ButtonProps {
   width: number; // Varies depending on size of text
+  borders?: {
+    horizontal: number; // Applied to left and right of container
+    vertical: number; // Applied to top and bottom of container
+  };
   nineSliceStyles?: NineSliceStyles;
 }
 
 export const StyledButton: FC<StyledButtonProps> = ({
   width,
+  borders,
   nineSliceStyles,
   sx,
   ...rest
-}) => (
-  <NineSlice
-    width={width}
-    height={BUTTON_HEIGHT}
-    styles={nineSliceStyles}
-  >
-    <Button
-      fullWidth
-      sx={{
-        ...sx,
-        color: "text.primary",
-        height: BUTTON_HEIGHT,
-        textTransform: "none",
-        width,
+}) => {
+  // Derived variables
+  const horizontalBorder =
+    borders?.horizontal ||
+    DEFAULT_NINE_SLICE_BUTTON_HORIZONTAL_BORDER_WIDTH;
+  const verticalBorder =
+    borders?.vertical ||
+    DEFAULT_NINE_SLICE_BUTTON_VERTICAL_BORDER_WIDTH;
+
+  return (
+    <NineSlice
+      width={width}
+      height={BUTTON_HEIGHT}
+      borders={{
+        horizontal: horizontalBorder,
+        vertical: verticalBorder,
       }}
-      {...rest}
-    />
-  </NineSlice>
-);
+      styles={nineSliceStyles}
+    >
+      <Button
+        fullWidth
+        sx={{
+          ...sx,
+          color: "text.primary",
+          height: BUTTON_HEIGHT - verticalBorder * 2,
+          textTransform: "none",
+          width: width - horizontalBorder * 2,
+        }}
+        {...rest}
+      />
+    </NineSlice>
+  );
+};

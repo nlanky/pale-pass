@@ -23,7 +23,7 @@ export const theme = createTheme({
   components: {
     MuiTooltip: {
       defaultProps: {
-        followCursor: true,
+        enterNextDelay: 250,
       },
     },
   },

@@ -42,8 +42,15 @@ export const Menu: FC<{}> = () => {
   const savedGameDetails = getGameDetailsFromLocalStorage();
 
   return (
-    <Container maxWidth="lg">
-      <img src={titleImage} style={{ width: "100%" }} />
+    <Container
+      maxWidth="lg"
+      sx={{
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <img src={titleImage} style={{ width: 720 }} />
       <Grid container justifyContent="space-around" sx={{ pt: 1 }}>
         <StyledButton onClick={onGameStart} width={120}>
           New Game

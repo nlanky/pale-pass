@@ -57,11 +57,16 @@ export const TownResources: FC<TownResourcesProps> = ({
       height={
         TOWN_RESOURCE_ITEM_HEIGHT * enabledResources.length +
         theme.gap(0.5) * (enabledResources.length - 1) +
-        theme.gap(4)
+        theme.gap(3) +
+        16 // 2 * vertical border
       }
+      borders={{
+        horizontal: 8,
+        vertical: 8,
+      }}
       styles={{
         content: {
-          padding: theme.spacing(2, 1),
+          padding: theme.spacing(1.5, 1),
         },
       }}
     >

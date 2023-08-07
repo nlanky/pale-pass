@@ -2,7 +2,7 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Badge, Grid, Typography, useTheme } from "@mui/material";
+import { Badge, Grid, Typography } from "@mui/material";
 import {
   Healing as HealingIcon,
   MonitorHeart as MonitorHeartIcon,
@@ -33,7 +33,6 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
   onVillagerMouseLeave,
 }) => {
   // Hooks
-  const theme = useTheme();
   const townVillager = useAppSelector(selectTownVillager(villagerId));
 
   // Derived variables
@@ -78,6 +77,9 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
           onVillagerMouseLeave();
         }}
         sx={{
+          backgroundColor: hoveringOnVillager
+            ? "action.hover"
+            : "transparent",
           cursor: "pointer",
           p: 1,
           position: "relative",
@@ -88,19 +90,6 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
         <Typography sx={{ mt: 1 }} variant="body2">
           {name}
         </Typography>
-        {hoveringOnVillager && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "calc(100% - 3px)",
-              height: "calc(100% - 3px)",
-              border: `3px solid ${theme.palette.parchmentDark.main}`,
-              borderRadius: "10px",
-            }}
-          />
-        )}
       </Grid>
     </Badge>
   );
