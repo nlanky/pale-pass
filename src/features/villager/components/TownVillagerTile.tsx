@@ -1,21 +1,18 @@
 // REACT
-import type { FC } from "react";
+import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
-import { Badge, Grid, Typography } from "@mui/material";
-import {
-  Healing as HealingIcon,
-  MonitorHeart as MonitorHeartIcon,
-} from "@mui/icons-material";
+import { Grid, Tooltip, Typography } from "@mui/material";
 
 // LOCAL FILES
+// Components
+import { VillagerAvatar } from "features/villager/components";
 // Constants
 import { ID_TO_VILLAGER } from "features/villager/constants";
-// Hooks
+//  Hooks
 import { useAppSelector } from "features/redux/hooks";
 // Redux
 import { selectTownVillager } from "features/town/townSlice";
-import { VillagerAvatar } from ".";
 
 interface TownVillagerTileProps {
   villagerId: number;
@@ -39,28 +36,18 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
   const { id, name } = ID_TO_VILLAGER[villagerId];
   const state = townVillager?.state;
 
-  // Utility functions
-  const getBadgeContent = () => {
-    if (state === "injured") {
-      return <MonitorHeartIcon />;
-    }
-
+  const getTooltipTitle = (): ReactNode => {
     if (state === "recovering") {
       return (
-        <>
-          <HealingIcon />
-          <Typography sx={{ ml: 0.25 }} variant="body1">
-            {townVillager?.recoveryTimeRemaining}
-          </Typography>
-        </>
+        <Typography variant="body2">{`Recovering, ${townVillager?.recoveryTimeRemaining} days remaining`}</Typography>
       );
     }
 
-    return null;
+    return "";
   };
 
   return (
-    <Badge badgeContent={getBadgeContent()} overlap="circular">
+    <Tooltip title={getTooltipTitle()}>
       <Grid
         alignItems="center"
         container
@@ -91,6 +78,6 @@ export const TownVillagerTile: FC<TownVillagerTileProps> = ({
           {name}
         </Typography>
       </Grid>
-    </Badge>
+    </Tooltip>
   );
 };

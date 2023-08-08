@@ -16,7 +16,10 @@ import { Construction as ConstructionIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
-import { MarketStall } from "features/building/components";
+import {
+  BuildingAvatar,
+  MarketStall,
+} from "features/building/components";
 import {
   OutcomeIconWithText,
   PlaceholderText,
@@ -129,10 +132,13 @@ export const BuildingModal: FC<{}> = () => {
 
     return (
       <Grid container direction="column">
-        <Typography sx={{ fontWeight: "bold" }} variant="body2">
-          Resource requirements
-        </Typography>
+        {resourceRequirementsJsx.length !== 0 && (
+          <Typography sx={{ fontWeight: "bold" }} variant="body2">
+            Resource requirements
+          </Typography>
+        )}
         {resourceRequirementsJsx}
+
         {buildingIdsRequired.length !== 0 && (
           <>
             <Typography sx={{ fontWeight: "bold" }} variant="body2">
@@ -141,6 +147,7 @@ export const BuildingModal: FC<{}> = () => {
             {buildingRequirementsJsx}
           </>
         )}
+
         {villagerIdsRequired.length !== 0 && (
           <>
             <Typography sx={{ fontWeight: "bold" }} variant="body2">
@@ -162,18 +169,28 @@ export const BuildingModal: FC<{}> = () => {
       <DialogTitle>{building.name}</DialogTitle>
 
       <DialogContent>
-        {isUnbuiltOrBuilding && (
-          <PlaceholderText
-            text={building.text.preBuild}
-            variant="body2"
+        <Grid container justifyContent="space-between" wrap="nowrap">
+          {isUnbuiltOrBuilding && (
+            <PlaceholderText
+              text={building.text.preBuild}
+              variant="body2"
+            />
+          )}
+          {!isUnbuiltOrBuilding && (
+            <PlaceholderText
+              sx={{ mr: 1 }}
+              text={building.text.postBuild}
+              variant="body2"
+            />
+          )}
+          <BuildingAvatar
+            buildingId={building.id}
+            isInterior
+            hideStateOverlay
+            width={170}
+            height={170}
           />
-        )}
-        {!isUnbuiltOrBuilding && (
-          <PlaceholderText
-            text={building.text.postBuild}
-            variant="body2"
-          />
-        )}
+        </Grid>
 
         {affectedResources.length !== 0 && (
           <>
@@ -196,24 +213,6 @@ export const BuildingModal: FC<{}> = () => {
                 );
               })}
             </Grid>
-          </>
-        )}
-
-        {isBuilding && (
-          <>
-            <Divider sx={{ mt: 1 }} />
-            <Typography sx={{ mt: 1 }} variant="body2">
-              {`Building in progress. Days remaining: ${townBuilding?.buildTimeRemaining}`}
-            </Typography>
-          </>
-        )}
-
-        {isRepairing && (
-          <>
-            <Divider sx={{ mt: 1 }} />
-            <Typography sx={{ mt: 1 }} variant="body2">
-              {`Repair in progress. Days remaining: ${townBuilding?.repairTimeRemaining}`}
-            </Typography>
           </>
         )}
 

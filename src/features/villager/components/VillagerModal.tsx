@@ -112,6 +112,7 @@ export const VillagerModal: FC<{}> = () => {
             {buildingRequirementsJsx}
           </>
         )}
+
         {villagerRequirementsJsx.length !== 0 && (
           <>
             <Typography sx={{ fontWeight: "bold" }} variant="body2">
@@ -133,7 +134,7 @@ export const VillagerModal: FC<{}> = () => {
       <VillagerModalTitle villager={villager} />
 
       <DialogContent sx={{ p: 1.5 }}>
-        <Grid container wrap="nowrap">
+        <Grid container justifyContent="space-between" wrap="nowrap">
           <PlaceholderText
             sx={{ mr: 1 }}
             text={villager.description}
@@ -167,15 +168,6 @@ export const VillagerModal: FC<{}> = () => {
                 );
               })}
             </Grid>
-          </>
-        )}
-
-        {isRecovering && (
-          <>
-            <Divider sx={{ mt: 1 }} />
-            <Typography sx={{ mt: 1 }} variant="body2">
-              {`Villager is recovering. Days remaining: ${townVillager?.recoveryTimeRemaining}`}
-            </Typography>
           </>
         )}
       </DialogContent>

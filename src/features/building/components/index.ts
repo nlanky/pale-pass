@@ -1,3 +1,4 @@
+export { BuildingAvatar } from "features/building/components/BuildingAvatar";
 export { BuildingModal } from "features/building/components/BuildingModal";
 export { MarketStall } from "features/building/components/MarketStall";
 export { TownBuildingTile } from "features/building/components/TownBuildingTile";

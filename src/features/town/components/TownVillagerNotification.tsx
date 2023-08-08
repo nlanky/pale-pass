@@ -36,6 +36,7 @@ export const TownVillagerNotification = forwardRef<
           width: "100%",
         }}
       >
+        {/* TODO: Use VillagerAvatar */}
         <Avatar alt={villager.name} src={villager.image} />
         <Typography color="white" sx={{ ml: 1 }} variant="body2">
           {`${villager.name} ${type}`}

@@ -64,7 +64,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
 
   outcome.buildings.forEach((outcomeBuilding) => {
     const { id, state } = outcomeBuilding;
-    const { name, icons } = ID_TO_BUILDING[id];
+    const { name, images } = ID_TO_BUILDING[id];
     const isPositive = [
       "built",
       "under construction",
@@ -73,7 +73,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     outcomeJsx.push(
       <OutcomeIconWithText
         key={`building_${id}`}
-        icon={icons[state]}
+        icon={images[state]} // TODO: Use BuildingAvatar
         isPositive={isPositive}
         text={`${name} ${state}`}
       />,
@@ -87,7 +87,7 @@ export const EventOutcome: FC<EventOutcomeProps> = ({ outcome }) => {
     outcomeJsx.push(
       <OutcomeIconWithText
         key={`villager_${id}`}
-        icon={image}
+        icon={image} // TODO: Use VillagerAvatar
         isPositive={isPositive}
         text={`${name} the ${occupation} ${
           state === "healthy" ? "joins the town" : `is ${state}`

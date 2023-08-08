@@ -38,8 +38,8 @@ export interface Building {
   repairResources: Resources;
   /** Number of days to repair */
   repairTime: number;
-  /** Paths to icon locations */
-  icons: Record<BuildingState, string>;
+  /** Paths to image locations */
+  images: Record<BuildingState | "interior", string>;
 }
 
 export type BuildingNotificationType = "built" | "repaired";

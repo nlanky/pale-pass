@@ -79,7 +79,7 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
                 </svg>
               </SvgIcon>
               <Typography component="span" variant="h4">
-                {townVillager?.recoveryTimeRemaining || 5}
+                {townVillager?.recoveryTimeRemaining}
               </Typography>
             </div>
           )}
@@ -129,7 +129,12 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
       {!hideStateText && (
         <>
           <Typography
-            sx={{ mt: 1, textTransform: "capitalize" }}
+            sx={{
+              mt: 1,
+              ":first-letter": {
+                textTransform: "capitalize",
+              },
+            }}
             textAlign="center"
             variant="body2"
           >

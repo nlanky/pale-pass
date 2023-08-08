@@ -2,15 +2,11 @@
 import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
-import { Badge, Grid, Tooltip, Typography } from "@mui/material";
-import {
-  Construction as ConstructionIcon,
-  Error as ErrorIcon,
-} from "@mui/icons-material";
+import { Grid, Tooltip, Typography } from "@mui/material";
 
 // LOCAL FILES
-// Assets
-import { buildingUnbuiltIcon } from "assets/building";
+// Components
+import { BuildingAvatar } from "features/building/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
@@ -41,7 +37,7 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
 
   // Derived variables
   const building = ID_TO_BUILDING[buildingId];
-  const { id, name, icons } = building;
+  const { id, name } = building;
   const state = townBuilding?.state;
   const canBuild =
     (building.canBuild && townBuilding === undefined) ||
@@ -136,71 +132,37 @@ export const TownBuildingTile: FC<TownBuildingTileProps> = ({
     );
   };
 
-  const getBadgeContent = (): ReactNode => {
-    switch (state) {
-      case "being repaired":
-        return (
-          <>
-            <ConstructionIcon />
-            <Typography sx={{ ml: 0.25 }} variant="body1">
-              {townBuilding?.repairTimeRemaining}
-            </Typography>
-          </>
-        );
-      case "damaged":
-        return <ConstructionIcon />;
-      case "destroyed":
-        // TODO: Choose a better icon
-        return <ErrorIcon />;
-      case "under construction":
-        return (
-          <>
-            <ConstructionIcon />
-            <Typography sx={{ ml: 0.25 }} variant="body1">
-              {townBuilding?.buildTimeRemaining}
-            </Typography>
-          </>
-        );
-      case "built":
-      default:
-        return null;
-    }
-  };
-
   return (
     <Tooltip title={getTooltipTitle(canBuild)}>
-      <Badge badgeContent={getBadgeContent()} overlap="circular">
-        <Grid
-          alignItems="center"
-          container
-          direction="column"
-          item
-          onClick={() => {
-            onBuildingClick(id);
-          }}
-          onMouseEnter={() => {
-            onBuildingMouseEnter(id);
-          }}
-          onMouseLeave={() => {
-            onBuildingMouseLeave();
-          }}
-          sx={{
-            backgroundColor: hoveringOnBuilding
-              ? "action.hover"
-              : "transparent",
-            cursor: "pointer",
-            p: 1,
-            position: "relative",
-            width: "auto",
-          }}
-        >
-          <img
-            src={state ? icons[state] : buildingUnbuiltIcon}
-            style={{ width: 128, height: 128 }}
-          />
-          <Typography variant="body2">{name}</Typography>
-        </Grid>
-      </Badge>
+      <Grid
+        alignItems="center"
+        container
+        direction="column"
+        item
+        onClick={() => {
+          onBuildingClick(id);
+        }}
+        onMouseEnter={() => {
+          onBuildingMouseEnter(id);
+        }}
+        onMouseLeave={() => {
+          onBuildingMouseLeave();
+        }}
+        sx={{
+          backgroundColor: hoveringOnBuilding
+            ? "action.hover"
+            : "transparent",
+          cursor: "pointer",
+          p: 1,
+          position: "relative",
+          width: "auto",
+        }}
+      >
+        <BuildingAvatar buildingId={buildingId} hideStateText />
+        <Typography sx={{ mt: 1 }} variant="body2">
+          {name}
+        </Typography>
+      </Grid>
     </Tooltip>
   );
 };

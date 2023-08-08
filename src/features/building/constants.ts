@@ -1,8 +1,10 @@
 // LOCAL FILES
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
-// Icons & Images
+// images & Images
 import {
+  building19BuiltImage,
+  building19InteriorImage,
   buildingBeingRepairedIcon,
   buildingBuiltIcon,
   buildingDamagedIcon,
@@ -45,12 +47,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 14,
     repairResources: getResources({ Wood: -25, Stone: -25 }),
     repairTime: 7,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   2: {
@@ -72,12 +75,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 26,
     repairResources: getResources({ Wood: -50, Stone: -75 }),
     repairTime: 15,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   3: {
@@ -109,12 +113,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Steel: -25,
     }),
     repairTime: 20,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   4: {
@@ -146,12 +151,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Steel: -100,
     }),
     repairTime: 25,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   5: {
@@ -176,12 +182,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Stone: -35,
     }),
     repairTime: 15,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   6: {
@@ -211,12 +218,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -50,
     }),
     repairTime: 30,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   7: {
@@ -253,12 +261,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Steel: -50,
     }),
     repairTime: 45,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   8: {
@@ -298,12 +307,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Mythril: -50,
     }),
     repairTime: 65,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   9: {
@@ -337,12 +347,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Mythril: -50,
     }),
     repairTime: 75,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   10: {
@@ -376,12 +387,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Mythril: -50,
     }),
     repairTime: 100,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   11: {
@@ -406,12 +418,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Stone: -50,
     }),
     repairTime: 5,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   12: {
@@ -441,12 +454,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -15,
     }),
     repairTime: 10,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   13: {
@@ -474,12 +488,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Stone: -20,
     }),
     repairTime: 4,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   14: {
@@ -509,12 +524,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -10,
     }),
     repairTime: 8,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   15: {
@@ -533,12 +549,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 10,
     repairResources: getResources({ Wood: -10, Stone: -45 }),
     repairTime: 5,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   16: {
@@ -570,12 +587,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Steel: -50,
     }),
     repairTime: 20,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   17: {
@@ -607,12 +625,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Steel: -100,
     }),
     repairTime: 40,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   18: {
@@ -651,12 +670,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Mythril: -200,
     }),
     repairTime: 50,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   19: {
@@ -674,12 +694,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 25,
     repairResources: getResources({ Wood: -40, Stone: -45 }),
     repairTime: 15,
-    icons: {
-      built: buildingBuiltIcon,
+    images: {
+      built: building19BuiltImage,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: building19InteriorImage,
     },
   },
   20: {
@@ -709,12 +730,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -3,
     }),
     repairTime: 2,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   21: {
@@ -733,12 +755,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 10,
     repairResources: getResources({ Wood: -50, Stone: -50 }),
     repairTime: 5,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   22: {
@@ -768,12 +791,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -25,
     }),
     repairTime: 25,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   23: {
@@ -800,12 +824,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -25,
     }),
     repairTime: 7,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   24: {
@@ -832,12 +857,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
       Iron: -100,
     }),
     repairTime: 25,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   25: {
@@ -856,12 +882,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 50,
     repairResources: getResources({ Wood: -50, Stone: -250 }),
     repairTime: 25,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   26: {
@@ -880,12 +907,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   27: {
@@ -904,12 +932,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   28: {
@@ -926,12 +955,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   29: {
@@ -948,12 +978,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   30: {
@@ -970,12 +1001,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   31: {
@@ -992,12 +1024,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   32: {
@@ -1014,12 +1047,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   33: {
@@ -1036,12 +1070,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   34: {
@@ -1058,12 +1093,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   35: {
@@ -1080,12 +1116,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   [BUILDING_ID_CARTROGRAPHER]: {
@@ -1102,12 +1139,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   37: {
@@ -1124,12 +1162,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   38: {
@@ -1146,12 +1185,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   39: {
@@ -1168,12 +1208,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   40: {
@@ -1190,12 +1231,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   41: {
@@ -1212,12 +1254,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   [BUILDING_ID_MARKET_STALL]: {
@@ -1234,12 +1277,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 6,
     repairResources: getResources({ Wood: -5, Stone: -5 }),
     repairTime: 3,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   43: {
@@ -1256,12 +1300,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   44: {
@@ -1278,12 +1323,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   45: {
@@ -1300,12 +1346,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   46: {
@@ -1322,12 +1369,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   47: {
@@ -1347,12 +1395,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 10,
     repairResources: NO_RESOURCES,
     repairTime: 10,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   48: {
@@ -1369,12 +1418,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   49: {
@@ -1394,12 +1444,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
   50: {
@@ -1419,12 +1470,13 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     buildTime: 1,
     repairResources: NO_RESOURCES,
     repairTime: 1,
-    icons: {
+    images: {
       built: buildingBuiltIcon,
       "under construction": buildingUnderConstructionIcon,
       "being repaired": buildingBeingRepairedIcon,
       damaged: buildingDamagedIcon,
       destroyed: buildingDestroyedIcon,
+      interior: "",
     },
   },
 };
