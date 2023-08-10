@@ -16,10 +16,7 @@ import { Construction as ConstructionIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
-import {
-  BuildingAvatar,
-  MarketStall,
-} from "features/building/components";
+import { BuildingAvatar, Market } from "features/building/components";
 import {
   OutcomeIconWithText,
   PlaceholderText,
@@ -28,7 +25,7 @@ import {
 } from "features/common/components";
 // Constants
 import {
-  BUILDING_ID_MARKET_STALL,
+  BUILDING_ID_MARKET,
   ID_TO_BUILDING,
 } from "features/building/constants";
 import { RESOURCE_TO_ICON } from "features/resource/constants";
@@ -216,10 +213,10 @@ export const BuildingModal: FC<{}> = () => {
           </>
         )}
 
-        {isBuilt && building.id === BUILDING_ID_MARKET_STALL && (
+        {isBuilt && building.id === BUILDING_ID_MARKET && (
           <>
             <Divider sx={{ mt: 1 }} />
-            <MarketStall />
+            <Market />
           </>
         )}
       </DialogContent>

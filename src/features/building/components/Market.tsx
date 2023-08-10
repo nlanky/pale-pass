@@ -33,7 +33,7 @@ import {
   getMinTradeQuantity,
 } from "features/resource/utils";
 
-export const MarketStall: FC<{}> = () => {
+export const Market: FC<{}> = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const enabledResources = useAppSelector(selectEnabledResources);

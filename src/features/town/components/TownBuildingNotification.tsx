@@ -37,7 +37,10 @@ export const TownBuildingNotification = forwardRef<
         }}
       >
         {/* TODO: Use BuildingAvatar */}
-        <Avatar alt={building.name} src={building.images["built"]} />
+        <Avatar
+          alt={building.name}
+          src={building.images["exterior"]}
+        />
         <Typography color="white" sx={{ ml: 1 }} variant="body2">
           {`${building.name} ${type}`}
         </Typography>

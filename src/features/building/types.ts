@@ -39,7 +39,7 @@ export interface Building {
   /** Number of days to repair */
   repairTime: number;
   /** Paths to image locations */
-  images: Record<BuildingState | "interior", string>;
+  images: Record<"exterior" | "interior" | "sketch", string>;
 }
 
 export type BuildingNotificationType = "built" | "repaired";

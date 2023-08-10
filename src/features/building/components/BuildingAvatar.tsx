@@ -5,8 +5,6 @@ import type { FC } from "react";
 import { Avatar, SvgIcon, Typography } from "@mui/material";
 
 // LOCAL FILES
-// Assets
-import { buildingUnbuiltIcon } from "assets/building";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 // Hooks
@@ -37,16 +35,18 @@ export const BuildingAvatar: FC<BuildingAvatarProps> = ({
   // Derived variables
   const { name, images } = ID_TO_BUILDING[buildingId];
   const state = townBuilding?.state;
+  const underConstruction = state === "under construction";
 
   return (
     <div style={{ position: "relative" }}>
       <Avatar
         alt={name}
-        // TODO: Building blueprint
         src={
-          isInterior
-            ? images["interior"]
-            : images[state] || buildingUnbuiltIcon
+          state && !underConstruction
+            ? isInterior
+              ? images["interior"]
+              : images["exterior"]
+            : images["sketch"]
         }
         sx={{ width, height }}
       />
