@@ -20,11 +20,13 @@ import {
 // Components
 import { SelectedVillager } from "features/combat/components";
 import {
-  OutcomeIconWithText,
   StyledButton,
   StyledContainer,
 } from "features/common/components";
-import { VillagerAvatar } from "features/villager/components";
+import {
+  VillagerAvatar,
+  VillagerOutcomeIcon,
+} from "features/villager/components";
 // Constants
 import { PLAYER_ID_TO_MILITARY_STRENGTH } from "features/combat/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
@@ -302,23 +304,24 @@ export const TownCombat: FC<{}> = () => {
               <Grid container spacing={1} sx={{ mt: 1 }}>
                 {battleOutcome.villagers.map((armyVillager) => {
                   const { id, state } = armyVillager;
-                  const { name, occupation, image } =
+                  const { name, occupation } =
                     ID_TO_VILLAGER[armyVillager.id];
                   const isPositive = [
                     "healthy",
                     "recovering",
                   ].includes(state);
                   return (
-                    <OutcomeIconWithText
-                      key={id}
-                      icon={image} // TODO: Use villager avatar
-                      isPositive={isPositive}
-                      text={`${name} the ${occupation} ${
-                        state === "healthy"
-                          ? "survived"
-                          : `is ${state}`
-                      }`}
-                    />
+                    <Grid key={id} item>
+                      <VillagerOutcomeIcon
+                        villagerId={id}
+                        isPositive={isPositive}
+                        text={`${name} the ${occupation} ${
+                          state === "healthy"
+                            ? "survived"
+                            : `is ${state}`
+                        }`}
+                      />
+                    </Grid>
                   );
                 })}
               </Grid>

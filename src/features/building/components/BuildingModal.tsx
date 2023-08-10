@@ -18,17 +18,16 @@ import { Construction as ConstructionIcon } from "@mui/icons-material";
 // Components
 import { BuildingAvatar, Market } from "features/building/components";
 import {
-  OutcomeIconWithText,
   PlaceholderText,
   StyledButton,
   StyledPaper,
 } from "features/common/components";
+import { ResourceOutcomeIcon } from "features/resource/components";
 // Constants
 import {
   BUILDING_ID_MARKET,
   ID_TO_BUILDING,
 } from "features/building/constants";
-import { RESOURCE_TO_ICON } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
@@ -182,7 +181,7 @@ export const BuildingModal: FC<{}> = () => {
           )}
           <BuildingAvatar
             buildingId={building.id}
-            isInterior
+            variant="interior"
             hideStateOverlay
             width={170}
             height={170}
@@ -200,13 +199,14 @@ export const BuildingModal: FC<{}> = () => {
                   isPositive ? "+ " : ""
                 }${amount} ${resource}`;
                 return (
-                  <OutcomeIconWithText
-                    key={resource}
-                    icon={RESOURCE_TO_ICON[resource]}
-                    isPositive={isPositive}
-                    text={iconText}
-                    disabled={!isBuilt}
-                  />
+                  <Grid key={resource} item>
+                    <ResourceOutcomeIcon
+                      resource={resource}
+                      isPositive={isPositive}
+                      text={iconText}
+                      disabled={!isBuilt}
+                    />
+                  </Grid>
                 );
               })}
             </Grid>

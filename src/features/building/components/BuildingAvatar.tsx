@@ -1,5 +1,5 @@
 // REACT
-import type { FC } from "react";
+import type { CSSProperties, FC } from "react";
 
 // PUBLIC MODULES
 import { Avatar, SvgIcon, Typography } from "@mui/material";
@@ -9,25 +9,29 @@ import { Avatar, SvgIcon, Typography } from "@mui/material";
 import { ID_TO_BUILDING } from "features/building/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
+// Interfaces & Types
+import type { BuildingImage } from "features/building/types";
 // Redux
 import { selectTownBuilding } from "features/town/townSlice";
 
 interface BuildingAvatarProps {
   buildingId: number;
-  isInterior?: boolean;
+  variant?: BuildingImage;
   hideStateOverlay?: boolean;
   hideStateText?: boolean;
   width?: number;
   height?: number;
+  style?: CSSProperties;
 }
 
 export const BuildingAvatar: FC<BuildingAvatarProps> = ({
   buildingId,
-  isInterior = false,
+  variant,
   hideStateOverlay = false,
   hideStateText = false,
   width = 128,
   height = 128,
+  style = {},
 }) => {
   // Hooks
   const townBuilding = useAppSelector(selectTownBuilding(buildingId));
@@ -36,20 +40,15 @@ export const BuildingAvatar: FC<BuildingAvatarProps> = ({
   const { name, images } = ID_TO_BUILDING[buildingId];
   const state = townBuilding?.state;
   const underConstruction = state === "under construction";
+  const image = variant
+    ? images[variant]
+    : underConstruction
+    ? images["sketch"]
+    : images["exterior"];
 
   return (
-    <div style={{ position: "relative" }}>
-      <Avatar
-        alt={name}
-        src={
-          state && !underConstruction
-            ? isInterior
-              ? images["interior"]
-              : images["exterior"]
-            : images["sketch"]
-        }
-        sx={{ width, height }}
-      />
+    <div style={{ position: "relative", ...style }}>
+      <Avatar alt={name} src={image} sx={{ width, height }} />
 
       {!hideStateOverlay && (
         <>
@@ -59,8 +58,8 @@ export const BuildingAvatar: FC<BuildingAvatarProps> = ({
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: 128,
-                height: 128,
+                width,
+                height,
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 borderRadius: "50%",
               }}

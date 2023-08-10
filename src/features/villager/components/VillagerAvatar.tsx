@@ -1,5 +1,5 @@
 // REACT
-import type { FC } from "react";
+import type { CSSProperties, FC } from "react";
 
 // PUBLIC MODULES
 import { Avatar, SvgIcon, Typography } from "@mui/material";
@@ -18,6 +18,7 @@ interface VillagerAvatarProps {
   hideStateText?: boolean;
   width?: number;
   height?: number;
+  style?: CSSProperties;
 }
 
 export const VillagerAvatar: FC<VillagerAvatarProps> = ({
@@ -26,6 +27,7 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
   hideStateText = false,
   width = 128,
   height = 128,
+  style = {},
 }) => {
   // Hooks
   const townVillager = useAppSelector(selectTownVillager(villagerId));
@@ -35,7 +37,7 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
   const state = townVillager?.state || "healthy";
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", ...style }}>
       <Avatar alt={name} src={image} sx={{ width, height }} />
 
       {!hideStateOverlay && (
@@ -46,8 +48,8 @@ export const VillagerAvatar: FC<VillagerAvatarProps> = ({
                 position: "absolute",
                 top: 0,
                 left: 0,
-                width: 128,
-                height: 128,
+                width,
+                height,
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 borderRadius: "50%",
               }}

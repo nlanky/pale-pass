@@ -15,6 +15,8 @@ export interface BuildingRequirements {
   villagerIds: number[];
 }
 
+export type BuildingImage = "exterior" | "interior" | "sketch";
+
 export interface Building {
   id: number;
   name: string;
@@ -39,7 +41,7 @@ export interface Building {
   /** Number of days to repair */
   repairTime: number;
   /** Paths to image locations */
-  images: Record<"exterior" | "interior" | "sketch", string>;
+  images: Record<BuildingImage, string>;
 }
 
 export type BuildingNotificationType = "built" | "repaired";

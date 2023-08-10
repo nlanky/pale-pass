@@ -14,7 +14,7 @@ import {
 import { StyledButton } from "features/common/components";
 // Constants
 import {
-  RESOURCE_TO_ICON,
+  RESOURCE_TO_IMAGE,
   RESOURCE_TO_TRADE_RATES,
 } from "features/resource/constants";
 // Hooks
@@ -121,7 +121,7 @@ export const Market: FC<{}> = () => {
                   xs={6}
                 >
                   <img
-                    src={RESOURCE_TO_ICON[resource]}
+                    src={RESOURCE_TO_IMAGE[resource]}
                     style={{ width: 64 }}
                   />
                   <Typography variant="body1">
@@ -174,7 +174,7 @@ export const Market: FC<{}> = () => {
                   xs={6}
                 >
                   <img
-                    src={RESOURCE_TO_ICON[resource]}
+                    src={RESOURCE_TO_IMAGE[resource]}
                     style={{ width: 64 }}
                   />
                   {fromResource && (
@@ -203,7 +203,7 @@ export const Market: FC<{}> = () => {
               item
             >
               <img
-                src={RESOURCE_TO_ICON[fromResource]}
+                src={RESOURCE_TO_IMAGE[fromResource]}
                 style={{ width: 64 }}
               />
               <Typography variant="body1">{quantity}</Typography>
@@ -237,7 +237,7 @@ export const Market: FC<{}> = () => {
               item
             >
               <img
-                src={RESOURCE_TO_ICON[toResource]}
+                src={RESOURCE_TO_IMAGE[toResource]}
                 style={{ width: 64 }}
               />
               <Typography variant="body1">

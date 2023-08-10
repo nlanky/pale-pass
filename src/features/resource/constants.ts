@@ -1,12 +1,12 @@
 // LOCAL FILES
 // Icons & Images
 import {
-  amethystIcon,
-  ironIcon,
-  mythrilIcon,
-  steelIcon,
-  stoneIcon,
-  woodIcon,
+  amethystImage,
+  ironImage,
+  mythrilImage,
+  steelImage,
+  stoneImage,
+  woodImage,
 } from "assets/resource";
 // Interfaces & Types
 import type { Resource, Resources } from "features/resource/types";
@@ -33,13 +33,13 @@ export const TIER_TO_RESOURCES_PER_DAY: Record<number, Resources> = {
   5: getResources({ Amethyst: 5 }),
 };
 
-export const RESOURCE_TO_ICON: Record<Resource, string> = {
-  Wood: woodIcon,
-  Stone: stoneIcon,
-  Iron: ironIcon,
-  Steel: steelIcon,
-  Mythril: mythrilIcon,
-  Amethyst: amethystIcon,
+export const RESOURCE_TO_IMAGE: Record<Resource, string> = {
+  Wood: woodImage,
+  Stone: stoneImage,
+  Iron: ironImage,
+  Steel: steelImage,
+  Mythril: mythrilImage,
+  Amethyst: amethystImage,
 };
 
 // How much 1 of the resource is worth compared to the other resources

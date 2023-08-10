@@ -5,25 +5,23 @@ import type { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 
 // LOCAL FILES
-// Constants
-import { RESOURCE_TO_IMAGE } from "features/resource/constants";
+// Components
+import { BuildingAvatar } from "features/building/components";
 // Icons & Images
 import {
   negativeOutcomeIcon,
   positiveOutcomeIcon,
 } from "assets/common";
-// Interfaces & Types
-import type { Resource } from "features/resource/types";
 
-interface ResourceOutcomeIconProps {
-  resource: Resource;
+interface BuildingOutcomeIconProps {
+  buildingId: number;
   isPositive: boolean;
   text?: string;
   disabled?: boolean;
 }
 
-export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
-  resource,
+export const BuildingOutcomeIcon: FC<BuildingOutcomeIconProps> = ({
+  buildingId,
   isPositive,
   text,
   disabled,
@@ -48,15 +46,18 @@ export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
       />
     )}
 
-    <img
-      src={RESOURCE_TO_IMAGE[resource]}
+    <BuildingAvatar
+      buildingId={buildingId}
+      variant="exterior"
+      hideStateOverlay
+      hideStateText
+      width={38}
+      height={38}
       style={{
-        position: "absolute",
         // Icons need to be offset to show all of positive/negative icon
-        top: 12,
-        left: 12,
-        width: 40,
-        height: 40,
+        position: "absolute",
+        top: 13,
+        left: 13,
       }}
     />
 

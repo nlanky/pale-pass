@@ -1,15 +1,15 @@
-import woodIcon from "assets/resource/wood.png";
-import stoneIcon from "assets/resource/stone.png";
-import ironIcon from "assets/resource/iron.png";
-import steelIcon from "assets/resource/steel.png";
-import mythrilIcon from "assets/resource/mythril.png";
-import amethystIcon from "assets/resource/amethyst.png";
+import woodImage from "assets/resource/wood.png";
+import stoneImage from "assets/resource/stone.png";
+import ironImage from "assets/resource/iron.png";
+import steelImage from "assets/resource/steel.png";
+import mythrilImage from "assets/resource/mythril.png";
+import amethystImage from "assets/resource/amethyst.png";
 
 export {
-  woodIcon,
-  stoneIcon,
-  ironIcon,
-  steelIcon,
-  mythrilIcon,
-  amethystIcon,
+  woodImage,
+  stoneImage,
+  ironImage,
+  steelImage,
+  mythrilImage,
+  amethystImage,
 };

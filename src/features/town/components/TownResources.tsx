@@ -13,7 +13,7 @@ import {
 // Components
 import { NineSlice } from "features/common/components";
 // Constants
-import { RESOURCE_TO_ICON } from "features/resource/constants";
+import { RESOURCE_TO_IMAGE } from "features/resource/constants";
 import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
@@ -92,7 +92,7 @@ export const TownResources: FC<TownResourcesProps> = ({
                 }
               >
                 <img
-                  src={RESOURCE_TO_ICON[resource]}
+                  src={RESOURCE_TO_IMAGE[resource]}
                   style={{
                     width: TOWN_RESOURCE_ITEM_HEIGHT,
                     height: TOWN_RESOURCE_ITEM_HEIGHT,

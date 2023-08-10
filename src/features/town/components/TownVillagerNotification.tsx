@@ -7,6 +7,8 @@ import { SnackbarContent } from "notistack";
 import type { CustomContentProps } from "notistack";
 
 // LOCAL FILES
+// Components
+import { VillagerAvatar } from "features/villager/components";
 // Constants
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
@@ -36,7 +38,11 @@ export const TownVillagerNotification = forwardRef<
           width: "100%",
         }}
       >
-        {/* TODO: Use VillagerAvatar */}
+        <VillagerAvatar
+          villagerId={villagerId}
+          hideStateOverlay
+          hideStateText
+        />
         <Avatar alt={villager.name} src={villager.image} />
         <Typography color="white" sx={{ ml: 1 }} variant="body2">
           {`${villager.name} ${type}`}

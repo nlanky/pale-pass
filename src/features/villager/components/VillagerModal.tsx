@@ -19,18 +19,17 @@ import {
 // LOCAL FILES
 // Components
 import {
-  OutcomeIconWithText,
   PlaceholderText,
   StyledButton,
   StyledPaper,
 } from "features/common/components";
+import { ResourceOutcomeIcon } from "features/resource/components";
 import {
   VillagerAvatar,
   VillagerModalTitle,
 } from "features/villager/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { RESOURCE_TO_ICON } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
@@ -156,15 +155,16 @@ export const VillagerModal: FC<{}> = () => {
                 const amount = villager.gatherResources[resource];
                 const isPositive = amount > 0;
                 return (
-                  <OutcomeIconWithText
-                    key={resource}
-                    icon={RESOURCE_TO_ICON[resource]}
-                    isPositive={isPositive}
-                    text={`${
-                      isPositive ? "+" : ""
-                    } ${amount} ${resource} per day`}
-                    disabled={!isHealthy}
-                  />
+                  <Grid key={resource} item>
+                    <ResourceOutcomeIcon
+                      resource={resource}
+                      isPositive={isPositive}
+                      text={`${
+                        isPositive ? "+" : ""
+                      } ${amount} ${resource} per day`}
+                      disabled={!isHealthy}
+                    />
+                  </Grid>
                 );
               })}
             </Grid>

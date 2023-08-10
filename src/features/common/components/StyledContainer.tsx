@@ -2,7 +2,7 @@
 import type { FC, ReactNode } from "react";
 
 // PUBLIC MODULES
-import { Grid } from "@mui/material";
+import { Grid, type GridProps } from "@mui/material";
 
 // LOCAL FILES
 // Interfaces & Types
@@ -11,7 +11,7 @@ import {
   type NineSliceStyles,
 } from "features/common/components";
 
-interface StyledContainerProps {
+interface StyledContainerProps extends GridProps {
   width?: number;
   height?: number;
   nineSliceStyles?: NineSliceStyles;
@@ -23,6 +23,8 @@ export const StyledContainer: FC<StyledContainerProps> = ({
   height = 800, // Roughly the right size to make the NineSlice borders look ok
   nineSliceStyles,
   children,
+  sx,
+  ...rest
 }) => (
   <NineSlice
     width={width}
@@ -37,6 +39,7 @@ export const StyledContainer: FC<StyledContainerProps> = ({
         boxSizing: "border-box",
         marginLeft: "auto",
         marginRight: "auto",
+        overflow: "hidden",
       },
       content: {
         /*
@@ -51,8 +54,9 @@ export const StyledContainer: FC<StyledContainerProps> = ({
     <Grid
       container
       direction="column"
-      sx={{ height: "100%" }}
+      sx={{ height: "100%", ...sx }}
       wrap="nowrap"
+      {...rest}
     >
       {children}
     </Grid>

@@ -2,11 +2,13 @@
 import { forwardRef } from "react";
 
 // PUBLIC MODULES
-import { Avatar, Card, Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import { SnackbarContent } from "notistack";
 import type { CustomContentProps } from "notistack";
 
 // LOCAL FILES
+// Components
+import { BuildingAvatar } from "features/building/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
 // Interfaces & Types
@@ -36,10 +38,13 @@ export const TownBuildingNotification = forwardRef<
           width: "100%",
         }}
       >
-        {/* TODO: Use BuildingAvatar */}
-        <Avatar
-          alt={building.name}
-          src={building.images["exterior"]}
+        <BuildingAvatar
+          buildingId={buildingId}
+          variant="exterior"
+          hideStateOverlay
+          hideStateText
+          width={40}
+          height={40}
         />
         <Typography color="white" sx={{ ml: 1 }} variant="body2">
           {`${building.name} ${type}`}

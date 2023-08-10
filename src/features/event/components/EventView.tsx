@@ -74,7 +74,7 @@ export const EventView: FC<{}> = () => {
   }, [eventChoice]);
 
   return (
-    <StyledContainer>
+    <StyledContainer sx={{ overflowY: "auto" }}>
       <PlaceholderText
         text={event.introductionText}
         variant="body2"
