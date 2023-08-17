@@ -27,10 +27,23 @@ export const NO_RESOURCES: Resources = {
  */
 export const TIER_TO_RESOURCES_PER_DAY: Record<number, Resources> = {
   1: getResources({ Wood: 5, Stone: 5 }),
-  2: getResources({ Iron: 5 }),
-  3: getResources({ Steel: 5 }),
-  4: getResources({ Mythril: 5 }),
-  5: getResources({ Amethyst: 5 }),
+  2: getResources({ Wood: 5, Stone: 5, Iron: 5 }),
+  3: getResources({ Wood: 5, Stone: 5, Iron: 5, Steel: 5 }),
+  4: getResources({
+    Wood: 5,
+    Stone: 5,
+    Iron: 5,
+    Steel: 5,
+    Mythril: 5,
+  }),
+  5: getResources({
+    Wood: 5,
+    Stone: 5,
+    Iron: 5,
+    Steel: 5,
+    Mythril: 5,
+    Amethyst: 5,
+  }),
 };
 
 export const RESOURCE_TO_IMAGE: Record<Resource, string> = {
