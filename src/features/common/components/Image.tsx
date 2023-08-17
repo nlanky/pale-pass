@@ -1,6 +1,7 @@
 // REACT
-import type { FC, ImgHTMLAttributes } from "react";
+import { forwardRef, type ImgHTMLAttributes } from "react";
 
-export const Image: FC<ImgHTMLAttributes<HTMLImageElement>> = ({
-  ...props
-}) => <img loading="lazy" {...props} />;
+export const Image = forwardRef<
+  HTMLImageElement,
+  ImgHTMLAttributes<HTMLImageElement>
+>((props, ref) => <img loading="lazy" ref={ref} {...props} />);
