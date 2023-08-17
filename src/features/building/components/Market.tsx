@@ -11,7 +11,7 @@ import {
 
 // LOCAL FILES
 // Components
-import { StyledButton } from "features/common/components";
+import { Image, StyledButton } from "features/common/components";
 // Constants
 import {
   RESOURCE_TO_IMAGE,
@@ -120,7 +120,7 @@ export const Market: FC<{}> = () => {
                   }}
                   xs={6}
                 >
-                  <img
+                  <Image
                     src={RESOURCE_TO_IMAGE[resource]}
                     style={{ width: 64 }}
                   />
@@ -173,7 +173,7 @@ export const Market: FC<{}> = () => {
                   }}
                   xs={6}
                 >
-                  <img
+                  <Image
                     src={RESOURCE_TO_IMAGE[resource]}
                     style={{ width: 64 }}
                   />
@@ -202,7 +202,7 @@ export const Market: FC<{}> = () => {
               direction="column"
               item
             >
-              <img
+              <Image
                 src={RESOURCE_TO_IMAGE[fromResource]}
                 style={{ width: 64 }}
               />
@@ -236,7 +236,7 @@ export const Market: FC<{}> = () => {
               direction="column"
               item
             >
-              <img
+              <Image
                 src={RESOURCE_TO_IMAGE[toResource]}
                 style={{ width: 64 }}
               />

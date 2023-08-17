@@ -48,7 +48,12 @@ export const BuildingAvatar: FC<BuildingAvatarProps> = ({
 
   return (
     <div style={{ position: "relative", ...style }}>
-      <Avatar alt={name} src={image} sx={{ width, height }} />
+      <Avatar
+        alt={name}
+        imgProps={{ loading: "lazy" }}
+        src={image}
+        sx={{ width, height }}
+      />
 
       {!hideStateOverlay && (
         <>

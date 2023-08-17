@@ -1,3 +1,4 @@
+export { Image } from "features/common/components/Image";
 export {
   NineSlice,
   type NineSliceStyles,

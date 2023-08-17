@@ -11,7 +11,7 @@ import {
 
 // LOCAL FILES
 // Components
-import { NineSlice } from "features/common/components";
+import { Image, NineSlice } from "features/common/components";
 // Constants
 import { RESOURCE_TO_IMAGE } from "features/resource/constants";
 import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
@@ -89,7 +89,7 @@ export const TownResources: FC<TownResourcesProps> = ({
                   <Typography variant="body2">{resource}</Typography>
                 }
               >
-                <img
+                <Image
                   src={RESOURCE_TO_IMAGE[resource]}
                   style={{
                     width: TOWN_RESOURCE_ITEM_HEIGHT,

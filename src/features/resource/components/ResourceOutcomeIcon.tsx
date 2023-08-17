@@ -5,6 +5,8 @@ import type { FC } from "react";
 import { Grid, Typography } from "@mui/material";
 
 // LOCAL FILES
+// Components
+import { Image } from "features/common/components";
 // Constants
 import { RESOURCE_TO_IMAGE } from "features/resource/constants";
 // Icons & Images
@@ -36,19 +38,19 @@ export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
     wrap="nowrap"
   >
     {isPositive && (
-      <img
+      <Image
         src={positiveOutcomeIcon}
         style={{ width: 64, height: 64 }}
       />
     )}
     {!isPositive && (
-      <img
+      <Image
         src={negativeOutcomeIcon}
         style={{ width: 64, height: 64 }}
       />
     )}
 
-    <img
+    <Image
       src={RESOURCE_TO_IMAGE[resource]}
       style={{
         position: "absolute",

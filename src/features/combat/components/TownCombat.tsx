@@ -20,6 +20,7 @@ import {
 // Components
 import { SelectedVillager } from "features/combat/components";
 import {
+  Image,
   StyledButton,
   StyledContainer,
 } from "features/common/components";
@@ -196,7 +197,7 @@ export const TownCombat: FC<{}> = () => {
           <Typography component="h2" sx={{ mr: 2 }} variant="h5">
             Your Military Strength
           </Typography>
-          <img
+          <Image
             src={handToHand}
             style={{
               width: 32,
@@ -206,7 +207,7 @@ export const TownCombat: FC<{}> = () => {
           <Typography sx={{ ml: 1 }} variant="body2">
             {playerMilitaryStrength.handToHand}
           </Typography>
-          <img
+          <Image
             src={archery}
             style={{
               width: 32,
@@ -217,7 +218,7 @@ export const TownCombat: FC<{}> = () => {
           <Typography sx={{ ml: 1 }} variant="body2">
             {playerMilitaryStrength.archery}
           </Typography>
-          <img
+          <Image
             src={mounted}
             style={{
               width: 32,
@@ -234,7 +235,7 @@ export const TownCombat: FC<{}> = () => {
           <Typography component="h2" sx={{ mr: 2 }} variant="h5">
             Enemy Military Strength
           </Typography>
-          <img
+          <Image
             src={handToHand}
             style={{
               width: 32,
@@ -244,7 +245,7 @@ export const TownCombat: FC<{}> = () => {
           <Typography sx={{ ml: 1 }} variant="body2">
             {enemyDisplayMilitaryStrength.handToHand}
           </Typography>
-          <img
+          <Image
             src={archery}
             style={{
               width: 32,
@@ -255,7 +256,7 @@ export const TownCombat: FC<{}> = () => {
           <Typography sx={{ ml: 1 }} variant="body2">
             {enemyDisplayMilitaryStrength.archery}
           </Typography>
-          <img
+          <Image
             src={mounted}
             style={{
               width: 32,
@@ -384,7 +385,7 @@ export const TownCombat: FC<{}> = () => {
                     primary={listItemText}
                     primaryTypographyProps={{ variant: "body2" }}
                   />
-                  <img
+                  <Image
                     src={handToHand}
                     style={{
                       width: 24,
@@ -395,7 +396,7 @@ export const TownCombat: FC<{}> = () => {
                   <Typography sx={{ ml: 1 }} variant="body2">
                     {militaryStrength.handToHand}
                   </Typography>
-                  <img
+                  <Image
                     src={archery}
                     style={{
                       width: 24,
@@ -406,7 +407,7 @@ export const TownCombat: FC<{}> = () => {
                   <Typography sx={{ ml: 1 }} variant="body2">
                     {militaryStrength.archery}
                   </Typography>
-                  <img
+                  <Image
                     src={mounted}
                     style={{
                       width: 24,

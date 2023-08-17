@@ -6,7 +6,7 @@ import { Icon } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { StyledButton } from "features/common/components";
+import { Image, StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Images & Icons
@@ -28,7 +28,7 @@ export const TownBuildingsButton: FC<{}> = () => {
       onClick={onBuildingsClick}
       startIcon={
         <Icon>
-          <img
+          <Image
             src={buildingIcon}
             style={{
               display: "flex",

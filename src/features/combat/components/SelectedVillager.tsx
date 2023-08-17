@@ -6,7 +6,7 @@ import { Grid, Typography, useTheme } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { StyledButton } from "features/common/components";
+import { Image, StyledButton } from "features/common/components";
 import { VillagerAvatar } from "features/villager/components";
 // Constants
 import { ID_TO_VILLAGER } from "features/villager/constants";
@@ -62,7 +62,7 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
               justifyContent="center"
               sx={{ mt: 1.5 }}
             >
-              <img
+              <Image
                 src={handToHand}
                 style={{ width: 32, height: 32 }}
               />
@@ -80,7 +80,10 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
               justifyContent="center"
               sx={{ mt: 1 }}
             >
-              <img src={archery} style={{ width: 32, height: 32 }} />
+              <Image
+                src={archery}
+                style={{ width: 32, height: 32 }}
+              />
               <Typography
                 component="span"
                 sx={{ ml: 1 }}
@@ -95,7 +98,10 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
               justifyContent="center"
               sx={{ mt: 1 }}
             >
-              <img src={mounted} style={{ width: 32, height: 32 }} />
+              <Image
+                src={mounted}
+                style={{ width: 32, height: 32 }}
+              />
               <Typography
                 component="span"
                 sx={{ ml: 1 }}

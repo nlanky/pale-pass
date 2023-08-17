@@ -7,6 +7,7 @@ import { Grid, Typography } from "@mui/material";
 // LOCAL FILES
 // Components
 import { BuildingAvatar } from "features/building/components";
+import { Image } from "features/common/components";
 // Icons & Images
 import {
   negativeOutcomeIcon,
@@ -34,13 +35,13 @@ export const BuildingOutcomeIcon: FC<BuildingOutcomeIconProps> = ({
     wrap="nowrap"
   >
     {isPositive && (
-      <img
+      <Image
         src={positiveOutcomeIcon}
         style={{ width: 64, height: 64 }}
       />
     )}
     {!isPositive && (
-      <img
+      <Image
         src={negativeOutcomeIcon}
         style={{ width: 64, height: 64 }}
       />

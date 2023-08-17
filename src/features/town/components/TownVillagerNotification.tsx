@@ -2,7 +2,7 @@
 import { forwardRef } from "react";
 
 // PUBLIC MODULES
-import { Avatar, Card, Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import { SnackbarContent } from "notistack";
 import type { CustomContentProps } from "notistack";
 
@@ -43,7 +43,6 @@ export const TownVillagerNotification = forwardRef<
           hideStateOverlay
           hideStateText
         />
-        <Avatar alt={villager.name} src={villager.image} />
         <Typography color="white" sx={{ ml: 1 }} variant="body2">
           {`${villager.name} ${type}`}
         </Typography>

@@ -5,6 +5,8 @@ import type { FC, ReactNode } from "react";
 import { Grid, Tooltip, Typography } from "@mui/material";
 
 // LOCAL FILES
+// Components
+import { Image } from "features/common/components";
 // Constants
 import { MAP_TILE_WIDTH } from "features/map/constants";
 import { PLAYER_ID } from "features/player/constants";
@@ -93,7 +95,7 @@ export const MapTile: FC<MapTileProps> = ({ tile }) => {
           cursor: enabled ? "pointer" : "default",
         }}
       >
-        {visible && <img src={image} />}
+        {visible && <Image src={image} />}
         {visible && !explored && (
           <div
             style={{

@@ -6,6 +6,7 @@ import { Grid, Typography } from "@mui/material";
 
 // LOCAL FILES
 // Components
+import { Image } from "features/common/components";
 import { VillagerAvatar } from "features/villager/components";
 // Icons & Images
 import {
@@ -34,13 +35,13 @@ export const VillagerOutcomeIcon: FC<VillagerOutcomeIconProps> = ({
     wrap="nowrap"
   >
     {isPositive && (
-      <img
+      <Image
         src={positiveOutcomeIcon}
         style={{ width: 64, height: 64 }}
       />
     )}
     {!isPositive && (
-      <img
+      <Image
         src={negativeOutcomeIcon}
         style={{ width: 64, height: 64 }}
       />

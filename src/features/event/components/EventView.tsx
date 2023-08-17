@@ -8,6 +8,7 @@ import { Divider, Grid, Typography, useTheme } from "@mui/material";
 // LOCAL FILES
 // Components
 import {
+  Image,
   PlaceholderText,
   ReturnToTownButton,
   StyledButton,
@@ -76,7 +77,7 @@ export const EventView: FC<{}> = () => {
         variant="body2"
       />
       <Grid item sx={{ mt: 1 }}>
-        <img src={event.image} style={{ maxWidth: "100%" }} />
+        <Image src={event.image} style={{ maxWidth: "100%" }} />
       </Grid>
       <Divider sx={{ my: 1 }} />
       <Grid

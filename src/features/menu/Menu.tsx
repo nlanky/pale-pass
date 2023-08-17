@@ -8,7 +8,7 @@ import { Container, Grid, Tooltip, Typography } from "@mui/material";
 // Assets
 import { titleImage } from "assets/menu";
 // Components
-import { StyledButton } from "features/common/components";
+import { Image, StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Redux
@@ -50,7 +50,7 @@ export const Menu: FC<{}> = () => {
         flexDirection: "column",
       }}
     >
-      <img src={titleImage} style={{ width: 720 }} />
+      <Image src={titleImage} style={{ width: 720 }} />
       <Grid container justifyContent="space-around" sx={{ pt: 1 }}>
         <StyledButton onClick={onGameStart} width={120}>
           New Game

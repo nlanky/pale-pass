@@ -8,7 +8,10 @@ import { Container, Grid } from "@mui/material";
 // Assets
 import { mapUnrevealed } from "assets/map";
 // Components
-import { ReturnToTownButton } from "features/common/components";
+import {
+  Image,
+  ReturnToTownButton,
+} from "features/common/components";
 import { MapTile } from "features/map/components";
 import { TownResources } from "features/town/components";
 // Constants
@@ -33,7 +36,7 @@ export const Map: FC<{}> = () => {
             width: 10 * MAP_TILE_WIDTH,
           }}
         >
-          <img src={mapUnrevealed} />
+          <Image src={mapUnrevealed} />
           <div
             style={{
               position: "absolute",
