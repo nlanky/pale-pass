@@ -24,10 +24,10 @@ export const getGameDetailsFromLocalStorage = () => {
   }
 
   const reduxStoreState = JSON.parse(reduxStoreStateJson);
-  const gameState = JSON.parse(reduxStoreState["game"]);
+  const systemState = JSON.parse(reduxStoreState["system"]);
   const playerState = JSON.parse(reduxStoreState["player"]);
   return {
-    day: gameState["day"],
+    day: systemState["day"],
     name: playerState["name"],
   };
 };

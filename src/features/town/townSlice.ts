@@ -9,7 +9,7 @@ import {
   NO_RESOURCES,
   RESOURCE_TO_TRADE_RATES,
 } from "features/resource/constants";
-import { TIER_TO_REQUIREMENTS } from "features/town/constants";
+import { TIER_TO_REQUIREMENTS } from "features/tier/constants";
 import { VILLAGER_RECOVERY_DAYS } from "features/villager/constants";
 // Interfaces & Types
 import type { Town } from "features/town/types";

@@ -7,12 +7,12 @@ import { ID_TO_BUILDING } from "features/building/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 // Redux
+import { selectTownTier } from "features/tier/selectors";
 import {
   selectFunctionalTownBuildingIds,
   selectFunctionalTownVillagerIds,
   selectTownBuildingIdToBuilding,
   selectTownResources,
-  selectTownTier,
 } from "features/town/selectors";
 // Utility functions
 import { canAffordResourceAmount } from "features/resource/utils";

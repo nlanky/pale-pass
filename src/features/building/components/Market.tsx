@@ -22,11 +22,9 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
+import { selectEnabledResources } from "features/tier/selectors";
 import { tradeResources } from "features/town/actions";
-import {
-  selectEnabledResources,
-  selectTownResources,
-} from "features/town/selectors";
+import { selectTownResources } from "features/town/selectors";
 // Utility functions
 import {
   getMaxTradeQuantity,

@@ -18,10 +18,10 @@ import type { Resource } from "features/resource/types";
 // Redux
 import { setTier } from "features/town/actions";
 import {
-  selectCanAdvanceTier,
   selectTierRequirements,
   selectTownTier,
-} from "features/town/selectors";
+} from "features/tier/selectors";
+import { selectCanAdvanceTier } from "features/town/selectors";
 
 export const TownAdvanceTierButton: FC<{}> = () => {
   // Hooks

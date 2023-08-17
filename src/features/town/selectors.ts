@@ -12,15 +12,15 @@ import {
   EVENT_ID_TO_EVENT,
 } from "features/event/constants";
 import { TIER_TO_RESOURCES_PER_DAY } from "features/resource/constants";
-import {
-  TIER_TO_ENABLED_RESOURCES,
-  TIER_TO_REQUIREMENTS,
-} from "features/town/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 // Redux
 import { selectDay } from "features/system/selectors";
+import {
+  selectTierRequirements,
+  selectTownTier,
+} from "features/tier/selectors";
 // Utility functions
 import { getRandomEvent } from "features/event/utils";
 import {
@@ -29,7 +29,6 @@ import {
 } from "features/resource/utils";
 import { getNumberOfBuilders } from "features/town/utils";
 
-export const selectTownTier = (state: RootState) => state.town.tier;
 export const selectTownResources = (state: RootState) =>
   state.town.resources;
 export const selectTownBuildingIdToBuilding = (state: RootState) =>
@@ -38,16 +37,6 @@ export const selectTownVillagerIdToVillager = (state: RootState) =>
   state.town.villagerIdToVillager;
 export const selectCompletedEvents = (state: RootState) =>
   state.town.completedEvents;
-
-export const selectTierRequirements = createSelector(
-  [selectTownTier],
-  (tier) => TIER_TO_REQUIREMENTS[tier + 1],
-);
-
-export const selectEnabledResources = createSelector(
-  [selectTownTier],
-  (tier) => TIER_TO_ENABLED_RESOURCES[tier],
-);
 
 export const selectTownBuildingIds = createSelector(
   [selectTownBuildingIdToBuilding],

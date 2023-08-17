@@ -18,6 +18,7 @@ import {
 } from "features/system/actions";
 import { exploreTile } from "features/map/actions";
 import { setNameAndPronouns } from "features/player/actions";
+import { setTier } from "features/town/actions";
 
 interface SystemState {
   day: number;
@@ -73,6 +74,9 @@ export const systemSlice = createSlice({
       })
       .addCase(completeBattle, (state) => {
         state.view = "map";
+      })
+      .addCase(setTier, (state) => {
+        state.view = "tier";
       });
   },
 });

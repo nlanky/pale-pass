@@ -6,10 +6,11 @@ import { createSelector } from "@reduxjs/toolkit";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
+// Redux
+import { selectTownTier } from "features/tier/selectors";
 import {
   selectFunctionalTownBuildingIds,
   selectFunctionalTownVillagerIds,
-  selectTownTier,
   selectTownVillagerIdToVillager,
 } from "features/town/selectors";
 

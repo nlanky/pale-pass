@@ -29,7 +29,7 @@ export const Menu: FC<{}> = () => {
     // Deletes persisted Redux store from local storage
     await persistor.purge();
     persistor.persist();
-    dispatch(setView("introduction"));
+    dispatch(setView("tier"));
   };
 
   const onGameLoad = () => {

@@ -17,8 +17,8 @@ import { RESOURCE_TO_IMAGE } from "features/resource/constants";
 import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
+import { selectEnabledResources } from "features/tier/selectors";
 import {
-  selectEnabledResources,
   selectTownResources,
   selectTownResourcesPerDay,
 } from "features/town/selectors";

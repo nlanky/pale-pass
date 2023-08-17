@@ -1,6 +1,5 @@
 export type View =
   | "menu"
-  | "introduction"
   | "createCharacter"
   | "town"
   | "map"
@@ -8,4 +7,5 @@ export type View =
   | "building"
   | "villager"
   | "combat"
-  | "log";
+  | "log"
+  | "tier";
