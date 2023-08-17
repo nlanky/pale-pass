@@ -12,7 +12,7 @@ import { useAppDispatch } from "features/redux/hooks";
 // Images & Icons
 import { villagerIcon } from "assets/villager";
 // Redux
-import { setView } from "features/game/actions";
+import { setView } from "features/system/actions";
 
 export const TownVillagersButton: FC<{}> = () => {
   // Hooks

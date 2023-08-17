@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // Constants
 import { PLAYER_ID } from "features/player/constants";
 // Interfaces & Types
-import type { View } from "features/game/types";
+import type { View } from "features/system/types";
 // Redux
 import { completeBattle } from "features/combat/actions";
 import { triggerEvent } from "features/event/actions";
@@ -15,26 +15,26 @@ import {
   setDay,
   setView,
   togglePause,
-} from "features/game/actions";
+} from "features/system/actions";
 import { exploreTile } from "features/map/actions";
 import { setNameAndPronouns } from "features/player/actions";
 
-interface GameState {
+interface SystemState {
   day: number;
   view: View;
   speed: number;
   paused: boolean;
 }
 
-const initialState: GameState = {
+const initialState: SystemState = {
   day: 0,
   view: "menu",
   speed: 1,
   paused: false,
 };
 
-export const gameSlice = createSlice({
-  name: "game",
+export const systemSlice = createSlice({
+  name: "system",
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -77,4 +77,4 @@ export const gameSlice = createSlice({
   },
 });
 
-export const gameReducer = gameSlice.reducer;
+export const systemReducer = systemSlice.reducer;

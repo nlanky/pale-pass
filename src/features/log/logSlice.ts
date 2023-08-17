@@ -12,7 +12,7 @@ import type { Resource } from "features/resource/types";
 // Redux
 import { completeBattle } from "features/combat/actions";
 import { completeEvent, triggerEvent } from "features/event/actions";
-import { setDay } from "features/game/actions";
+import { setDay } from "features/system/actions";
 import { exploreTile } from "features/map/actions";
 import { setNameAndPronouns } from "features/player/actions";
 import {

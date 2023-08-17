@@ -12,13 +12,13 @@ import { Image, StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
 // Redux
-import { setView } from "features/game/actions";
+import { setView } from "features/system/actions";
 import { persistor } from "features/redux/store";
 // Utility functions
 import {
   getGameDetailsFromLocalStorage,
   hasSavedGame,
-} from "features/game/utils";
+} from "features/system/utils";
 
 export const Menu: FC<{}> = () => {
   // Hooks

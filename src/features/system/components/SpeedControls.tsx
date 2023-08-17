@@ -15,7 +15,7 @@ import {
 import {
   MAX_GAME_SPEED,
   MIN_GAME_SPEED,
-} from "features/game/constants";
+} from "features/system/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
@@ -23,11 +23,11 @@ import {
   decreaseGameSpeed,
   increaseGameSpeed,
   togglePause,
-} from "features/game/actions";
+} from "features/system/actions";
 import {
   selectGamePaused,
   selectGameSpeed,
-} from "features/game/selectors";
+} from "features/system/selectors";
 
 export const SpeedControls: FC<{}> = () => {
   // Hooks

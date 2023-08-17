@@ -15,9 +15,9 @@ import { Introduction } from "features/tutorial/Introduction";
 import { TownVillagers } from "features/villager/components";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
-import { selectView } from "features/game/selectors";
+import { selectView } from "features/system/selectors";
 
-export const Game: FC<{}> = () => {
+export const Router: FC<{}> = () => {
   // Hooks
   const view = useAppSelector(selectView);
 

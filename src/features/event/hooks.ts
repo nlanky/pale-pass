@@ -11,7 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
 import { triggerEvent } from "features/event/actions";
-import { selectDay } from "features/game/selectors";
+import { selectDay } from "features/system/selectors";
 import {
   selectCompletedEvents,
   selectValidEvent,

@@ -18,7 +18,7 @@ import storage from "redux-persist/lib/storage";
 import { buildingReducer } from "features/building/buildingSlice";
 import { combatReducer } from "features/combat/combatSlice";
 import { eventReducer } from "features/event/eventSlice";
-import { gameReducer } from "features/game/gameSlice";
+import { systemReducer } from "features/system/systemSlice";
 import { mapReducer } from "features/map/mapSlice";
 import { logReducer } from "features/log/logSlice";
 import { playerReducer } from "features/player/playerSlice";
@@ -29,10 +29,10 @@ const rootReducer = combineReducers({
   building: buildingReducer,
   combat: combatReducer,
   event: eventReducer,
-  game: gameReducer,
   log: logReducer,
   map: mapReducer,
   player: playerReducer,
+  system: systemReducer,
   town: townReducer,
   villager: villagerReducer,
 });

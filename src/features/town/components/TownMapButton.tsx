@@ -13,7 +13,7 @@ import {
   useAppDispatch /*,useAppSelector*/,
 } from "features/redux/hooks";
 // Redux
-import { setView } from "features/game/actions";
+import { setView } from "features/system/actions";
 // import { selectTownHasCartographer } from "features/town/townSlice";
 
 export const TownMapButton: FC<{}> = () => {

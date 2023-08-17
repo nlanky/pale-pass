@@ -10,7 +10,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 // LOCAL FILES
 // Components
-import { Game } from "features/game/components";
+import { Router } from "features/system/components";
 import {
   TownBuildingNotification,
   TownVillagerNotification,
@@ -45,7 +45,7 @@ ReactDOM.createRoot(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <PersistGate loading={<Game />} persistor={persistor}>
+        <PersistGate loading={<Router />} persistor={persistor}>
           <SnackbarProvider
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             Components={{
@@ -54,7 +54,7 @@ ReactDOM.createRoot(
             }}
             maxSnack={10}
           >
-            <Game />
+            <Router />
           </SnackbarProvider>
         </PersistGate>
       </Provider>

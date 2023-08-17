@@ -16,7 +16,7 @@ import type { Town } from "features/town/types";
 // Redux
 import { completeBattle } from "features/combat/actions";
 import { completeEvent } from "features/event/actions";
-import { setDay } from "features/game/actions";
+import { setDay } from "features/system/actions";
 import { exploreTile } from "features/map/actions";
 import {
   buildBuilding,

@@ -20,7 +20,7 @@ import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
 // Redux
-import { selectDay } from "features/game/selectors";
+import { selectDay } from "features/system/selectors";
 // Utility functions
 import { getRandomEvent } from "features/event/utils";
 import {

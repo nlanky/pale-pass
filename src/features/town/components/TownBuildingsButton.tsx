@@ -12,7 +12,7 @@ import { useAppDispatch } from "features/redux/hooks";
 // Images & Icons
 import { buildingIcon } from "assets/building";
 // Redux
-import { setView } from "features/game/actions";
+import { setView } from "features/system/actions";
 
 export const TownBuildingsButton: FC<{}> = () => {
   // Hooks

@@ -3,7 +3,7 @@ import { createAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Interfaces & Types
-import type { View } from "features/game/types";
+import type { View } from "features/system/types";
 
 export const setView = createAction<View>("game/setView");
 export const setDay = createAction<number>("game/setDay");

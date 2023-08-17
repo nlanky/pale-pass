@@ -3,16 +3,16 @@ import { useEffect } from "react";
 
 // LOCAL FILES
 // Constants
-import { DAY_TIME } from "features/game/constants";
+import { DAY_TIME } from "features/system/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
-import { setDay } from "features/game/actions";
+import { setDay } from "features/system/actions";
 import {
   selectDay,
   selectGamePaused,
   selectGameSpeed,
-} from "features/game/selectors";
+} from "features/system/selectors";
 
 /**
  * Responsible for controlling day cycle.

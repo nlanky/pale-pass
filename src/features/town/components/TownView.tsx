@@ -6,7 +6,7 @@ import { Container, Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { SpeedControls } from "features/game/components";
+import { SpeedControls } from "features/system/components";
 import {
   TownAdvanceTierButton,
   TownBuildingsButton,
@@ -19,7 +19,7 @@ import {
 } from "features/town/components";
 // Hooks
 import { useEventTimer } from "features/event/hooks";
-import { useDayTimer } from "features/game/hooks";
+import { useDayTimer } from "features/system/hooks";
 import {
   useBuildingNotifications,
   useVillagerNotifications,

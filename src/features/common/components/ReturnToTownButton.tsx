@@ -13,7 +13,7 @@ import { useAppDispatch } from "features/redux/hooks";
 // Interfaces & Types
 import type { NineSliceStyles } from "features/common/components";
 // Redux
-import { setView } from "features/game/actions";
+import { setView } from "features/system/actions";
 
 export interface ReturnToTownButtonProps extends ButtonProps {
   nineSliceStyles?: NineSliceStyles;

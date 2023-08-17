@@ -41,7 +41,7 @@ import type { BattleOutcome } from "features/combat/types";
 // Redux
 import { completeBattle } from "features/combat/actions";
 import { selectAttackingPlayerId } from "features/combat/selectors";
-import { setView } from "features/game/actions";
+import { setView } from "features/system/actions";
 import { selectTownVillagers } from "features/town/selectors";
 // Utility functions
 import {
