@@ -21,7 +21,7 @@ import {
   selectCanAdvanceTier,
   selectTierRequirements,
   selectTownTier,
-} from "features/town/townSlice";
+} from "features/town/selectors";
 
 export const TownAdvanceTierButton: FC<{}> = () => {
   // Hooks

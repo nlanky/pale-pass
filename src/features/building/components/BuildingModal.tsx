@@ -40,7 +40,7 @@ import {
   selectCanRepairModalBuilding,
   selectModalBuilding,
   selectModalTownBuilding,
-} from "features/building/buildingSlice";
+} from "features/building/selectors";
 import { buildBuilding, repairBuilding } from "features/town/actions";
 
 export const BuildingModal: FC<{}> = () => {

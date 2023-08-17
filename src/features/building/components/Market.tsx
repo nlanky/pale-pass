@@ -26,7 +26,7 @@ import { tradeResources } from "features/town/actions";
 import {
   selectEnabledResources,
   selectTownResources,
-} from "features/town/townSlice";
+} from "features/town/selectors";
 // Utility functions
 import {
   getMaxTradeQuantity,

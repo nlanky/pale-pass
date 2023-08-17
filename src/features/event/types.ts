@@ -50,3 +50,9 @@ export interface Event {
   introductionText: string;
   choices: Choice[];
 }
+
+export interface CompletedEvent {
+  id: number;
+  choiceIndex: number;
+  outcomeIndex: number;
+}

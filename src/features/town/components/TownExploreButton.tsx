@@ -14,7 +14,7 @@ import { triggerEvent } from "features/event/actions";
 import {
   selectCanExplore,
   selectValidEvents,
-} from "features/event/eventSlice";
+} from "features/town/selectors";
 // Utility functions
 import { getRandomEvent } from "features/event/utils";
 
@@ -26,7 +26,7 @@ export const TownExploreButton: FC<{}> = () => {
 
   // Handlers
   const onEventTrigger = () => {
-    dispatch(triggerEvent(getRandomEvent(validEvents)));
+    dispatch(triggerEvent(getRandomEvent(validEvents).id));
   };
 
   return (

@@ -17,8 +17,8 @@ export const NO_EVENT_REQUIREMENTS: EventRequirements = {
   villagerIds: [],
 };
 
-export const EVENTS: Event[] = [
-  {
+export const EVENT_ID_TO_EVENT: Record<number, Event> = {
+  1: {
     id: 1,
     image: event1Image,
     requirements: NO_EVENT_REQUIREMENTS,
@@ -69,7 +69,7 @@ export const EVENTS: Event[] = [
       },
     ],
   },
-  {
+  2: {
     id: 2,
     image: event2Image,
     requirements: {
@@ -125,7 +125,7 @@ export const EVENTS: Event[] = [
       },
     ],
   },
-  {
+  11: {
     id: 11,
     image: event1Image,
     requirements: {
@@ -187,7 +187,7 @@ export const EVENTS: Event[] = [
       },
     ],
   },
-  {
+  32: {
     id: 32,
     image: event1Image,
     requirements: {
@@ -252,4 +252,4 @@ export const EVENTS: Event[] = [
       },
     ],
   },
-];
+};

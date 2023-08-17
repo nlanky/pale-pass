@@ -39,9 +39,9 @@ import { archery, handToHand, mounted } from "assets/combat";
 import type { BattleOutcome } from "features/combat/types";
 // Redux
 import { completeBattle } from "features/combat/actions";
-import { selectAttackingPlayerId } from "features/combat/combatSlice";
+import { selectAttackingPlayerId } from "features/combat/selectors";
 import { setView } from "features/game/actions";
-import { selectTownVillagers } from "features/town/townSlice";
+import { selectTownVillagers } from "features/town/selectors";
 // Utility functions
 import {
   determineBattleOutcome,

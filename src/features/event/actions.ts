@@ -3,11 +3,11 @@ import { createAction } from "@reduxjs/toolkit";
 
 // LOCAL FILES
 // Interfaces & Types
-import type { Choice, Event, Outcome } from "features/event/types";
+import type { CompletedEvent } from "features/event/types";
 
-export const completeEvent = createAction<{
-  event: Event;
-  choice: Choice;
-  outcome: Outcome;
-}>("event/completeEvent");
-export const triggerEvent = createAction<Event>("event/triggerEvent");
+export const completeEvent = createAction<CompletedEvent>(
+  "event/completeEvent",
+);
+export const triggerEvent = createAction<number>(
+  "event/triggerEvent",
+);

@@ -4,6 +4,8 @@ import building002ExteriorImage from "assets/building/002_houses_exterior.png";
 import building002InteriorImage from "assets/building/002_houses_interior.png";
 import building003ExteriorImage from "assets/building/003_manor_house_exterior.png";
 import building003InteriorImage from "assets/building/003_manor_house_interior.png";
+import building004ExteriorImage from "assets/building/004_keep_exterior.png";
+import building004InteriorImage from "assets/building/004_keep_interior.png";
 import building005ExteriorImage from "assets/building/005_priests_house_exterior.png";
 import building005InteriorImage from "assets/building/005_priests_house_interior.png";
 import building006ExteriorImage from "assets/building/006_chapel_exterior.png";
@@ -28,6 +30,8 @@ export {
   building002InteriorImage,
   building003ExteriorImage,
   building003InteriorImage,
+  building004ExteriorImage,
+  building004InteriorImage,
   building005ExteriorImage,
   building005InteriorImage,
   building006ExteriorImage,

@@ -6,7 +6,7 @@ import { useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { DisplayMilitaryStrength } from "features/combat/types";
 // Redux
-import { selectTownSpies } from "features/town/townSlice";
+import { selectTownSpies } from "features/town/selectors";
 
 export const useEnemyDisplayMilitaryStrength = (
   playerId: number | null,

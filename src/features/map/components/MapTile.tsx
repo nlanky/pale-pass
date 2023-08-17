@@ -13,9 +13,9 @@ import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Tile } from "features/map/types";
 // Redux
-import { selectConqueredPlayerIds } from "features/combat/combatSlice";
+import { selectConqueredPlayerIds } from "features/combat/selectors";
 import { exploreTile } from "features/map/actions";
-import { selectTownScouts } from "features/town/townSlice";
+import { selectTownScouts } from "features/town/selectors";
 
 interface MapTileProps {
   tile: Tile;

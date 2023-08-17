@@ -12,7 +12,7 @@ import { useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { BuildingImage } from "features/building/types";
 // Redux
-import { selectTownBuilding } from "features/town/townSlice";
+import { selectTownBuilding } from "features/town/selectors";
 
 interface BuildingAvatarProps {
   buildingId: number;
@@ -42,7 +42,7 @@ export const BuildingAvatar: FC<BuildingAvatarProps> = ({
   const underConstruction = state === "under construction";
   const image = variant
     ? images[variant]
-    : underConstruction
+    : !state || underConstruction
     ? images["sketch"]
     : images["exterior"];
 
@@ -66,7 +66,7 @@ export const BuildingAvatar: FC<BuildingAvatarProps> = ({
             />
           )}
 
-          {state === "under construction" && (
+          {underConstruction && (
             <div
               style={{
                 alignItems: "center",

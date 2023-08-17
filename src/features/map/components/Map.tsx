@@ -16,7 +16,7 @@ import { MAP_TILE_WIDTH } from "features/map/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
 // Redux
-import { selectMapTiles } from "features/map/mapSlice";
+import { selectMapTiles } from "features/map/selectors";
 
 export const Map: FC<{}> = () => {
   // Hooks

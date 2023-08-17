@@ -21,7 +21,7 @@ import { BUTTON_HEIGHT } from "features/common/constants";
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
 import { openModal } from "features/building/actions";
-import { selectAvailableBuildings } from "features/town/townSlice";
+import { selectAvailableBuildings } from "features/town/selectors";
 
 export const TownBuildings: FC<{}> = () => {
   // Hooks

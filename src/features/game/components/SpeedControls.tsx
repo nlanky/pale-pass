@@ -27,7 +27,7 @@ import {
 import {
   selectGamePaused,
   selectGameSpeed,
-} from "features/game/gameSlice";
+} from "features/game/selectors";
 
 export const SpeedControls: FC<{}> = () => {
   // Hooks

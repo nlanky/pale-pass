@@ -4,7 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Interfaces & Types
 import type { Pronouns } from "features/player/types";
-import type { RootState } from "features/redux/store";
 // Redux
 import { setNameAndPronouns } from "features/player/actions";
 
@@ -51,11 +50,5 @@ export const playerSlice = createSlice({
     });
   },
 });
-
-// SELECTORS
-export const selectPlayerName = (state: RootState) =>
-  state.player.name;
-export const selectPlayerPronouns = (state: RootState) =>
-  state.player.pronouns;
 
 export const playerReducer = playerSlice.reducer;

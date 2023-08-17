@@ -11,22 +11,22 @@ import {
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
 import { triggerEvent } from "features/event/actions";
+import { selectDay } from "features/game/selectors";
 import {
-  selectSeenEventIds,
+  selectCompletedEvents,
   selectValidEvent,
-} from "features/event/eventSlice";
-import { selectDay } from "features/game/gameSlice";
+} from "features/town/selectors";
 
 export const useEventTimer = () => {
   // Hooks
   const dispatch = useAppDispatch();
   const day = useAppSelector(selectDay);
-  const seenEventIds = useAppSelector(selectSeenEventIds);
+  const completedEvents = useAppSelector(selectCompletedEvents);
   const validEvent = useAppSelector(selectValidEvent);
 
   useEffect(() => {
     // Don't want to trigger event too often or before the game starts
-    const numberOfSeenEvents = seenEventIds.length;
+    const numberOfSeenEvents = completedEvents.length;
     if (
       day === 0 ||
       (numberOfSeenEvents !== 0 &&
@@ -47,8 +47,8 @@ export const useEventTimer = () => {
       Math.random() < EVENT_PROBABILITY
     ) {
       if (validEvent) {
-        dispatch(triggerEvent(validEvent));
+        dispatch(triggerEvent(validEvent.id));
       }
     }
-  }, [day, dispatch, seenEventIds, validEvent]);
+  }, [completedEvents, day, dispatch, validEvent]);
 };

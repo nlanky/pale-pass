@@ -1,6 +1,7 @@
 // LOCAL FILES
 // Interfaces & Types
 import type { BuildingState } from "features/building/types";
+import type { CompletedEvent } from "features/event/types";
 import type { Resources } from "features/resource/types";
 import type { VillagerState } from "features/villager/types";
 
@@ -27,11 +28,12 @@ export interface Town {
   playerId: number;
   tier: number;
   resources: Resources;
-  resourcesPerDay: Resources;
   /** Keeps track of building states in town */
   buildingIdToBuilding: Record<number, TownBuilding>;
   /** Keeps track of villager states in town */
   villagerIdToVillager: Record<number, TownVillager>;
+  /** Record of events that player's town has completed */
+  completedEvents: CompletedEvent[];
   /** Path to image location */
   image: string;
 }

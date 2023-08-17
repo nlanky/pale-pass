@@ -4,8 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Constants
 import { PLAYER_ID } from "features/player/constants";
-// Interfaces & Types
-import type { RootState } from "features/redux/store";
 // Redux
 import { completeBattle } from "features/combat/actions";
 import { exploreTile } from "features/map/actions";
@@ -49,11 +47,5 @@ export const combatSlice = createSlice({
       });
   },
 });
-
-// SELECTORS
-export const selectAttackingPlayerId = (state: RootState) =>
-  state.combat.attackingPlayerId;
-export const selectConqueredPlayerIds = (state: RootState) =>
-  state.combat.conqueredPlayerIds;
 
 export const combatReducer = combatSlice.reducer;

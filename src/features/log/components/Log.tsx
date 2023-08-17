@@ -21,7 +21,7 @@ import { BUTTON_HEIGHT } from "features/common/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
 // Redux
-import { selectLogs } from "features/log/logSlice";
+import { selectLogs } from "features/log/selectors";
 
 export const Log: FC<{}> = () => {
   // Hooks
@@ -46,7 +46,7 @@ export const Log: FC<{}> = () => {
       >
         {logs.map((log, index) => (
           <ListItem key={index} disablePadding>
-            <ListItemText>{log.entry}</ListItemText>
+            <ListItemText>{log}</ListItemText>
           </ListItem>
         ))}
       </List>

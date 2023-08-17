@@ -42,7 +42,7 @@ import {
   selectCanRecruitModalVillager,
   selectModalTownVillager,
   selectModalVillager,
-} from "features/villager/villagerSlice";
+} from "features/villager/selectors";
 
 export const VillagerModal: FC<{}> = () => {
   // Hooks

@@ -12,7 +12,7 @@ import { useAppSelector } from "features/redux/hooks";
 import {
   selectTownBuildingIdToBuilding,
   selectTownVillagerIdToVillager,
-} from "features/town/townSlice";
+} from "features/town/selectors";
 
 export const useBuildingNotifications = () => {
   // Hooks

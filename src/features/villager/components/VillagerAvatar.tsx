@@ -10,7 +10,7 @@ import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
 // Redux
-import { selectTownVillager } from "features/town/townSlice";
+import { selectTownVillager } from "features/town/selectors";
 
 interface VillagerAvatarProps {
   villagerId: number;

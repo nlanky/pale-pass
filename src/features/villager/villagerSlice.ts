@@ -1,17 +1,7 @@
 // PUBLIC MODULES
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // LOCAL FILES
-// Constants
-import { ID_TO_VILLAGER } from "features/villager/constants";
-// Interfaces & Types
-import type { RootState } from "features/redux/store";
-import {
-  selectFunctionalTownBuildingIds,
-  selectFunctionalTownVillagerIds,
-  selectTownTier,
-  selectTownVillagerIdToVillager,
-} from "features/town/townSlice";
 // Redux
 import { closeModal, openModal } from "features/villager/actions";
 
@@ -37,36 +27,5 @@ export const villagerSlice = createSlice({
       });
   },
 });
-
-// Selectors
-export const selectVillagerModalId = (state: RootState) =>
-  state.villager.modalId;
-
-export const selectModalVillager = createSelector(
-  [selectVillagerModalId],
-  (modalId) => ID_TO_VILLAGER[modalId || NaN],
-);
-export const selectModalTownVillager = createSelector(
-  [selectVillagerModalId, selectTownVillagerIdToVillager],
-  (modalId, villagerIdToVillager) =>
-    villagerIdToVillager[modalId || NaN],
-);
-export const selectCanRecruitModalVillager = createSelector(
-  [
-    selectModalVillager,
-    selectTownTier,
-    selectFunctionalTownBuildingIds,
-    selectFunctionalTownVillagerIds,
-  ],
-  (villager, townTier, townBuildingIds, townVillagerIds) =>
-    villager &&
-    townTier >= villager.requirements.tier &&
-    villager.requirements.buildingIds.every((villagerId) =>
-      townBuildingIds.includes(villagerId),
-    ) &&
-    villager.requirements.villagerIds.every((villagerId) =>
-      townVillagerIds.includes(villagerId),
-    ),
-);
 
 export const villagerReducer = villagerSlice.reducer;

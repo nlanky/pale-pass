@@ -16,12 +16,9 @@ import {
 import { EventOutcome } from "features/event/components";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
-// Interfaces & Types
-import type { Choice, Outcome } from "features/event/types";
 // Redux
 import { completeEvent } from "features/event/actions";
-import { selectActiveEvent } from "features/event/eventSlice";
-import { setView } from "features/game/actions";
+import { selectActiveEvent } from "features/event/selectors";
 
 export const EventView: FC<{}> = () => {
   // Hooks
@@ -30,29 +27,28 @@ export const EventView: FC<{}> = () => {
   const event = useAppSelector(selectActiveEvent);
 
   // Local state
-  const [eventChoice, setEventChoice] = useState<Choice | null>(null);
-  const [eventOutcome, setEventOutcome] = useState<Outcome | null>(
+  const [choiceIndex, setChoiceIndex] = useState<number | null>(null);
+  const [outcomeIndex, setOutcomeIndex] = useState<number | null>(
     null,
   );
 
-  if (!event) {
-    // Something has gone badly wrong
-    dispatch(setView("town"));
-    return null;
-  }
+  // Derived variables
+  const choices = event.choices;
+  const eventChoice = choices[choiceIndex ?? NaN];
+  const eventOutcome = eventChoice?.outcomes[outcomeIndex ?? NaN];
 
   // Handlers
-  const onChoiceClick = (choice: Choice) => {
-    setEventChoice(choice);
+  const onChoiceClick = (choiceIndex: number) => {
+    setChoiceIndex(choiceIndex);
   };
 
   const onCompleteEvent = () => {
-    if (eventChoice && eventOutcome) {
+    if (choiceIndex !== null && outcomeIndex !== null) {
       dispatch(
         completeEvent({
-          event,
-          choice: eventChoice,
-          outcome: eventOutcome,
+          id: event.id,
+          choiceIndex,
+          outcomeIndex,
         }),
       );
     }
@@ -60,18 +56,18 @@ export const EventView: FC<{}> = () => {
 
   // Effects
   useEffect(() => {
-    if (eventChoice) {
+    if (choiceIndex !== null) {
       const roll = Math.random();
       let cumulativeProbability = 0;
-      for (const outcome of eventChoice.outcomes) {
+      for (const [index, outcome] of eventChoice.outcomes.entries()) {
         cumulativeProbability += outcome.probability;
         if (roll < cumulativeProbability) {
-          setEventOutcome(outcome);
+          setOutcomeIndex(index);
           break;
         }
       }
     }
-  }, [eventChoice]);
+  }, [choiceIndex]);
 
   return (
     <StyledContainer sx={{ overflowY: "auto" }}>
@@ -90,7 +86,7 @@ export const EventView: FC<{}> = () => {
         wrap="nowrap"
       >
         {event.choices.map((choice, index) => {
-          const isSelected = eventChoice?.text === choice.text;
+          const isSelected = index === choiceIndex;
 
           return (
             <Grid
@@ -103,7 +99,7 @@ export const EventView: FC<{}> = () => {
                 borderColor: "parchmentDark.main",
                 borderStyle: "ridge",
                 mr: 2,
-                padding: eventOutcome ? 1 : 0,
+                padding: outcomeIndex !== null ? 1 : 0,
               }}
               xs={6}
             >
@@ -112,14 +108,14 @@ export const EventView: FC<{}> = () => {
               </Typography>
               <PlaceholderText text={choice.text} variant="body2" />
               <StyledButton
-                disabled={eventOutcome !== null}
+                disabled={outcomeIndex !== null}
                 nineSliceStyles={{
                   container: {
                     marginTop: theme.spacing(1),
                   },
                 }}
                 onClick={() => {
-                  onChoiceClick(choice);
+                  onChoiceClick(index);
                 }}
                 width={100}
               >
@@ -129,7 +125,8 @@ export const EventView: FC<{}> = () => {
           );
         })}
       </Grid>
-      {eventOutcome && (
+
+      {outcomeIndex !== null && (
         <>
           <Divider sx={{ my: 1 }} />
           <EventOutcome outcome={eventOutcome} />

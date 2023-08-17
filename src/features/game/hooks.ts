@@ -12,7 +12,7 @@ import {
   selectDay,
   selectGamePaused,
   selectGameSpeed,
-} from "features/game/gameSlice";
+} from "features/game/selectors";
 
 /**
  * Responsible for controlling day cycle.

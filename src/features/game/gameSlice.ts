@@ -5,7 +5,6 @@ import { createSlice } from "@reduxjs/toolkit";
 // Constants
 import { PLAYER_ID } from "features/player/constants";
 // Interfaces & Types
-import type { RootState } from "features/redux/store";
 import type { View } from "features/game/types";
 // Redux
 import { completeBattle } from "features/combat/actions";
@@ -77,12 +76,5 @@ export const gameSlice = createSlice({
       });
   },
 });
-
-// SELECTORS
-export const selectDay = (state: RootState) => state.game.day;
-export const selectView = (state: RootState) => state.game.view;
-export const selectGameSpeed = (state: RootState) => state.game.speed;
-export const selectGamePaused = (state: RootState) =>
-  state.game.paused === true;
 
 export const gameReducer = gameSlice.reducer;

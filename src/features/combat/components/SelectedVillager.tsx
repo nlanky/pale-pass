@@ -40,7 +40,7 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
       container
       direction="column"
       item
-      justifyContent="center"
+      justifyContent="space-between"
     >
       {villager && (
         <>
@@ -48,34 +48,64 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
             villagerId={villagerId || NaN}
             hideStateText
           />
+
           <Typography
             align="center"
             sx={{ mt: 1 }}
             variant="body2"
           >{`${villager.name} the ${villager.occupation}`}</Typography>
-          <Grid
-            container
-            item
-            justifyContent="center"
-            sx={{ mt: 1.5 }}
-          >
-            <img src={handToHand} style={{ width: 32, height: 32 }} />
-            <Typography component="span" sx={{ ml: 1 }} variant="h5">
-              {villager.militaryStrength.handToHand}
-            </Typography>
+
+          <Grid item>
+            <Grid
+              container
+              item
+              justifyContent="center"
+              sx={{ mt: 1.5 }}
+            >
+              <img
+                src={handToHand}
+                style={{ width: 32, height: 32 }}
+              />
+              <Typography
+                component="span"
+                sx={{ ml: 1 }}
+                variant="h5"
+              >
+                {villager.militaryStrength.handToHand}
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              item
+              justifyContent="center"
+              sx={{ mt: 1 }}
+            >
+              <img src={archery} style={{ width: 32, height: 32 }} />
+              <Typography
+                component="span"
+                sx={{ ml: 1 }}
+                variant="h5"
+              >
+                {villager.militaryStrength.archery}
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              item
+              justifyContent="center"
+              sx={{ mt: 1 }}
+            >
+              <img src={mounted} style={{ width: 32, height: 32 }} />
+              <Typography
+                component="span"
+                sx={{ ml: 1 }}
+                variant="h5"
+              >
+                {villager.militaryStrength.mounted}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid container item justifyContent="center" sx={{ mt: 1 }}>
-            <img src={archery} style={{ width: 32, height: 32 }} />
-            <Typography component="span" sx={{ ml: 1 }} variant="h5">
-              {villager.militaryStrength.archery}
-            </Typography>
-          </Grid>
-          <Grid container item justifyContent="center" sx={{ mt: 1 }}>
-            <img src={mounted} style={{ width: 32, height: 32 }} />
-            <Typography component="span" sx={{ ml: 1 }} variant="h5">
-              {villager.militaryStrength.mounted}
-            </Typography>
-          </Grid>
+
           <StyledButton
             disabled={disabled}
             nineSliceStyles={{
@@ -96,7 +126,7 @@ export const SelectedVillager: FC<SelectedVillagerProps> = ({
           onClick={() => {
             onSelect(armyPosition);
           }}
-          width={64}
+          width={72}
         >
           Select
         </StyledButton>

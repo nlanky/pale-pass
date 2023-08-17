@@ -20,7 +20,7 @@ import { BUTTON_HEIGHT } from "features/common/constants";
 // Hooks
 import { useAppDispatch, useAppSelector } from "features/redux/hooks";
 // Redux
-import { selectAvailableVillagers } from "features/town/townSlice";
+import { selectAvailableVillagers } from "features/town/selectors";
 import { openModal } from "features/villager/actions";
 
 export const TownVillagers: FC<{}> = () => {

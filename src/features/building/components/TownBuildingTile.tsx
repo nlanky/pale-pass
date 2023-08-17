@@ -15,7 +15,7 @@ import { useAppSelector } from "features/redux/hooks";
 // Interfaces & Types
 import type { Resource } from "features/resource/types";
 // Redux
-import { selectTownBuilding } from "features/town/townSlice";
+import { selectTownBuilding } from "features/town/selectors";
 
 interface TownBuildingTileProps {
   buildingId: number;

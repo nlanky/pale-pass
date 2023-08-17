@@ -12,7 +12,7 @@ import { useAppSelector } from "features/redux/hooks";
 import {
   selectPlayerName,
   selectPlayerPronouns,
-} from "features/player/playerSlice";
+} from "features/player/selectors";
 
 interface PlaceholderTextProps extends TypographyProps {
   text: string;

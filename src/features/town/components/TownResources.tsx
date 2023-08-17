@@ -18,10 +18,10 @@ import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
 // Redux
 import { useAppSelector } from "features/redux/hooks";
 import {
-  selectCombinedTownResourcesPerDay,
   selectEnabledResources,
   selectTownResources,
-} from "features/town/townSlice";
+  selectTownResourcesPerDay,
+} from "features/town/selectors";
 
 interface TownResourcesProps {
   hideRpd?: boolean;
@@ -33,9 +33,7 @@ export const TownResources: FC<TownResourcesProps> = ({
   // Hooks
   const theme = useTheme();
   const resources = useAppSelector(selectTownResources);
-  const resourcesPerDay = useAppSelector(
-    selectCombinedTownResourcesPerDay,
-  );
+  const resourcesPerDay = useAppSelector(selectTownResourcesPerDay);
   const enabledResources = useAppSelector(selectEnabledResources);
 
   // Utility functions

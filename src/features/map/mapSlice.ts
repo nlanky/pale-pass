@@ -6,7 +6,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TILES } from "features/map/constants";
 // Interfaces & Types
 import type { Tile } from "features/map/types";
-import type { RootState } from "features/redux/store";
 // Redux
 import { exploreTile } from "features/map/actions";
 
@@ -63,8 +62,5 @@ export const mapSlice = createSlice({
     });
   },
 });
-
-// Selectors
-export const selectMapTiles = (state: RootState) => state.map.tiles;
 
 export const mapReducer = mapSlice.reducer;
