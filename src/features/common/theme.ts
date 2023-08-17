@@ -30,8 +30,7 @@ export const theme = createTheme({
   palette: {
     error: createColour("#8f252e"),
     success: createColour("#0d421c"),
-    parchment: createColour("#fffef0"),
-    parchmentDark: createColour("#af895e"),
+    frame: createColour("#a14d2b"),
   },
   typography: {
     fontFamily: "Cormorant Garamond, Times New Roman, sans-serif",
@@ -83,46 +82,39 @@ export const theme = createTheme({
 
 declare module "@mui/material/styles" {
   interface Palette {
-    parchment: PaletteColor;
-    parchmentDark: PaletteColor;
+    frame: PaletteColor;
   }
   interface PaletteOptions {
-    parchment: PaletteColorOptions;
-    parchmentDark: PaletteColorOptions;
+    frame: PaletteColorOptions;
   }
 }
 
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
-    parchment: true;
-    parchmentDark: true;
+    frame: true;
   }
 }
 
 declare module "@mui/material/Slider" {
   interface SliderPropsColorOverrides {
-    parchment: true;
-    parchmentDark: true;
+    frame: true;
   }
 }
 
 declare module "@mui/material/SvgIcon" {
   interface SvgIconPropsColorOverrides {
-    parchment: true;
-    parchmentDark: true;
+    frame: true;
   }
 }
 
 declare module "@mui/material/TextField" {
   interface TextFieldPropsColorOverrides {
-    parchment: true;
-    parchmentDark: true;
+    frame: true;
   }
 }
 
 declare module "@mui/material/Checkbox" {
   interface CheckboxPropsColorOverrides {
-    parchment: true;
-    parchmentDark: true;
+    frame: true;
   }
 }

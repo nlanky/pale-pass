@@ -65,10 +65,10 @@ export const SpeedControls: FC<{}> = () => {
         disabled={gameSpeed === MIN_GAME_SPEED}
         onClick={onGameSpeedDecrease}
         sx={{
-          backgroundColor: "parchmentDark.main",
+          backgroundColor: "frame.main",
           color: "white",
           "&:hover": {
-            backgroundColor: "parchmentDark.light",
+            backgroundColor: "frame.light",
           },
           "&:disabled": {
             backgroundColor: "lightgray",
@@ -80,11 +80,11 @@ export const SpeedControls: FC<{}> = () => {
       <IconButton
         onClick={onGamePauseToggle}
         sx={{
-          backgroundColor: "parchmentDark.main",
+          backgroundColor: "frame.main",
           color: "white",
           ml: 0.25,
           "&:hover": {
-            backgroundColor: "parchmentDark.light",
+            backgroundColor: "frame.light",
           },
           "&:disabled": {
             backgroundColor: "lightgray",
@@ -97,11 +97,11 @@ export const SpeedControls: FC<{}> = () => {
         disabled={gameSpeed === MAX_GAME_SPEED}
         onClick={onGameSpeedIncrease}
         sx={{
-          backgroundColor: "parchmentDark.main",
+          backgroundColor: "frame.main",
           color: "white",
           ml: 0.25,
           "&:hover": {
-            backgroundColor: "parchmentDark.light",
+            backgroundColor: "frame.light",
           },
           "&:disabled": {
             backgroundColor: "lightgray",

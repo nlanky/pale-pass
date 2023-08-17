@@ -145,7 +145,7 @@ export const CreateCharacter: FC<{}> = () => {
         Name
       </Typography>
       <TextField
-        color="parchmentDark"
+        color="frame"
         onChange={onNameChange}
         required
         value={name}
@@ -164,7 +164,7 @@ export const CreateCharacter: FC<{}> = () => {
           control={
             <Checkbox
               checked={secondPersonPronouns.includes("neuterYou")}
-              color="parchmentDark"
+              color="frame"
               onChange={(event) => {
                 onSecondPersonPronounChange(
                   "neuterYou",
@@ -179,7 +179,7 @@ export const CreateCharacter: FC<{}> = () => {
           control={
             <Checkbox
               checked={secondPersonPronouns.includes("neuterIt")}
-              color="parchmentDark"
+              color="frame"
               onChange={(event) => {
                 onSecondPersonPronounChange(
                   "neuterIt",
@@ -199,7 +199,7 @@ export const CreateCharacter: FC<{}> = () => {
           control={
             <Checkbox
               checked={thirdPersonPronouns.includes("masculine")}
-              color="parchmentDark"
+              color="frame"
               onChange={(event) => {
                 onThirdPersonPronounChange(
                   "masculine",
@@ -214,7 +214,7 @@ export const CreateCharacter: FC<{}> = () => {
           control={
             <Checkbox
               checked={thirdPersonPronouns.includes("feminine")}
-              color="parchmentDark"
+              color="frame"
               onChange={(event) => {
                 onThirdPersonPronounChange(
                   "feminine",
@@ -229,7 +229,7 @@ export const CreateCharacter: FC<{}> = () => {
           control={
             <Checkbox
               checked={thirdPersonPronouns.includes("neuter")}
-              color="parchmentDark"
+              color="frame"
               onChange={(event) => {
                 onThirdPersonPronounChange(
                   "neuter",
@@ -244,7 +244,7 @@ export const CreateCharacter: FC<{}> = () => {
           control={
             <Checkbox
               checked={thirdPersonPronouns.includes("epicene")}
-              color="parchmentDark"
+              color="frame"
               onChange={(event) => {
                 onThirdPersonPronounChange(
                   "epicene",

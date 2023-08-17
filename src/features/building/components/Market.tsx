@@ -113,8 +113,8 @@ export const Market: FC<{}> = () => {
                   sx={{
                     border: 2,
                     borderColor: isSelected
-                      ? "parchmentDark.light"
-                      : "parchmentDark.dark",
+                      ? "frame.light"
+                      : "frame.dark",
                     cursor: "pointer",
                     p: 0.5,
                   }}
@@ -166,8 +166,8 @@ export const Market: FC<{}> = () => {
                   sx={{
                     border: 2,
                     borderColor: isSelected
-                      ? "parchmentDark.light"
-                      : "parchmentDark.dark",
+                      ? "frame.light"
+                      : "frame.dark",
                     cursor: "pointer",
                     p: 0.5,
                   }}
@@ -209,12 +209,9 @@ export const Market: FC<{}> = () => {
               <Typography variant="body1">{quantity}</Typography>
             </Grid>
             <Grid alignItems="center" container direction="column">
-              <ArrowRightAltIcon
-                color="parchmentDark"
-                fontSize="large"
-              />
+              <ArrowRightAltIcon color="frame" fontSize="large" />
               <Slider
-                color="parchmentDark"
+                color="frame"
                 disabled={fromResource === toResource}
                 min={0}
                 max={getMaxTradeQuantity(

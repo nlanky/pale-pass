@@ -19,7 +19,7 @@ import type { Villager } from "features/villager/types";
 
 const iconSx: SxProps = {
   p: 0.5,
-  backgroundColor: "parchmentDark.main",
+  backgroundColor: "frame.main",
   color: "white",
   borderRadius: "50%",
   fontSize: "4rem",

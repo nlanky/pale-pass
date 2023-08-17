@@ -97,7 +97,7 @@ export const EventView: FC<{}> = () => {
               item
               sx={{
                 border: isSelected ? 2 : 0,
-                borderColor: "parchmentDark.main",
+                borderColor: "frame.main",
                 borderStyle: "ridge",
                 mr: 2,
                 padding: outcomeIndex !== null ? 1 : 0,
