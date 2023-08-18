@@ -78,6 +78,21 @@ import {
   building025ExteriorImage,
   building025InteriorImage,
   building025SketchImage,
+  building026ExteriorImage,
+  building026InteriorImage,
+  building026SketchImage,
+  building027ExteriorImage,
+  building027InteriorImage,
+  building027SketchImage,
+  building028ExteriorImage,
+  building028InteriorImage,
+  building028SketchImage,
+  building029ExteriorImage,
+  building029InteriorImage,
+  building029SketchImage,
+  building030ExteriorImage,
+  building030InteriorImage,
+  building030SketchImage,
   buildingIcon,
 } from "assets/building";
 // Interfaces & Types
@@ -905,9 +920,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building026ExteriorImage,
+      interior: building026InteriorImage,
+      sketch: building026SketchImage,
     },
   },
   27: {
@@ -927,9 +942,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building027ExteriorImage,
+      interior: building027InteriorImage,
+      sketch: building027SketchImage,
     },
   },
   28: {
@@ -949,9 +964,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building028ExteriorImage,
+      interior: building028InteriorImage,
+      sketch: building028SketchImage,
     },
   },
   29: {
@@ -971,9 +986,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building029ExteriorImage,
+      interior: building029InteriorImage,
+      sketch: building029SketchImage,
     },
   },
   30: {
@@ -993,9 +1008,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building030ExteriorImage,
+      interior: building030InteriorImage,
+      sketch: building030SketchImage,
     },
   },
   31: {

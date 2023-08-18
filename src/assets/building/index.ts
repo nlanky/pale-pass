@@ -73,6 +73,21 @@ import building024SketchImage from "assets/building/024_brewery_sketch.jpg";
 import building025ExteriorImage from "assets/building/025_mason_exterior.jpg";
 import building025InteriorImage from "assets/building/025_mason_interior.jpg";
 import building025SketchImage from "assets/building/025_mason_sketch.jpg";
+import building026ExteriorImage from "assets/building/026_orchard_exterior.jpg";
+import building026InteriorImage from "assets/building/026_orchard_interior.jpg";
+import building026SketchImage from "assets/building/026_orchard_sketch.jpg";
+import building027ExteriorImage from "assets/building/027_barn_exterior.jpg";
+import building027InteriorImage from "assets/building/027_barn_interior.jpg";
+import building027SketchImage from "assets/building/027_barn_sketch.jpg";
+import building028ExteriorImage from "assets/building/028_tavern_exterior.jpg";
+import building028InteriorImage from "assets/building/028_tavern_interior.jpg";
+import building028SketchImage from "assets/building/028_tavern_sketch.jpg";
+import building029ExteriorImage from "assets/building/029_pasture_exterior.jpg";
+import building029InteriorImage from "assets/building/029_pasture_interior.jpg";
+import building029SketchImage from "assets/building/029_pasture_sketch.jpg";
+import building030ExteriorImage from "assets/building/030_alchemist_exterior.jpg";
+import building030InteriorImage from "assets/building/030_alchemist_interior.jpg";
+import building030SketchImage from "assets/building/030_alchemist_sketch.jpg";
 import buildingIcon from "assets/building/icon.svg";
 
 export {
@@ -151,5 +166,20 @@ export {
   building025ExteriorImage,
   building025InteriorImage,
   building025SketchImage,
+  building026ExteriorImage,
+  building026InteriorImage,
+  building026SketchImage,
+  building027ExteriorImage,
+  building027InteriorImage,
+  building027SketchImage,
+  building028ExteriorImage,
+  building028InteriorImage,
+  building028SketchImage,
+  building029ExteriorImage,
+  building029InteriorImage,
+  building029SketchImage,
+  building030ExteriorImage,
+  building030InteriorImage,
+  building030SketchImage,
   buildingIcon,
 };
