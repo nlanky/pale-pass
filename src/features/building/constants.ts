@@ -93,6 +93,27 @@ import {
   building030ExteriorImage,
   building030InteriorImage,
   building030SketchImage,
+  building031ExteriorImage,
+  building031InteriorImage,
+  building031SketchImage,
+  building032ExteriorImage,
+  building032InteriorImage,
+  building032SketchImage,
+  building033ExteriorImage,
+  building033InteriorImage,
+  building033SketchImage,
+  building034ExteriorImage,
+  building034InteriorImage,
+  building034SketchImage,
+  building035ExteriorImage,
+  building035InteriorImage,
+  building035SketchImage,
+  building036ExteriorImage,
+  building036InteriorImage,
+  building036SketchImage,
+  building037ExteriorImage,
+  building037InteriorImage,
+  building037SketchImage,
   buildingIcon,
 } from "assets/building";
 // Interfaces & Types
@@ -1030,9 +1051,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building031ExteriorImage,
+      interior: building031InteriorImage,
+      sketch: building031SketchImage,
     },
   },
   32: {
@@ -1052,9 +1073,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building032ExteriorImage,
+      interior: building032InteriorImage,
+      sketch: building032SketchImage,
     },
   },
   33: {
@@ -1074,9 +1095,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building033ExteriorImage,
+      interior: building033InteriorImage,
+      sketch: building033SketchImage,
     },
   },
   34: {
@@ -1096,9 +1117,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building034ExteriorImage,
+      interior: building034InteriorImage,
+      sketch: building034SketchImage,
     },
   },
   35: {
@@ -1118,9 +1139,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building035ExteriorImage,
+      interior: building035InteriorImage,
+      sketch: building035SketchImage,
     },
   },
   [BUILDING_ID_CARTROGRAPHER]: {
@@ -1140,9 +1161,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building036ExteriorImage,
+      interior: building036InteriorImage,
+      sketch: building036SketchImage,
     },
   },
   37: {
@@ -1162,9 +1183,9 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     repairResources: NO_RESOURCES,
     repairTime: 1,
     images: {
-      exterior: buildingIcon,
-      interior: buildingIcon,
-      sketch: buildingIcon,
+      exterior: building037ExteriorImage,
+      interior: building037InteriorImage,
+      sketch: building037SketchImage,
     },
   },
   38: {

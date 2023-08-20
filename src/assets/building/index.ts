@@ -88,6 +88,27 @@ import building029SketchImage from "assets/building/029_pasture_sketch.jpg";
 import building030ExteriorImage from "assets/building/030_alchemist_exterior.jpg";
 import building030InteriorImage from "assets/building/030_alchemist_interior.jpg";
 import building030SketchImage from "assets/building/030_alchemist_sketch.jpg";
+import building031ExteriorImage from "assets/building/031_armoury_exterior.jpg";
+import building031InteriorImage from "assets/building/031_armoury_interior.jpg";
+import building031SketchImage from "assets/building/031_armoury_sketch.jpg";
+import building032ExteriorImage from "assets/building/032_aviary_exterior.jpg";
+import building032InteriorImage from "assets/building/032_aviary_interior.jpg";
+import building032SketchImage from "assets/building/032_aviary_sketch.jpg";
+import building033ExteriorImage from "assets/building/033_barracks_exterior.jpg";
+import building033InteriorImage from "assets/building/033_barracks_interior.jpg";
+import building033SketchImage from "assets/building/033_barracks_sketch.jpg";
+import building034ExteriorImage from "assets/building/034_boathouse_exterior.jpg";
+import building034InteriorImage from "assets/building/034_boathouse_interior.jpg";
+import building034SketchImage from "assets/building/034_boathouse_sketch.jpg";
+import building035ExteriorImage from "assets/building/035_carpenter_exterior.jpg";
+import building035InteriorImage from "assets/building/035_carpenter_interior.jpg";
+import building035SketchImage from "assets/building/035_carpenter_sketch.jpg";
+import building036ExteriorImage from "assets/building/036_cartographer_exterior.jpg";
+import building036InteriorImage from "assets/building/036_cartographer_interior.jpg";
+import building036SketchImage from "assets/building/036_cartographer_sketch.jpg";
+import building037ExteriorImage from "assets/building/037_tailor_exterior.jpg";
+import building037InteriorImage from "assets/building/037_tailor_interior.jpg";
+import building037SketchImage from "assets/building/037_tailor_sketch.jpg";
 import buildingIcon from "assets/building/icon.svg";
 
 export {
@@ -181,5 +202,26 @@ export {
   building030ExteriorImage,
   building030InteriorImage,
   building030SketchImage,
+  building031ExteriorImage,
+  building031InteriorImage,
+  building031SketchImage,
+  building032ExteriorImage,
+  building032InteriorImage,
+  building032SketchImage,
+  building033ExteriorImage,
+  building033InteriorImage,
+  building033SketchImage,
+  building034ExteriorImage,
+  building034InteriorImage,
+  building034SketchImage,
+  building035ExteriorImage,
+  building035InteriorImage,
+  building035SketchImage,
+  building036ExteriorImage,
+  building036InteriorImage,
+  building036SketchImage,
+  building037ExteriorImage,
+  building037InteriorImage,
+  building037SketchImage,
   buildingIcon,
 };
