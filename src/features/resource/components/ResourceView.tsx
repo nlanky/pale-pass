@@ -1,7 +1,17 @@
+// REACT
+import type { FC } from "react";
+
 // PUBLIC MODULES
 import {
   Divider,
   Grid,
+  Table,
+  TableBody,
+  TableContainer,
+  TableCell,
+  type TableCellProps,
+  TableHead,
+  TableRow,
   Tooltip,
   Typography,
   useTheme,
@@ -20,7 +30,6 @@ import {
   ReturnToTownButton,
   StyledContainer,
 } from "features/common/components";
-import { ResourceOutcomeIcon } from "features/resource/components";
 import { VillagerAvatar } from "features/villager/components";
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
@@ -31,8 +40,6 @@ import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
-// Interfaces & Types
-import type { Resource } from "features/resource/types";
 // Redux
 import {
   selectEnabledResources,
@@ -49,7 +56,34 @@ import {
 // Utility functions
 import { getRpdColour } from "features/resource/utils";
 
-export const ResourceView = () => {
+interface ResourceTableCellProps extends TableCellProps {
+  value: number;
+}
+
+const ResourceTableCell: FC<ResourceTableCellProps> = ({
+  value,
+  sx,
+  ...rest
+}) => {
+  // Derived variables
+  let text = "-";
+  let color = "text.primary";
+  if (value > 0) {
+    text = `+ ${value}`;
+    color = "success.dark";
+  } else if (value < 0) {
+    text = `- ${Math.abs(value)}`;
+    color = "error.main";
+  }
+
+  return (
+    <TableCell sx={{ color, ...sx }} {...rest}>
+      {text}
+    </TableCell>
+  );
+};
+
+export const ResourceView: FC<{}> = () => {
   // Hooks
   const theme = useTheme();
   const enabledResources = useAppSelector(selectEnabledResources);
@@ -127,7 +161,7 @@ export const ResourceView = () => {
         })}
       </Grid>
 
-      <Divider sx={{ my: 1 }} />
+      <Divider sx={{ mt: 1 }} />
 
       <Grid
         container
@@ -135,186 +169,128 @@ export const ResourceView = () => {
         item
         sx={{
           height: `calc(100% - ${BUTTON_HEIGHT}px - ${TOWN_RESOURCE_ITEM_HEIGHT}px - ${theme.spacing(
-            3,
+            2,
           )} - 1px)`,
           overflowY: "auto",
         }}
         wrap="nowrap"
       >
-        <Grid container direction="column" item>
-          <Typography component="h3" sx={{ mb: 1 }} variant="h6">
-            Base Gather Rates (Tier {townTier})
-          </Typography>
-
-          <Grid container item>
-            {(Object.keys(tierResourcesPerDay) as Resource[])
-              .filter(
-                (resource) => tierResourcesPerDay[resource] !== 0,
-              )
-              .map((resource) => {
-                const isPositive = tierResourcesPerDay[resource] > 0;
-                const text = `${isPositive ? "+ " : ""}${
-                  tierResourcesPerDay[resource]
-                } ${resource} per day`;
-
-                return (
-                  <ResourceOutcomeIcon
+        <TableContainer>
+          <Table padding="checkbox">
+            <TableHead>
+              <TableRow>
+                <TableCell>Type</TableCell>
+                <TableCell>Details</TableCell>
+                {enabledResources.map((resource) => (
+                  <TableCell key={resource}>
+                    <Image
+                      src={RESOURCE_TO_IMAGE[resource]}
+                      width={24}
+                      height={24}
+                      style={{ verticalAlign: "middle" }}
+                    />
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* BASE FROM TIER */}
+              <TableRow>
+                <TableCell>Base</TableCell>
+                <TableCell>Tier {townTier}</TableCell>
+                {enabledResources.map((resource) => (
+                  <ResourceTableCell
                     key={resource}
-                    resource={resource}
-                    isPositive={isPositive}
-                    text={text}
-                    styles={{
-                      container: {
-                        mr: 1,
-                        mb: 1,
-                      },
-                    }}
+                    value={tierResourcesPerDay[resource]}
                   />
-                );
-              })}
-          </Grid>
-        </Grid>
+                ))}
+              </TableRow>
 
-        {townBuildings.length !== 0 && (
-          <>
-            <Divider sx={{ my: 1 }} />
-
-            <Grid container direction="column" item>
-              <Typography component="h3" sx={{ mb: 1 }} variant="h6">
-                Buildings
-              </Typography>
-
+              {/* BUILDINGS */}
               {townBuildings.map((townBuilding) => {
                 const { id, state } = townBuilding;
                 const { name, gatherResources } = ID_TO_BUILDING[id];
+                const isBuilt = state === "built";
 
                 return (
-                  <Grid
-                    key={townBuilding.id}
-                    alignItems="center"
-                    container
-                    item
-                    sx={{ mb: 1 }}
+                  <TableRow
+                    key={id}
+                    sx={{
+                      backgroundColor: isBuilt
+                        ? "none"
+                        : "action.disabled",
+                    }}
                   >
-                    <BuildingAvatar
-                      buildingId={townBuilding.id}
-                      hideStateText
-                      hideStateOverlay
-                      width={64}
-                      height={64}
-                    />
-
-                    <Typography sx={{ ml: 1 }} variant="body2">
-                      {name} ({state})
-                    </Typography>
-
-                    {(Object.keys(gatherResources) as Resource[])
-                      .filter(
-                        (resource) => gatherResources[resource] !== 0,
-                      )
-                      .map((resource) => {
-                        const isPositive =
-                          gatherResources[resource] > 0;
-                        const text = `${isPositive ? "+ " : ""}${
-                          gatherResources[resource]
-                        } ${resource} per day`;
-
-                        return (
-                          <ResourceOutcomeIcon
-                            key={resource}
-                            resource={resource}
-                            isPositive={isPositive}
-                            text={text}
-                            disabled={state !== "built"}
-                            styles={{
-                              container: {
-                                ml: 1,
-                              },
-                            }}
-                          />
-                        );
-                      })}
-                  </Grid>
+                    <TableCell>Building</TableCell>
+                    <TableCell>
+                      <Grid alignItems="center" container>
+                        <BuildingAvatar
+                          buildingId={id}
+                          hideStateOverlay
+                          hideStateText
+                          width={32}
+                          height={32}
+                        />
+                        <Typography sx={{ ml: 1 }} variant="body2">
+                          {name} ({state})
+                        </Typography>
+                      </Grid>
+                    </TableCell>
+                    {enabledResources.map((resource) => (
+                      <ResourceTableCell
+                        key={resource}
+                        value={
+                          isBuilt ? gatherResources[resource] : 0
+                        }
+                      />
+                    ))}
+                  </TableRow>
                 );
               })}
-            </Grid>
-          </>
-        )}
 
-        {townVillagers.length !== 0 && (
-          <>
-            <Divider sx={{ my: 1 }} />
-
-            <Grid container direction="column" item>
-              <Typography component="h3" sx={{ mb: 1 }} variant="h6">
-                Villagers
-              </Typography>
-
+              {/* VILLAGERS */}
               {townVillagers.map((townVillager) => {
                 const { id, state } = townVillager;
                 const { name, gatherResources } = ID_TO_VILLAGER[id];
+                const isHealthy = state === "healthy";
 
                 return (
-                  <Grid
-                    key={townVillager.id}
-                    alignItems="center"
-                    container
-                    item
-                    sx={{ mb: 1 }}
+                  <TableRow
+                    key={id}
+                    sx={{
+                      backgroundColor: isHealthy
+                        ? "none"
+                        : "action.disabled",
+                    }}
                   >
-                    <VillagerAvatar
-                      villagerId={townVillager.id}
-                      width={64}
-                      height={64}
-                      hideStateText
-                    />
-
-                    <Typography sx={{ ml: 1 }} variant="body2">
-                      {name} ({state})
-                    </Typography>
-
-                    {(Object.keys(gatherResources) as Resource[])
-                      .filter(
-                        (resource) => gatherResources[resource] !== 0,
-                      )
-                      .map((resource) => {
-                        const isPositive =
-                          gatherResources[resource] > 0;
-                        const text = `${isPositive ? "+ " : ""}${
-                          gatherResources[resource]
-                        } ${resource} per day`;
-
-                        return (
-                          <ResourceOutcomeIcon
-                            key={resource}
-                            resource={resource}
-                            isPositive={gatherResources[resource] > 0}
-                            text={text}
-                            disabled={state !== "healthy"}
-                            styles={{
-                              container: {
-                                ml: 1,
-                              },
-                            }}
-                          />
-                        );
-                      })}
-                  </Grid>
+                    <TableCell>Villager</TableCell>
+                    <TableCell>
+                      <Grid alignItems="center" container>
+                        <VillagerAvatar
+                          villagerId={id}
+                          hideStateOverlay
+                          hideStateText
+                          width={32}
+                          height={32}
+                        />
+                        <Typography sx={{ ml: 1 }} variant="body2">
+                          {name} ({state})
+                        </Typography>
+                      </Grid>
+                    </TableCell>
+                    {enabledResources.map((resource) => (
+                      <ResourceTableCell
+                        key={resource}
+                        value={
+                          isHealthy ? gatherResources[resource] : 0
+                        }
+                      />
+                    ))}
+                  </TableRow>
                 );
               })}
-            </Grid>
-          </>
-        )}
 
-        {completedEvents.length !== 0 && (
-          <>
-            <Divider sx={{ my: 1 }} />
-
-            <Grid container direction="column" item>
-              <Typography component="h3" sx={{ mb: 1 }} variant="h6">
-                Events
-              </Typography>
-
+              {/* EVENTS */}
               {completedEvents.map((completedEvent) => {
                 const { id, choiceIndex, outcomeIndex } =
                   completedEvent;
@@ -322,57 +298,23 @@ export const ResourceView = () => {
                   ID_TO_EVENT[id].choices[choiceIndex].outcomes[
                     outcomeIndex
                   ];
-                const changedResources = (
-                  Object.keys(resourcesPerDay) as Resource[]
-                ).filter(
-                  (resource) => resourcesPerDay[resource] !== 0,
-                );
 
                 return (
-                  <Grid
-                    key={id}
-                    alignItems="center"
-                    container
-                    item
-                    sx={{ mb: 1 }}
-                  >
-                    <Typography sx={{ ml: 1 }} variant="body2">
-                      {id}
-                    </Typography>
-
-                    {changedResources.length === 0 && (
-                      <Typography sx={{ ml: 1 }} variant="body2">
-                        No resources gained or lost per day
-                      </Typography>
-                    )}
-
-                    {changedResources.map((resource) => {
-                      const isPositive =
-                        resourcesPerDay[resource] > 0;
-                      const text = `${isPositive ? "+ " : ""}${
-                        resourcesPerDay[resource]
-                      } ${resource} per day`;
-
-                      return (
-                        <ResourceOutcomeIcon
-                          key={resource}
-                          resource={resource}
-                          isPositive={resourcesPerDay[resource] > 0}
-                          text={text}
-                          styles={{
-                            container: {
-                              ml: 1,
-                            },
-                          }}
-                        />
-                      );
-                    })}
-                  </Grid>
+                  <TableRow key={id}>
+                    <TableCell>Event</TableCell>
+                    <TableCell>{id}</TableCell>
+                    {enabledResources.map((resource) => (
+                      <ResourceTableCell
+                        key={resource}
+                        value={resourcesPerDay[resource]}
+                      />
+                    ))}
+                  </TableRow>
                 );
               })}
-            </Grid>
-          </>
-        )}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
     </StyledContainer>
   );

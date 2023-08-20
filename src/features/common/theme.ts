@@ -5,6 +5,10 @@ import type {
   PaletteColorOptions,
 } from "@mui/material";
 
+// LOCAL FILES
+// Constants
+import { TABLE_ROW_HEIGHT } from "features/common/constants";
+
 declare module "@mui/material/styles" {
   interface ExtendedTheme {
     gap: (spacing: number) => number;
@@ -21,6 +25,13 @@ const gap = (spacing: number) =>
 
 export const theme = createTheme({
   components: {
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          height: TABLE_ROW_HEIGHT,
+        },
+      },
+    },
     MuiTooltip: {
       defaultProps: {
         enterNextDelay: 250,
