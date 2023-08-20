@@ -223,7 +223,11 @@ export const ResourceView: FC<{}> = () => {
                   >
                     <TableCell>Building</TableCell>
                     <TableCell>
-                      <Grid alignItems="center" container>
+                      <Grid
+                        alignItems="center"
+                        container
+                        wrap="nowrap"
+                      >
                         <BuildingAvatar
                           buildingId={id}
                           hideStateOverlay
@@ -265,7 +269,11 @@ export const ResourceView: FC<{}> = () => {
                   >
                     <TableCell>Villager</TableCell>
                     <TableCell>
-                      <Grid alignItems="center" container>
+                      <Grid
+                        alignItems="center"
+                        container
+                        wrap="nowrap"
+                      >
                         <VillagerAvatar
                           villagerId={id}
                           hideStateOverlay
