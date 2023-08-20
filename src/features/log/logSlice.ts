@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { EVENT_ID_TO_EVENT } from "features/event/constants";
+import { ID_TO_EVENT } from "features/event/constants";
 import { RESOURCE_TO_TRADE_RATES } from "features/resource/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
@@ -90,7 +90,7 @@ export const logSlice = createSlice({
         choiceIndex,
         outcomeIndex,
       } = action.payload;
-      const event = EVENT_ID_TO_EVENT[eventId];
+      const event = ID_TO_EVENT[eventId];
       const choice = event.choices[choiceIndex];
       const outcome = choice.outcomes[outcomeIndex];
       const { resources, resourcesPerDay, buildings, villagers } =

@@ -9,9 +9,9 @@ import {
 } from "features/building/constants";
 import {
   DAYS_PER_EVENT,
-  EVENT_ID_TO_EVENT,
+  ID_TO_EVENT,
 } from "features/event/constants";
-import { TIER_TO_RESOURCES_PER_DAY } from "features/resource/constants";
+import { TIER_TO_RESOURCES_PER_DAY } from "features/tier/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Interfaces & Types
 import type { RootState } from "features/redux/store";
@@ -22,12 +22,20 @@ import {
   selectTownTier,
 } from "features/tier/selectors";
 // Utility functions
+import {
+  sortBuildings,
+  sortTownBuildings,
+} from "features/building/utils";
 import { getRandomEvent } from "features/event/utils";
 import {
   canAffordResourceAmount,
   mergeResources,
 } from "features/resource/utils";
 import { getNumberOfBuilders } from "features/town/utils";
+import {
+  sortTownVillagers,
+  sortVillagers,
+} from "features/villager/utils";
 
 export const selectTownResources = (state: RootState) =>
   state.town.resources;
@@ -49,6 +57,11 @@ export const selectTownBuildingIds = createSelector(
 export const selectTownBuildings = createSelector(
   [selectTownBuildingIdToBuilding],
   (buildingIdToBuilding) => Object.values(buildingIdToBuilding),
+);
+
+export const selectSortedTownBuildings = createSelector(
+  [selectTownBuildings],
+  (townBuildings) => townBuildings.sort(sortTownBuildings),
 );
 
 export const selectTownBuilding = (buildingId: number) =>
@@ -76,7 +89,9 @@ export const selectFunctionalTownBuildingIds = createSelector(
   (buildings) => buildings.map((building) => building.id),
 );
 
-// Returns all buildings that should be available to player at this point in game
+/**
+ * Selects all buildings that should be available to player at this point in game
+ */
 export const selectAvailableBuildings = createSelector(
   [selectTownTier, selectTownBuildingIdToBuilding],
   (tier, buildingIdToBuilding) =>
@@ -86,15 +101,7 @@ export const selectAvailableBuildings = createSelector(
           buildingIdToBuilding[building.id] ||
           (building.canBuild && building.requirements.tier <= tier),
       )
-      .sort((buildingA, buildingB) => {
-        const { tier: tierA } = buildingA.requirements;
-        const { tier: tierB } = buildingB.requirements;
-        if (tierA === tierB) {
-          return buildingA.name < buildingB.name ? -1 : 1;
-        }
-
-        return tierA < tierB ? -1 : 1;
-      }),
+      .sort(sortBuildings),
 );
 
 export const selectTownVillagerIds = createSelector(
@@ -108,6 +115,11 @@ export const selectTownVillagerIds = createSelector(
 export const selectTownVillagers = createSelector(
   [selectTownVillagerIdToVillager],
   (villagerIdToVillager) => Object.values(villagerIdToVillager),
+);
+
+export const selectSortedTownVillagers = createSelector(
+  [selectTownVillagers],
+  (townVillagers) => townVillagers.sort(sortTownVillagers),
 );
 
 export const selectTownVillager = (villagerId: number) =>
@@ -152,7 +164,9 @@ export const selectFunctionalTownVillagerIds = createSelector(
   (villagers) => villagers.map((villager) => villager.id),
 );
 
-// Returns all villagers that should be available to player at this point in game
+/**
+ * Selects all villagers that should be available to player at this point in game
+ */
 export const selectAvailableVillagers = createSelector(
   [selectTownTier, selectTownVillagerIdToVillager],
   (tier, villagerIdToVillager) =>
@@ -162,15 +176,7 @@ export const selectAvailableVillagers = createSelector(
           villagerIdToVillager[villager.id] ||
           (villager.canRecruit && villager.requirements.tier <= tier),
       )
-      .sort((villagerA, villagerB) => {
-        const { tier: tierA } = villagerA.requirements;
-        const { tier: tierB } = villagerB.requirements;
-        if (tierA === tierB) {
-          return villagerA.name < villagerB.name ? -1 : 1;
-        }
-
-        return tierA < tierB ? -1 : 1;
-      }),
+      .sort(sortVillagers),
 );
 
 export const selectTownResourcesPerDay = createSelector(
@@ -189,9 +195,8 @@ export const selectTownResourcesPerDay = createSelector(
       const { id, choiceIndex, outcomeIndex } = completedEvent;
       resourcesPerDay = mergeResources(
         resourcesPerDay,
-        EVENT_ID_TO_EVENT[id].choices[choiceIndex].outcomes[
-          outcomeIndex
-        ].resourcesPerDay,
+        ID_TO_EVENT[id].choices[choiceIndex].outcomes[outcomeIndex]
+          .resourcesPerDay,
       );
     });
 
@@ -246,7 +251,7 @@ export const selectCanAdvanceTier = createSelector(
 );
 
 /*
-  Filter event list to return only valid events. Each event has a set of
+  Filter event list to select only valid events. Each event has a set of
   requirements that town must meet. Player must also not have seen event
   before.
 */
@@ -265,7 +270,7 @@ export const selectValidEvents = createSelector(
     townBuildingIds,
     townVillagerIds,
   ) =>
-    Object.values(EVENT_ID_TO_EVENT).filter((event) => {
+    Object.values(ID_TO_EVENT).filter((event) => {
       const { id, requirements } = event;
       const { tier, resources, buildingIds, villagerIds } =
         requirements;
@@ -322,9 +327,18 @@ export const selectCanExplore = createSelector(
       Math.ceil(day / completedEvents.length) > DAYS_PER_EVENT),
 );
 
-// Returns random valid event
+//
+/**
+ * Selects random valid event
+ */
 export const selectValidEvent = createSelector(
   [selectValidEvents],
   (validEvents) =>
     validEvents.length === 0 ? null : getRandomEvent(validEvents),
+);
+
+export const selectSortedCompletedEvents = createSelector(
+  [selectCompletedEvents],
+  (completedEvents) =>
+    [...completedEvents].sort((a, b) => a.id - b.id),
 );

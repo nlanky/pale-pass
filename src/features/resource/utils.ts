@@ -75,3 +75,15 @@ export const canAffordResourceAmount = (
 
   return true;
 };
+
+export const getRpdColour = (rpd: number): string => {
+  if (rpd > 0) {
+    return "success.main";
+  }
+
+  if (rpd < 0) {
+    return "error.main";
+  }
+
+  return "text.primary";
+};

@@ -6,17 +6,18 @@ import { Container, Grid } from "@mui/material";
 
 // LOCAL FILES
 // Components
-import { SpeedControls } from "features/system/components";
+import { TownBuildingsButton } from "features/building/components";
+import { TownExploreButton } from "features/event/components";
+import { TownLogButton } from "features/log/components";
+import { TownMapButton } from "features/map/components";
 import {
-  TownAdvanceTierButton,
-  TownBuildingsButton,
-  TownExploreButton,
-  TownImage,
-  TownLogButton,
-  TownMapButton,
   TownResources,
-  TownVillagersButton,
-} from "features/town/components";
+  TownResourcesButton,
+} from "features/resource/components";
+import { SpeedControls } from "features/system/components";
+import { TownAdvanceTierButton } from "features/tier/components";
+import { TownImage } from "features/town/components";
+import { TownVillagersButton } from "features/villager/components";
 // Hooks
 import { useEventTimer } from "features/event/hooks";
 import { useDayTimer } from "features/system/hooks";
@@ -59,6 +60,9 @@ export const TownView: FC<{}> = () => {
           </Grid>
           <Grid item>
             <TownMapButton />
+          </Grid>
+          <Grid item>
+            <TownResourcesButton />
           </Grid>
           <Grid item>
             <TownLogButton />

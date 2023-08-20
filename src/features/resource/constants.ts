@@ -10,8 +10,6 @@ import {
 } from "assets/resource";
 // Interfaces & Types
 import type { Resource, Resources } from "features/resource/types";
-// Utility functions
-import { getResources } from "features/resource/utils";
 
 export const NO_RESOURCES: Resources = {
   Wood: 0,
@@ -20,30 +18,6 @@ export const NO_RESOURCES: Resources = {
   Steel: 0,
   Mythril: 0,
   Amethyst: 0,
-};
-
-/**
- * Set resource values to INCREASE in each resource when advancing tiers.
- */
-export const TIER_TO_RESOURCES_PER_DAY: Record<number, Resources> = {
-  1: getResources({ Wood: 5, Stone: 5 }),
-  2: getResources({ Wood: 5, Stone: 5, Iron: 5 }),
-  3: getResources({ Wood: 5, Stone: 5, Iron: 5, Steel: 5 }),
-  4: getResources({
-    Wood: 5,
-    Stone: 5,
-    Iron: 5,
-    Steel: 5,
-    Mythril: 5,
-  }),
-  5: getResources({
-    Wood: 5,
-    Stone: 5,
-    Iron: 5,
-    Steel: 5,
-    Mythril: 5,
-    Amethyst: 5,
-  }),
 };
 
 export const RESOURCE_TO_IMAGE: Record<Resource, string> = {

@@ -2,7 +2,12 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Grid, Typography } from "@mui/material";
+import {
+  Grid,
+  type SxProps,
+  Typography,
+  useTheme,
+} from "@mui/material";
 
 // LOCAL FILES
 // Components
@@ -22,6 +27,9 @@ interface ResourceOutcomeIconProps {
   isPositive: boolean;
   text?: string;
   disabled?: boolean;
+  styles?: {
+    container?: SxProps;
+  };
 }
 
 export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
@@ -29,62 +37,74 @@ export const ResourceOutcomeIcon: FC<ResourceOutcomeIconProps> = ({
   isPositive,
   text,
   disabled,
-}) => (
-  <Grid
-    alignItems="center"
-    container
-    item
-    sx={{ position: "relative", width: "auto" }}
-    wrap="nowrap"
-  >
-    {isPositive && (
-      <Image
-        src={positiveOutcomeIcon}
-        style={{ width: 64, height: 64 }}
-      />
-    )}
-    {!isPositive && (
-      <Image
-        src={negativeOutcomeIcon}
-        style={{ width: 64, height: 64 }}
-      />
-    )}
+  styles = {
+    container: {},
+  },
+}) => {
+  // Hooks
+  const theme = useTheme();
 
-    <Image
-      src={RESOURCE_TO_IMAGE[resource]}
-      style={{
-        position: "absolute",
-        // Icons need to be offset to show all of positive/negative icon
-        top: 12,
-        left: 12,
-        width: 40,
-        height: 40,
+  return (
+    <Grid
+      alignItems="center"
+      container
+      item
+      sx={{
+        position: "relative",
+        width: "auto",
+        ...styles.container,
       }}
-    />
+      wrap="nowrap"
+    >
+      {isPositive && (
+        <Image
+          src={positiveOutcomeIcon}
+          style={{ width: 64, height: 64 }}
+        />
+      )}
+      {!isPositive && (
+        <Image
+          src={negativeOutcomeIcon}
+          style={{ width: 64, height: 64 }}
+        />
+      )}
 
-    {text && (
-      <Typography
-        sx={{
-          color: disabled ? "text.disabled" : "text.primary",
-          ml: 1,
-        }}
-        variant="body2"
-      >
-        {text}
-      </Typography>
-    )}
-
-    {disabled && (
-      <div
+      <Image
+        src={RESOURCE_TO_IMAGE[resource]}
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          width: 64,
-          height: 64,
-          backgroundColor: "action.disabled",
+          // Icons need to be offset to show all of positive/negative icon
+          top: 12,
+          left: 12,
+          width: 40,
+          height: 40,
         }}
       />
-    )}
-  </Grid>
-);
+
+      {text && (
+        <Typography
+          sx={{
+            color: disabled ? "text.disabled" : "text.primary",
+            ml: 1,
+          }}
+          variant="body2"
+        >
+          {text}
+        </Typography>
+      )}
+
+      {disabled && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: 64,
+            height: 64,
+            backgroundColor: theme.palette.action.disabled,
+          }}
+        />
+      )}
+    </Grid>
+  );
+};

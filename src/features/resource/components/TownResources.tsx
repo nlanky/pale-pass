@@ -15,13 +15,16 @@ import { Image, NineSlice } from "features/common/components";
 // Constants
 import { RESOURCE_TO_IMAGE } from "features/resource/constants";
 import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
-// Redux
+// Hooks
 import { useAppSelector } from "features/redux/hooks";
+// Redux
 import { selectEnabledResources } from "features/tier/selectors";
 import {
   selectTownResources,
   selectTownResourcesPerDay,
 } from "features/town/selectors";
+// Utility functions
+import { getRpdColour } from "features/resource/utils";
 
 interface TownResourcesProps {
   hideRpd?: boolean;
@@ -35,19 +38,6 @@ export const TownResources: FC<TownResourcesProps> = ({
   const resources = useAppSelector(selectTownResources);
   const resourcesPerDay = useAppSelector(selectTownResourcesPerDay);
   const enabledResources = useAppSelector(selectEnabledResources);
-
-  // Utility functions
-  const getRpdColour = (rpd: number): string => {
-    if (rpd > 0) {
-      return "success.main";
-    }
-
-    if (rpd < 0) {
-      return "error.main";
-    }
-
-    return "text.primary";
-  };
 
   return (
     <NineSlice
@@ -105,7 +95,7 @@ export const TownResources: FC<TownResourcesProps> = ({
                   alignItems="center"
                   container
                   item
-                  style={{ width: "auto" }}
+                  sx={{ width: "auto" }}
                 >
                   {rpd > 0 && (
                     <ArrowUpward color="success" fontSize="small" />
@@ -118,7 +108,7 @@ export const TownResources: FC<TownResourcesProps> = ({
                     color={getRpdColour(rpd)}
                     variant="body2"
                   >
-                    {resourcesPerDay[resource]}
+                    {rpd}
                   </Typography>
                 </Grid>
               )}

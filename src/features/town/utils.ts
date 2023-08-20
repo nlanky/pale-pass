@@ -1,8 +1,8 @@
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { EVENT_ID_TO_EVENT } from "features/event/constants";
-import { TIER_TO_RESOURCES_PER_DAY } from "features/resource/constants";
+import { ID_TO_EVENT } from "features/event/constants";
+import { TIER_TO_RESOURCES_PER_DAY } from "features/tier/constants";
 // Interfaces & Types
 import type { Resources } from "features/resource/types";
 import type { Town, TownVillager } from "features/town/types";
@@ -19,9 +19,8 @@ export const getTownResourcesPerDay = (town: Town): Resources => {
     const { id, choiceIndex, outcomeIndex } = completedEvent;
     resourcesPerDay = mergeResources(
       resourcesPerDay,
-      EVENT_ID_TO_EVENT[id].choices[choiceIndex].outcomes[
-        outcomeIndex
-      ].resourcesPerDay,
+      ID_TO_EVENT[id].choices[choiceIndex].outcomes[outcomeIndex]
+        .resourcesPerDay,
     );
   });
 

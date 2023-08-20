@@ -11,10 +11,9 @@ import { PersistGate } from "redux-persist/integration/react";
 // LOCAL FILES
 // Components
 import { Router } from "features/system/components";
-import {
-  TownBuildingNotification,
-  TownVillagerNotification,
-} from "features/town/components";
+import { TownBuildingNotification } from "features/building/components";
+import { TownVillagerNotification } from "features/villager/components";
+
 // CSS
 import "@fontsource/cormorant-garamond";
 import "main.css";

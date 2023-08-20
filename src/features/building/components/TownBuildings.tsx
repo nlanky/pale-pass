@@ -53,12 +53,13 @@ export const TownBuildings: FC<{}> = () => {
         <ReturnToTownButton />
       </Grid>
       <Grid
+        alignItems="flex-start"
         container
         item
         sx={{
           height: `calc(100% - ${BUTTON_HEIGHT}px - ${theme.gap(
             2,
-          )})px`,
+          )}px)`,
           mt: 2,
           overflowY: "auto",
         }}

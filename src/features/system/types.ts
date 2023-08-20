@@ -8,4 +8,5 @@ export type View =
   | "villager"
   | "combat"
   | "log"
-  | "tier";
+  | "tier"
+  | "resource";

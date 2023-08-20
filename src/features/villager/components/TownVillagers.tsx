@@ -53,12 +53,13 @@ export const TownVillagers: FC<{}> = () => {
         <ReturnToTownButton />
       </Grid>
       <Grid
+        alignItems="flex-start"
         container
         item
         sx={{
-          height: `calc(100% - ${BUTTON_HEIGHT}px - ${theme.gap(
+          height: `calc(100% - ${BUTTON_HEIGHT}px - ${theme.spacing(
             2,
-          )})px`,
+          )})`,
           mt: 2,
           overflowY: "auto",
         }}

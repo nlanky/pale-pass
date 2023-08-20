@@ -13,7 +13,7 @@ import {
   ReturnToTownButton,
 } from "features/common/components";
 import { MapTile } from "features/map/components";
-import { TownResources } from "features/town/components";
+import { TownResources } from "features/resource/components";
 // Constants
 import { MAP_TILE_WIDTH } from "features/map/constants";
 // Hooks

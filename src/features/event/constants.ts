@@ -17,7 +17,7 @@ export const NO_EVENT_REQUIREMENTS: EventRequirements = {
   villagerIds: [],
 };
 
-export const EVENT_ID_TO_EVENT: Record<number, Event> = {
+export const ID_TO_EVENT: Record<number, Event> = {
   1: {
     id: 1,
     image: event1Image,

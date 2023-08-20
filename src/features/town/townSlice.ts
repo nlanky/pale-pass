@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // LOCAL FILES
 // Constants
 import { ID_TO_BUILDING } from "features/building/constants";
-import { EVENT_ID_TO_EVENT } from "features/event/constants";
+import { ID_TO_EVENT } from "features/event/constants";
 import {
   NO_RESOURCES,
   RESOURCE_TO_TRADE_RATES,
@@ -223,7 +223,7 @@ export const townSlice = createSlice({
           outcomeIndex,
         } = action.payload;
         const { resources, buildings, villagers } =
-          EVENT_ID_TO_EVENT[eventId].choices[choiceIndex].outcomes[
+          ID_TO_EVENT[eventId].choices[choiceIndex].outcomes[
             outcomeIndex
           ];
 

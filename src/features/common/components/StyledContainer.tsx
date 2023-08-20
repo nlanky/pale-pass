@@ -43,9 +43,9 @@ export const StyledContainer: FC<StyledContainerProps> = ({
       },
       content: {
         /*
-            To make sure content is inside background image "border".
-            Absolutely disgusting, don't judge me...
-          */
+          To make sure content is inside background image "border".
+          Absolutely disgusting, don't judge me...
+        */
         padding: "58px 72px",
       },
       ...nineSliceStyles,

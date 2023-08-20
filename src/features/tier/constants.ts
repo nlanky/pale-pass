@@ -2,7 +2,7 @@
 // Constants
 import { NO_RESOURCES } from "features/resource/constants";
 // Interfaces & Types
-import type { Resource } from "features/resource/types";
+import type { Resource, Resources } from "features/resource/types";
 import type { TierScreen } from "features/tier/types";
 import type { TierRequirements } from "features/town/types";
 // Utility functions
@@ -177,4 +177,28 @@ export const TIER_TO_ENABLED_RESOURCES: Record<number, Resource[]> = {
   3: ["Wood", "Stone", "Iron", "Steel"],
   4: ["Wood", "Stone", "Iron", "Steel", "Mythril"],
   5: ["Wood", "Stone", "Iron", "Steel", "Mythril", "Amethyst"],
+};
+
+/**
+ * Set resource values to INCREASE in each resource when advancing tiers.
+ */
+export const TIER_TO_RESOURCES_PER_DAY: Record<number, Resources> = {
+  1: getResources({ Wood: 5, Stone: 5 }),
+  2: getResources({ Wood: 5, Stone: 5, Iron: 5 }),
+  3: getResources({ Wood: 5, Stone: 5, Iron: 5, Steel: 5 }),
+  4: getResources({
+    Wood: 5,
+    Stone: 5,
+    Iron: 5,
+    Steel: 5,
+    Mythril: 5,
+  }),
+  5: getResources({
+    Wood: 5,
+    Stone: 5,
+    Iron: 5,
+    Steel: 5,
+    Mythril: 5,
+    Amethyst: 5,
+  }),
 };

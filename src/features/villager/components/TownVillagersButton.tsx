@@ -2,15 +2,13 @@
 import type { FC } from "react";
 
 // PUBLIC MODULES
-import { Icon } from "@mui/material";
+import { Person as PersonIcon } from "@mui/icons-material";
 
 // LOCAL FILES
 // Components
-import { Image, StyledButton } from "features/common/components";
+import { StyledButton } from "features/common/components";
 // Hooks
 import { useAppDispatch } from "features/redux/hooks";
-// Images & Icons
-import { villagerIcon } from "assets/villager";
 // Redux
 import { setView } from "features/system/actions";
 
@@ -26,18 +24,7 @@ export const TownVillagersButton: FC<{}> = () => {
   return (
     <StyledButton
       onClick={onVillagersClick}
-      startIcon={
-        <Icon>
-          <Image
-            src={villagerIcon}
-            style={{
-              display: "flex",
-              width: "inherit",
-              height: "inherit",
-            }}
-          />
-        </Icon>
-      }
+      startIcon={<PersonIcon />}
       width={185}
     >
       Villagers

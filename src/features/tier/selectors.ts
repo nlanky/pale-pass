@@ -6,6 +6,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import {
   TIER_TO_ENABLED_RESOURCES,
   TIER_TO_REQUIREMENTS,
+  TIER_TO_RESOURCES_PER_DAY,
   TIER_TO_SCREENS,
 } from "features/tier/constants";
 // Interfaces & Types
@@ -26,4 +27,9 @@ export const selectEnabledResources = createSelector(
 export const selectTierScreens = createSelector(
   [selectTownTier],
   (tier) => TIER_TO_SCREENS[tier],
+);
+
+export const selectTierResourcesPerDay = createSelector(
+  [selectTownTier],
+  (tier) => TIER_TO_RESOURCES_PER_DAY[tier],
 );

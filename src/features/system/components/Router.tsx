@@ -10,6 +10,7 @@ import { Log } from "features/log/components";
 import { Map } from "features/map/components";
 import { Menu } from "features/menu/Menu";
 import { CreateCharacter } from "features/player/components";
+import { ResourceView } from "features/resource/components";
 import { TierScreen } from "features/tier/components";
 import { TownView } from "features/town/components";
 import { TownVillagers } from "features/villager/components";
@@ -33,6 +34,7 @@ export const Router: FC<{}> = () => {
       {view === "villager" && <TownVillagers />}
       {view === "combat" && <TownCombat />}
       {view === "log" && <Log />}
+      {view === "resource" && <ResourceView />}
     </>
   );
 };
