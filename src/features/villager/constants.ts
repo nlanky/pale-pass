@@ -1,6 +1,4 @@
 // LOCAL FILES
-// Constants
-import { NO_RESOURCES } from "features/resource/constants";
 // Icons & Images
 import {
   villager1Image,
