@@ -3,7 +3,6 @@ import { type FC, type ReactNode, useMemo, useState } from "react";
 
 // PUBLIC MODULES
 import {
-  Divider,
   Grid,
   Table,
   TableBody,
@@ -302,8 +301,6 @@ export const ResourceView: FC<{}> = () => {
         })}
       </Grid>
 
-      <Divider sx={{ mt: 1 }} />
-
       <Grid
         container
         direction="column"
@@ -311,7 +308,8 @@ export const ResourceView: FC<{}> = () => {
         sx={{
           height: `calc(100% - ${BUTTON_HEIGHT}px - ${TOWN_RESOURCE_ITEM_HEIGHT}px - ${theme.spacing(
             2,
-          )} - 1px)`,
+          )})`,
+          mt: 1,
           overflowY: "auto",
         }}
         wrap="nowrap"
