@@ -1,5 +1,5 @@
 // REACT
-import type { FC } from "react";
+import { type FC, type ReactNode, useMemo, useState } from "react";
 
 // PUBLIC MODULES
 import {
@@ -12,6 +12,7 @@ import {
   type TableCellProps,
   TableHead,
   TableRow,
+  TableSortLabel,
   Tooltip,
   Typography,
   useTheme,
@@ -40,6 +41,8 @@ import { TOWN_RESOURCE_ITEM_HEIGHT } from "features/town/constants";
 import { ID_TO_VILLAGER } from "features/villager/constants";
 // Hooks
 import { useAppSelector } from "features/redux/hooks";
+// Interfaces & Types
+import type { Resource } from "features/resource/types";
 // Redux
 import {
   selectEnabledResources,
@@ -47,11 +50,11 @@ import {
   selectTownTier,
 } from "features/tier/selectors";
 import {
-  selectSortedCompletedEvents,
-  selectSortedTownBuildings,
-  selectSortedTownVillagers,
+  selectCompletedEvents,
+  selectTownBuildings,
   selectTownResources,
   selectTownResourcesPerDay,
+  selectTownVillagers,
 } from "features/town/selectors";
 // Utility functions
 import { getRpdColour } from "features/resource/utils";
@@ -83,6 +86,42 @@ const ResourceTableCell: FC<ResourceTableCellProps> = ({
   );
 };
 
+interface TableData extends Record<Resource, number> {
+  id: string;
+  type: "Base" | "Building" | "Villager" | "Event";
+  details: ReactNode;
+  disabled: boolean;
+}
+type OrderBy = "type" | Resource;
+type Order = "asc" | "desc";
+
+const descendingComparator = (
+  a: TableData,
+  b: TableData,
+  orderBy: OrderBy,
+) => {
+  const aValue = orderBy !== "type" && a.disabled ? 0 : a[orderBy];
+  const bValue = orderBy !== "type" && b.disabled ? 0 : b[orderBy];
+
+  if (bValue < aValue) {
+    return -1;
+  }
+
+  if (bValue > aValue) {
+    return 1;
+  }
+
+  return a.type.localeCompare(b.type);
+};
+
+const getComparator = (
+  order: Order,
+  orderBy: OrderBy,
+): ((a: TableData, b: TableData) => number) =>
+  order === "desc"
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+
 export const ResourceView: FC<{}> = () => {
   // Hooks
   const theme = useTheme();
@@ -95,9 +134,111 @@ export const ResourceView: FC<{}> = () => {
   const tierResourcesPerDay = useAppSelector(
     selectTierResourcesPerDay,
   );
-  const townBuildings = useAppSelector(selectSortedTownBuildings);
-  const townVillagers = useAppSelector(selectSortedTownVillagers);
-  const completedEvents = useAppSelector(selectSortedCompletedEvents);
+  const townBuildings = useAppSelector(selectTownBuildings);
+  const townVillagers = useAppSelector(selectTownVillagers);
+  const completedEvents = useAppSelector(selectCompletedEvents);
+
+  // Local state
+  const [orderBy, setOrderBy] = useState<OrderBy>("type");
+  const [order, setOrder] = useState<Order>("asc");
+
+  // Handlers
+  const handleRequestSort = (column: OrderBy) => {
+    const isAsc = orderBy === column && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
+    setOrderBy(column);
+  };
+
+  // Memoised variables
+  const tableData = useMemo<TableData[]>(() => {
+    const nextTableData: TableData[] = [
+      {
+        id: "base",
+        type: "Base",
+        details: `Tier ${townTier}`,
+        disabled: false,
+        ...tierResourcesPerDay,
+      },
+    ];
+
+    townBuildings.forEach((townBuilding) => {
+      const { id, state } = townBuilding;
+      const { name, gatherResources } = ID_TO_BUILDING[id];
+      const isBuilt = state === "built";
+
+      nextTableData.push({
+        id: `building_${id}`,
+        type: "Building",
+        details: (
+          <Grid alignItems="center" container wrap="nowrap">
+            <BuildingAvatar
+              buildingId={id}
+              hideStateOverlay
+              hideStateText
+              width={32}
+              height={32}
+            />
+            <Typography sx={{ ml: 1 }} variant="body2">
+              {name} ({state})
+            </Typography>
+          </Grid>
+        ),
+        disabled: !isBuilt,
+        ...gatherResources,
+      });
+    });
+
+    townVillagers.forEach((townVillager) => {
+      const { id, state } = townVillager;
+      const { name, gatherResources } = ID_TO_VILLAGER[id];
+      const isHealthy = state === "healthy";
+
+      nextTableData.push({
+        id: `villager_${id}`,
+        type: "Villager",
+        details: (
+          <Grid alignItems="center" container wrap="nowrap">
+            <VillagerAvatar
+              villagerId={id}
+              hideStateOverlay
+              hideStateText
+              width={32}
+              height={32}
+            />
+            <Typography sx={{ ml: 1 }} variant="body2">
+              {name} ({state})
+            </Typography>
+          </Grid>
+        ),
+        disabled: !isHealthy,
+        ...gatherResources,
+      });
+    });
+
+    completedEvents.forEach((completedEvent) => {
+      const { id, choiceIndex, outcomeIndex } = completedEvent;
+      const { resourcesPerDay } =
+        ID_TO_EVENT[id].choices[choiceIndex].outcomes[outcomeIndex];
+
+      nextTableData.push({
+        id: `event_${id}`,
+        type: "Event",
+        details: id,
+        disabled: false,
+        ...resourcesPerDay,
+      });
+    });
+
+    return nextTableData.slice().sort(getComparator(order, orderBy));
+  }, [
+    townTier,
+    tierResourcesPerDay,
+    townBuildings,
+    townVillagers,
+    completedEvents,
+    order,
+    orderBy,
+  ]);
 
   return (
     <StyledContainer>
@@ -176,150 +317,63 @@ export const ResourceView: FC<{}> = () => {
         wrap="nowrap"
       >
         <TableContainer>
-          <Table padding="checkbox">
+          <Table padding="checkbox" stickyHeader>
             <TableHead>
               <TableRow>
-                <TableCell>Type</TableCell>
+                <TableCell
+                  sortDirection={orderBy === "type" ? order : false}
+                >
+                  <TableSortLabel
+                    active={orderBy === "type"}
+                    direction={orderBy === "type" ? order : "asc"}
+                    onClick={() => {
+                      handleRequestSort("type");
+                    }}
+                  >
+                    Type
+                  </TableSortLabel>
+                </TableCell>
                 <TableCell>Details</TableCell>
                 {enabledResources.map((resource) => (
                   <TableCell key={resource}>
-                    <Image
-                      src={RESOURCE_TO_IMAGE[resource]}
-                      width={24}
-                      height={24}
-                      style={{ verticalAlign: "middle" }}
-                    />
+                    <TableSortLabel
+                      active={orderBy === resource}
+                      direction={orderBy === resource ? order : "asc"}
+                      onClick={() => {
+                        handleRequestSort(resource);
+                      }}
+                    >
+                      <Image
+                        src={RESOURCE_TO_IMAGE[resource]}
+                        width={24}
+                        height={24}
+                        style={{ verticalAlign: "middle" }}
+                      />
+                    </TableSortLabel>
                   </TableCell>
                 ))}
               </TableRow>
             </TableHead>
             <TableBody>
-              {/* BASE FROM TIER */}
-              <TableRow>
-                <TableCell>Base</TableCell>
-                <TableCell>Tier {townTier}</TableCell>
-                {enabledResources.map((resource) => (
-                  <ResourceTableCell
-                    key={resource}
-                    value={tierResourcesPerDay[resource]}
-                  />
-                ))}
-              </TableRow>
-
-              {/* BUILDINGS */}
-              {townBuildings.map((townBuilding) => {
-                const { id, state } = townBuilding;
-                const { name, gatherResources } = ID_TO_BUILDING[id];
-                const isBuilt = state === "built";
-
-                return (
-                  <TableRow
-                    key={id}
-                    sx={{
-                      backgroundColor: isBuilt
-                        ? "none"
-                        : "action.disabled",
-                    }}
-                  >
-                    <TableCell>Building</TableCell>
-                    <TableCell>
-                      <Grid
-                        alignItems="center"
-                        container
-                        wrap="nowrap"
-                      >
-                        <BuildingAvatar
-                          buildingId={id}
-                          hideStateOverlay
-                          hideStateText
-                          width={32}
-                          height={32}
-                        />
-                        <Typography sx={{ ml: 1 }} variant="body2">
-                          {name} ({state})
-                        </Typography>
-                      </Grid>
-                    </TableCell>
-                    {enabledResources.map((resource) => (
-                      <ResourceTableCell
-                        key={resource}
-                        value={
-                          isBuilt ? gatherResources[resource] : 0
-                        }
-                      />
-                    ))}
-                  </TableRow>
-                );
-              })}
-
-              {/* VILLAGERS */}
-              {townVillagers.map((townVillager) => {
-                const { id, state } = townVillager;
-                const { name, gatherResources } = ID_TO_VILLAGER[id];
-                const isHealthy = state === "healthy";
-
-                return (
-                  <TableRow
-                    key={id}
-                    sx={{
-                      backgroundColor: isHealthy
-                        ? "none"
-                        : "action.disabled",
-                    }}
-                  >
-                    <TableCell>Villager</TableCell>
-                    <TableCell>
-                      <Grid
-                        alignItems="center"
-                        container
-                        wrap="nowrap"
-                      >
-                        <VillagerAvatar
-                          villagerId={id}
-                          hideStateOverlay
-                          hideStateText
-                          width={32}
-                          height={32}
-                        />
-                        <Typography sx={{ ml: 1 }} variant="body2">
-                          {name} ({state})
-                        </Typography>
-                      </Grid>
-                    </TableCell>
-                    {enabledResources.map((resource) => (
-                      <ResourceTableCell
-                        key={resource}
-                        value={
-                          isHealthy ? gatherResources[resource] : 0
-                        }
-                      />
-                    ))}
-                  </TableRow>
-                );
-              })}
-
-              {/* EVENTS */}
-              {completedEvents.map((completedEvent) => {
-                const { id, choiceIndex, outcomeIndex } =
-                  completedEvent;
-                const { resourcesPerDay } =
-                  ID_TO_EVENT[id].choices[choiceIndex].outcomes[
-                    outcomeIndex
-                  ];
-
-                return (
-                  <TableRow key={id}>
-                    <TableCell>Event</TableCell>
-                    <TableCell>{id}</TableCell>
-                    {enabledResources.map((resource) => (
-                      <ResourceTableCell
-                        key={resource}
-                        value={resourcesPerDay[resource]}
-                      />
-                    ))}
-                  </TableRow>
-                );
-              })}
+              {tableData.map((data) => (
+                <TableRow
+                  key={data.id}
+                  sx={{
+                    backgroundColor: data.disabled
+                      ? "action.disabled"
+                      : "none",
+                  }}
+                >
+                  <TableCell>{data.type}</TableCell>
+                  <TableCell>{data.details}</TableCell>
+                  {enabledResources.map((resource) => (
+                    <ResourceTableCell
+                      key={resource}
+                      value={data.disabled ? 0 : data[resource]}
+                    />
+                  ))}
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>

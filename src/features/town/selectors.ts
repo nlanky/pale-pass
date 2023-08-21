@@ -61,7 +61,7 @@ export const selectTownBuildings = createSelector(
 
 export const selectSortedTownBuildings = createSelector(
   [selectTownBuildings],
-  (townBuildings) => townBuildings.sort(sortTownBuildings),
+  (townBuildings) => townBuildings.slice().sort(sortTownBuildings),
 );
 
 export const selectTownBuilding = (buildingId: number) =>
@@ -119,7 +119,7 @@ export const selectTownVillagers = createSelector(
 
 export const selectSortedTownVillagers = createSelector(
   [selectTownVillagers],
-  (townVillagers) => townVillagers.sort(sortTownVillagers),
+  (townVillagers) => townVillagers.slice().sort(sortTownVillagers),
 );
 
 export const selectTownVillager = (villagerId: number) =>
@@ -340,5 +340,5 @@ export const selectValidEvent = createSelector(
 export const selectSortedCompletedEvents = createSelector(
   [selectCompletedEvents],
   (completedEvents) =>
-    [...completedEvents].sort((a, b) => a.id - b.id),
+    completedEvents.slice().sort((a, b) => a.id - b.id),
 );
