@@ -28,7 +28,7 @@ Here is a summary of those properties:
 - `buildTime` - The amount of days the building takes to build.
 - `repairResources` - A `Resources` object that indicates the fixed amount of each resource required to repair the building.
 - `repairTime` - The amount of days the building takes to repair.
-- `icons` - An object that maps each state a building can be in (see `BuildingState` type) to an icon. This may be deprecated in the future as we intend to use the same icons for all buildings. For now, you can re-use an existing building's `icons` property value.
+- `images` - An object that maps each building image type to an image. There are three types: exterior, interior, and sketch. Interior is used in the building modal. Sketch is used for the building image if it has not been built yet. Otherwise, exterior is used.
 
 When specifying requirements, you can use the `NO_BUILDING_REQUIREMENTS` constant if the building doesn't require anything to be built. This constant sets `tier` to 1 (the starting tier) and `buildingIds`/`villagerIds` to empty arrays.
 
@@ -48,8 +48,8 @@ Here is a summary of those properties:
 - `canRecruit` - Whether the player can recruit this villager in the villagers view.
 - `requirements` - See "Adding a building".
 - `gatherResources` - See "Adding a building".
-- `militaryStrength` - Each villager has a number that represents their strength in a type of combat - hand to hand, archery, and mounted. These values will have an impact on their usefulness when fighting other towns.
-- `icons` - As with buildings, this may be deprecated in the future so just re-use an existing villager's `icons` property value.
+- `militaryStrength` - Each villager has a number that represents their strength in a type of combat - hand to hand, archery, and mounted. These values will have an impact on their usefulness when fighting other towns. If the villager's specialty is Soldier, we generally give them higher stats.
+- `image` - A portrait image of the villager that is shown throughout the app.
 
 When specifying requirements, you can use the `NO_VILLAGER_REQUIREMENTS` constant if the villager doesn't require anything to be recruited. This constant sets `tier` to 1 (the starting tier) and `buildingIds`/`villagerIds` to empty arrays.
 
@@ -58,7 +58,7 @@ The same resource utility functions mentioned in "Adding a building" can be used
 Note that if you set `canRecruit` to false and the villager does not appear as an event outcome, the player will never see them!
 
 ## Adding an event
-In order for an event to appear in the game, you must amend the `EVENTS` constant in `src/features/event/constants.ts`. There are already examples in there to follow but if you want to see a list of properties an event object requires, you can look at the interface definition in `src/features/event/types.ts`.
+In order for an event to appear in the game, you must amend the `ID_TO_EVENT` constant in `src/features/event/constants.ts`. There are already examples in there to follow but if you want to see a list of properties an event object requires, you can look at the interface definition in `src/features/event/types.ts`.
 
 Here is a summary of those properties:
 - `id` - A unique identifier for each event. We match this up to the # column in the Google Sheet.
@@ -83,7 +83,7 @@ When specifying requirements, you can use the `NO_EVENT_REQUIREMENTS` constant i
 
 You can also use `NO_RESOURCES` and `getResources` here too as you can with buildings and villagers.
 
-Events can trigger in two ways: exploring a map tile or randomly while in the town. If your new event triggers while in town, you don't need to do anything else after adding the event to the `EVENTS` constant. It will just trigger once the requirements are met. If the event is related to a map tile, you will need to update another constant: `MAP_TILES` in `src/features/map/constants.ts`. The map tiles are generated using this constant. The top left of the map is where `x` is 0 and `y` is 0 and the bottom right is where `x` is 9 and `y` is 9 (it's a 10x10 map). Find the tile you want the event to trigger on - make sure it's not a town where `playerId` is not `null` - and then set the `eventId` property to the ID of your new event.
+Events can trigger in two ways: exploring a map tile or randomly while in the town. If your new event triggers while in town, you don't need to do anything else after adding the event to the `ID_TO_EVENT` constant. It will just trigger once the requirements are met. If the event is related to a map tile, you will need to update another constant: `TILES` in `src/features/map/constants.ts`. The map tiles are generated using this constant. The top left of the map is where `x` is 0 and `y` is 0 and the bottom right is where `x` is 9 and `y` is 9 (it's a 10x10 map). Find the tile you want the event to trigger on - make sure it's not a town where `playerId` is not `null` - and then set the `eventId` property to the ID of your new event.
 
 ### Images
 Go to the `src/assets/event` directory. You can see there are some examples of event images there already. Save your image in that directory with the event ID as the file name.
