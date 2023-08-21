@@ -199,7 +199,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Soldier",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Stone: -1, Iron: 1, Steel: 1 }),
     militaryStrength: {
       handToHand: 4,
       archery: 3,
@@ -216,7 +216,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 3,
@@ -233,7 +233,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Mythril: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 1,
@@ -250,7 +250,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Steel: 1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 3,
@@ -267,7 +267,12 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Soldier",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: 1,
+      Steel: 1,
+    }),
     militaryStrength: {
       handToHand: 3,
       archery: 5,
@@ -284,7 +289,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 5,
@@ -301,7 +306,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Iron: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 2,
@@ -318,7 +323,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: 1, Iron: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 1,
@@ -334,7 +339,12 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: 1,
+      Stone: -1,
+      Iron: -1,
+      Steel: -1,
+    }),
     militaryStrength: {
       handToHand: 3,
       archery: 3,
@@ -351,7 +361,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 2,
@@ -368,7 +378,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: 1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 4,
@@ -385,7 +395,12 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Soldier",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: 1,
+      Steel: 1,
+    }),
     militaryStrength: {
       handToHand: 5,
       archery: 3,
@@ -402,7 +417,13 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: -1,
+      Steel: -1,
+      Mythril: 1,
+    }),
     militaryStrength: {
       handToHand: 4,
       archery: 2,
@@ -419,7 +440,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Stone: -1, Iron: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 4,
@@ -436,7 +457,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Stone: -1, Steel: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 4,
@@ -453,7 +474,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Builder",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Stone: -1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 3,
@@ -470,7 +491,13 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: -1,
+      Steel: -1,
+      Mythril: 1,
+    }),
     militaryStrength: {
       handToHand: 2,
       archery: 3,
@@ -487,7 +514,14 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: 1,
+      Steel: 1,
+      Mythril: 1,
+      Amethyst: -1,
+    }),
     militaryStrength: {
       handToHand: 2,
       archery: 4,
@@ -504,7 +538,12 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: 1,
+      Iron: 1,
+      Steel: -1,
+    }),
     militaryStrength: {
       handToHand: 3,
       archery: 2,
@@ -521,7 +560,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 3,
@@ -538,7 +577,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Builder",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 3,
@@ -555,7 +594,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 4,
@@ -572,7 +611,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Soldier",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 5,
@@ -606,7 +645,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Iron: -1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 2,
@@ -623,7 +662,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 1,
@@ -640,7 +679,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Soldier",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Stone: -1, Iron: -1, Steel: -1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 2,
@@ -657,7 +696,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Mythril: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 1,
@@ -674,7 +713,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 1,
@@ -691,7 +730,12 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Builder",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: 1,
+      Steel: 1,
+    }),
     militaryStrength: {
       handToHand: 3,
       archery: 1,
@@ -708,7 +752,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Gatherer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 2,
@@ -725,7 +769,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Builder",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: 1 }),
     militaryStrength: {
       handToHand: 1,
       archery: 1,
@@ -742,7 +786,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Soldier",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: 1, Iron: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 3,
@@ -759,7 +803,14 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: -1,
+      Steel: -1,
+      Mythril: 1,
+      Amethyst: 1,
+    }),
     militaryStrength: {
       handToHand: 3,
       archery: 1,
@@ -776,7 +827,12 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Builder",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Wood: -1,
+      Stone: -1,
+      Iron: -1,
+      Mythril: 1,
+    }),
     militaryStrength: {
       handToHand: 3,
       archery: 2,
@@ -793,7 +849,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Builder",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: -1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 2,
@@ -810,7 +866,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Healer",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: -1, Stone: -1, Iron: -1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 1,
@@ -875,7 +931,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Scout",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Wood: 1, Stone: 1 }),
     militaryStrength: {
       handToHand: 3,
       archery: 4,
@@ -892,7 +948,7 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({ Mythril: -1 }),
     militaryStrength: {
       handToHand: 2,
       archery: 2,
@@ -909,7 +965,11 @@ export const ID_TO_VILLAGER: Record<number, Villager> = {
     specialty: "Spy",
     canRecruit: true,
     requirements: NO_VILLAGER_REQUIREMENTS,
-    gatherResources: NO_RESOURCES,
+    gatherResources: getResources({
+      Steel: -1,
+      Mythril: -1,
+      Amethyst: -1,
+    }),
     militaryStrength: {
       handToHand: 1,
       archery: 2,
