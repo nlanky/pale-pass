@@ -265,7 +265,6 @@ export const ID_TO_BUILDING: Record<number, Building> = {
     canBuild: true,
     requirements: getBuildingRequirements({
       tier: 2,
-      villagerIds: [10],
     }),
     gatherResources: getResources({ Wood: -1, Stone: 1 }),
     buildResources: getResources({
