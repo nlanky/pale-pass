@@ -42,6 +42,8 @@ export const TownVillagerNotification = forwardRef<
           villagerId={villagerId}
           hideStateOverlay
           hideStateText
+          width={40}
+          height={40}
         />
         <Typography color="white" sx={{ ml: 1 }} variant="body2">
           {`${villager.name} ${type}`}
