@@ -109,6 +109,45 @@ import building036SketchImage from "assets/building/036_cartographer_sketch.jpg"
 import building037ExteriorImage from "assets/building/037_tailor_exterior.jpg";
 import building037InteriorImage from "assets/building/037_tailor_interior.jpg";
 import building037SketchImage from "assets/building/037_tailor_sketch.jpg";
+import building038ExteriorImage from "assets/building/038_council_chamber_exterior.jpg";
+import building038InteriorImage from "assets/building/038_council_chamber_interior.jpg";
+import building038SketchImage from "assets/building/038_council_chamber_sketch.jpg";
+import building039ExteriorImage from "assets/building/039_fletcher_exterior.jpg";
+import building039InteriorImage from "assets/building/039_fletcher_interior.jpg";
+import building039SketchImage from "assets/building/039_fletcher_sketch.jpg";
+import building040ExteriorImage from "assets/building/040_guildhall_exterior.jpg";
+import building040InteriorImage from "assets/building/040_guildhall_interior.jpg";
+import building040SketchImage from "assets/building/040_guildhall_sketch.jpg";
+import building041ExteriorImage from "assets/building/041_infirmary_exterior.jpg";
+import building041InteriorImage from "assets/building/041_infirmary_interior.jpg";
+import building041SketchImage from "assets/building/041_infirmary_sketch.jpg";
+import building042ExteriorImage from "assets/building/042_market_exterior.jpg";
+import building042InteriorImage from "assets/building/042_market_interior.jpg";
+import building042SketchImage from "assets/building/042_market_sketch.jpg";
+import building043ExteriorImage from "assets/building/043_stables_exterior.jpg";
+import building043InteriorImage from "assets/building/043_stables_interior.jpg";
+import building043SketchImage from "assets/building/043_stables_sketch.jpg";
+import building044ExteriorImage from "assets/building/044_stonemason_exterior.jpg";
+import building044InteriorImage from "assets/building/044_stonemason_interior.jpg";
+import building044SketchImage from "assets/building/044_stonemason_sketch.jpg";
+import building045ExteriorImage from "assets/building/045_warehouse_exterior.jpg";
+import building045InteriorImage from "assets/building/045_warehouse_interior.jpg";
+import building045SketchImage from "assets/building/045_warehouse_sketch.jpg";
+import building046ExteriorImage from "assets/building/046_well_exterior.jpg";
+import building046InteriorImage from "assets/building/046_well_interior.jpg";
+import building046SketchImage from "assets/building/046_well_sketch.jpg";
+import building047ExteriorImage from "assets/building/047_wizard_tower_exterior.jpg";
+import building047InteriorImage from "assets/building/047_wizard_tower_interior.jpg";
+import building047SketchImage from "assets/building/047_wizard_tower_sketch.jpg";
+import building048ExteriorImage from "assets/building/048_gatehouse_exterior.jpg";
+import building048InteriorImage from "assets/building/048_gatehouse_interior.jpg";
+import building048SketchImage from "assets/building/048_gatehouse_sketch.jpg";
+import building049ExteriorImage from "assets/building/049_city_walls_exterior.jpg";
+import building049InteriorImage from "assets/building/049_city_walls_interior.jpg";
+import building049SketchImage from "assets/building/049_city_walls_sketch.jpg";
+import building050ExteriorImage from "assets/building/050_alarm_beacon_exterior.jpg";
+import building050InteriorImage from "assets/building/050_alarm_beacon_interior.jpg";
+import building050SketchImage from "assets/building/050_alarm_beacon_sketch.jpg";
 import buildingIcon from "assets/building/icon.svg";
 
 export {
@@ -223,5 +262,44 @@ export {
   building037ExteriorImage,
   building037InteriorImage,
   building037SketchImage,
+  building038ExteriorImage,
+  building038InteriorImage,
+  building038SketchImage,
+  building039ExteriorImage,
+  building039InteriorImage,
+  building039SketchImage,
+  building040ExteriorImage,
+  building040InteriorImage,
+  building040SketchImage,
+  building041ExteriorImage,
+  building041InteriorImage,
+  building041SketchImage,
+  building042ExteriorImage,
+  building042InteriorImage,
+  building042SketchImage,
+  building043ExteriorImage,
+  building043InteriorImage,
+  building043SketchImage,
+  building044ExteriorImage,
+  building044InteriorImage,
+  building044SketchImage,
+  building045ExteriorImage,
+  building045InteriorImage,
+  building045SketchImage,
+  building046ExteriorImage,
+  building046InteriorImage,
+  building046SketchImage,
+  building047ExteriorImage,
+  building047InteriorImage,
+  building047SketchImage,
+  building048ExteriorImage,
+  building048InteriorImage,
+  building048SketchImage,
+  building049ExteriorImage,
+  building049InteriorImage,
+  building049SketchImage,
+  building050ExteriorImage,
+  building050InteriorImage,
+  building050SketchImage,
   buildingIcon,
 };
